@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 다수의 xml 문서 자체를 구분하기 위한 xml 문서 별칭 -->
+<mapper namespace="u">
+
+	
+	<!-- 14-05-20 성훈수정: 로그인 아이디만 보내도록 수정 -->
+	<select id="getOneLoginUser" parameterType="String" resultType="UserDTO" >
+		select * from userinfo where userid = #{userid}
+	</select>
+	
+	<!-- 2014-05-24 재희 수정: userno를 가지고 user 불러오기 -->
+	<select id="selectOne" parameterType="int" resultType="UserDTO">
+		SELECT * FROM userinfo WHERE userno = #{userno}
+	</select>
+	
+</mapper>					

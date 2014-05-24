@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="iteminfo">
+
+	<select id="selectAll" resultType="model.dto.ItemDTO">
+		SELECT * FROM iteminfo
+	</select>
+	
+	<select id="selectOne" resultType="model.dto.ItemDTO">
+		SELECT * FROM iteminfo WHERE itemno=#{itemno}
+	</select>
+	
+	<delete id="deleteOne" parameterType="int">
+		DELETE FROM iteminfo WHERE itemno=${value}
+	</delete>
+
+	<insert id="insertOne" parameterType="model.dto.ItemDTO">
+		INSERT INTO iteminfo(itemname, price, qty, itemdetail)
+		VALUES(#{itemname}, ${price}, ${qty}, #{itemdetail})
+	</insert>
+	
+	<select id="selectMaxItemNo" resultType="int">
+		SELECT MAX(itemno) FROM iteminfo
+	</select>
+
+	<update id="updateOne" parameterType="model.dto.ItemDTO">
+		UPDATE iteminfo
+		SET itemname=#{itemname}, price=${price}, qty=${qty}, itemdetail=#{itemdetail}
+		WHERE itemno=#{itemno}
+	</update>
+
+</mapper>

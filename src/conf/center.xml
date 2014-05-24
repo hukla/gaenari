@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	작성자 : 장재희
+	작성일 : 2014-05-24
+ -->
+
+<mapper namespace="centerinfo">
+
+	<select id="selectAll" resultType="model.dto.CenterDTO">
+		SELECT * FROM centerinfo WHERE cntrno > 0
+	</select>
+	
+	<select id="selectOne" resultType="model.dto.CenterDTO">
+		SELECT * FROM centerinfo WHERE cntrno=#{value}
+	</select>
+	
+	<delete id="deleteOne" parameterType="int">
+		DELETE FROM centerinfo WHERE cntrno=${value}
+	</delete>
+
+</mapper>

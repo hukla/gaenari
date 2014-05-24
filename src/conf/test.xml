@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test">
+
+	<!-- 
+	작성: 최성훈
+	작성일: 2014.04.21
+	작성내용: 기존 DTO의 변경에 따른 DB 쿼리문
+	  		  일기, 일정, 일정상세, 방명록의 리스트를 가져오는 쿼리문
+	  		  공통적으로 int 타입의 userno를 입력하여 select 함.
+	 -->
+
+	
+	<!-- 수정: 장재희
+		작성일: 2014-04-22 21:44
+		내용: discriminator 테스트 -->
+	
+	<resultMap type="model.dto.BoardDTO" id="brdMap">
+		<discriminator column="brdtype" javaType="string">
+		<case value="pl" resultType="model.dto.PlanDTO"/>
+		<case value="dy" resultType="model.dto.DiaryDTO"/>
+		<case value="vi" resultType="model.dto.VisitDTO"/>
+		</discriminator>
+	</resultMap>
+	
+	<!-- 14-05-13 성훈수정 -->
+	<select id="selectPlan" parameterType="int" resultMap="brdMap">
+		SELECT * FROM board b JOIN planboardinfo p ON b.brdno = p.brdno AND b.userno = #{userno} ORDER BY b.wrdate DESC
+	</select>		
+	
+	<!-- 14-05-13 성훈추가 -->
+	<select id="selectPlanbyDate" parameterType="map" resultMap="brdMap">
+		select * from board b join planboardinfo p on b.brdno = p.brdno and b.userid = #{userid} and b.wrdate = #{wrdate}
+	</select>	
+	
+	<delete id="deletePlan">
+		DELETE FROM planboardinfo WHERE brdno=2;
+		DELETE FROM board WHERE brdno=2;
+	</delete>
+	
+	<!-- 수정: 최성훈
+		작성일: 2014-04-23
+		내용: diary,visit,onePlan,oneDiary,oneVisit추가 -->
+	
+	<select id="selectDiary" parameterType="int" resultMap="brdMap"> 
+		select * from board b join diaryinfo d on b.brdno = d.brdno and b.userno = #{userno} order by b.brdno
+	</select>
+	
+	<!-- 14-05-13 성훈추가 -->
+	<select id="selectLastThree" parameterType="int" resultMap="brdMap">
+		select * from board b join diaryinfo d on b.brdno = d.brdno and b.userno = #{userno}
+		order by b.brdno desc limit 3
+	</select>
+	
+	<!-- 14-05-13 성훈추가 -->
+	<select id="selectLastThreePlan" parameterType="int" resultMap="brdMap">
+		select * from board b join planboardinfo p on b.brdno = p.brdno and b.userno = #{userno}
+		order by b.brdno desc limit 3
+	</select>
+	
+	<!-- 14-05-13 성훈추가 -->
+	<select id="selectLastThreeVisit" parameterType="int" resultMap="brdMap">
+		select * from board b join visitinfo v on b.brdno = v.brdno and b.userno = #{userno}
+		order by b.brdno desc limit 3
+	</select>
+	
+	<!-- 14-05-13 성훈수정 -->
+	<select id="selectReverseVisit" parameterType="int" resultMap="brdMap">
+		select * from board b join visitinfo v on b.brdno = v.brdno and b.userno = #{userno}
+		order by b.brdno desc
+	</select>
+	
+	<select id="selectOnePlan" parameterType="int" resultMap="brdMap">
+		select * from board b join planboardinfo p on b.brdno = p.brdno and b.brdno = #{brdno} 
+	</select>	
+	
+	<select id="selectOneDiary" parameterType="int" resultMap="brdMap">
+		select * from board b join diaryinfo d on b.brdno = d.brdno and b.brdno = #{brdno} 
+	</select>	
+	
+	<!-- 14-05-14 성훈추가: 일기를 dbrdno로 검색 -->
+	<select id="selectOneDiaryBydbrdno" parameterType="int" resultType="DiaryDTO">
+		select * from diaryinfo where dbrdno = #{dbrdno} 
+	</select>	
+	
+	<!-- 14-05-14 성훈추가: 일정을 pbrdno로 검색 -->
+	<select id="selectOnePlanBypbrdno" parameterType="int" resultType="PlanDTO">
+		select * from planboardinfo where pbrdno = #{pbrdno} 
+	</select>
+	
+	
+	<!-- 14-05-20 성훈추가: 이전일정 다음일정 오류해결 -->
+	<select id="selectOnePlanByMap" parameterType="map" resultType="PlanDTO">
+		SELECT * FROM board b JOIN planboardinfo p ON b.brdno = p.brdno AND b.userno=#{userno} AND p.pbrdno=#{pbrdno};
+	</select>
+	
+	<!-- 14-05-20 성훈추가: 이전일정 다음일정 오류해결 -->
+	<select id="selectOneDiaryByMap" parameterType="map" resultType="DiaryDTO">
+		SELECT * FROM board b JOIN diaryinfo d ON b.brdno = d.brdno AND b.userno=#{userno} AND d.dbrdno=#{dbrdno};
+	</select>
+	
+	<!-- 14-05-20 성훈추가: 이전일정 다음일정 오류해결 -->
+	<select id="selectOneVisitByMap" parameterType="map" resultType="VisitDTO">
+		SELECT * FROM board b JOIN visitinfo v ON b.brdno = v.brdno AND b.userno=#{userno} AND v.vbrdno=#{vbrdno};
+	</select>
+	
+	<!-- 14-05-14 성훈추가: 일기를 brdno로 검색 -->
+	<select id="selectOneDiaryBybrdno" parameterType="int" resultType="DiaryDTO">
+		select * from diaryinfo where brdno = #{brdno} 
+	</select>	
+	
+	<!-- 14-05-14 성훈추가: 일정을 brdno로 검색 -->
+	<select id="selectOnePlanBybrdno" parameterType="int" resultType="PlanDTO">
+		select * from planboardinfo where brdno = #{brdno} 
+	</select>
+	
+	<!-- 14-05-21 성훈추가: 방명록을 brdno로 검색 -->
+	<select id="selectOneVisitBybrdno" parameterType="int" resultType="VisitDTO">
+		select * from visitinfo where brdno = #{brdno} 
+	</select>		
+	
+	<select id="selectOneVisit" parameterType="int" resultMap="brdMap">
+		select * from board b join visitinfo v on b.brdno = v.brdno and b.brdno = #{brdno} 
+	</select>	
+	
+	<!-- 14-05-13 성훈추가 -->
+	<select id="selectBoard" parameterType="BoardDTO" resultType="int">
+		select brdno from board where brdcontent=#{brdcontent} and wrdate=#{wrdate} and userid=#{userid} and
+		title=#{title} and brdtype=#{brdtype} and userno=#{userno}
+	</select>
+	
+	<!-- 14-05-13 성훈추가 -->
+	<select id="selectVisitBoard" parameterType="BoardDTO" resultType="int">
+		select brdno from board where brdcontent=#{brdcontent} and wrdate=#{wrdate} and userid=#{userid} and
+		brdtype=#{brdtype} and userno=#{userno} order by brdno 
+	</select>
+	
+	<!-- 14-05-22 성훈추가 -->
+	<select id="selectCountDiary" resultType="int" parameterType="int">
+		select count(*) from board b join diaryinfo d on b.brdno = d.brdno and b.userno = #{userno}
+	</select>
+	
+	<!-- 14-05-22 성훈추가 --><!-- b.wrdate, b.title, d.mood -->
+	<select id="selectTenDiaries" parameterType="map" resultType="DiaryDTO">
+		SELECT * FROM board b JOIN diaryinfo d ON b.brdno = d.brdno and b.userno = #{userno}
+		ORDER BY b.brdno DESC LIMIT #{value},10
+	</select>
+	
+	<!-- 14-05-23 성훈추가 -->
+	<select id="selectCountPlan" resultType="int" parameterType="int">
+		select count(*) from board b join planboardinfo p on b.brdno = p.brdno and b.userno = #{userno}
+	</select>
+	
+	<!-- 14-05-23 성훈추가 --><!-- b.wrdate, b.title, d.mood -->
+	<select id="selectTenPlans" parameterType="map" resultType="PlanDTO">
+		SELECT * FROM board b JOIN planboardinfo p ON b.brdno = p.brdno and b.userno = #{userno}
+		ORDER BY b.wrdate DESC LIMIT #{value},10
+	</select>
+
+
+	<!-- 14-05-23 성훈추가 --><!-- b.wrdate, b.title, d.mood -->
+	<select id="selectPlanBydate" parameterType="map" resultType="PlanDTO">
+		SELECT * FROM board b JOIN planboardinfo p ON b.brdno = p.brdno 
+		AND b.userid=#{userid} AND b.wrdate=#{wrdate} order by b.wrdate desc limit 5
+	</select>
+	
+	<!-- 14-05-23 성훈추가 --><!-- b.wrdate, b.title, d.mood -->
+	<select id="selectDiaryBydate" parameterType="map" resultType="DiaryDTO">
+		SELECT * FROM board b JOIN diaryinfo d ON b.brdno = d.brdno 
+		AND b.userid=#{userid} AND b.wrdate=#{wrdate} order by b.wrdate desc limit 5
+	</select>
+
+</mapper>

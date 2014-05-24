@@ -1,0 +1,70 @@
+package model.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import model.dto.VoluBoardDTO;
+
+import org.apache.ibatis.session.SqlSession;
+
+import util.DBUtil;
+
+public class VoluBoardDAO {
+	
+	public static boolean updateContent (VoluBoardDTO vbdto) throws SQLException{
+		SqlSession session = DBUtil.getSqlSession();
+		session.commit();
+		VoluBoardDTO vbdto2 = null; // vbdto는 brdno를 가져오지 않기 때문에 brdno를 포함한 vbdto2를 만들어서 update
+		boolean result = false;
+		try{
+			int brdno = session.selectOne("voluboard.selectBrdno",vbdto.getVbrdno());
+			vbdto2 = new VoluBoardDTO(vbdto.getTitle(),vbdto.getBrdcontent(),vbdto.getVhour(),vbdto.getVbrdno(),brdno);
+			int count = session.update("voluboard.update",vbdto2);
+			if(count != 0){
+				result = true;
+			}
+		}finally{
+			DBUtil.closeSession(session, result);
+		}
+		return result;
+	}
+	public static boolean writeContent(VoluBoardDTO vbdto) throws SQLException{
+		SqlSession session = DBUtil.getSqlSession();
+		session.commit();
+		boolean result = false;
+		try {
+			int count =  session.insert("voluboard.insert", vbdto);
+			if(count != 0) {
+				result =  true;
+			}
+		}finally{
+			DBUtil.closeSession(session, result); //성공하면 commit 실패하면 rollback
+		}	
+		return result;
+	}
+	
+	public static List<VoluBoardDTO> selectAll() throws SQLException {
+		SqlSession session =null;
+		List<VoluBoardDTO> list =null;
+		try{
+			session =  DBUtil.getSqlSession();
+			list = session.selectList("voluboard.selectAll");
+		}finally{
+			DBUtil.closeSession(session);
+		}
+		return list;
+	}
+	public static VoluBoardDTO getContent(int  num, boolean check) throws SQLException{		
+		SqlSession session = DBUtil.getSqlSession();
+		session.commit();
+		VoluBoardDTO vbdto = null;
+		boolean result = false;
+		System.out.println("num="+num+"  check="+check);
+		try {
+			vbdto = session.selectOne("voluboard.selectByNum", num);
+		}finally{
+			DBUtil.closeSession(session, result);
+		}
+		return vbdto;
+	}
+}

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <properties resource="conf/dbInfo.properties"/>
+   <!-- <properties resource="conf/dbConnection.properties"/> -->
+   <!-- test용도로 이용하기위해 cubridManager 드라이버, url등의 프로퍼티 이용 -->
+   
+   <typeAliases>
+     <typeAlias type="model.dto.UserDTO" alias="UserDTO"/>
+     <typeAlias type="model.dto.DogDTO" alias="DogDTO"/>
+     <typeAlias type="model.dto.PlanDTO" alias="PlanDTO"/>
+     <typeAlias type="model.dto.DiaryDTO" alias="DiaryDTO"/>
+     <typeAlias type="model.dto.BoardDTO" alias="BoardDTO"/>
+     <!-- 14-05-13 성훈추가 -->
+     <typeAlias type="model.dto.VisitDTO" alias="VisitDTO"/>
+     <typeAlias type="model.dto.VoluBoardDTO" alias="VoluBoardDTO"/>
+     <typeAlias type="model.dto.PtBoardDTO" alias="PtBoardDTO"/>
+     <!-- <typeAlias type="model.dto.BoardPlanDTO" alias="BoardPlanDTO"/> -->
+     
+     <!-- <typeAlias type="model.test.dto.BoardVo" alias="boardVo"/>
+     <typeAlias type="model.test.dto.DiaryVo" alias="diaryVo"/> -->
+     
+   </typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+				<property name="poolMaximumActiveConnections" value="10"/>
+				<property name="poolMaximumIdleConnections" value="5"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<!-- 14-05-13 성훈추가 -->
+		<mapper resource="conf/insert.xml"/>
+		<mapper resource="conf/user.xml"/>
+		<mapper resource="conf/dog.xml"/>
+		<!-- <mapper resource="conf/plan.xml"/> -->
+		<mapper resource="conf/test.xml"/>
+		<!-- <mapper resource="conf/diary.xml"/> -->
+		<mapper resource="conf/voluBoard.xml"/>
+		<mapper resource="conf/ptBoard.xml"/>
+		<!-- <mapper resource="conf/missingBoard.xml"/> -->
+		
+		<!-- 2014-05-03 재희가 추가 -->
+		<mapper resource="conf/item.xml" />
+		
+		<!-- 2014-05-13 재희가 추가 -->
+		<mapper resource="conf/donreq.xml"/>
+		
+		<!-- 2014-05-21 성훈 추가 -->
+		<mapper resource="conf/update.xml"/>
+		<mapper resource="conf/delete.xml"/>
+		
+		<!-- 2014-05-24 재희가 추가 -->
+		<mapper resource="conf/center.xml"/>
+	</mappers>
+	
+</configuration>

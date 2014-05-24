@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="voluboard">
+
+	<resultMap type="model.dto.BoardDTO" id="brdMap">
+		<discriminator column="brdtype" javaType="string">
+			<case value="pl" resultType="model.dto.PlanDTO"/>
+			<case value="dy" resultType="model.dto.DiaryDTO"/>
+			<case value="vi" resultType="model.dto.VisitDTO"/>
+			<case value="vo" resultType="model.dto.VoluBoardDTO"/>
+		</discriminator>
+	</resultMap>
+	
+	<select id="selectAll" resultMap="brdMap">
+		select b.brdno, b.brdcontent, b.wrdate, b.userid, b.title, b.brdtype, b.userno, v.vbrdno,v.vhour
+		from board b join voluboardinfo v on b.brdno=v.brdno where brdtype='vo' order by v.vbrdno desc
+	</select>
+	 
+	<select id="selectByNum" resultType="VoluBoardDTO" parameterType="int">
+		select b.title, b.userid, b.wrdate, b.brdcontent, v.vhour, v.vbrdno
+		from board b join voluboardinfo v on v.brdno=b.brdno where v.vbrdno=#{int}
+	</select>
+	
+	<select id="selectBrdno" resultType="int" parameterType="int">
+		select brdno from voluboardinfo where vbrdno=#{int}
+	</select>
+	
+	<insert id="insert" parameterType="VoluBoardDTO">
+		insert into board VALUES(null,#{brdcontent},SYS_DATETIME,#{userid},#{title},#{brdtype},select userno from userinfo where userid=#{userid});
+		insert into voluboardinfo VALUES(null,select brdno from board where title=#{title} and brdcontent=#{brdcontent}, #{vhour});
+	</insert>
+	
+	<update id="update" parameterType="VoluBoardDTO">
+		update board set title=#{title}, brdcontent=#{brdcontent}, wrdate=SYS_DATETIME where brdno=#{brdno};
+		update voluboardinfo set vhour=#{vhour} where vbrdno=#{vbrdno};
+	</update>
+	<!-- 
+	<delete id="delete"  parameterType="int">
+		DELETE FROM mfboardinfo WHERE brdno=#{brdno};
+		DELETE FROM board WHERE brdno=#{brdno};
+	</delete>
+	-->
+</mapper>

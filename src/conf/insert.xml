@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="insert">
+	
+	<insert id="insertDiaryBoard" parameterType="BoardDTO">
+		insert into board(brdcontent,wrdate,userid,title,brdtype,userno)
+		values(#{brdcontent},#{wrdate},#{userid},#{title},#{brdtype},#{userno})
+	</insert>
+	
+	<insert id="insertDiary" parameterType="DiaryDTO">
+		insert into diaryinfo(brdno, mood) values(#{brdno}, #{mood})
+	</insert>
+
+
+	<insert id="insertPlanBoard" parameterType="BoardDTO">
+		insert into board(brdcontent,wrdate,userid,title,brdtype,userno)
+		values(#{brdcontent},#{wrdate},#{userid},#{title},#{brdtype},#{userno})
+	</insert>
+	
+	<insert id="insertPlan" parameterType="PlanDTO">
+		insert into planboardinfo(brdno, ploc, pdate) values(#{brdno}, #{ploc}, #{pdate})
+	</insert>
+	
+	<insert id="insertVisitBoard" parameterType="BoardDTO">
+		insert into board(brdcontent,wrdate,userid,brdtype,userno)
+		values(#{brdcontent},#{wrdate},#{userid},#{brdtype},#{userno})
+	</insert>
+
+	<insert id="insertVisitbook" parameterType="int">
+		insert into visitinfo(brdno) values(#{brdno})
+	</insert>
+
+	<!-- 14-05-23 성훈추가: 회원가입 -->
+	<insert id="insertUser" parameterType="UserDTO">
+		insert into userinfo(userid,passwd,email,username,address,usertype) 
+		values(#{userid},#{passwd},#{email},#{username},#{address},#{usertype})
+	</insert>
+	
+</mapper>

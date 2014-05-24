@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="donreq">
+	<select id="selectAll" resultType="model.dto.DonReqDTO">
+		SELECT * FROM donreq
+	</select>
+	
+	<select id="selectOne" resultType="model.dto.DonReqDTO" parameterType="int">
+		SELECT * FROM donreq WHERE drno=${value}
+	</select>
+	
+	<select id="cntByItemno" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM donreq WHERE itemno=${value}
+	</select>
+	
+	<delete id="delByItemno" parameterType="int">
+		DELETE FROM donreq WHERE itemno=${value}
+	</delete>
+	
+	<insert id="insertOne" parameterType="model.dto.DonReqDTO">
+		INSERT INTO donreq(userno, itemno, targetcntr, qty, price)
+		VALUES (#{userno}, #{itemno}, #{targetcntr}, #{qty}, #{price})
+	</insert>
+	
+	<update id="sendOne" parameterType="int">
+		UPDATE donreq
+		SET sent='Y'
+		WHERE drno=#{drno}	
+	</update>
+</mapper>

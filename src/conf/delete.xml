@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+작성:2014-05-21
+작성자: 최성훈
+내용: 삭제 관련 쿼리문
+ -->
+<mapper namespace="delete">
+
+	<!-- BoardDTO의 일정정보 삭제 -->
+	<update id="deleteBoard" parameterType="int">
+		delete from board where brdno=#{brdno}
+	</update>
+	
+	<!-- PlanDTO의 일정정보 삭제 -->
+	<update id="deletePlan" parameterType="int">
+		delete from planboardinfo where brdno=#{brdno}
+	</update>
+
+	<!-- DiaryDTO의 일기정보 삭제 -->
+	<update id="deleteDiary" parameterType="int">
+		delete from diaryinfo where brdno=#{brdno}
+	</update>
+	
+</mapper>
