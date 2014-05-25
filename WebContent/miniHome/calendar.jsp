@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.Calendar"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="frame.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -83,7 +84,7 @@ A:hover {text-decoration:none; color:'ff9900'}
   calStr+="<td align=center><font size='6'>"  // 오늘 날짜가 아닐때 배경색 지정
   }
 
-  calStr+="<a href='control?command=calendar&date="+dayCount+"&month="+(nowm+1)+"&year="+nowy+"'>" // 링크설정
+  calStr+="<a href='/gaenari/control?command=calendar&date="+dayCount+"&month="+(nowm+1)+"&year="+nowy+"'>" // 링크설정
 
   calStr+=dayCount++   // 날짜
   
@@ -124,101 +125,51 @@ A:hover {text-decoration:none; color:'ff9900'}
  -->
 </head>
 <body>
-
-
-	<table border="1" width="1350" height="630">
+	<table border="1" align="center" width="100%" height="100%">
 		<tr>
-			<td colspan="2" height="20%">
-				<h3>${sessionScope.user.username}님의 달력 페이지</h3>
-				<div align="right">
-					<input type="button" value="로그아웃" onclick="location.href='control?command=logout'">
+			<td rowspan="3" width="70%">
+				<SPAN ID=calendar STYLE="position: relative;"></SPAN> 
+				<script language="JavaScript" type="text/JavaScript">
+					showCalendar(nowd,nowm,nowy);
+				</script></td>
+			<td>
+				<div align="center">
+					<input type="button" onclick="location.href='/gaenari/planList.do'" value="일정게시판">
+					&nbsp;&nbsp;&nbsp;&nbsp; 
+					<input type="button" onclick="location.href='/gaenari/diaryList.do'" value="일기게시판">
 				</div>
-				<hr color="gray">
 			</td>
 		</tr>
 		<tr>
-			<td width="17%" height="80%">
-				<table border="1" align="center" width="203" cellpadding="40">
-
-					<!-- 페이지 왼편 서브메뉴(메인페이지, 달력, 방명록, 친구신청) -->
-
-					<tr>
-						<td>
-							<a href="control?command=login">메인페이지</a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#">달력</a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="control?command=visitList">방명록</a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="">친구관리</a>
-						</td>
-					</tr>
-					<tr>
-						<td><a href="mall/mall_index.jsp">기부몰</a></td>
-					</tr>
-				</table>
+			<td width="30%">
+				<h3>일정</h3> <c:choose>
+					<c:when test="${not empty requestScope.plist}">
+						<c:forEach items="${requestScope.plist}" var="plan">
+							<a href="/gaenari/control?command=planDetail&brdno=${plan.brdno}">
+								<h4>${plan.title}- ${plan.wrdate}</h4>
+							</a>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<h4>등록된 일정이 없습니다.</h4>
+					</c:otherwise>
+				</c:choose>
 			</td>
-			<td rowspan="2" width="83%" height="80%">
-				<table border="1" align="center" width="100%" height="100%">
-					<tr>
-						<td rowspan="3" width="70%">
-							<SPAN ID=calendar STYLE="position: relative;"></SPAN> 
-							<script language="JavaScript" type="text/JavaScript">
-								showCalendar(nowd,nowm,nowy);
-							</script>
-						</td>
-						<td>
-							<div align="center">
-								<input type="button" onclick="location.href='control?command=planList'" value="일정게시판"> 
-								&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="button" onclick="location.href='control?command=diaryList'" value="일기게시판">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td width="30%" >
-							<h3>일정</h3>
-							<c:choose>
-								<c:when test="${not empty requestScope.plist}">
-									<c:forEach items="${requestScope.plist}" var="plan">
-										<a href="control?command=planDetail&brdno=${plan.brdno}">
-											<h4>${plan.title} - ${plan.wrdate}</h4>
-										</a>
-									</c:forEach>
-								</c:when>
-								<c:otherwise>
-									<h4>등록된 일정이 없습니다.</h4>
-								</c:otherwise>
-							</c:choose>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<h3>일기</h3>
-							<c:choose>
-								<c:when test="${not empty requestScope.dlist}">
-									<c:forEach items="${requestScope.dlist}" var="diary">
-										<a href="control?command=diaryDetail&brdno=${diary.brdno}">
-											<h4>${diary.title} - ${diary.wrdate}</h4>
-										</a>
-									</c:forEach>
-								</c:when>
-								<c:otherwise>
-									<h4>등록된 일기가 없습니다.</h4>
-								</c:otherwise>
-							</c:choose>
-						</td>
-					</tr>
-				</table>
+		</tr>
+		<tr>
+			<td>
+				<h3>일기</h3> <c:choose>
+					<c:when test="${not empty requestScope.dlist}">
+						<c:forEach items="${requestScope.dlist}" var="diary">
+							<a href="/gaenari/control?command=diaryDetail&brdno=${diary.brdno}">
+								<h4>${diary.title}- ${diary.wrdate}</h4>
+							</a>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<h4>등록된 일기가 없습니다.</h4>
+					</c:otherwise>
+				</c:choose>
 			</td>
 		</tr>
 	</table>

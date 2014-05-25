@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="frame.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,45 +22,11 @@
 내용: 일정 수정하기
  -->
 <body>
-	<table border="1" width="1350" height="630">
-		<tr>
-			<td colspan="2" height="20%">
-				<h3>${sessionScope.user.username}님의 일정 수정 페이지</h3>
-				<div align="right">
-					<input type="button" value="로그아웃" onclick="location.href='control?command=logout'">
-				</div>
-				<hr color="gray">
-			</td>
-		</tr>
-		<tr>
-			<td width="17%" height="80%">
-				<table border="1" align="center" width="203" cellpadding="40">
-				
-				<!-- 페이지 왼편 서브메뉴(메인페이지, 달력, 방명록, 친구신청) -->
-				
-					<tr>
-						<td><a href="control?command=login">메인페이지</a></td>
-					</tr>
-					<tr>
-						<td><a href="control?command=calendar">달력</a></td>
-					</tr>
-					<tr>
-						<td><a href="control?command=visitList">방명록</a></td>
-					</tr>
-					<tr>
-						<td><a href="">친구관리</a></td>
-					</tr>
-					<tr>
-						<td><a href="mall/mall_index.jsp">기부몰</a></td>
-					</tr>
-				</table>
-			</td>
-			<td rowspan="2" width="83%" height="80%">
-			<form action="control?command=updatePlan" method="post">
-				<table border="0" width="100%" height="100%">
+<form action="/gaenari/updatePlan.do" method="post">
+				<table border="0" width="100%" height="480">
 					<tr>
 						<td width="100%" align="right">
-							<input type="button" onclick="location.href='control?command=planList'"value="일정전체">
+							<input type="button" onclick="location.href='/gaenari/planList.do'"value="일정전체">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						</td>
 					</tr>
@@ -119,8 +86,5 @@
 					</tr>
 				</table>
 				</form>
-			</td>
-		</tr>
-	</table>
 </body>
 </html>

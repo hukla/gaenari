@@ -72,35 +72,35 @@ import org.apache.log4j.Logger;
 
 public class LoginCheckAction implements Action {  
 	
-	Calendar cal = Calendar.getInstance();
+	/*Calendar cal = Calendar.getInstance();*/
 	Logger log = Logger.getLogger(LoginCheckAction.class);
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{  
 		
-		int year = cal.get(cal.YEAR);
+		/*int year = cal.get(cal.YEAR);
 		int mth = cal.get(cal.MONTH)+1;
-		int day = cal.get(cal.DATE);
+		int day = cal.get(cal.DATE);*/
 		int cnt=0;
 		int index=0;
 		int lastIndex=0;
-		String month = null;
-		String date = null;
+		/*String month = null;
+		String date = null;*/
 		String userid = null;
 		String pwd = null;
 		String savePath = null;
 		String fullpath = null;
-		UserDTO loginUser = null;
+		UserDTO loginUser = null;/*
 		List<DogDTO> dog = null;
-		List<BoardDTO> allPlanList = null;
 		List<BoardDTO> allDiaryList = null;
-		List<BoardDTO> allVisitList = null;
+		List<BoardDTO> allVisitList = null;*/
+		List<BoardDTO> allPlanList = null;
 		List<BoardDTO> planList = null;
 		List<BoardDTO> diaryList = null;
 		List<BoardDTO> visitList = null;
 		HttpSession session = request.getSession();
 		String url = "login/error.jsp";
 		
-		if(mth<10)	month = "0"+Integer.toString(mth);
+		/*if(mth<10)	month = "0"+Integer.toString(mth);
 		else	month = Integer.toString(mth);
 		if(day<10)	date = "0"+Integer.toString(day);
 		else	date = Integer.toString(day);
@@ -108,7 +108,7 @@ public class LoginCheckAction implements Action {
 		session.setAttribute("toYear", year); //2014-04-25 13:21 추가!
 		session.setAttribute("today", today);
 		session.setAttribute("toMonth", mth);
-		session.setAttribute("toDate", day);
+		session.setAttribute("toDate", day);*/
 		
 		userid = (String)session.getAttribute("userid");
 		pwd = (String)session.getAttribute("pwd");
@@ -131,19 +131,19 @@ public class LoginCheckAction implements Action {
 					planList = TestService.threePlansService(loginUser);
 					visitList = TestService.threeVisitsService(loginUser);
 					allPlanList = TestService.planService(loginUser);
-					allDiaryList = TestService.diaryService(loginUser);	//14-05-21 성훈추가
+					/*allDiaryList = TestService.diaryService(loginUser);	//14-05-21 성훈추가
 					allVisitList = TestService.visitService(loginUser);	//14-05-21 성훈추가
 					dog = DogService.getInfo(new DogDTO(loginUser));
-					
+				
 					session.setAttribute("user", loginUser);
-					session.setAttribute("dog", dog);
+					session.setAttribute("dog", dog);*/
 					request.setAttribute("diary", diaryList);
 					request.setAttribute("planList", planList);
 					request.setAttribute("visit", visitList);
-					session.setAttribute("allPlanList", allPlanList);
+					/*session.setAttribute("allPlanList", allPlanList);
 					session.setAttribute("allDiaryList", allDiaryList);	//14-05-21 성훈추가
 					session.setAttribute("allVisitList", allVisitList);	//14-05-21 성훈추가
-					
+*/					
 					//14-05-13 성훈 추가 실제경로에서 이미지 가져오기
 					savePath = session.getServletContext().getRealPath("image");
 					fullpath = savePath+"\\"+"hoonc.jpg";

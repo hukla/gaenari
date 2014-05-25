@@ -2,17 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="frame.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="/gaenari/bootstrap/css/bootstrap-ko.css" rel="stylesheet">
-<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->
 <script src="//code.jquery.com/jquery.js"></script>
-<!-- 모든 합쳐진 플러그인을 포함하거나 (아래) 필요한 각각의 파일들을 포함하세요 -->
-<script src="/gaenari/bootstrap/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
 <title>미니홈피 일기</title>
 <!-- 
@@ -78,328 +75,294 @@
 </script>
 
 <body>
-	<table border="1" width="1350" height="630">
+	<table border="0" align="center" width="100%" height="100%" cellpadding="20">
 		<tr>
-			<td colspan="2" height="20%">
-				<h3>${sessionScope.user.username}님의일기 페이지</h3>
-				<div align="right">
-					<input type="button" value="로그아웃" onclick="location.href='/gaenari/control?command=logout'">
+			<td width="33%" align="center">
+				<form action="">
+					<select class="btn btn-default">
+						<option selected="selected">분류</option>
+						<option>날짜</option>
+						<option>글번호</option>
+						<option>제목</option>
+						<option>장소</option>
+					</select> <input type="text"> <input type="submit" value="검색">
+				</form>
+			</td>
+			<td width="67%" align="center">
+				<div align="center">
+					<input type="button" onclick="location.href='/gaenari/planList.do'" value="일정게시판">
 				</div>
-				<hr color="gray">
 			</td>
 		</tr>
 		<tr>
-			<td width="17%" height="80%">
-				<table border="1" align="center" width="203" cellpadding="40">
-					<!-- 페이지 왼편 서브메뉴(메인페이지, 달력, 방명록, 친구신청) -->
-					<tr>
-						<td><a href="/gaenari/control?command=login">메인페이지</a></td>
-					</tr>
-					<tr>
-						<td><a href="/gaenari/control?command=calendar">달력</a></td>
-					</tr>
-					<tr>
-						<td><a href="/gaenari/control?command=visitList">방명록</a></td>
-					</tr>
-					<tr>
-						<td><a href="">친구관리</a></td>
-					</tr>
-					<tr>
-						<td><a href="/gaenari/mall/mall_index.jsp">기부몰</a></td>
-					</tr>
-				</table>
-			</td>
-			<td rowspan="2" width="83%" height="80%">
-				<table border="0" align="center" width="100%" height="100%" cellpadding="20">
-					<tr>
-						<td width="33%" align="center">
-							<form action="">
-								<select class="btn btn-default">
-									<option selected="selected">분류</option>
-									<option>날짜</option>
-									<option>글번호</option>
-									<option>제목</option>
-									<option>장소</option>
-								</select> <input type="text"> <input type="submit" value="검색">
-							</form>
-						</td>	
-						<td width="67%" align="center">
-							<div align="center">
-							
-							<input type="button" onclick="location.href='/gaenari/control?command=planList'" value="일정게시판">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td width="33%">
-							<form action="control?command=writeDiary" method="post" enctype="multipart/form-data">
-								<table border="0" width="100%" height="380" style="outline-style: double; table-layout: fixed;">
-									<tr height="18%">
-										<td><h2>오늘 일기</h2></td>
-									</tr>
-									<tr height="10%">
-										<td>
-											&nbsp;&nbsp;제목 : <input type="text" size="33" name="title">
-										</td>
-									</tr>
-									<tr height="65%">
-										<td>&nbsp;&nbsp;기분 : 
-											좋음<input type="radio" name="mood" value="good"> 
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-											보통<input type="radio" name="mood" value="soso">
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-											구림<input type="radio" name="mood" value="bad"> 
-											<br/> &nbsp; 
-											<textarea rows="10" cols="35" name="content"></textarea>
-											<p/> &nbsp; 
-											<input type="file" name="uploadFile" size="29" value="찾아보기"><br/>
-										</td>
-									</tr>
-									<tr height="7%">
-										<td>
-											<div align="center">
-												<input type="submit" value="등록하기">
-												&nbsp;&nbsp;&nbsp;
-												<input type="reset" value="취소하기">
-											</div>
-										</td>
-									</tr>
-								</table>
-							</form>
-						</td>
-
-						<td width="67%">
-							<ul class="nav nav-tabs" id="myTab">
-								<li class="active"><a href="#justTwo" data-toggle="tab">미리보기</a></li>
-								<li><a href="#getList" data-toggle="tab">목록보기</a></li>
-							</ul>
-							<div class="tab-content" id="myTab">
-								<div class="tab-pane active" id="justTwo">
-									<table border="0" width="100%" height="395">
-										<tr>
-											<td>
-												<form action="control" method="post" name="firstForm">
-													<table border="0" width="95%" height="370"
-														style="outline-style: double; table-layout: fixed;">
-														<c:choose>
-															<c:when test="${not empty requestScope.diaryFirst}">
-																<tr height="15%">
-																	<td><h2>${requestScope.diaryFirst.wrdate}</h2></td>
-																</tr>
-																<tr height="7%">
-																	<td>&nbsp;&nbsp;제목 :
-																		${requestScope.diaryFirst.title}</td>
-																</tr>
-																<tr height="7%">
-																	<td>&nbsp;&nbsp;기분 :
-																		${requestScope.diaryFirst.mood}</td>
-																</tr>
-
-																<!-- 14-05-13 성훈수정: 경우에 따라 사진 넣고 말고 하기 -->
-																<tr height="43%">
-																	<td>
-																		<c:if test="${requestScope.diaryFirstImg != null}">
-																			<img src="${requestScope.diaryFirstImg}" width="180" class="img-rounded">
-																		</c:if> ${requestScope.diaryFirst.brdcontent}
-																	</td>
-																</tr>
-																<tr height="7%">
-																	<td>
-																		<div align="center">
-																			<input type="hidden" name="command" value="">
-																			<input type="hidden" name="brdno" value="${requestScope.diaryFirst.brdno}"> 
-																			<input type="submit" value="수정하기" onclick="sendUpdate()">
-																			&nbsp;&nbsp;&nbsp; 
-																			<input type="submit" value="삭제하기" onclick="deleteCheck()">
-																		</div>
-																	</td>
-																</tr>
-															</c:when>
-															<c:otherwise>
-																<tr height="15%">
-																	<td><h2>등록된 일기가 없습니다.</h2></td>
-																</tr>
-																<tr height="7%">
-																	<td></td>
-																</tr>
-																<tr height="7%">
-																	<td></td>
-																</tr>
-																<tr height="50%">
-																	<td>등록된 일기가 없습니다. 일기를 새로 작성해 주세요.</td>
-																</tr>
-																<tr height="7%">
-																	<td></td>
-																</tr>
-															</c:otherwise>
-														</c:choose>
-													</table>
-												</form>
-											</td>
-											<td>
-												<form action="control" method="post" name="secondForm">
-													<table border="0" width="95%" height="370"
-														style="outline-style: double; table-layout: fixed;">
-														<c:choose>
-															<c:when test="${not empty requestScope.diarySecond}">
-																<tr height="15%">
-																	<td><h2>${requestScope.diarySecond.wrdate}</h2></td>
-																</tr>
-																<tr height="7%">
-																	<td>&nbsp;&nbsp;제목 :
-																		${requestScope.diarySecond.title}</td>
-																</tr>
-																<tr height="7%">
-																	<td>&nbsp;&nbsp;기분 :
-																		${requestScope.diarySecond.mood}</td>
-																</tr>
-
-																<!-- 14-05-13 성훈 수정 경우에 따라 사진 넣고 말고 하기 -->
-																<tr height="43%">
-																	<td><c:if test="${requestScope.diarySecondImg != null}">
-																			<img src="${requestScope.diarySecondImg}" width="180" class="img-rounded">
-																		</c:if> ${requestScope.diarySecond.brdcontent}
-																	</td>
-																</tr>
-																<tr height="7%">
-																	<td>
-																		<div align="center">
-																			<input type="hidden" name="command" value="">
-																			<input type="hidden" name="brdno" value="${requestScope.diarySecond.brdno}"> 
-																			<input type="submit" value="수정하기" onclick="sendingUpdate()">
-																			&nbsp;&nbsp;&nbsp; 
-																			<input type="submit" value="삭제하기" onclick="deleteChecking()">
-																		</div>
-																	</td>
-																</tr>
-															</c:when>
-															<c:otherwise>
-																<tr height="15%">
-																	<td><h2>등록된 일기가 없습니다.</h2></td>
-																</tr>
-																<tr height="7%">
-																	<td></td>
-																</tr>
-																<tr height="7%">
-																	<td></td>
-																</tr>
-																<tr height="43%">
-																	<td>등록된 일기가 없습니다. 일기를 새로 작성해 주세요.</td>
-																</tr>
-																<tr height="7%">
-																	<td></td>
-																</tr>
-															</c:otherwise>
-														</c:choose>
-													</table>
-												</form>
-											</td>
-										</tr>
-										<tr height="25">
-											<td colspan="2" align="center">
-												<font size="6"> 
-													<c:choose>
-														<c:when test="${requestScope.diaryNumber < fn:length(diaryList)-1}">
-															<a href="control?command=diaryList&diaryNumber=${requestScope.diaryNumber+1}" class="glyphicon glyphicon-chevron-left"></a>
-														</c:when>
-														<c:otherwise>
-															<a href="#" class="glyphicon glyphicon-chevron-left"></a>
-														</c:otherwise>
-													</c:choose>
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<c:choose>
-														<c:when test="${requestScope.diaryNumber > 1}">
-															<a href="control?command=diaryList&diaryNumber=${requestScope.diaryNumber-1}" class="glyphicon glyphicon-chevron-right"></a>
-														</c:when>
-														<c:otherwise>
-															<a href="#" class="glyphicon glyphicon-chevron-right"></a>
-														</c:otherwise>
-													</c:choose>
-											</font></td>
-										</tr>
-									</table>
+			<td width="33%">
+				<form action="writeDiary.do" method="post" enctype="multipart/form-data">
+					<table border="0" width="100%" height="380" style="outline-style: double; table-layout: fixed;">
+						<tr height="18%">
+							<td><h2>오늘 일기</h2></td>
+						</tr>
+						<tr height="10%">
+							<td>&nbsp;&nbsp;제목 : <input type="text" size="33" name="title">
+							</td>
+						</tr>
+						<tr height="65%">
+							<td>&nbsp;&nbsp;기분 : 
+							좋음<input type="radio" name="mood" value="good"> 
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							보통<input type="radio" name="mood" value="soso">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							구림<input type="radio" name="mood" value="bad"> <br/> 
+							&nbsp; <textarea rows="10" cols="35" name="content"></textarea><p/> 
+							&nbsp; <input type="file" name="uploadFile" size="29" value="찾아보기"><br/>
+							</td>
+						</tr>
+						<tr height="7%">
+							<td>
+								<div align="center">
+									<input type="submit" value="등록하기">
+									&nbsp;&nbsp;&nbsp; 
+									<input type="reset" value="취소하기">
 								</div>
-								<div class="tab-pane" id="getList">
-									<table class="table table-condensed" width="100%" height="395">
-										<colgroup>
-											<col width="20%">
-											<col width="50%">
-											<col width="20%">
-										</colgroup>
-										<tr>
-											<td align="center" height="30" style="word-break:break-all;">작성날짜</td>
-											<td align="center">제목</td>
-											<td align="center">기분</td>
-										</tr>
-										<c:choose>
-											<c:when test="${not empty requestScope.tenDiaries}">
-												<c:forEach items="${requestScope.tenDiaries}" var="diary">
-													<tr height="30" style="table-layout: fixed;">
-														<td align="center">${diary.wrdate}</td>
-														<td><a href="control?command=diaryDetail&brdno=${diary.brdno}">    ${diary.title}</a></td>
-														<td align="center">${diary.mood}</td>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</td>
+
+			<td width="67%">
+				<ul class="nav nav-tabs" id="myTab">
+					<li class="active"><a href="#justTwo" data-toggle="tab">미리보기</a></li>
+					<li><a href="#getList" data-toggle="tab">목록보기</a></li>
+				</ul>
+				<div class="tab-content" id="myTab">
+					<div class="tab-pane active" id="justTwo">
+						<table border="0" width="100%" height="395">
+							<tr>
+								<td>
+									<form action="control" method="post" name="firstForm">
+										<table border="0" width="95%" height="370" style="outline-style: double; table-layout: fixed;">
+											<c:choose>
+												<c:when test="${not empty requestScope.diaryFirst}">
+													<tr height="15%">
+														<td><h2>${requestScope.diaryFirst.wrdate}</h2></td>
 													</tr>
-												</c:forEach>
-												<c:if test="${fn:length(tenDiaries) < 10}">
-													<c:forEach begin="1" end="${10-fn:length(tenDiaries)}">
-														<tr height="30">
-															<td></td><td></td><td></td>
-														</tr>
-													</c:forEach>
-												</c:if>
+													<tr height="7%">
+														<td>&nbsp;&nbsp;제목 : ${requestScope.diaryFirst.title}</td>
+													</tr>
+													<tr height="7%">
+														<td>&nbsp;&nbsp;기분 : ${requestScope.diaryFirst.mood}</td>
+													</tr>
+
+													<!-- 14-05-13 성훈수정: 경우에 따라 사진 넣고 말고 하기 -->
+													<tr height="43%">
+														<td><c:if test="${requestScope.diaryFirstImg != null}">
+																<img src="${requestScope.diaryFirstImg}" width="180" class="img-rounded">
+															</c:if> ${requestScope.diaryFirst.brdcontent}</td>
+													</tr>
+													<tr height="7%">
+														<td>
+															<div align="center">
+																<input type="hidden" name="command" value=""> 
+																<input type="hidden" name="brdno" value="${requestScope.diaryFirst.brdno}"> 
+																<input type="submit" value="수정하기" onclick="sendUpdate()">
+																&nbsp;&nbsp;&nbsp; 
+																<input type="submit" value="삭제하기" onclick="deleteCheck()">
+															</div>
+														</td>
+													</tr>
+												</c:when>
+												<c:otherwise>
+													<tr height="15%">
+														<td><h2>등록된 일기가 없습니다.</h2></td>
+													</tr>
+													<tr height="7%">
+														<td></td>
+													</tr>
+													<tr height="7%">
+														<td></td>
+													</tr>
+													<tr height="50%">
+														<td>등록된 일기가 없습니다. 일기를 새로 작성해 주세요.</td>
+													</tr>
+													<tr height="7%">
+														<td></td>
+													</tr>
+												</c:otherwise>
+											</c:choose>
+										</table>
+									</form>
+								</td>
+								<td>
+									<form action="control" method="post" name="secondForm">
+										<table border="0" width="95%" height="370"
+											style="outline-style: double; table-layout: fixed;">
+											<c:choose>
+												<c:when test="${not empty requestScope.diarySecond}">
+													<tr height="15%">
+														<td><h2>${requestScope.diarySecond.wrdate}</h2></td>
+													</tr>
+													<tr height="7%">
+														<td>&nbsp;&nbsp;제목 :
+															${requestScope.diarySecond.title}
+														</td>
+													</tr>
+													<tr height="7%">
+														<td>&nbsp;&nbsp;기분 : 
+															${requestScope.diarySecond.mood}
+														</td>
+													</tr>
+
+													<!-- 14-05-13 성훈 수정 경우에 따라 사진 넣고 말고 하기 -->
+													<tr height="43%">
+														<td>
+															<c:if test="${requestScope.diarySecondImg != null}">
+																<img src="${requestScope.diarySecondImg}" width="180" class="img-rounded">
+															</c:if> ${requestScope.diarySecond.brdcontent}
+														</td>
+													</tr>
+													<tr height="7%">
+														<td>
+															<div align="center">
+																<input type="hidden" name="command" value=""> 
+																<input type="hidden" name="brdno" value="${requestScope.diarySecond.brdno}"> 
+																<input type="submit" value="수정하기" onclick="sendingUpdate()">
+																&nbsp;&nbsp;&nbsp; 
+																<input type="submit" value="삭제하기" onclick="deleteChecking()">
+															</div>
+														</td>
+													</tr>
+												</c:when>
+												<c:otherwise>
+													<tr height="15%">
+														<td><h2>등록된 일기가 없습니다.</h2></td>
+													</tr>
+													<tr height="7%">
+														<td></td>
+													</tr>
+													<tr height="7%">
+														<td></td>
+													</tr>
+													<tr height="43%">
+														<td>등록된 일기가 없습니다. 일기를 새로 작성해 주세요.</td>
+													</tr>
+													<tr height="7%">
+														<td></td>
+													</tr>
+												</c:otherwise>
+											</c:choose>
+										</table>
+									</form>
+								</td>
+							</tr>
+							<tr height="25">
+								<td colspan="2" align="center"><font size="6"> <c:choose>
+											<c:when test="${requestScope.diaryNumber < fn:length(diaryList)-1}">
+												<a href="/gaenari/control?command=diaryList&diaryNumber=${requestScope.diaryNumber+1}" class="glyphicon glyphicon-chevron-left"></a>
 											</c:when>
 											<c:otherwise>
-												<tr>
-													<td colspan="3" align="center">등록된 일기가 없습니다.</td>
-												</tr>
+												<a href="#" class="glyphicon glyphicon-chevron-left"></a>
+											</c:otherwise>
+										</c:choose> 
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:choose>
+											<c:when test="${requestScope.diaryNumber > 1}">
+												<a href="/gaenari/control?command=diaryList&diaryNumber=${requestScope.diaryNumber-1}" class="glyphicon glyphicon-chevron-right"></a>
+											</c:when>
+											<c:otherwise>
+												<a href="#" class="glyphicon glyphicon-chevron-right"></a>
 											</c:otherwise>
 										</c:choose>
-										<tr height="30">
-											<td colspan="3" align="center"><c:choose>
-													<c:when test="${not empty requestScope.pageCount}">
-														<ul class="pagination">
-															<c:choose>
-																<c:when test="${requestScope.pageNumber-1 > 0}">
-																	<li><a href="control?command=diaryList&pageNumber=${requestScope.pageNumber-1}">«</a></li>
-																</c:when>
-																<c:otherwise>
-																	<li><a href="#">«</a></li>
-																</c:otherwise>
-															</c:choose>
-																<c:forEach begin="1" end="${requestScope.pageCount}" var="cnt">
-																	<c:choose>
-																		<c:when test="${cnt eq requestScope.pageNumber}">
-																			<li class="active"><a href="control?command=diaryList&pageNumber=${cnt}">${cnt}<span class="sr-only">(current)</span></a></li>
-																		</c:when>
-																		<c:otherwise>
-																			<li><a href="control?command=diaryList&pageNumber=${cnt}">${cnt}</a></li>
-																		</c:otherwise>
-																	</c:choose>
-																</c:forEach>
-															<c:choose>
-																<c:when test="${requestScope.pageNumber+1 < requestScope.pageCount+1}">
-																	<li><a href="control?command=diaryList&pageNumber=${requestScope.pageNumber+1}">»</a></li>
-																</c:when>
-																<c:otherwise>
-																	<li><a href="#">»</a></li>
-																</c:otherwise>
-															</c:choose>
-														</ul>
+								</font></td>
+							</tr>
+						</table>
+					</div>
+					<div class="tab-pane" id="getList">
+						<table class="table table-condensed" width="100%" height="395">
+							<colgroup>
+								<col width="20%">
+								<col width="50%">
+								<col width="20%">
+							</colgroup>
+							<tr>
+								<td align="center" height="30" style="word-break: break-all;">작성날짜</td>
+								<td align="center">제목</td>
+								<td align="center">기분</td>
+							</tr>
+							<c:choose>
+								<c:when test="${not empty requestScope.tenDiaries}">
+									<c:forEach items="${requestScope.tenDiaries}" var="diary">
+										<tr height="30" style="table-layout: fixed;">
+											<td align="center">${diary.wrdate}</td>
+											<td><a href="control?command=diaryDetail&brdno=${diary.brdno}">
+													${diary.title}
+												</a>
+											</td>
+											<td align="center">${diary.mood}</td>
+										</tr>
+									</c:forEach>
+									<c:if test="${fn:length(tenDiaries) < 10}">
+										<c:forEach begin="1" end="${10-fn:length(tenDiaries)}">
+											<tr height="30">
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</c:forEach>
+									</c:if>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<td colspan="3" align="center">등록된 일기가 없습니다.</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
+							<tr height="30">
+								<td colspan="3" align="center">
+									<c:choose>
+										<c:when test="${not empty requestScope.pageCount}">
+											<ul class="pagination">
+												<c:choose>
+													<c:when test="${requestScope.pageNumber-1 > 0}">
+														<li><a href="control?command=diaryList&pageNumber=${requestScope.pageNumber-1}">«</a></li>
 													</c:when>
 													<c:otherwise>
-														<div align="center">등록된 목록 없습니다.</div>
+														<li><a href="#">«</a></li>
 													</c:otherwise>
 												</c:choose>
-											</td>
-										</tr>
-									</table>
-								</div>
-							</div>
-						</td>
-					</tr>
-				</table>
+												<c:forEach begin="1" end="${requestScope.pageCount}" var="cnt">
+													<c:choose>
+														<c:when test="${cnt eq requestScope.pageNumber}">
+															<li class="active">
+																<a href="control?command=diaryList&pageNumber=${cnt}">
+																	${cnt}<span class="sr-only">(current)</span>
+																</a>
+															</li>
+														</c:when>
+														<c:otherwise>
+															<li><a href="control?command=diaryList&pageNumber=${cnt}">${cnt}</a></li>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+												<c:choose>
+													<c:when test="${requestScope.pageNumber+1 < requestScope.pageCount+1}">
+														<li><a href="control?command=diaryList&pageNumber=${requestScope.pageNumber+1}">»</a></li>
+													</c:when>
+													<c:otherwise>
+														<li><a href="#">»</a></li>
+													</c:otherwise>
+												</c:choose>
+											</ul>
+										</c:when>
+										<c:otherwise>
+											<div align="center">등록된 목록 없습니다.</div>
+										</c:otherwise>
+									</c:choose>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
 			</td>
 		</tr>
 	</table>

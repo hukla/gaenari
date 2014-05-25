@@ -1,11 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <title>공통 프레임</title>
-<!-- 
+<style type="text/css">
+	body { padding-top: 55px; }
+</style>
+<!-- (0 399px 29px 293px
 작성자: 최성훈
 작성목적: 모든 페이지에 적용될 프레임의 구현
 작성내용: 총 세 칸으로 구성 
@@ -15,47 +19,72 @@
 수정: 최성훈
 수정일: 2014-04-23
 수정내용: 메인페이지 이동할 때 url패턴으로 action 통해서 가도록 수정
- -->
 
+수정: 최성훈
+수정일: 2014-05-25
+수정내용: 좌측 메뉴바 그냥 상단 고정 내비게이션바로 바꿈
+ -->
 </head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="/gaenari/bootstrap/js/bootstrap.min.js"></script>
+
 <body>
-	<table border="1" width="1350" height="630">
-		<tr>
-			<td colspan="2" height="20%">
-				<h3>${sessionScope.user.username}님의 [??] 페이지</h3>
-				<div align="right">
-					<input type="button" value="로그아웃" onclick="location.href='control?command=logout'">
-				</div>
-				<hr color="gray">
-			</td>
-		</tr>
-		<tr>
-			<td width="17%" height="80%">
-				<table border="1" align="center" width="203" cellpadding="40">
-				
-				<!-- 페이지 왼편 서브메뉴(메인페이지, 달력, 방명록, 친구신청) -->
-				
-					<tr>
-						<td><a href="control?command=login">메인페이지</a></td>
-					</tr>
-					<tr>
-						<td><a href="control?command=calendar">달력</a></td>
-					</tr>
-					<tr>
-						<td><a href="control?command=visitList">방명록</a></td>
-					</tr>
-					<tr>
-						<td><a href="">친구관리</a></td>
-					</tr>
-					<tr>
-						<td><a href="mall/mall_index.jsp">기부몰</a></td>
-					</tr>
-				</table>
-			</td>
-			<td rowspan="2" width="83%" height="80%">
-				메인
-			</td>
-		</tr>
-	</table>
+<font face="서울한강체" size="4">
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a class="navbar-brand" href="/gaenari/home.do" class="active">GAENARY</a>
+  </div>
+ 
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">내 홈피<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/gaenari/login.do">메인페이지</a></li>
+          <li><a href="/gaenari/calendar.do">달력보기</a></li>
+          <li><a href="/gaenari/visitList.do">방명록</a></li>
+          <li><a href="#">친구관리</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/gaenari/missingBoardList.do">유기견</a></li>
+          <li><a href="/gaenari/voluBoardList.do">봉사/PartTim</a></li>
+        </ul>
+      </li>
+      <li><a href="mall/mall_index.jsp">기부몰</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle glyphicon glyphicon-cog" data-toggle="dropdown"><b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/gaenari/logout.do">로그아웃</a></li>
+          <li><a href="#">개인정보수정</a></li>
+          <li><a href="#">회원탈퇴</a></li>
+          <li><a href="#">개발자정보</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+ 
+</nav></font>
+<table align="center" width="100%" border="0">
+	<tr height="45%">
+		<td><div align="center">
+		<h2 align="center">
+			<a href="/gaenari/home.do">
+				<img src="/gaenari/image/logo.jpg"  width="70"/></a>THE GAENARI</h2>
+			</div>
+		<td>
+	</tr>
+</table>
 </body>
 </html>

@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ include file="frame.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-<link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="/gaenari/bootstrap/css/bootstrap-ko.css" rel="stylesheet">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-<script src="/gaenari/bootstrap/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <title>미니홈피 일정</title>
@@ -48,205 +46,158 @@
 </head>
 
 <body>
-	<table border="1" width="1350" height="630">
+	<table border="0" align="center" width="100%" height="100%" cellpadding="20">
 		<tr>
-			<td colspan="2" height="20%">
-				<h3>${sessionScope.user.username}님의일정 페이지</h3>
-				<div align="right">
-					<input type="button" value="로그아웃"
-						onclick="location.href='control?command=logout'">
+			<td colspan="2" width="66%">
+				<form action="">
+					<select>
+						<option selected="selected">분류</option>
+						<option>날짜</option>
+						<option>글번호</option>
+						<option>제목</option>
+						<option>장소</option>
+					</select> <input type="text"> <input type="submit" value="검색">
+				</form>
+			</td>
+			<td width="33%">
+				<div align="center">
+					<input type="button" onclick="location.href='/gaenari/diaryList.do'" value="일기페이지">
 				</div>
-				<hr color="gray">
 			</td>
 		</tr>
 		<tr>
-			<td width="17%" height="80%">
-				<table border="1" align="center" width="203" cellpadding="40">
-
-					<!-- 페이지 왼편 서브메뉴(메인페이지, 달력, 방명록, 친구신청) -->
-
-					<tr>
-						<td><a href="control?command=login">메인페이지</a></td>
-					</tr>
-					<tr>
-						<td><a href="control?command=calendar">달력</a></td>
-					</tr>
-					<tr>
-						<td><a href="control?command=visitList">방명록</a></td>
-					</tr>
-					<tr>
-						<td><a href="">친구관리</a></td>
-					</tr>
-					<tr>
-						<td><a href="mall/mall_index.jsp">기부몰</a></td>
-					</tr>
-				</table>
-			</td>
-			<td rowspan="2" width="83%" height="80%">
-				<table border="0" align="center" width="100%" height="100%"
-					cellpadding="20">
-					<tr>
-						<td colspan="2" width="66%">
-							<form action="">
-								<select>
-									<option selected="selected">분류</option>
-									<option>날짜</option>
-									<option>글번호</option>
-									<option>제목</option>
-									<option>장소</option>
-								</select> <input type="text"> <input type="submit" value="검색">
-							</form>
-						</td>
-						<td width="33%">
-							<div align="center">
-								<input type="button"onclick="location.href='control?command=diaryList'"value="일기페이지">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td width="33%">
-							<form action="control?command=writePlan" method="post">
-								<table border="0" width="100%" height="380"
-									style="outline-style: double;">
-									<tr height="18%">
-										<td><h2>일정 등록하기</h2></td>
-									</tr>
-									<tr height="10%">
-										<td>&nbsp;&nbsp;제목 : <input type="text" size="33" name="title">
-										</td>
-									</tr>
-									<tr height="65%">
-										<td>&nbsp;&nbsp;지역 : 
-											<select name="loc" class="btn btn-default">
-												<option selected="selected">지역 선택</option>
-												<option value="광진구">광진구</option>
-												<option value="동대문구">동대문구</option>
-												<option value="중랑구">중랑구</option>
-												<option value="용산구">용산구</option>
-												<option value="성동구">성동구</option>
-												<option value="강북구">강북구</option>
-												<option value="도봉구">도봉구</option>
-												<option value="노원구">노원구</option>
-												<option value="은평구">은평구</option>
-												<option value="서대문구">서대문구</option>
-												<option value="마포구">마포구</option>
-												<option value="양천구">양천구</option>
-												<option value="강서구">강서구</option>
-												<option value="구로구">구로구</option>
-												<option value="금천구">금천구</option>
-												<option value="영등포구">영등포구</option>
-												<option value="동작구">동작구</option>
-												<option value="관악구">관악구</option>
-												<option value="서초구">서초구</option>
-												<option value="강남구">강남구</option>
-												<option value="송파구">송파구</option>
-												<option value="강동구">강동구</option>
-												<option value="종로구">종로구</option>
-												<option value="중구">중구</option>
-												<option value="성북구">성북구</option>
-										</select><br/> &nbsp;&nbsp;날짜 :
-											<input type="text" id="datepicker" name="date"><br/>
-											<p/> &nbsp; 
-											<textarea rows="10" cols="35" name="content"></textarea>
+			<td width="33%">
+				<form action="/gaenari/writePlan.do" method="post">
+					<table border="0" width="100%" height="380" style="outline-style: double;">
+						<tr height="18%">
+							<td><h2>일정 등록하기</h2></td>
+						</tr>
+						<tr height="10%">
+							<td>&nbsp;&nbsp;제목 : <input type="text" size="33" name="title">
+							</td>
+						</tr>
+						<tr height="65%">
+							<td>&nbsp;&nbsp;지역 : <select name="loc" class="btn btn-default">
+									<option selected="selected">지역 선택</option>
+									<option value="광진구">광진구</option>
+									<option value="동대문구">동대문구</option>
+									<option value="중랑구">중랑구</option>
+									<option value="용산구">용산구</option>
+									<option value="성동구">성동구</option>
+									<option value="강북구">강북구</option>
+									<option value="도봉구">도봉구</option>
+									<option value="노원구">노원구</option>
+									<option value="은평구">은평구</option>
+									<option value="서대문구">서대문구</option>
+									<option value="마포구">마포구</option>
+									<option value="양천구">양천구</option>
+									<option value="강서구">강서구</option>
+									<option value="구로구">구로구</option>
+									<option value="금천구">금천구</option>
+									<option value="영등포구">영등포구</option>
+									<option value="동작구">동작구</option>
+									<option value="관악구">관악구</option>
+									<option value="서초구">서초구</option>
+									<option value="강남구">강남구</option>
+									<option value="송파구">송파구</option>
+									<option value="강동구">강동구</option>
+									<option value="종로구">종로구</option>
+									<option value="중구">중구</option>
+									<option value="성북구">성북구</option>
+							</select><br/> &nbsp;&nbsp;날짜 : <input type="text" id="datepicker" name="date"><br/>
+								<p/> &nbsp; <textarea rows="10" cols="35" name="content"></textarea>
 											<p/>
 										</td>
-									</tr>
-									<tr height="7%">
-										<td>
-											<div align="center">
-												<input type="submit" value="등록하기">&nbsp;&nbsp;&nbsp;
-												<input type="reset" value="취소하기">
-											</div>
-										</td>
-									</tr>
-								</table>
-							</form>
-						</td>
-						<td width="67%">
-							<table class="table table-condensed" width="100%" height="395">
-								<colgroup>
-									<col width="20%">
-									<col width="50%">
-									<col width="20%">
-								</colgroup>
-								<tr>
-									<td align="center" height="30" style="word-break: break-all;">작성날짜</td>
-									<td align="center">제목</td>
-									<td align="center">지역</td>
+						</tr>
+						<tr height="7%">
+							<td>
+								<div align="center">
+									<input type="submit" value="등록하기">
+									&nbsp;&nbsp;&nbsp; 
+									<input type="reset" value="취소하기">
+								</div>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</td>
+			<td width="67%">
+				<table class="table table-condensed" width="100%" height="395">
+					<colgroup>
+						<col width="20%">
+						<col width="50%">
+						<col width="20%">
+					</colgroup>
+					<tr>
+						<td align="center" height="30" style="word-break: break-all;">작성날짜</td>
+						<td align="center">제목</td>
+						<td align="center">지역</td>
+					</tr>
+					<c:choose>
+						<c:when test="${not empty requestScope.tenPlans}">
+							<c:forEach items="${requestScope.tenPlans}" var="plan">
+								<tr height="30" style="table-layout: fixed;">
+									<td align="center">${plan.wrdate}</td>
+									<td>
+										<a href="control?command=planDetail&brdno=${plan.brdno}">${plan.title}</a>
+									</td>
+									<td align="center">${plan.ploc}</td>
 								</tr>
-								<c:choose>
-									<c:when test="${not empty requestScope.tenPlans}">
-										<c:forEach items="${requestScope.tenPlans}" var="plan">
-											<tr height="30" style="table-layout: fixed;">
-												<td align="center">${plan.wrdate}</td>
-												<td><a
-													href="control?command=planDetail&brdno=${plan.brdno}">
-														${plan.title}</a></td>
-												<td align="center">${plan.ploc}</td>
-											</tr>
-										</c:forEach>
-										<c:if test="${fn:length(tenPlans) < 10}">
-											<c:forEach begin="1" end="${10-fn:length(tenPlans)}">
-												<tr height="30">
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-											</c:forEach>
-										</c:if>
-									</c:when>
-									<c:otherwise>
-										<tr>
-											<td colspan="3" align="center">등록된 일정이 없습니다.</td>
-										</tr>
-									</c:otherwise>
-								</c:choose>
-								<tr height="30">
-									<td colspan="3" align="center"><c:choose>
-											<c:when test="${not empty requestScope.pageCount}">
-												<ul class="pagination">
-													<c:choose>
-														<c:when test="${requestScope.pageNumber-1 > 0}">
-															<li><a
-																href="control?command=planList&pageNumber=${requestScope.pageNumber-1}">«</a></li>
-														</c:when>
-														<c:otherwise>
-															<li><a href="#">«</a></li>
-														</c:otherwise>
-													</c:choose>
-													<c:forEach begin="1" end="${requestScope.pageCount}"
-														var="cnt">
-														<c:choose>
-															<c:when test="${cnt eq requestScope.pageNumber}">
-																<li class="active"><a
-																	href="control?command=planList&pageNumber=${cnt}">${cnt}<span
-																		class="sr-only">(current)</span></a></li>
-															</c:when>
-															<c:otherwise>
-																<li><a
-																	href="control?command=planList&pageNumber=${cnt}">${cnt}</a></li>
-															</c:otherwise>
-														</c:choose>
-													</c:forEach>
-													<c:choose>
-														<c:when
-															test="${requestScope.pageNumber+1 < requestScope.pageCount+1}">
-															<li><a
-																href="control?command=planList&pageNumber=${requestScope.pageNumber+1}">»</a></li>
-														</c:when>
-														<c:otherwise>
-															<li><a href="#">»</a></li>
-														</c:otherwise>
-													</c:choose>
-												</ul>
+							</c:forEach>
+							<c:if test="${fn:length(tenPlans) < 10}">
+								<c:forEach begin="1" end="${10-fn:length(tenPlans)}">
+									<tr height="30">
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td colspan="3" align="center">등록된 일정이 없습니다.</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
+					<tr height="30">
+						<td colspan="3" align="center"><c:choose>
+								<c:when test="${not empty requestScope.pageCount}">
+									<ul class="pagination">
+										<c:choose>
+											<c:when test="${requestScope.pageNumber-1 > 0}">
+												<li><a href="control?command=planList&pageNumber=${requestScope.pageNumber-1}">«</a></li>
 											</c:when>
 											<c:otherwise>
-												<div align="center">등록된 목록 없습니다.</div>
+												<li><a href="#">«</a></li>
 											</c:otherwise>
 										</c:choose>
-									</td>
-								</tr>
-							</table>
+										<c:forEach begin="1" end="${requestScope.pageCount}" var="cnt">
+											<c:choose>
+												<c:when test="${cnt eq requestScope.pageNumber}">
+													<li class="active">
+														<a href="control?command=planList&pageNumber=${cnt}">${cnt}<span class="sr-only">(current)</span></a>
+													</li>
+												</c:when>
+												<c:otherwise>
+													<li><a href="control?command=planList&pageNumber=${cnt}">${cnt}</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+										<c:choose>
+											<c:when test="${requestScope.pageNumber+1 < requestScope.pageCount+1}">
+												<li><a href="control?command=planList&pageNumber=${requestScope.pageNumber+1}">»</a></li>
+											</c:when>
+											<c:otherwise>
+												<li><a href="#">»</a></li>
+											</c:otherwise>
+										</c:choose>
+									</ul>
+								</c:when>
+								<c:otherwise>
+									<div align="center">등록된 목록 없습니다.</div>
+								</c:otherwise>
+							</c:choose>
 						</td>
 					</tr>
 				</table>

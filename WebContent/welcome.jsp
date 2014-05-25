@@ -7,7 +7,7 @@
 <title>환영합니다.</title>
 </head>
 <body>
-	<form action="control?command=login">
+	<form action="/gaenari/home.do">
 	<table align="center" width="400" height="600">
 		<colgroup>
 			<col align="center" width="30%"><col align="center" width="70%">

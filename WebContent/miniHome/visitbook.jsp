@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="frame.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,44 +16,10 @@
 		  상단의 방명록 작성란을 통해 방명록을 등록한다.
 		  방명록이 등록되면 작성란 아래로 추가된다.
  -->
-	<table border="1" width="1350" height="630">
-		<tr>
-			<td colspan="2" height="20%">
-				<h3>${sessionScope.user.username}님의 방명록 페이지</h3>
-				<div align="right">
-					<input type="button" value="로그아웃" onclick="location.href='control?command=logout'">
-				</div>
-				<hr color="gray">
-			</td>
-		</tr>
-		<tr>
-			<td width="17%" height="80%">
-				<table border="1" align="center" width="203" cellpadding="40">
-				
-				<!-- 페이지 왼편 서브메뉴(메인페이지, 달력, 방명록, 친구신청) -->
-				
-					<tr>
-						<td><a href="control?command=login">메인페이지</a></td>
-					</tr>
-					<tr>
-						<td><a href="control?command=calendar">달력</a></td>
-					</tr>
-					<tr>
-						<td><a href="#">방명록</a></td>
-					</tr>
-					<tr>
-						<td><a href="">친구관리</a></td>
-					</tr>
-					<tr>
-						<td><a href="mall/mall_index.jsp">기부몰</a></td>
-					</tr>
-				</table>
-			</td>
-			<td rowspan="2" width="83%" height="80%">
-				<table width="90%" height="100%" border="0">
+<table width="90%" height="100%" border="0">
 					<tr>
 						<td>
-							<form action="control?command=writeVisit" method="post">
+							<form action="/gaenari/writeVisit.do" method="post">
 							<table border="0" align="center" style="outline-style: double;">
 								<tr>
 									<td width="20%" align="center">
@@ -79,7 +46,7 @@
 							<c:forEach items="${sessionScope.visitAllList}" var="visit">
 								<tr>
 									<td>
-										<form action="control?command=writeVisit">
+										<form action="/gaenari/writeVisit.do">
 											<table border="0" align="center" width="783" style="outline-style: double;">
 												<tr>
 													<td width="20%" align="center">
@@ -114,8 +81,5 @@
 						</c:otherwise>
 					</c:choose>
 				</table>
-			</td>
-		</tr>
-	</table>
 </body>
 </html>
