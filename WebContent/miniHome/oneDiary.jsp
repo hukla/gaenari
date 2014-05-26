@@ -43,79 +43,72 @@
 	}
 </script>
 <body>
-<table border="0" width="80%" height="480">
+	<table border="0" width="80%" height="480">
+		<tr>
+			<td>
+				<table border="1" align="center" height="100%">
 					<tr>
-						<td width="100%" align="right">
-							<input type="button" onclick="location.href='/gaenari/diaryList.do'"value="일기전체">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<td align="center" height="7%" width="110">작성날짜</td>
+						<td width="450" align="center">
+							<div align="center">
+								${requestScope.oneDiary.wrdate}
+								<c:if
+									test="${requestScope.oneDiary.wrdate eq sessionScope.today}">
+									<font color="blue">[오늘입니다]</font>
+								</c:if>
+							</div>
+						</td>
+						<c:if test="${requestScope.oneDiaryImg != null}">
+							<td rowspan="5" width="450">
+								<div align="center">
+									<img src="${requestScope.oneDiaryImg}" width="400">
+								</div>
+							</td>
+						</c:if>
+					</tr>
+					<tr>
+						<td align="center" height="7%">제목</td>
+						<td>
+							<div align="center">${requestScope.oneDiary.title}</div>
 						</td>
 					</tr>
 					<tr>
+						<td align="center" height="7%">기분</td>
 						<td>
-							<table border="1" align="center" width="50%" height="100%">
-								<tr>
-									<td align="center" height="7%"  width="15%">작성날짜</td>
-									<td width="85%" align="center">
-										<div align="center">
-											${requestScope.oneDiary.wrdate}
-											<c:if
-												test="${requestScope.oneDiary.wrdate eq sessionScope.today}">
-												<font color="blue">[오늘입니다]</font>
-											</c:if>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td align="center" height="7%">제목</td>
-									<td>
-										<div align="center">${requestScope.oneDiary.title}</div>
-									</td>
-								</tr>
-								<tr>
-									<td align="center" height="7%">기분</td>
-									<td>
-										<div align="center">${requestScope.oneDiary.mood}</div>
-									</td>
-								</tr>
-								<tr>
-								<!-- 14-05-13 성훈 수정 경우에 따라 사진 넣고 말고 하기 -->
-									<td align="center" height="20%">내용</td>
-									<td>
-										<div align="center">
-											<c:if test="${requestScope.oneDiaryImg != null}">
-												<img src="${requestScope.oneDiaryImg}" width="180">
-											</c:if>
-											<div align="center">${requestScope.oneDiary.brdcontent}</div>
-										</div>
-									</td>
-								</tr>
-								<%-- 
-								<tr>
-									<td align="center" height="20%">내용</td>
-									<td>
-										<div align="center">${requestScope.oneDiary.brdcontent}</div>
-									</td>
-								</tr> --%>
-								<tr>
-									<!-- 14-05-14 성훈 추가: 이전 글, 다음 글 보기 -->
-									<!-- 14-05-21 성훈 수정: 이전 글, 다음 글 index로 이동, 수정, 삭제하기 기능 -->
-									<td align="center" colspan="2" height="7%">
-										<form action="/gaenari/control" method="post" name="requestForm">
-										<input type="button" onclick="location.href='/gaenari/control?command=diaryDetail&index=${requestScope.index - 1}'" value="이전 글"> 
-										&nbsp;&nbsp;&nbsp;&nbsp; 
-										<input type="button" onclick="location.href='/gaenari/control?command=updateFormDiary&brdno=${requestScope.oneDiary.brdno}'"value="수정하기"> 
-										&nbsp;&nbsp;&nbsp;&nbsp; 
-										<input type="hidden" name="command" value="">
-										<input type="hidden" name="brdno" value="${requestScope.oneDiary.brdno}">
-										<input type="submit" onclick="javascript:deleteCheck();" value="삭제하기">
-										&nbsp;&nbsp;&nbsp;&nbsp; 
-										<input type="button" onclick="location.href='/gaenari/control?command=diaryDetail&index=${requestScope.index + 1}'" value="다음 글">
-										</form>
-									</td>
-								</tr>
-							</table>
+							<div align="center">${requestScope.oneDiary.mood}</div>
+						</td>
+					</tr>
+					<tr>
+						<!-- 14-05-13 성훈 수정 경우에 따라 사진 넣고 말고 하기 -->
+						<td align="center" height="20%">내용</td>
+						<td style="text-align: left; vertical-align: top;">
+							${requestScope.oneDiary.brdcontent}</td>
+					</tr>
+					<tr>
+						<!-- 14-05-14 성훈 추가: 이전 글, 다음 글 보기 -->
+						<!-- 14-05-21 성훈 수정: 이전 글, 다음 글 index로 이동, 수정, 삭제하기 기능 -->
+						<td align="center" colspan="2" height="7%">
+							<form action="/gaenari/control" method="post" name="requestForm">
+								<input type="button"
+									onclick="location.href='/gaenari/control?command=diaryDetail&index=${requestScope.index - 1}'"
+									value="이전 글"> &nbsp;&nbsp;&nbsp;&nbsp; <input
+									type="button"
+									onclick="location.href='/gaenari/control?command=updateFormDiary&brdno=${requestScope.oneDiary.brdno}'"
+									value="수정하기"> &nbsp;&nbsp;&nbsp;&nbsp; <input
+									type="hidden" name="command" value=""> <input
+									type="hidden" name="brdno"
+									value="${requestScope.oneDiary.brdno}"> <input
+									type="submit" onclick="javascript:deleteCheck();" value="삭제하기">
+								&nbsp;&nbsp;&nbsp;&nbsp; <input type="button"
+									onclick="location.href='/gaenari/control?command=diaryDetail&index=${requestScope.index + 1}'"
+									value="다음 글">
+							</form>
 						</td>
 					</tr>
 				</table>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
+<%@ include file="bottom.jsp"%>

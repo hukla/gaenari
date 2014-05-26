@@ -31,13 +31,13 @@
  -->
 </head>
 <body>
-	<table border="1" align="center" width="80%" height="80%">
+	<table border="1" align="center" width="80%">
 
 		<!-- ~님의 홈페이지, [오늘 날짜]의 일정: [일정제목]-[일정날짜] -->
 
 		<tr>
 			<td width="25%" height="20%">
-				<h2 align="center">${requestScope.user.userid}님의미니홈페이지</h2>
+				<h2 align="center">${requestScope.user.userid}님의<br>미니홈페이지</h2>
 			</td>
 			<td width="75%" colspan="2" height="15%">
 				<h2 align="center">${sessionScope.today}
@@ -141,3 +141,4 @@
 	</table>
 </body>
 </html>
+<%@ include file="bottom.jsp"%>

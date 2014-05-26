@@ -33,8 +33,11 @@ import model.dto.UserDTO;
  * 내용: 이전일기, 다음 일기 본인 것만 열람하도록 하기
  * 
  * 수정: 2014-05-21, 최성훈
- * 수정내용: 이전글, 다음글 오류수정 완료
+ * 내용: 이전글, 다음글 오류수정 완료
  * 			일기 전체리스트를 받아오고 그 리스트의 인덱스 번호로 이전, 다음글 열람하기
+ * 
+ * 수정: 2014-05-26, 최성훈
+ * 내용: 기존에 저장된 일기 내용의 줄바꿈기능 추가
  */
 public class OneDiaryAction implements Action {
 
@@ -86,7 +89,8 @@ public class OneDiaryAction implements Action {
 				//전체 일정중 현재 보여지는 일기에 해당하는 index를 구함
 			
 			oneDiary = TestService.oneDiaryService(diaryDTO.getBrdno());
-			oneDiaryContents = oneDiary.getBrdcontent().split("!split!");
+			//14-05-26 성훈수정: 다이어리 컨텐츠 줄바꿈 추가
+			oneDiaryContents = oneDiary.getBrdcontent().replaceAll("\r\n", "<br/>").split("!split!");
 			
 			// 14-05-13 성훈 수정: 이미지 경로가 null인지 확인하는 조건 수정
 			if(oneDiaryContents[0].equals(null) || oneDiaryContents[0].trim().length() == 0){

@@ -207,3 +207,4 @@
 	</table>
 </body>
 </html>
+<%@ include file="bottom.jsp"%>

@@ -36,3 +36,4 @@
 	</table>
 </body>
 </html>
+<%@ include file="miniHome/bottom.jsp"%>

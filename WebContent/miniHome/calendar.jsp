@@ -171,3 +171,4 @@ A:hover {text-decoration:none; color:'ff9900'}
 	</table>
 </body>
 </html>
+<%@ include file="bottom.jsp"%>

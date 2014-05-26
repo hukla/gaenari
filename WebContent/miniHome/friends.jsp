@@ -22,3 +22,4 @@
 <a href="/gaenari/control?command=login&userid=csh0806">csh0806</a><br>
 </body>
 </html>
+<%@ include file="bottom.jsp"%>

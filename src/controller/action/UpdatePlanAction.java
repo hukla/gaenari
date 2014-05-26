@@ -13,6 +13,9 @@ import model.dto.PlanDTO;
  * 작성: 2014-05-21
  * 작성자: 최성훈
  * 내용: 일정 수정(제목,내용,수행날짜,지역)
+ * 
+ * 수정: 2014-05-26, 최성훈
+ * 내용: 컨텐츠 줄바꿈추가
  */
 public class UpdatePlanAction implements Action {
 
@@ -25,7 +28,7 @@ public class UpdatePlanAction implements Action {
 		
 		try{
 			title = request.getParameter("title");
-			brdcontent = request.getParameter("brdcontent");
+			brdcontent = request.getParameter("brdcontent").replaceAll("\r\n", "<br/>");
 			tmpdate = request.getParameter("wrdate");
 			ploc = request.getParameter("ploc");
 			brdno = request.getParameter("brdno");

@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<title>공통 프레임</title>
+<title>개나리 홈페이지입니다.</title>
 <style type="text/css">
 	body { padding-top: 55px; }
 </style>

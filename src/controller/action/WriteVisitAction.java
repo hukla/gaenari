@@ -12,7 +12,14 @@ import model.InsertService;
 import model.dto.BoardDTO;
 import model.dto.UserDTO;
 import model.dto.VisitDTO;
-
+/**
+ * 작성일: 2014-04-26
+ * 작성자: 최성훈
+ * 내용: 방명록을 입력한다.
+ * 
+ * 수정: 2014-05-26, 최성훈
+ * 내용: 컨텐츠 줄바꿈추가
+ */
 public class WriteVisitAction implements Action {
 
 	@Override
@@ -25,7 +32,7 @@ public class WriteVisitAction implements Action {
 		int brdno = 0;
 		
 		try {
-			content = request.getParameter("content");
+			content = request.getParameter("content").replaceAll("\r\n", "<br/>");
 			if (content.equals(null) || content.trim().length() == 0) {
 				throw new Exception("방명록 내용을 입력해주세요.");
 			} else {

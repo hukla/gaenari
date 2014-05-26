@@ -84,8 +84,8 @@
 								</tr>
 								<tr>
 									<td align="center" height="40%">내용</td>
-									<td>
-										<div align="center">${requestScope.onePlan.brdcontent}</div>
+									<td style="text-align: left;vertical-align: top;">
+										${requestScope.onePlan.brdcontent}
 									</td>
 								</tr>
 							</table>
@@ -119,3 +119,4 @@
 				</table>
 </body>
 </html>
+<%@ include file="bottom.jsp"%>

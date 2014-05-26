@@ -123,6 +123,6 @@
 				</table>
 			</td>
 	</table>
-	<hr color="black">
 </body>
 </html>
+<%@ include file="miniHome/bottom.jsp"%>

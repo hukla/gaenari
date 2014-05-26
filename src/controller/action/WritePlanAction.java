@@ -6,8 +6,12 @@ package controller.action;
  * 		 입력받은 제목, 지역, 내용을 저장한다.
  * 		 
  * 		 입력받은 값들을 BoardDTO와 PlanDTO에 insert해준다.
+ * 
  * 수정: 2014-05-22, 최성훈
  * 내용: 불필요한 소스코드 정리
+ * 
+ * 수정: 2014-05-26, 최성훈
+ * 내용: 컨텐츠 입력시 줄바꿈추가
  */
 import java.io.IOException;
 import java.sql.SQLException;
@@ -38,7 +42,7 @@ public class WritePlanAction implements Action {
 			title = request.getParameter("title");
 			loc = request.getParameter("loc");
 			tmpDate = request.getParameter("date"); // "05/11/2014"
-			content = request.getParameter("content");
+			content = request.getParameter("content").replaceAll("\r\n", "<br/>");
 			if (title.equals(null) || title.trim().length() == 0 || loc.equals(null) || loc.trim().length() == 0
 					|| tmpDate.equals(null) || tmpDate.trim().length() == 0
 					|| content.equals(null) || content.trim().length() == 0) {

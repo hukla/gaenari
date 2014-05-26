@@ -89,3 +89,4 @@
 				</form>
 </body>
 </html>
+<%@ include file="bottom.jsp"%>

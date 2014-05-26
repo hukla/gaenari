@@ -8,7 +8,7 @@
 <link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
 <title>Insert title here</title>
 <style type="text/css">
-	h4 { font-size:13pt ;  font-family:'서울한강체' } 
+	h1,h2,h3,h4,h5 {   font-family:'서울한강체' } 
 </style>
 </head>
 <!-- <script src="http://code.jquery.com/jquery-latest.js"></script>

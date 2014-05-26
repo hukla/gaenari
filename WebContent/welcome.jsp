@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>È¯¿µÇÕ´Ï´Ù.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>í™˜ì˜í•©ë‹ˆë‹¤.</title>
 </head>
 <body>
 	<form action="/gaenari/home.do">
@@ -13,10 +13,10 @@
 			<col align="center" width="30%"><col align="center" width="70%">
 		</colgroup>
 		<tr>
-			<td colspan="2">${sessionScope.userid}´Ô ¹İ°©½À´Ï´Ù! ·Î±×ÀÎÇØÁÖ¼¼¿ä</td>
+			<td colspan="2">${sessionScope.userid}ë‹˜ ë°˜ê°‘ìŠµë‹ˆë‹¤! ë¡œê·¸ì¸í•´ì£¼ì„¸ìš”</td>
 		</tr>
 		<tr>
-			<td>EmailÁÖ¼Ò</td><td><input type="text" value="${requestScope.email}" disabled="disabled"></td>
+			<td>Emailì£¼ì†Œ</td><td><input type="text" value="${requestScope.email}" disabled="disabled"></td>
 		</tr>
 		<tr>
 			<td>PASSWORD</td>
@@ -27,12 +27,13 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="submit" value="·Î±×ÀÎ">
+				<input type="submit" value="ë¡œê·¸ì¸">
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="reset" value="Ãë¼ÒÇÏ±â">
+				<input type="reset" value="ì·¨ì†Œí•˜ê¸°">
 			</td>
 		</tr>
 	</table>
 	</form>
 </body>
 </html>
+<%@ include file="miniHome/bottom.jsp"%>

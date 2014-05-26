@@ -59,6 +59,9 @@ public class OnePlanAction implements Action {
 			userid = (String) session.getAttribute("userid");
 			user = UserService.login(userid);
 			plist = (List<PlanDTO>)session.getAttribute("allPlanList");//전체일정리스트 받아오기
+			for(PlanDTO dto: plist){
+				dto.setBrdcontent(dto.getBrdcontent().replaceAll("\r\n", "<br/>"));
+			}
 			/**
 			 * 14-05-14 성훈 추가: 일정접근 번호(게시판번호, 일정번호)
 			 * 이전글, 다음글로 액션에 들어올 땐 if문으로 
@@ -77,7 +80,8 @@ public class OnePlanAction implements Action {
 			
 			else if(request.getParameter("brdno")!=null)//미리보기 버튼 클릭하여 들어올 경우
 				planDTO = TestService.getJustPlan(Integer.parseInt(request.getParameter("brdno")));	
-			
+			//14-05-26 성훈추가: 줄바꿈추가
+			//planDTO.setBrdcontent(planDTO.getBrdcontent().replaceAll("\r\n", "<br/>"));
 			for(PlanDTO dto:plist)
 				if(dto.getBrdno()==planDTO.getBrdno())	indexInt = plist.indexOf(dto);
 				//전체 일정중 현재 보여지는 일정에 해당하는 index를 구함

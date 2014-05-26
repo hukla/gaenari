@@ -84,7 +84,8 @@ public class DiaryListAction implements Action {
 					request.setAttribute("diaryFirstImg", diaryFisrtImg);
 					System.out.println("경로 null아님!" + diaryContents[0]);
 				}
-				diaryFirstWords = diaryContents[1]; 		// 첫번째 일기 내용중 글부분 발췌
+				diaryFirstWords = diaryContents[1].replaceAll("\r\n", "<br/>"); // 첫번째 일기 내용중 글부분 발췌
+				//14-05-26 성훈추가: 기존의 일기 내용에 줄바꿈 추가
 				diaryFirst.setBrdcontent(diaryFirstWords); 	// content에 글부분만 다시저장
 				
 				//14-05-20 성훈 수정: 다이어리 정보가 2개 이상 저장되어 있을 때 

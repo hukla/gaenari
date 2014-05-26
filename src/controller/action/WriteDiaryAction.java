@@ -11,11 +11,14 @@ package controller.action;
  * 
  * 수정: 2014-05-22, 최성훈
  * 내용: 불필요한 소스코드 정리.
+ * 
+ * 수정: 2014-05-26, 최성훈
+ * 내용: 1.컨텐츠 줄바꿈추가
+ * 		 2.이미지파일 업로드할 때 사용자별 폴더를 생성해서 분류하기
  */
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -42,23 +45,34 @@ public class WriteDiaryAction implements Action {
 		String imagefile = null;
 		String savePath = null;
 		String fileName = null;
+		String userid = null;
+		String realPath = null;
 		BoardDTO boardDTO = null;
 		int brdno=0;
 		int maxSize = 0;
 		
 		try {
+			userid = (String) session.getAttribute("userid");
 			savePath = session.getServletContext().getRealPath("image");
 			maxSize = 5 * 1024 * 1024; // 최대 업로드 파일 크기 5MB(메가)로 제한
 			
-			MultipartRequest multi = new MultipartRequest(request, savePath,
+			//14-05-26 성훈추가: 사용자별 사진첩 폴더생성
+			realPath = savePath+"/"+userid;			//경로지정: 리얼패스밑에 폴더명을 사용자id로 주기
+			File targetDir = new File(realPath); 	//경로를 가진 파일객체 생성하기
+			if (!targetDir.exists()) {				//파일이 존재하지 않는다면
+				targetDir.mkdirs();					//새로운 디렉토리를 만들어준다.
+			}
+			/*MultipartRequest multi = new MultipartRequest(request, savePath,
+					maxSize, "utf-8", new DefaultFileRenamePolicy());*/
+			MultipartRequest multi = new MultipartRequest(request, realPath,
 					maxSize, "utf-8", new DefaultFileRenamePolicy());
 			
 			title = multi.getParameter("title");
 			mood = multi.getParameter("mood");
-			content = multi.getParameter("content");
+			content = multi.getParameter("content").replaceAll("\r\n", "<br/>");
 			fileName = multi.getFilesystemName("uploadFile"); 				// 파일의 이름 얻기
 			
-			imagefile = "/gaenari/image/"+fileName;	//방금등록한 이미지실제경로
+			imagefile = "/gaenari/image/"+userid+"/"+fileName;	//방금등록한 이미지실제경로(사용자별 폴더)
 			
 			if (fileName == null) { // 파일이 업로드 되지 않았을때
 				System.out.print("파일 업로드 되지 않았음");

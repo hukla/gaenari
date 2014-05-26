@@ -120,6 +120,7 @@
 						<tr height="7%">
 							<td>
 								<div align="center">
+									<input type="hidden" name="userid" value="${requestScope.user.userid}">
 									<input type="submit" value="등록하기">
 									&nbsp;&nbsp;&nbsp; 
 									<input type="reset" value="취소하기">
@@ -156,9 +157,11 @@
 
 													<!-- 14-05-13 성훈수정: 경우에 따라 사진 넣고 말고 하기 -->
 													<tr height="43%">
-														<td><c:if test="${requestScope.diaryFirstImg != null}">
+														<td style="text-align: left;vertical-align: top;">
+															<c:if test="${requestScope.diaryFirstImg != null}">
 																<img src="${requestScope.diaryFirstImg}" width="180" class="img-rounded">
-															</c:if> ${requestScope.diaryFirst.brdcontent}</td>
+															</c:if> ${requestScope.diaryFirst.brdcontent}
+														</td>
 													</tr>
 													<tr height="7%">
 														<td>
@@ -215,7 +218,7 @@
 
 													<!-- 14-05-13 성훈 수정 경우에 따라 사진 넣고 말고 하기 -->
 													<tr height="43%">
-														<td>
+														<td style="text-align: left;vertical-align: top;">
 															<c:if test="${requestScope.diarySecondImg != null}">
 																<img src="${requestScope.diarySecondImg}" width="180" class="img-rounded">
 															</c:if> ${requestScope.diarySecond.brdcontent}
@@ -369,3 +372,4 @@
 	</table>
 </body>
 </html>
+<%@ include file="bottom.jsp"%>

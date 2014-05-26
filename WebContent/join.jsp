@@ -51,3 +51,4 @@
 	</form>
 </body>
 </html>
+<%@ include file="miniHome/bottom.jsp"%>
