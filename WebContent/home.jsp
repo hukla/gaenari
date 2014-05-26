@@ -15,7 +15,7 @@
 		<tr>
 			<td colspan="3">
 				<div class="menu-about" align="center">
-					<img alt="" src="/gaenari/image/woman-335394.jpg"  width="1300"/>
+					<img src="/gaenari/image/woman-335394.jpg"  width="1300"/>
 				</div>
 			</td>
 		</tr>

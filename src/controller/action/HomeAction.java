@@ -30,23 +30,15 @@ public class HomeAction implements Action {
 		int year = cal.get(cal.YEAR);
 		int mth = cal.get(cal.MONTH)+1;
 		int day = cal.get(cal.DATE);
-		int cnt=0;
-		int index=0;
-		int lastIndex=0;
 		String month = null;
 		String date = null;
 		String userid = null;
 		String pwd = null;
-		String savePath = null;
-		String fullpath = null;
 		UserDTO loginUser = null;
 		List<DogDTO> dog = null;
 		List<BoardDTO> allPlanList = null;
 		List<BoardDTO> allDiaryList = null;
 		List<BoardDTO> allVisitList = null;
-		List<BoardDTO> planList = null;
-		List<BoardDTO> diaryList = null;
-		List<BoardDTO> visitList = null;
 		HttpSession session = request.getSession();
 		String url = "login/error.jsp";
 		
@@ -65,8 +57,7 @@ public class HomeAction implements Action {
 		
 		try {
 			
-			if (userid.equals(null) || userid.length() == 0 || pwd.equals(null)
-					|| pwd.length() == 0) {
+			if (userid.equals(null) || userid.length() == 0 || pwd.equals(null) || pwd.length() == 0) {
 				throw new LoginException("아이디와 비밀번호를 모두 입력해주세요.");
 				// 14-05-20 성훈 추가: LoginException 추가
 			} else {
@@ -76,10 +67,6 @@ public class HomeAction implements Action {
 					// 14-05-20 성훈 추가: LoginException 추가
 				}else{
 					
-					//14-05-13 성훈 수정 세개씩 미리보기
-					diaryList = TestService.threeDiariesService(loginUser);
-					planList = TestService.threePlansService(loginUser);
-					visitList = TestService.threeVisitsService(loginUser);
 					allPlanList = TestService.planService(loginUser);
 					allDiaryList = TestService.diaryService(loginUser);	//14-05-21 성훈추가
 					allVisitList = TestService.visitService(loginUser);	//14-05-21 성훈추가
@@ -87,31 +74,9 @@ public class HomeAction implements Action {
 					
 					session.setAttribute("user", loginUser);
 					session.setAttribute("dog", dog);
-					request.setAttribute("diary", diaryList);
-					request.setAttribute("planList", planList);
-					request.setAttribute("visit", visitList);
 					session.setAttribute("allPlanList", allPlanList);
 					session.setAttribute("allDiaryList", allDiaryList);	//14-05-21 성훈추가
 					session.setAttribute("allVisitList", allVisitList);	//14-05-21 성훈추가
-					
-					//14-05-13 성훈 추가 실제경로에서 이미지 가져오기
-					savePath = session.getServletContext().getRealPath("image");
-					fullpath = savePath+"\\"+"hoonc.jpg";
-					request.setAttribute("fullpath", fullpath);
-					
-					//14-05-13 성훈 추가 오늘의 일정 띄우기
-					// - 1개인 경우와 1개 이상인 경우 나눔
-					for(BoardDTO plans: allPlanList){
-						index++;
-						if(plans.getWrdate().equals(session.getAttribute("today"))){
-							cnt++;
-							lastIndex=index-1;
-						}
-					}
-					//14-05-13 성훈 추가 일정 개수
-					request.setAttribute("plans", cnt);
-					//14-05-13 성훈 추가 당일 일정 1개인 경우 일정정보
-					if(cnt==1) request.setAttribute("plan", allPlanList.get(lastIndex));
 					
 					url = "home.jsp";
 				}
@@ -125,9 +90,7 @@ public class HomeAction implements Action {
 		} catch (Exception e) {
 			request.setAttribute("errorMsg", e.getMessage());
 		}
-		
 		request.getRequestDispatcher(url).forward(request, response);
-
 	}
 
 }

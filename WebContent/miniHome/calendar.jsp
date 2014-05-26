@@ -2,6 +2,7 @@
 <%@ page import="java.util.Calendar"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="frame.jsp" %>
+<%@ include file="menu.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -84,7 +85,7 @@ A:hover {text-decoration:none; color:'ff9900'}
   calStr+="<td align=center><font size='6'>"  // 오늘 날짜가 아닐때 배경색 지정
   }
 
-  calStr+="<a href='/gaenari/control?command=calendar&date="+dayCount+"&month="+(nowm+1)+"&year="+nowy+"'>" // 링크설정
+  calStr+="<a href='/gaenari/control?command=calendar&userid=${requestScope.user.userid}&date="+dayCount+"&month="+(nowm+1)+"&year="+nowy+"'>" // 링크설정
 
   calStr+=dayCount++   // 날짜
   
@@ -125,22 +126,20 @@ A:hover {text-decoration:none; color:'ff9900'}
  -->
 </head>
 <body>
-	<table border="1" align="center" width="100%" height="100%">
+	<table border="1" align="center" width="80%" height="100%">
 		<tr>
 			<td rowspan="3" width="70%">
 				<SPAN ID=calendar STYLE="position: relative;"></SPAN> 
 				<script language="JavaScript" type="text/JavaScript">
 					showCalendar(nowd,nowm,nowy);
 				</script></td>
-			<td>
+			<!-- <td>
 				<div align="center">
 					<input type="button" onclick="location.href='/gaenari/planList.do'" value="일정게시판">
 					&nbsp;&nbsp;&nbsp;&nbsp; 
 					<input type="button" onclick="location.href='/gaenari/diaryList.do'" value="일기게시판">
 				</div>
-			</td>
-		</tr>
-		<tr>
+			</td> -->
 			<td width="30%">
 				<h3>일정</h3> <c:choose>
 					<c:when test="${not empty requestScope.plist}">

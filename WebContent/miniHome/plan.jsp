@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="frame.jsp" %>
+<%@ include file="menu.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,8 +47,8 @@
 </head>
 
 <body>
-	<table border="0" align="center" width="100%" height="100%" cellpadding="20">
-		<tr>
+	<table border="0" align="center" width="80%" height="100%" cellpadding="20">
+		<!-- <tr>
 			<td colspan="2" width="66%">
 				<form action="">
 					<select>
@@ -64,7 +65,7 @@
 					<input type="button" onclick="location.href='/gaenari/diaryList.do'" value="일기페이지">
 				</div>
 			</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td width="33%">
 				<form action="/gaenari/writePlan.do" method="post">

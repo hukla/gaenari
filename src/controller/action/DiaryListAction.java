@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.TestService;
+import model.UserService;
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
 import model.dto.UserDTO;
@@ -44,10 +45,20 @@ public class DiaryListAction implements Action {
 		List<BoardDTO> diaryList = null;
 		int pageCount = 0;
 		UserDTO user = null;
+		String userid = null;
 		
 		
 		try {
 			user = (UserDTO) session.getAttribute("user");
+			userid = user.getUserid();
+			//다른 아이디를 클릭할 때
+			if(request.getParameter("userid")!=null){				//만약 userid 파라미터를 넘겨 받았다면
+				if(userid!=request.getParameter("userid")){			//그리고 만약 세션 userid와 파라미터userid가 다르다면
+					userid = request.getParameter("userid");		//userid에 파라미터userid를 저장하기
+					user = UserService.login(userid);
+				}
+			}
+			
 			diaryList = TestService.diaryService(user);
 			pageNumber = request.getParameter("pageNumber");
 			diaryNumber = request.getParameter("diaryNumber");
@@ -101,9 +112,12 @@ public class DiaryListAction implements Action {
 			request.setAttribute("diaryFirst", diaryFirst);
 			request.setAttribute("diarySecond", diarySecond);
 			request.setAttribute("diaryList", diaryList);
-			
+			request.setAttribute("user", user);
 			url = "miniHome/diary.jsp";
 		} catch (SQLException e) {
+			request.setAttribute("errorMsg", e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
 			request.setAttribute("errorMsg", e.getMessage());
 			e.printStackTrace();
 		}

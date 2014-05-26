@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.TestService;
+import model.UserService;
 import model.dto.BoardDTO;
 import model.dto.PlanDTO;
 import model.dto.UserDTO;
@@ -42,10 +43,21 @@ public class PlanListAction implements Action {
 		List<BoardDTO> planList = null;
 		int pageCount = 0;
 		UserDTO user = null;
+		String userid = null;
 		
 		try {
 			user = (UserDTO) session.getAttribute("user");
-			planList = (List<BoardDTO>) session.getAttribute("allPlanList");	//전체 일정목록
+			userid = user.getUserid();
+			//다른 아이디를 클릭할 때
+			if(request.getParameter("userid")!=null){				//만약 userid 파라미터를 넘겨 받았다면
+				if(userid!=request.getParameter("userid")){			//그리고 만약 세션 userid와 파라미터userid가 다르다면
+					userid = request.getParameter("userid");		//userid에 파라미터userid를 저장하기
+					user = UserService.login(userid);
+				}
+			}
+			
+			//planList = (List<BoardDTO>) session.getAttribute("allPlanList");	//전체 일정목록
+			planList = TestService.planService(user);
 			
 			pageNumber = request.getParameter("pageNumber");
 			planNumber = request.getParameter("planNumber");
@@ -63,10 +75,13 @@ public class PlanListAction implements Action {
 			request.setAttribute("tenPlans", tenPlans);
 			request.setAttribute("planNumber", planNumber);
 			request.setAttribute("planList", planList);
-			
+			request.setAttribute("user", user);
 			url = "miniHome/plan.jsp";
 			
 		} catch (SQLException e) {
+			e.printStackTrace();
+			request.setAttribute("errorMsg", e.getMessage());
+		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 		}

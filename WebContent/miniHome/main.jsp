@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="frame.jsp"%>
+<%@ include file="menu.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -30,13 +31,13 @@
  -->
 </head>
 <body>
-	<table border="1" align="center" width="100%" height="80%">
+	<table border="1" align="center" width="80%" height="80%">
 
 		<!-- ~님의 홈페이지, [오늘 날짜]의 일정: [일정제목]-[일정날짜] -->
 
 		<tr>
 			<td width="25%" height="20%">
-				<h2 align="center">${sessionScope.user.userid}님의미니홈페이지</h2>
+				<h2 align="center">${requestScope.user.userid}님의미니홈페이지</h2>
 			</td>
 			<td width="75%" colspan="2" height="15%">
 				<h2 align="center">${sessionScope.today}
@@ -71,9 +72,11 @@
 					<c:when test="${not empty requestScope.planList}">
 						<c:forEach items="${requestScope.planList}" var="plan">
 							<ul>
-								<li><a
-									href="control?command=planDetail&brdno=${plan.brdno}">
-										${plan.title} - ${plan.wrdate} </a></li>
+								<li>
+									<a href="control?command=planDetail&brdno=${plan.brdno}"> 
+										${plan.title} - ${plan.wrdate} 
+									</a>
+								</li>
 							</ul>
 						</c:forEach>
 					</c:when>
@@ -84,9 +87,11 @@
 					<c:when test="${not empty requestScope.diary}">
 						<c:forEach items="${requestScope.diary}" var="diary">
 							<ul>
-								<li><a
-									href="control?command=diaryDetail&brdno=${diary.brdno}">
-										${diary.title} - ${diary.wrdate} </a></li>
+								<li>
+									<a href="control?command=diaryDetail&brdno=${diary.brdno}">
+										${diary.title} - ${diary.wrdate}
+									</a>
+								</li>
 							</ul>
 						</c:forEach>
 					</c:when>
@@ -102,9 +107,11 @@
 					<c:when test="${not empty requestScope.visit}">
 						<c:forEach items="${requestScope.visit}" var="visit">
 							<ul>
-								<li><a
-									href="control?command=visitDetail&brdno=${visit.brdno}">
-										${visit.userid} - ${visit.wrdate} </a></li>
+								<li>
+									<a href="control?command=visitDetail&brdno=${visit.brdno}">
+										${visit.userid} - ${visit.wrdate}
+									</a>
+								</li>
 							</ul>
 						</c:forEach>
 					</c:when>
@@ -115,7 +122,7 @@
 			<td height="20%">
 				<!-- 자기소개란 [이름, 기르는 견종, 강아지 이름] -->
 
-				<div align="center">안녕하세요 ${sessionScope.user.username}입니다.</div>
+				<div align="center">안녕하세요 ${requestScope.user.username}입니다.</div>
 				<div align="center">견종: ${sessionScope.dog[0].dogkind}</div>
 				<div align="center">강아지 이름: ${sessionScope.dog[0].dogname}</div>
 			</td>
@@ -123,8 +130,8 @@
 				<table>
 					<tr>
 						<td width="25%">
-							<!-- 실종견 커뮤니티에서 사진과 실종신고 제목 불러오기 --> <input type="image"
-							src="image/horse.jpg" width="80">
+							<!-- 실종견 커뮤니티에서 사진과 실종신고 제목 불러오기 --> 
+							<input type="image" src="image/horse.jpg" width="80">
 						</td>
 						<td width="75%">${requestScope.mfMessage}우리말좀 찾아줘요</td>
 					</tr>

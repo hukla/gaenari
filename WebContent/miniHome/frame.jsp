@@ -50,7 +50,7 @@
           <li><a href="/gaenari/login.do">메인페이지</a></li>
           <li><a href="/gaenari/calendar.do">달력보기</a></li>
           <li><a href="/gaenari/visitList.do">방명록</a></li>
-          <li><a href="#">친구관리</a></li>
+          <li><a href="/gaenari/friends.do">친구관리</a></li>
         </ul>
       </li>
       <li class="dropdown">
