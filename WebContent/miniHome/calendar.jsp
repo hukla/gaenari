@@ -41,6 +41,9 @@ A:hover {text-decoration:none; color:'ff9900'}
      var nowd=now.getDate();
      var nowm=now.getMonth();
      var nowy=now.getYear()+1900;
+     nowd="${requestScope.date}";
+     nowm="${requestScope.month-1}";
+     nowy="${requestScope.year}"
      function showCalendar(day,month,year)
      {
   if ((year%4==0||year%100==0)&&(year%400==0)) monthDays[1]=29; else monthDays[1]=28 //leap year test
@@ -76,17 +79,17 @@ A:hover {text-decoration:none; color:'ff9900'}
   {
 
 
-
-  if(dayCount==nowd) {
+	 // "${requestScope.date}"
+  if(dayCount==day) {
   calStr+="<td align=center bgcolor='#DFE7DE'><font size='6'><b>" // 오늘 날짜일때 배경색 지정,글자 진하게
 
   } else {
-
+	
   calStr+="<td align=center><font size='6'>"  // 오늘 날짜가 아닐때 배경색 지정
   }
-
-  calStr+="<a href='/gaenari/control?command=calendar&userid=${requestScope.user.userid}&date="+dayCount+"&month="+(nowm+1)+"&year="+nowy+"'>" // 링크설정
-
+	
+  calStr+="<a href='/gaenari/control?command=calendar&userid=${requestScope.user.userid}&date="+dayCount+"&month="+(parseInt(month)+1)+"&year="+nowy+"'>" // 링크설정
+	//지운거 여깄다 (nowm+1)
   calStr+=dayCount++   // 날짜
   
   calStr+="</a>"
@@ -131,15 +134,9 @@ A:hover {text-decoration:none; color:'ff9900'}
 			<td rowspan="3" width="70%">
 				<SPAN ID=calendar STYLE="position: relative;"></SPAN> 
 				<script language="JavaScript" type="text/JavaScript">
-					showCalendar(nowd,nowm,nowy);
+					//showCalendar(nowd,nowm,nowy);
+					showCalendar("${requestScope.date}","${requestScope.month-1}","${requestScope.year}");
 				</script></td>
-			<!-- <td>
-				<div align="center">
-					<input type="button" onclick="location.href='/gaenari/planList.do'" value="일정게시판">
-					&nbsp;&nbsp;&nbsp;&nbsp; 
-					<input type="button" onclick="location.href='/gaenari/diaryList.do'" value="일기게시판">
-				</div>
-			</td> -->
 			<td width="30%">
 				<h3>일정</h3> <c:choose>
 					<c:when test="${not empty requestScope.plist}">
