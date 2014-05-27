@@ -1,24 +1,22 @@
+/**
+ * 작성자 : 장재희
+ * 작성일 : 2014-05-27
+ * 내용 : detail.jsp로 이동
+ */
 package controller.action;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.CenterDAO;
-import model.dao.ItemDAO;
-import model.dto.ItemDTO;
-
-public class MallMainAction implements Action {
+public class MallDetailPageAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getSession().setAttribute("centerList", CenterDAO.selectAll());
-		request.getRequestDispatcher("/mall/main.jsp").forward(request, response);
-
+		request.getRequestDispatcher("/mall/detail.jsp").forward(request, response);
 	}
 
 }
