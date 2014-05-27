@@ -171,4 +171,8 @@
 		AND b.userid=#{userid} AND b.wrdate=#{wrdate} order by b.wrdate desc limit 5
 	</select>
 
+	<select id="selectMyDogInfo" parameterType="int" resultType="DogDTO">
+		SELECT * FROM dog where userno=#{userno} 
+	</select>
+
 </mapper>

@@ -24,10 +24,21 @@ public class MissingBoardDTO extends BoardDTO {
 	private String mname;//실종견 이름
 	
 	public MissingBoardDTO() {}
-	public MissingBoardDTO(int mbrdno, String mloc, String mdate,
-			String mcontact, String mkind, String mgender, String mage,
-			String mname) {
-		super();
+	public MissingBoardDTO(int brdno, String mloc, String mdate, String mcontact, String mkind, String mgender,
+			String mage, String mname){
+		super(brdno);
+		this.mloc = mloc;
+		this.mdate = mdate;
+		this.mcontact = mcontact;
+		this.mkind = mkind;
+		this.mgender = mgender;
+		this.mage = mage;
+		this.mname = mname;
+	}
+	public MissingBoardDTO(String title, String brdcontent, String userid, String brdtype,
+			int mbrdno, String mloc, String mdate, String mcontact, String mkind, String mgender,
+			String mage, String mname) {
+		super(brdcontent,null,userid,title,brdtype,0);
 		this.mbrdno = mbrdno;
 		this.mloc = mloc;
 		this.mdate = mdate;

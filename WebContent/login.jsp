@@ -39,10 +39,11 @@
                             var image = document.getElementById('image');
                             image.src = 'http://graph.facebook.com/' + user.id + '/picture';
                             var name = document.getElementById('name');
-                            name.innerHTML = user.name
-                            var id = document.getElementById('id');
-                            id.innerHTML = user.id
-                            alert(user.name);
+                            name.innerHTML = user.name;
+                            var email = document.getElementById('email');
+                            email.innerHTML = user.email;                            
+                            alert(user.email);
+         
                         }
                     });   
 			    } else if (response.status === 'not_authorized') {
@@ -127,11 +128,16 @@
 									
 								</form>
 								<p>사용자정보 출력</p>
-								<div align="left">
-									<img id="image" />
-									<div id="name"></div>
-									<div id="id"></div>
-								</div>
+								<form action="home.do" method="post">
+									<div align="left">
+										<img id="image"/>
+										<div id="name"></div>
+										<div id="email"></div>
+										<!-- <input type="hidden" name="userid" value="hoonc"/>
+										<input type="hidden" name="pwd" value="tjdgns"/> -->
+									</div>
+									<input type="submit" value="submit"/>
+								</form>
 							</div>
 						</td>
 					</tr>

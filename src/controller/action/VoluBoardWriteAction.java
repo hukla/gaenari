@@ -23,11 +23,7 @@ public class VoluBoardWriteAction implements Action {
 		String userid = session.getAttribute("userid").toString();
 		String brdtype = "vo";
 		String vhour = request.getParameter("vhour");
-		System.out.println("VoluBoardWriteAction입니다!");
 		VoluBoardDTO vbdto = new VoluBoardDTO(title, brdcontent, userid, brdtype, vhour);
-		vbdto.toString();
-		System.out.println("content="+vbdto.getBrdcontent());
-		System.out.println("id="+vbdto.getUserid());
 		try{
 			if(vhour == null || vhour.trim().length() == 0) {
 				System.out.println("vhour==null");

@@ -30,8 +30,13 @@
 			<col width="40%">
 		</colgroup>
 		<tr>
-			<td align="right">
-				<a href="#">나니?</a>
+			<td style="text-align: center;vertical-align: middle;">
+				<!-- <a href="addDog()">
+					<img src="image/euriiiii.jpg" width="50" class="img-rounded">나의 개나으리 추가
+				</a> -->
+				<button onclick="addDog()">
+					<img src="image/euriiiii.jpg" width="50" class="img-rounded">나의 개나으리 추가
+				</button>
 			</td>
 				<td align="center"><a href="#">난?</a>
 			</td>
@@ -40,5 +45,16 @@
 		</tr>
 	</table>
 </body>
+<script type="text/javascript">
+function addDog() {
+	var newwindow;
+	var url = "control?command=addDog&userid=${sessionScope.user.userid}";
+	
+	newwindow = window.open(url, '강아지등록 페이지', 'height=550,width=660');
+	if(window.focus) {
+		newwindow.focus;
+	}
+}
+</script>
 </html>
 <%@ include file="bottom.jsp"%>
