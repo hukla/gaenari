@@ -100,14 +100,25 @@ CREATE TABLE adpboardinfo(
 	adpdoginfo CHAR(18) NOT NULL,
 	brdno INT CONSTRAINT brd_no_fk REFERENCES board(brdno) NOT NULL 
 ); 
-
+-- 2014.05.27 mboardinfo와 fboardinfo로 수정! - 수진
 DROP TABLE mfboardinfo;
-CREATE TABLE mfboardinfo(
-	mfbrdno INT PRIMARY KEY AUTO_INCREMENT,
+DROP TABLE mboardinfo;
+CREATE TABLE mboardinfo(
+	mbrdno INT PRIMARY KEY AUTO_INCREMENT,
 	brdno INT CONSTRAINT brd_no_fk REFERENCES board(brdno) NOT NULL,
-	mfloc VARCHAR(50) NOT NULL,
-	mfdoginfo VARCHAR(100) NOT NULL,
-	mftype CHAR(1) NOT NULL
+	mloc VARCHAR(50) NOT NULL,
+	mdate VARCHAR(50) NOT NULL,
+	mcontact VARCHAR(30) NOT NULL,
+	mkind VARCHAR(30) NOT NULL,
+	mgender VARCHAR(10) NOT NULL,
+	mage VARCHAR(5) NOT NULL,
+	mname VARCHAR(50) NOT NULL
+);
+--2014.05.27 새로 생성! - 수진
+DROP TABLE fboardinfo;
+CREATE TABLE fboardinfo(
+	fbrdno INT PRIMARY KEY AUTO_INCREMENT,
+	floc VARCHAR(50) NOT NULL
 );
 
 DROP TABLE diaryinfo;

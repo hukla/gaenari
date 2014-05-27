@@ -1,5 +1,6 @@
 <%@page import="model.dto.BoardDTO"%>
-<%@page import="model.dto.VoluBoardDTO"%>
+<%@ include file="../frame.jsp"%>
+<%@ include file="menu.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -147,3 +148,4 @@
 	</table>
 </body>
 </html>
+<%@ include file="../bottom.jsp"%>
