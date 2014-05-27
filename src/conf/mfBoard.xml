@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mfboard">
+
+	<resultMap type="model.dto.BoardDTO" id="brdMap">
+		<discriminator column="brdtype" javaType="string">
+			<case value="mb" resultType="model.dto.MissingBoardDTO"/>
+			<case value="fb" resultType="model.dto.FindingBoardDTO"/>
+		</discriminator>
+	</resultMap>
+	
+	<insert id="Minsert" parameterType="BoardDTO">
+		insert into board(brdcontent,wrdate,userid,title,brdtype,userno)
+		values(#{brdcontent},#{wrdate},#{userid},#{title},#{brdtype},#{userno})
+	</insert>
+	
+	<insert id="insertMissing" parameterType="MissingBoardDTO">
+		insert into missingboardinfo(brdno, mloc, mdate, mcontact, mkind, mgender, mage, mname) values(#{brdno}, #{mood})
+	</insert>
+	<!-- 
+	<select id="MselectAll" resultMap="brdMap">
+		select b.brdno, b.brdcontent, b.wrdate, b.userid, b.title, b.brdtype, b.userno, m.mbrdno, m.mloc, m.mdate
+		m.mcontact, m.mkind, m.mgender, m.mage, m.mname from board b join missingboardinfo m on b.brdno=m.brdno
+		where b.brdtype='mb' order by m.mbrdno desc
+	</select>
+	
+	<select id="selectByNum" resultMap="brdMap" parameterType="int">
+		select m.mfbrdno, b.brdno. b.title, b.userid, b.wrdate, b.content, m.mfloc, m.mfdoginfo, m.mftype
+		from mfboardinfo m and board b where m.mfbrdno=#{num}
+	</select>
+	 
+	<insert id="insert" parameterType="MfBoardDTO">
+		insert into mfboardinfo VALUES(#{mfloc},#{mfdoginfo}, #{mftype})
+	</insert>
+	
+	<update id="updateOne" parameterType="MfBoardDTO">
+		 update mfboardinfo set brdno.title=#{brdno.title}, brdno.content=#{brdno.content}, writetime=SYS_DATETIME, mfloc=#{mfloc}, mfdoginfo=#{mfdoginfo}, mftype=#{mftype} where brdno=#{brdno} and writer=#{writer}
+	</update>
+	
+	<delete id="delete"  parameterType="int">
+		DELETE FROM mfboardinfo WHERE brdno=#{brdno};
+		DELETE FROM board WHERE brdno=#{brdno};
+	</delete>
+	-->
+</mapper>
