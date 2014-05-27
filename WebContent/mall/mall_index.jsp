@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<% request.getRequestDispatcher("itemList.do?url=/mall/main.jsp").forward(request, response); %>
+	<% request.getRequestDispatcher("mallMain.do").forward(request, response); %>
 </body>
 </html>
