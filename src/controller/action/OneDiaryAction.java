@@ -38,6 +38,10 @@ import model.dto.UserDTO;
  * 
  * 수정: 2014-05-26, 최성훈
  * 내용: 기존에 저장된 일기 내용의 줄바꿈기능 추가
+ * 
+ * 수정: 2014-05-27, 최성훈
+ * 내용: 친구홈피 방문과 내홈피 방문을 구분하기 위해 userDTO를 구분하고
+ * 		 그에 따른 정보를 불러와 setAttribute함.
  */
 public class OneDiaryAction implements Action {
 
@@ -63,9 +67,17 @@ public class OneDiaryAction implements Action {
 		System.out.println("받은 index="+request.getParameter("index"));
 		if(request.getParameter("index")!=null)	index = request.getParameter("index");
 		try {
-			userid = (String) session.getAttribute("userid");
-			user = UserService.login(userid);
-			dlist = (List<DiaryDTO>)session.getAttribute("allDiaryList");//전체일기리스트 받아오기
+			
+			user = (UserDTO) session.getAttribute("user");
+			userid = user.getUserid();
+			//다른 아이디를 클릭할 때
+			if(request.getParameter("userid")!=null){				//만약 userid 파라미터를 넘겨 받았다면
+				if(userid!=request.getParameter("userid")){			//그리고 만약 세션 userid와 파라미터userid가 다르다면
+					userid = request.getParameter("userid");		//userid에 파라미터userid를 저장하기
+					user = UserService.login(userid);
+				}
+			}
+			dlist = TestService.allDiaryService(user);		//user정보를 이용하여 전체 일기 리스트받아오기
 			/**
 			 * 14-05-14 성훈 추가: 일기접근 번호(게시판번호, 일기번호)
 			 * 이전글, 다음글로 액션에 들어올 땐 if문으로 
@@ -107,6 +119,7 @@ public class OneDiaryAction implements Action {
 			System.out.println(tmpDiary);
 			tmpDiary.setBrdcontent(oneDiaryContents[1]);
 			
+			request.setAttribute("user", user);
 			request.setAttribute("index", indexInt);	//현재 보여지는 일정의 index 번호 setAttribute
 			request.setAttribute("oneDiary", tmpDiary);	//선택된 일정의 전체정보 setAttribute
 			url = "miniHome/oneDiary.jsp";

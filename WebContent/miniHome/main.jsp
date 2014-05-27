@@ -28,6 +28,16 @@
 수정일: 2014-05-24
 수정내용: 	LoginCheckAction에서의 불필요한 session attributing을 request로 수정함에 따라
 			메인 페이지에서 만 쓸 리스트의 scope를 requestScope로 수정
+			
+수정: 최성훈
+수정일: 2014-05-25
+수정내용: 	내비게이션 바 추가함에 따라 기부몰 들어가기를 미니홈피 메뉴에서 제거한 후
+			전 페이지 공통으로 include되는 내비게이션 바에 추가함.
+			
+수정: 최성훈
+수정일: 2014-05-27
+수정내용: 	내 홈피, 친구홈피 방문의 경우를 나누기 위해 a태그 접근시 꼭
+			requestScope의 userid를 지니고 가게함.
  -->
 </head>
 <body>
@@ -73,7 +83,7 @@
 						<c:forEach items="${requestScope.planList}" var="plan">
 							<ul>
 								<li>
-									<a href="control?command=planDetail&brdno=${plan.brdno}"> 
+									<a href="control?command=planDetail&brdno=${plan.brdno}&userid=${requestScope.user.userid}"> 
 										${plan.title} - ${plan.wrdate} 
 									</a>
 								</li>
@@ -88,7 +98,7 @@
 						<c:forEach items="${requestScope.diary}" var="diary">
 							<ul>
 								<li>
-									<a href="control?command=diaryDetail&brdno=${diary.brdno}">
+									<a href="control?command=diaryDetail&brdno=${diary.brdno}&userid=${requestScope.user.userid}">
 										${diary.title} - ${diary.wrdate}
 									</a>
 								</li>
@@ -108,7 +118,7 @@
 						<c:forEach items="${requestScope.visit}" var="visit">
 							<ul>
 								<li>
-									<a href="control?command=visitDetail&brdno=${visit.brdno}">
+									<a href="control?command=visitDetail&brdno=${visit.brdno}&userid=${requestScope.user.userid}">
 										${visit.userid} - ${visit.wrdate}
 									</a>
 								</li>
@@ -121,7 +131,6 @@
 		<tr>
 			<td height="20%">
 				<!-- 자기소개란 [이름, 기르는 견종, 강아지 이름] -->
-
 				<div align="center">안녕하세요 ${requestScope.user.username}입니다.</div>
 				<div align="center">견종: ${sessionScope.dog[0].dogkind}</div>
 				<div align="center">강아지 이름: ${sessionScope.dog[0].dogname}</div>

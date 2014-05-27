@@ -84,8 +84,9 @@ A:hover {text-decoration:none; color:'ff9900'}
   calStr+="<td align=center bgcolor='#DFE7DE'><font size='6'><b>" // 오늘 날짜일때 배경색 지정,글자 진하게
 
   } else {
-	
+	  
   calStr+="<td align=center><font size='6'>"  // 오늘 날짜가 아닐때 배경색 지정
+	/* calStr+="<td style='text-align: left;vertical-align: top;'><font size='4'>" */
   }
 	
   calStr+="<a href='/gaenari/control?command=calendar&userid=${requestScope.user.userid}&date="+dayCount+"&month="+(parseInt(month)+1)+"&year="+nowy+"'>" // 링크설정
@@ -126,6 +127,18 @@ A:hover {text-decoration:none; color:'ff9900'}
 수정내용: 미리보기의 방명록, 일기, 일정 모두 글 하나씩 볼 수있도록 링크 걸어놓음
 		  메인페이지 이동할 때 url패턴으로 action 통해서 가도록 수정
  
+수정: 최성훈
+수정일: 2014-05-23
+수정내용: 달력의 숫자를 클릭하면 그에 해당하는 일정과 일기 목록을 우측에서 미리보기
+		  방명록미리보기는 제거하였음. 날짜와 관련된 정보 열람은 일기,일정 정도가 좋고
+		  메인페이지에 최근 일기,일정, 방명록 미리보기가 있기 때문.
+		  
+수정: 최성훈
+수정일: 2014-05-26
+수정내용: 현재에 해당하는 월이 아닌 다른 월의 날짜를 클릭하면 정보는 전송은 되나 
+		  달력UI가 다시 현재 월로 되돌아오는 문제점 해결, 
+		  달력 상의 날짜 클릭시, 클릭된 날짜에 음영처리, bold 추가
+ 
  -->
 </head>
 <body>
@@ -141,7 +154,7 @@ A:hover {text-decoration:none; color:'ff9900'}
 				<h3>일정</h3> <c:choose>
 					<c:when test="${not empty requestScope.plist}">
 						<c:forEach items="${requestScope.plist}" var="plan">
-							<a href="/gaenari/control?command=planDetail&brdno=${plan.brdno}">
+							<a href="/gaenari/control?command=planDetail&brdno=${plan.brdno}&userid=${requestScope.user.userid}">
 								<h4>${plan.title}- ${plan.wrdate}</h4>
 							</a>
 						</c:forEach>
@@ -157,7 +170,7 @@ A:hover {text-decoration:none; color:'ff9900'}
 				<h3>일기</h3> <c:choose>
 					<c:when test="${not empty requestScope.dlist}">
 						<c:forEach items="${requestScope.dlist}" var="diary">
-							<a href="/gaenari/control?command=diaryDetail&brdno=${diary.brdno}">
+							<a href="/gaenari/control?command=diaryDetail&brdno=${diary.brdno}&userid=${requestScope.user.userid}">
 								<h4>${diary.title}- ${diary.wrdate}</h4>
 							</a>
 						</c:forEach>

@@ -37,6 +37,11 @@ import model.dto.VisitDTO;
  * 수정: 최성훈
  * 수정일: 2014-05-24
  * 수정내용: 날짜로 일기, 일정 검색하기 메소드 추가
+ * 
+ * 수정: 최성훈
+ * 수정일: 2014-05-27
+ * 수정내용: 전체 일기, 일정, 방명록 받아오기를 BoardDTO가 아닌 Diary,Plan, Visit DTO들로 하기,
+ * 				- BoardDTO로 받는 기능 안쓰게끔 액션 수정 후 삭제할 예정.
  */
 
 public class TestService {
@@ -82,6 +87,14 @@ public class TestService {
 		 */
 		return list;
 	}
+	public static List<DiaryDTO> allDiaryService(UserDTO user) throws SQLException {
+
+		List<DiaryDTO> list = TestDAO.selectAllDiary(user);
+		/*
+		 * if(list.isEmpty()){ throw new SQLException("정보 없음"); }
+		 */
+		return list;
+	}
 
 	public static List<BoardDTO> planService(UserDTO user) throws SQLException {
 
@@ -89,6 +102,12 @@ public class TestService {
 		/*
 		 * if(list.isEmpty()){ throw new SQLException("정보 없음"); }
 		 */
+		return list;
+	}
+	
+	public static List<PlanDTO> allPlanService(UserDTO user) throws SQLException {
+
+		List<PlanDTO> list = TestDAO.selectAllPlan(user);
 		return list;
 	}
 	
@@ -105,6 +124,15 @@ public class TestService {
 	public static List<BoardDTO> visitService(UserDTO user) throws SQLException {
 
 		List<BoardDTO> list = TestDAO.selectVisit(user);
+		/*
+		 * if(list.isEmpty()){ throw new SQLException("정보 없음"); }
+		 */
+		return list;
+	}
+	
+	public static List<VisitDTO> allVisitService(UserDTO user) throws SQLException {
+
+		List<VisitDTO> list = TestDAO.selectAllVisit(user);
 		/*
 		 * if(list.isEmpty()){ throw new SQLException("정보 없음"); }
 		 */

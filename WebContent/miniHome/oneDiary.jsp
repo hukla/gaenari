@@ -27,6 +27,13 @@
 수정: 최성훈
 수정일: 2014-05-22
 내용: 상세보기에서의 수정, 삭제 기능 javascript추가
+
+수정: 최성훈
+수정일: 2014-05-27
+수정내용: 	내 홈피, 친구홈피 방문의 경우를 나누기 위해 a태그 접근시 꼭
+			requestScope의 userid를 지니고 가게함.
+			
+			친구홈피에 방문하는 경우, 수정, 삭제 기능을 이용하지 못 하도록 함.
  -->
 </head>
 <script type="text/javascript">
@@ -89,19 +96,17 @@
 						<!-- 14-05-21 성훈 수정: 이전 글, 다음 글 index로 이동, 수정, 삭제하기 기능 -->
 						<td align="center" colspan="2" height="7%">
 							<form action="/gaenari/control" method="post" name="requestForm">
-								<input type="button"
-									onclick="location.href='/gaenari/control?command=diaryDetail&index=${requestScope.index - 1}'"
-									value="이전 글"> &nbsp;&nbsp;&nbsp;&nbsp; <input
-									type="button"
-									onclick="location.href='/gaenari/control?command=updateFormDiary&brdno=${requestScope.oneDiary.brdno}'"
-									value="수정하기"> &nbsp;&nbsp;&nbsp;&nbsp; <input
-									type="hidden" name="command" value=""> <input
-									type="hidden" name="brdno"
-									value="${requestScope.oneDiary.brdno}"> <input
-									type="submit" onclick="javascript:deleteCheck();" value="삭제하기">
-								&nbsp;&nbsp;&nbsp;&nbsp; <input type="button"
-									onclick="location.href='/gaenari/control?command=diaryDetail&index=${requestScope.index + 1}'"
-									value="다음 글">
+								<input type="button" onclick="location.href='/gaenari/control?command=diaryDetail&index=${requestScope.index - 1}&userid=${requestScope.user.userid}'" value="이전 글"> 
+								&nbsp;&nbsp;&nbsp;&nbsp; 
+								<c:if test="${requestScope.user.userid eq sessionScope.userid }">
+									<input type="button" onclick="location.href='/gaenari/control?command=updateFormDiary&brdno=${requestScope.oneDiary.brdno}'" value="수정하기">
+									&nbsp;&nbsp;&nbsp;&nbsp; 
+									<input type="hidden" name="command" value="">
+									<input type="hidden" name="brdno" value="${requestScope.oneDiary.brdno}"> 
+									<input type="submit" onclick="javascript:deleteCheck();" value="삭제하기">
+									&nbsp;&nbsp;&nbsp;&nbsp; 
+								</c:if>
+								<input type="button" onclick="location.href='/gaenari/control?command=diaryDetail&index=${requestScope.index + 1}&userid=${requestScope.user.userid}'" value="다음 글">
 							</form>
 						</td>
 					</tr>

@@ -28,6 +28,11 @@ package model.dao;
  * 수정내용:22일 - 일정, 일기 게시판 구현을 위해 전체 개수에 대한 페이지 번호 구하기,
  * 			페이지 번호에 대한 10개 단위 리스트 구하기 메소드 추가
  * 			23일 - 일정, 일기를 날짜로 검색하기 메소드 추가
+ * 
+ * 수정: 최성훈
+ * 수정일: 2014-05-27
+ * 수정내용: 전체 일기, 일정, 방명록 받아오기를 BoardDTO가 아닌 Diary,Plan, Visit DTO들로 하기,
+ * 				- BoardDTO로 받는 기능 안쓰게끔 액션 수정 후 삭제할 예정.
  */
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -47,10 +52,26 @@ import util.DBUtil;
 
 public class TestDAO {
 
-	// 일정 전체목록받기 (확인후 아래꺼나 이것 중 하나 지우기)
+	// 일정 전체목록받기 ((14-05-27 성훈수정중 - 삭제예정))
 	public static List<BoardDTO> selectPlan(UserDTO user) throws SQLException {
 		SqlSession session = null;
 		List<BoardDTO> list = null;
+
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==planDAO진입==");
+			list = session.selectList("test.selectPlan", user.getUserno());
+			System.out.println("==planDAO종료==");
+		} finally {
+			DBUtil.closeSession(session);
+		}
+
+		return list;
+	}
+	// 일정 전체목록받기(14-05-27 성훈추가)
+	public static List<PlanDTO> selectAllPlan(UserDTO user) throws SQLException {
+		SqlSession session = null;
+		List<PlanDTO> list = null;
 
 		try {
 			session = DBUtil.getSqlSession();
@@ -81,7 +102,7 @@ public class TestDAO {
 		return list;
 	}
 
-	// 일기 전체목록받기  
+	// 일기 전체목록받기(14-05-27 성훈수정중 - 삭제예정)
 	public static List<BoardDTO> selectDiary(UserDTO user) throws SQLException {
 		SqlSession session = null;
 		List<BoardDTO> list = null;
@@ -98,12 +119,40 @@ public class TestDAO {
 		return list;
 	}
 	
+	// 일기 전체목록받기(14-05-27 성훈추가)
+	public static List<DiaryDTO> selectAllDiary(UserDTO user) throws SQLException {
+		SqlSession session = null;
+		List<DiaryDTO> list = null;
 
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==diaryDAO진입==");
+			list = session.selectList("test.selectDiary", user.getUserno());
+			System.out.println("==diaryDAO종료==");
+		} finally {
+			DBUtil.closeSession(session);
+		}
+
+		return list;
+	}
 
 	//14-05-21 성훈수정: 쿼리문 명 selectVisit에서 selectReverseVisit으로 바꿈
 	public static List<BoardDTO> selectVisit(UserDTO user) throws SQLException {
 		SqlSession session = null;
 		List<BoardDTO> list = null;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==visitDAO진입==");
+			list = session.selectList("test.selectReverseVisit", user.getUserno());
+			System.out.println("==visitDAO종료==");
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return list;
+	}
+	public static List<VisitDTO> selectAllVisit(UserDTO user) throws SQLException {
+		SqlSession session = null;
+		List<VisitDTO> list = null;
 		try {
 			session = DBUtil.getSqlSession();
 			System.out.println("==visitDAO진입==");

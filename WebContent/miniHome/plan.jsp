@@ -43,30 +43,22 @@
 수정날짜: 2014-05-22
 수정내용: 	기존에 월별로 일정을 묶어서 출력하던 방법 대신 전체 일정목록을 게시판으로
 			띄워주기
+			
+수정: 최성훈
+수정날짜: 2014-05-27
+수정내용:1.request스코프에 userid를 받아와서 session user와 상관없이
+		   request의 user 일정을 확인, 상세보기 접근하기 
+
+		 2.session의 user와 request의 user를 구분하여  
+		   내 홈피 일정에 접근하는 경우(작성,수정,삭제 가능)와
+		   친구의 홈피 일정에 접근하는 경우(작성,수정,삭제 불가능)를 나눔. 
  -->
 </head>
 
 <body>
 	<table border="0" align="center" width="80%" height="100%" cellpadding="20">
-		<!-- <tr>
-			<td colspan="2" width="66%">
-				<form action="">
-					<select>
-						<option selected="selected">분류</option>
-						<option>날짜</option>
-						<option>글번호</option>
-						<option>제목</option>
-						<option>장소</option>
-					</select> <input type="text"> <input type="submit" value="검색">
-				</form>
-			</td>
-			<td width="33%">
-				<div align="center">
-					<input type="button" onclick="location.href='/gaenari/diaryList.do'" value="일기페이지">
-				</div>
-			</td>
-		</tr> -->
 		<tr>
+			<c:if test="${requestScope.user.userid eq sessionScope.userid }">
 			<td width="33%">
 				<form action="/gaenari/writePlan.do" method="post">
 					<table border="0" width="100%" height="380" style="outline-style: double;">
@@ -113,6 +105,7 @@
 						<tr height="7%">
 							<td>
 								<div align="center">
+									<input type="hidden" name="userid" value="${requestScope.user.userid}">
 									<input type="submit" value="등록하기">
 									&nbsp;&nbsp;&nbsp; 
 									<input type="reset" value="취소하기">
@@ -122,6 +115,7 @@
 					</table>
 				</form>
 			</td>
+			</c:if>
 			<td width="67%">
 				<table class="table table-condensed" width="100%" height="395">
 					<colgroup>
@@ -140,7 +134,7 @@
 								<tr height="30" style="table-layout: fixed;">
 									<td align="center">${plan.wrdate}</td>
 									<td>
-										<a href="control?command=planDetail&brdno=${plan.brdno}">${plan.title}</a>
+										<a href="control?command=planDetail&brdno=${plan.brdno}&userid=${requestScope.user.userid}">${plan.title}</a>
 									</td>
 									<td align="center">${plan.ploc}</td>
 								</tr>
@@ -167,7 +161,7 @@
 									<ul class="pagination">
 										<c:choose>
 											<c:when test="${requestScope.pageNumber-1 > 0}">
-												<li><a href="control?command=planList&pageNumber=${requestScope.pageNumber-1}">«</a></li>
+												<li><a href="control?command=planList&pageNumber=${requestScope.pageNumber-1}&userid=${requestScope.user.userid}">«</a></li>
 											</c:when>
 											<c:otherwise>
 												<li><a href="#">«</a></li>
@@ -177,17 +171,17 @@
 											<c:choose>
 												<c:when test="${cnt eq requestScope.pageNumber}">
 													<li class="active">
-														<a href="control?command=planList&pageNumber=${cnt}">${cnt}<span class="sr-only">(current)</span></a>
+														<a href="control?command=planList&pageNumber=${cnt}&userid=${requestScope.user.userid}">${cnt}<span class="sr-only">(current)</span></a>
 													</li>
 												</c:when>
 												<c:otherwise>
-													<li><a href="control?command=planList&pageNumber=${cnt}">${cnt}</a></li>
+													<li><a href="control?command=planList&pageNumber=${cnt}&userid=${requestScope.user.userid}">${cnt}</a></li>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
 										<c:choose>
 											<c:when test="${requestScope.pageNumber+1 < requestScope.pageCount+1}">
-												<li><a href="control?command=planList&pageNumber=${requestScope.pageNumber+1}">»</a></li>
+												<li><a href="control?command=planList&pageNumber=${requestScope.pageNumber+1}&userid=${requestScope.user.userid}">»</a></li>
 											</c:when>
 											<c:otherwise>
 												<li><a href="#">»</a></li>

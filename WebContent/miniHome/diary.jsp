@@ -39,6 +39,15 @@
 수정내용: 다이어리열람을 '미리보기', '목록보기' 두가지 탭으로 나눔
 		미리보기 탭에선 2개씩 미리보고 좌우버튼으로 이전일기 다음일기 이동
 		목록보기 탭에선 10개 묶음씩의 게시판 출력
+		
+수정: 최성훈
+수정날짜: 2014-05-27
+수정내용:1.request스코프에 userid를 받아와서 session user와 상관없이
+		   request의 user 일기를 확인, 상세보기 접근하기 
+
+		 2.session의 user와 request의 user를 구분하여  
+		   내 홈피 일기에 접근하는 경우(작성,수정,삭제 가능)와
+		   친구의 홈피 일기에 접근하는 경우(작성,수정,삭제 불가능)를 나눔. 
  -->
 </head>
 
@@ -77,25 +86,8 @@
 
 <body>
 	<table border="0" align="center" width="80%" height="100%" cellpadding="20">
-		<!-- <tr>
-			<td width="33%" align="center">
-				<form action="">
-					<select class="btn btn-default">
-						<option selected="selected">분류</option>
-						<option>날짜</option>
-						<option>글번호</option>
-						<option>제목</option>
-						<option>장소</option>
-					</select> <input type="text"> <input type="submit" value="검색">
-				</form>
-			</td>
-			<td width="67%" align="center">
-				<div align="center">
-					<input type="button" onclick="location.href='/gaenari/planList.do'" value="일정게시판">
-				</div>
-			</td>
-		</tr> -->
 		<tr>
+			<c:if test="${requestScope.user.userid eq sessionScope.userid }">
 			<td width="33%">
 				<form action="writeDiary.do" method="post" enctype="multipart/form-data">
 					<table border="0" width="100%" height="380" style="outline-style: double; table-layout: fixed;">
@@ -130,7 +122,7 @@
 					</table>
 				</form>
 			</td>
-
+			</c:if>
 			<td width="67%">
 				<ul class="nav nav-tabs" id="myTab">
 					<li class="active"><a href="#justTwo" data-toggle="tab">미리보기</a></li>
@@ -163,6 +155,7 @@
 															</c:if> ${requestScope.diaryFirst.brdcontent}
 														</td>
 													</tr>
+													<c:if test="${requestScope.user.userid eq sessionScope.userid }">
 													<tr height="7%">
 														<td>
 															<div align="center">
@@ -174,6 +167,7 @@
 															</div>
 														</td>
 													</tr>
+													</c:if>
 												</c:when>
 												<c:otherwise>
 													<tr height="15%">
@@ -224,6 +218,7 @@
 															</c:if> ${requestScope.diarySecond.brdcontent}
 														</td>
 													</tr>
+													<c:if test="${requestScope.user.userid eq sessionScope.userid }">
 													<tr height="7%">
 														<td>
 															<div align="center">
@@ -235,6 +230,7 @@
 															</div>
 														</td>
 													</tr>
+													</c:if>
 												</c:when>
 												<c:otherwise>
 													<tr height="15%">
@@ -261,7 +257,7 @@
 							<tr height="25">
 								<td colspan="2" align="center"><font size="6"> <c:choose>
 											<c:when test="${requestScope.diaryNumber < fn:length(diaryList)-1}">
-												<a href="/gaenari/control?command=diaryList&diaryNumber=${requestScope.diaryNumber+1}" class="glyphicon glyphicon-chevron-left"></a>
+												<a href="/gaenari/control?command=diaryList&diaryNumber=${requestScope.diaryNumber+1}&userid=${requestScope.user.userid}" class="glyphicon glyphicon-chevron-left"></a>
 											</c:when>
 											<c:otherwise>
 												<a href="#" class="glyphicon glyphicon-chevron-left"></a>
@@ -271,7 +267,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:choose>
 											<c:when test="${requestScope.diaryNumber > 1}">
-												<a href="/gaenari/control?command=diaryList&diaryNumber=${requestScope.diaryNumber-1}" class="glyphicon glyphicon-chevron-right"></a>
+												<a href="/gaenari/control?command=diaryList&diaryNumber=${requestScope.diaryNumber-1}&userid=${requestScope.user.userid}" class="glyphicon glyphicon-chevron-right"></a>
 											</c:when>
 											<c:otherwise>
 												<a href="#" class="glyphicon glyphicon-chevron-right"></a>
@@ -298,7 +294,7 @@
 									<c:forEach items="${requestScope.tenDiaries}" var="diary">
 										<tr height="30" style="table-layout: fixed;">
 											<td align="center">${diary.wrdate}</td>
-											<td><a href="control?command=diaryDetail&brdno=${diary.brdno}">
+											<td><a href="control?command=diaryDetail&brdno=${diary.brdno}&userid=${requestScope.user.userid}">
 													${diary.title}
 												</a>
 											</td>
@@ -328,7 +324,7 @@
 											<ul class="pagination">
 												<c:choose>
 													<c:when test="${requestScope.pageNumber-1 > 0}">
-														<li><a href="control?command=diaryList&pageNumber=${requestScope.pageNumber-1}">«</a></li>
+														<li><a href="control?command=diaryList&pageNumber=${requestScope.pageNumber-1}&userid=${requestScope.user.userid}">«</a></li>
 													</c:when>
 													<c:otherwise>
 														<li><a href="#">«</a></li>
@@ -338,19 +334,19 @@
 													<c:choose>
 														<c:when test="${cnt eq requestScope.pageNumber}">
 															<li class="active">
-																<a href="control?command=diaryList&pageNumber=${cnt}">
+																<a href="control?command=diaryList&pageNumber=${cnt}&userid=${requestScope.user.userid}">
 																	${cnt}<span class="sr-only">(current)</span>
 																</a>
 															</li>
 														</c:when>
 														<c:otherwise>
-															<li><a href="control?command=diaryList&pageNumber=${cnt}">${cnt}</a></li>
+															<li><a href="control?command=diaryList&pageNumber=${cnt}&userid=${requestScope.user.userid}">${cnt}</a></li>
 														</c:otherwise>
 													</c:choose>
 												</c:forEach>
 												<c:choose>
 													<c:when test="${requestScope.pageNumber+1 < requestScope.pageCount+1}">
-														<li><a href="control?command=diaryList&pageNumber=${requestScope.pageNumber+1}">»</a></li>
+														<li><a href="control?command=diaryList&pageNumber=${requestScope.pageNumber+1}&userid=${requestScope.user.userid}">»</a></li>
 													</c:when>
 													<c:otherwise>
 														<li><a href="#">»</a></li>

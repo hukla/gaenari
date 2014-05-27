@@ -7,6 +7,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
+<!-- 
+작성: 프로젝트 시작당시
+작성자: 최성훈
+내용: 로그인하기
+
+수정: 2014-05-22, 이수진
+내용: 로그인 로고 추가, 페이스북 계정 접속 버튼 추가
+
+수정: 2014-05-23, 최성훈
+내용: 회원가입 버튼에 Join액션 매핑하기
+
+수정: 2014-05-25, 최성훈
+내용: UI변경 - 캐러셀로 사진 슬라이드보기 추가
+
+ -->
 <script language="javascript">
  window.fbAsyncInit = function() {
 	  FB.init({

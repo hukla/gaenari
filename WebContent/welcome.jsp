@@ -5,6 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>환영합니다.</title>
+<!-- 
+작성: 2014-05-24
+작성자: 최성훈
+내용: 새로 가입한 사람 환영하고 로그인시키기
+
+ -->
 </head>
 <body>
 	<form action="/gaenari/home.do">

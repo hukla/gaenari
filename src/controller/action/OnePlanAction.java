@@ -34,6 +34,10 @@ import model.dto.UserDTO;
  * 수정: 2014-05-21, 최성훈
  * 수정내용: 이전글, 다음글 오류수정 완료
  * 			일정 전체리스트를 받아오고 그 리스트의 인덱스 번호로 이전, 다음글 열람하기
+ * 
+ * 수정: 2014-05-27, 최성훈
+ * 내용: 친구홈피 방문과 내홈피 방문을 구분하기 위해 userDTO를 구분하고
+ * 		 그에 따른 정보를 불러와 setAttribute함.
  */
 public class OnePlanAction implements Action {
 
@@ -56,9 +60,17 @@ public class OnePlanAction implements Action {
 		System.out.println("받은 index="+request.getParameter("index"));
 		if(request.getParameter("index")!=null)	index = request.getParameter("index");
 		try {
-			userid = (String) session.getAttribute("userid");
-			user = UserService.login(userid);
-			plist = (List<PlanDTO>)session.getAttribute("allPlanList");//전체일정리스트 받아오기
+			
+			user = (UserDTO) session.getAttribute("user");
+			userid = user.getUserid();
+			//다른 아이디를 클릭할 때
+			if(request.getParameter("userid")!=null){				//만약 userid 파라미터를 넘겨 받았다면
+				if(userid!=request.getParameter("userid")){			//그리고 만약 세션 userid와 파라미터userid가 다르다면
+					userid = request.getParameter("userid");		//userid에 파라미터userid를 저장하기
+					user = UserService.login(userid);
+				}
+			}
+			plist = TestService.allPlanService(user);		//user정보를 이용하여 전체 일정 리스트받아오기
 			for(PlanDTO dto: plist){
 				dto.setBrdcontent(dto.getBrdcontent().replaceAll("\r\n", "<br/>"));
 			}
@@ -70,6 +82,7 @@ public class OnePlanAction implements Action {
 			 * 14-05-21 성훈 수정: 
 			 * 기존에 일정번호로 접근했던 것을 user에 해당하는 전체일정의 index로 접근
 			 */
+			System.out.println("일정개수: "+plist.size()+", 받은 index: "+index);
 			if(index!=null){//이전글, 다음글 클릭하여 들어올 경우
 				if(Integer.parseInt(index)<0 || Integer.parseInt(index)>plist.size()-1)	
 					throw new IndexOutOfBoundsException("페이지의 끝입니다.");
@@ -89,6 +102,7 @@ public class OnePlanAction implements Action {
 			onePlan = TestService.onePlanService(planDTO.getBrdno());
 			request.setAttribute("index", indexInt);	//현재 보여지는 일정의 index 번호 setAttribute
 			request.setAttribute("onePlan", onePlan);	//선택된 일정의 전체정보 setAttribute
+			request.setAttribute("user", user);
 			url = "miniHome/onePlan.jsp";
 
 		} catch (SQLException e) {

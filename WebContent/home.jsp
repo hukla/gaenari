@@ -4,7 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>GAENARI 홈페이지</title>
+<!-- 
+작성: 2014-05-25
+작성자: 최성훈
+내용: 개나리 웹페이지 메인페이지
+ -->
 <style type="text/css">
 	.menu-about { width: 50px; height: 0px; position: relative; top: -220px; left: 0px; }
 	.menu-about img { position: absolute; clip: rect(200px 1300px 450px 0px); }

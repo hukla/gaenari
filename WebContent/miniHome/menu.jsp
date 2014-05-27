@@ -4,9 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
-<title>Insert title here</title>
 <style type="text/css">
 	h1,h2,h3,h4,h5 {   font-family:'서울한강체' } 
 </style>
