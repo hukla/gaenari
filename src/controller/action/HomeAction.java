@@ -27,6 +27,9 @@ public class HomeAction implements Action {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{  
 		
+		System.out.println(request.getAttribute("name"));
+		System.out.println(request.getAttribute("email"));
+		
 		int year = cal.get(cal.YEAR);
 		int mth = cal.get(cal.MONTH)+1;
 		int day = cal.get(cal.DATE);
@@ -83,11 +86,14 @@ public class HomeAction implements Action {
 			}
 			
 		} catch (SQLException e) {
+			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 		} catch (LoginException e){
+			e.printStackTrace();
 			session.invalidate();
 			request.setAttribute("errorMsg", e.getMessage());
 		} catch (Exception e) {
+			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 		}
 		request.getRequestDispatcher(url).forward(request, response);

@@ -1,5 +1,6 @@
 <%@page import="model.dto.BoardDTO"%>
-<%@page import="model.dto.VoluBoardDTO"%>
+<%@ include file="../frame.jsp"%>
+<%@ include file="menu.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -39,36 +40,10 @@
 </SCRIPT>
 </head>
 <body>
-	<table border="1" width="1350" height="630">
-		<tr>
-			<td colspan="2" height="20%">
-				<h3>${sessionScope.user.username}님 접속중:D</h3>
-				<hr color="gray">
-			</td>
-		</tr>
-		<tr>
-			<td width="17%" height="80%">
-				<table border="1" align="center" width="203" cellpadding="40">
-				
-					<!-- 페이지 왼편 서브메뉴(유기견 신고, 유기견 제보, 유기견 입양) -->
-				
-					<tr>
-						<td><a href="/gaenari/control?command=MissingBoardActionList">유기견 신고</a></td>
-					</tr>
-					<tr>
-						<td><a href="/gaenari/control?command=FindingBoardActionList">유기견 제보</a></td>
-					</tr>
-					<tr>
-						<td><a href="/gaenari/control?command=AdpBoardList">유기견 입양</a></td>
-					</tr>
-				</table>
-			</td>
-			<td rowspan="2" width="83%" height="80%">
-				<br><br>
-		<form name="boardWriteForm" method="post" action="../control?command=mfBoardWrite"
-		onSubmit='return checkValid()'>
+			<form name="boardWriteForm" method="post" action="../control?command=missingBoardWrite"
+		 enctype="multipart/form-data" onSubmit='return checkValid()'>
 
-		<input type="hidden" name="command" value="mfBoardWrite">
+		<input type="hidden" name="command" value="missingBoardWrite">
 
 		<table align="center" cellpadding="5" cellspacing="2" width="600"
 			border="1">
@@ -76,7 +51,7 @@
 			<tr>
 				<td width="1220" height="20" colspan="2">
 					<p align="center">
-						<font size="3"><b>게시글 작성</b></font>
+						<font size="3"><b>유기견 신고 게시판 글작성</b></font>
 					</p>
 				</td>
 			</tr>
@@ -91,6 +66,80 @@
 							size="30" value="${sessionScope.user.userid}" disabled="disabled">
 					</span></b></td>
 					
+			</tr>
+			<tr>
+				<td width="150" height="20">
+					<p align="right">
+						<b><span style="font-size: 9pt;">분 실 장 소</span></b>
+					</p>
+				</td>
+				<td width="200" height="20"><b><span
+						style="font-size: 9pt;"> <input type="text" name="mloc" size="50"></span></b></td>
+			</tr>
+			<tr>
+				<td width="150" height="20">
+					<p align="right">
+						<b><span style="font-size:9pt;">분 실 날 짜</span></b>
+					</p>
+				</td>
+				<td width="450" height="20"><b><span
+				style="font-size: 9pt;"><input type="text" name="mdate" id="datepicker" size="20">
+				</span></b>
+			</tr>
+			<tr>
+				<td width="150" height="20">
+					<p align="right">
+						<b><span style="font-size:9pt;">연 락 처</span></b>
+					</p>
+				</td>
+				<td width="450" height="20"><b><span
+				style="font-size: 9pt;"><input type="text" name="contact1" size="5">
+				-&nbsp;<input type="text" name="contact2" size="5">
+				-&nbsp;<input type="text" name="contact3" size="5">
+				</span></b>
+			</tr>
+			<tr>
+				<td width="150" height="20">
+					<p align="right">
+						<b><span style="font-size:9pt;">강 아 지 종 류</span></b>
+					</p>
+				</td>
+				<td width="450" height="20"><b><span
+				style="font-size: 9pt;"><input type="text" name="mkind" size="20">
+				</span></b>
+			</tr>
+			<tr>
+				<td width="150" height="20">
+					<p align="right">
+						<b><span style="font-size:9pt;">강 아 지 이 름</span></b>
+					</p>
+				</td>
+				<td width="450" height="20"><b><span
+				style="font-size: 9pt;"><input type="text" name="mname" size="20">
+				</span></b>
+			</tr>
+			<tr>
+				<td width="150" height="20">
+					<p align="right">
+						<b><span style="font-size:9pt;">강 아 지 성 별</span></b>
+					</p>
+				</td>
+				<td width="450" height="20"><b><span
+				style="font-size: 9pt;"><select name="mgender">
+					<option value="여">암컷</option>
+					<option value="남">수컷</option>
+				</select>
+				</span></b>
+			</tr>
+			<tr>
+				<td width="150" height="20">
+					<p align="right">
+						<b><span style="font-size:9pt;">강 아 지 나 이</span></b>
+					</p>
+				</td>
+				<td width="450" height="20"><b><span
+				style="font-size: 9pt;"><input type="text" name="mage" size="10">
+				</span></b>
 			</tr>
 			<tr>
 				<td width="450" height="20">
@@ -115,21 +164,12 @@
 			<tr>
 				<td width="150" height="20">
 					<p align="right">
-						<b><span style="font-size: 9pt;">분 실 장 소</span></b>
+						<b><span style="font-size: 9pt;">사 진 첨 부</span></b>
 					</p>
 				</td>
 				<td width="200" height="20"><b><span
-						style="font-size: 9pt;"> <input type="text" name="mfloc" size="50"></span></b></td>
-			</tr>
-			<tr>
-				<td width="150" height="20">
-					<p align="right">
-						<b><span style="font-size:9pt;">분 실 날 짜</span></b>
-					</p>
-				</td>
-				<td width="450" height="20"><b><span
-				style="font-size: 9pt;"><input type="text" name="mfdate" id="datepicker" size="50">
-				</span></b>
+						style="font-size: 9pt;"> <input type="file" name="uploadFile" size="29" value="사진 업로드"><br/>
+						</span></b></td>
 			</tr>
 			<tr>
 				<td width="450" height="20" colspan="2" align="center"><b><span
@@ -141,9 +181,9 @@
 	</form>
 
 	<div align=center>
-		<span style="font-size: 9pt;"><a href="/gaenari/control?command=mfBoardList">
+		<span style="font-size: 9pt;"><a href="/gaenari/control?missingBoardList.do">
 		<input type="submit" value="리스트로 돌아가기"></a></span>
 	</div>
-	</table>
 </body>
 </html>
+<%@ include file="../bottom.jsp"%>
