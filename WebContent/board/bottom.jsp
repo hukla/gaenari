@@ -12,7 +12,7 @@
 			<tr>
 				<td align="left" width="30%">
 					<img src="/gaenari/image/naverlogo.jpg" width="150">
-					<small>Copyright ⓒ NAVER.SOMEM All Rights Reserved</small>
+					<small>Copyright ⓒ NAVER.SWMEM All Rights Reserved</small>
 				</td>
 				<td align="right" width="30%">
 					<img src="/gaenari/image/logo.jpg" width="50">
