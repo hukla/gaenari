@@ -46,7 +46,7 @@ public class DiaryListAction implements Action {
 		int pageCount = 0;
 		UserDTO user = null;
 		String userid = null;
-		
+		boolean flag = false;
 		
 		try {
 			user = (UserDTO) session.getAttribute("user");
@@ -62,8 +62,16 @@ public class DiaryListAction implements Action {
 			diaryList = TestService.diaryService(user);
 			pageNumber = request.getParameter("pageNumber");
 			diaryNumber = request.getParameter("diaryNumber");
-			if(pageNumber==null)	pageNumber="1";
-			if(diaryNumber==null)	diaryNumber=Integer.toString(diaryList.size()-1);
+			
+			
+			if(pageNumber==null){
+				pageNumber="1";
+				flag = false;
+			}
+			if(diaryNumber==null){
+				diaryNumber=Integer.toString(diaryList.size()-1);
+				flag = true;
+			}
 			
 			pageCount = TestService.getDiaryCount(user.getUserno());
 			System.out.println("선택페이지:"+Integer.parseInt(pageNumber)+", 계산값:"+(Integer.parseInt(pageNumber)-1)*10);
@@ -113,6 +121,7 @@ public class DiaryListAction implements Action {
 			request.setAttribute("diaryFirst", diaryFirst);
 			request.setAttribute("diarySecond", diarySecond);
 			request.setAttribute("diaryList", diaryList);
+			request.setAttribute("flag", flag);
 			request.setAttribute("user", user);
 			url = "miniHome/diary.jsp";
 		} catch (SQLException e) {

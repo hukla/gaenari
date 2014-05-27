@@ -34,6 +34,8 @@
 			requestScope의 userid를 지니고 가게함.
 			
 			친구홈피에 방문하는 경우, 수정, 삭제 기능을 이용하지 못 하도록 함.
+			
+			일기 수정중에 미니홈페이지 메뉴기능 이용이 불가능 했던 오류 수정
  -->
 </head>
 <script type="text/javascript">
@@ -108,7 +110,7 @@
 					<input type="button" onclick="location.href='control?command=planDetail&index=${requestScope.index -1}&userid=${requestScope.user.userid}'" value="이전 글">
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<c:if test="${requestScope.user.userid eq sessionScope.userid }">
-						<input type="button" onclick="location.href='control?command=updateFormPlan&brdno=${requestScope.onePlan.brdno}'" value="수정하기"> 
+						<input type="button" onclick="location.href='control?command=updateFormPlan&brdno=${requestScope.onePlan.brdno}&userid=${requestScope.user.userid}'" value="수정하기"> 
 						&nbsp;&nbsp;&nbsp;&nbsp; 
 						<input type="hidden" name="command" value="">
 						<input type="hidden" name="brdno" value="${requestScope.onePlan.brdno}">
@@ -119,7 +121,7 @@
 					<ul class="pager">
 						<li><a href="control?command=planDetail&index=${requestScope.index +1}&userid=${requestScope.user.userid}">Previous</a></li>
 						<c:if test="${requestScope.user.userid eq sessionScope.userid }">
-							<li><a href="control?command=updateFormPlan&brdno=${requestScope.onePlan.brdno}">수정하기</a></li>
+							<li><a href="control?command=updateFormPlan&brdno=${requestScope.onePlan.brdno}&userid=${requestScope.user.userid}">수정하기</a></li>
 							<li><a href="javascript:deleteCheck();">삭제하기</a></li>
 						</c:if>
 						<li><a href="control?command=planDetail&index=${requestScope.index -1}&userid=${requestScope.user.userid}">Next</a></li>

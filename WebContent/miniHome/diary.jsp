@@ -48,6 +48,8 @@
 		 2.session의 user와 request의 user를 구분하여  
 		   내 홈피 일기에 접근하는 경우(작성,수정,삭제 가능)와
 		   친구의 홈피 일기에 접근하는 경우(작성,수정,삭제 불가능)를 나눔. 
+		 
+		 3.미리보기, 목록보기 탭기능이 새로고침시에 재기능하지 못하는 오류 수정
  -->
 </head>
 
@@ -125,11 +127,28 @@
 			</c:if>
 			<td width="67%">
 				<ul class="nav nav-tabs" id="myTab">
-					<li class="active"><a href="#justTwo" data-toggle="tab">미리보기</a></li>
-					<li><a href="#getList" data-toggle="tab">목록보기</a></li>
+					<c:choose>
+						<c:when test="${requestScope.flag eq false}">
+							<li class="active"><a href="#justTwo" data-toggle="tab">미리보기</a></li>
+							<li><a href="#getList" data-toggle="tab">목록보기</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="#justTwo" data-toggle="tab">미리보기</a></li>
+							<li class="active"><a href="#getList" data-toggle="tab">목록보기</a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 				<div class="tab-content" id="myTab">
-					<div class="tab-pane active" id="justTwo">
+					<c:choose>
+						<c:when test="${requestScope.flag eq false}">
+							<div class="tab-pane active"  id="justTwo">
+						</c:when>
+						<c:otherwise>
+							<div class="tab-pane"  id="justTwo">
+						</c:otherwise>
+					</c:choose>
+				<!-- 
+					<div class="tab-pane active"  id="justTwo"> -->
 						<table border="0" width="100%" height="395">
 							<tr>
 								<td>
@@ -277,7 +296,15 @@
 							</tr>
 						</table>
 					</div>
-					<div class="tab-pane" id="getList">
+					<c:choose>
+						<c:when test="${requestScope.flag eq false}">
+							<div class="tab-pane"  id="getList">
+						</c:when>
+						<c:otherwise>
+							<div class="tab-pane active"  id="getList">
+						</c:otherwise>
+					</c:choose>
+					<!-- <div class="tab-pane" id="getList"> -->
 						<table class="table table-condensed" width="100%" height="395">
 							<colgroup>
 								<col width="20%">
