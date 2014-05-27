@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import model.dao.InsertDAO;
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
+import model.dto.DogDTO;
 import model.dto.PlanDTO;
 import model.dto.UserDTO;
 
@@ -82,6 +83,13 @@ public class InsertService {
 		boolean result = InsertDAO.insertUser(user);
 		if (!result) {
 			throw new SQLException("회원가입에 실패했습니다.");
+		}
+	}
+	
+	public static void insertDoginfo(DogDTO dog) throws SQLException {
+		boolean result = InsertDAO.insertDoginfo(dog);
+		if (!result) {
+			throw new SQLException("강아지 등록에 실패했습니다.");
 		}
 	}
 

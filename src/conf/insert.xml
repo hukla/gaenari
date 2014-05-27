@@ -37,4 +37,9 @@
 		values(#{userid},#{passwd},#{email},#{username},#{address},#{usertype})
 	</insert>
 	
+	<insert id="insertDoginfo" parameterType="DogDTO">
+		insert into dog(dogname,dogage,dogkind,userno) values(#{dogname},#{dogage},#{dogkind},#{userno})
+	</insert>
+	
+	
 </mapper>

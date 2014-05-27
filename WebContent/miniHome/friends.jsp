@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../frame.jsp" %>
+<%@ include file="/frame.jsp" %>
 <%@ include file="menu.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -22,4 +22,4 @@
 <a href="/gaenari/control?command=login&userid=csh0806">csh0806</a><br>
 </body>
 </html>
-<%@ include file="../bottom.jsp"%>
+<%@ include file="/bottom.jsp"%>

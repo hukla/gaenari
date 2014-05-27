@@ -1,19 +1,35 @@
 package model.dto;
 
-public class DogDTO {
+public class DogDTO{
+	
 	private int dogno;
 	private String dogname;
 	private int dogage;
 	private String dogkind;
 	private UserDTO userdto; //UserDTO에서 int로 수정
+	private int userno;
 	
 	public DogDTO(){}
-	public DogDTO(int dogno, String dogname, int dogage, String dogkind, UserDTO userdto){
+	/*public DogDTO(int dogno, String dogname, int dogage, String dogkind, UserDTO userdto){
 		this.dogage = dogage;
 		this.dogkind = dogkind;
 		this.dogname = dogname;
 		this.userdto = userdto;
 		this.dogno = dogno;
+	}*/
+	public DogDTO(int dogno, String dogname, int dogage, String dogkind, int userno){
+		this.dogage = dogage;
+		this.dogkind = dogkind;
+		this.dogname = dogname;
+		this.userno = userno;
+		this.dogno = dogno;
+	}
+	//14-05-27 성훈추가
+	public DogDTO(String dogname, int dogage, String dogkind, int userno){
+		this.dogage = dogage;
+		this.dogkind = dogkind;
+		this.dogname = dogname;
+		this.userno = userno;
 	}
 	public DogDTO(UserDTO userdto){
 		this.userdto = userdto;
@@ -39,7 +55,7 @@ public class DogDTO {
 	public String getDogkind() {
 		return dogkind;
 	}
-	public void setDogking(String dogkind) {
+	public void setDogkind(String dogkind) {
 		this.dogkind = dogkind;
 	}
 	public UserDTO getUserdto() {
@@ -48,4 +64,20 @@ public class DogDTO {
 	public void setUserdto(UserDTO userdto) {
 		this.userdto = userdto;
 	}
+	public int getUserno() {
+		return userno;
+	}
+	public void setUserno(int userno) {
+		this.userno = userno;
+	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("DogDTO [dogno=").append(dogno).append(", dogname=")
+				.append(dogname).append(", dogage=").append(dogage)
+				.append(", dogkind=").append(dogkind).append(", userdto=")
+				.append(userdto).append(", userno=").append(userno).append("]");
+		return builder.toString();
+	}
+	
 }
