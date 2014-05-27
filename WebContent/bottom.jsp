@@ -5,6 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><img src="/gaenari/image/naverlogo.jpg" width="40">GAENARI</title>
+<!-- 
+작성: 2014-05-26, 최성훈
+내용: 전체 페이지 하단 include 내용
+
+수정: 2014-05-27, 이수진, 최성훈
+내용: 글자수정, 위치 miniHome -> webcontent밑으로 이동
+ -->
 </head>
 <body>
 	<hr color="red">

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="frame.jsp"%>
+<%@ include file="../frame.jsp"%>
 <%@ include file="menu.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
@@ -13,7 +13,7 @@
 
 </head>
 <body>
-	<table align="center" border="1" cellpadding="5" cellspacing="2" width="100%">
+	<table align="center" border="1" cellpadding="5" cellspacing="2" width="80%">
 					<tr>
 						<td>
 							<p align="center"><font color="black"><b><span style="font-size:10pt;">글번호</span></b></font></p>
@@ -51,4 +51,4 @@
 
 </body>
 </html>
-<%@ include file="bottom.jsp"%>
+<%@ include file="../bottom.jsp"%>

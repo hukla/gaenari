@@ -23,6 +23,8 @@
 수정일: 2014-05-25
 수정내용: 좌측 메뉴바 그냥 상단 고정 내비게이션바로 바꿈
 
+수정: 2014-05-27, 최성훈
+내용: 위치 miniHome -> webcontent밑으로 이동
  -->
 </head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>

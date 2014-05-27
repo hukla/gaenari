@@ -140,4 +140,4 @@
 	</table>
 </body>
 </html>
-<%@ include file="miniHome/bottom.jsp"%>
+<%@ include file="bottom.jsp"%>
