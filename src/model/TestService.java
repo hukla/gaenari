@@ -7,6 +7,7 @@ import java.util.List;
 import model.dao.TestDAO;
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
+import model.dto.DogDTO;
 import model.dto.PlanDTO;
 import model.dto.UserDTO;
 import model.dto.VisitDTO;
@@ -255,5 +256,13 @@ public class TestService {
 		List<PlanDTO> list = TestDAO.getPlanBydate(wrdate, userid);
 		return list;
 	}
-
+	
+	public static List<DogDTO> getMyDogInfo(int userno) throws SQLException{
+		List<DogDTO> list = TestDAO.getMyDogInfo(userno);
+		return list;
+	}
+/*	public static boolean checkdog(int userno) throws SQLException{
+		List<DogDTO> list = TestDAO.getMyDogInfo(userno);
+		return list;
+	}*/
 }

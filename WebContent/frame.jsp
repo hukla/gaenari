@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 <link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <style type="text/css">
 	body { padding-top: 55px; }
@@ -62,7 +62,7 @@
           <li><a href="/gaenari/voluBoardList.do">봉사/PartTim</a></li>
         </ul>
       </li>
-      <li><a href="mall/mall_index.jsp">기부몰</a></li>
+      <li><a href="/gaenari/mall/mall_index.jsp">기부몰</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">

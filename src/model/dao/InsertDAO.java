@@ -14,6 +14,7 @@ import java.sql.SQLException;
 
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
+import model.dto.DogDTO;
 import model.dto.PlanDTO;
 import model.dto.UserDTO;
 
@@ -152,6 +153,21 @@ public class InsertDAO {
 			System.out.println("==insertUser insert 진입==");
 			result = session.insert("insert.insertUser", user) > 0 ? true : false;
 			System.out.println("==insertUser insert 완료==");
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		return result;
+	}
+	
+	public static boolean insertDoginfo(DogDTO dog) throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==insertDoginfo insert 진입==");
+			result = session.insert("insert.insertDoginfo", dog) > 0 ? true : false;
+			System.out.println("==insertDoginfo insert 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}

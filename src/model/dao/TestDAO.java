@@ -42,6 +42,7 @@ import java.util.Map;
 
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
+import model.dto.DogDTO;
 import model.dto.PlanDTO;
 import model.dto.UserDTO;
 import model.dto.VisitDTO;
@@ -511,6 +512,19 @@ public class TestDAO {
 			System.out.println("==getPlanBydate진입==");
 			list = session.selectList("test.selectPlanBydate",map);
 			System.out.println("==getPlanBydate종료==");
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return list;
+	}
+	public static List<DogDTO> getMyDogInfo(int userno) throws SQLException{
+		SqlSession session = null;
+		List<DogDTO> list = null;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==getMyDogInfo진입==");
+			list = session.selectList("dog.getInfo",userno);
+			System.out.println("==getMyDogInfo종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}

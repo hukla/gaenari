@@ -49,5 +49,4 @@ public class CenterDTO {
 	public void setCntrsize(char cntrsize) {
 		this.cntrsize = cntrsize;
 	}
-
 }
