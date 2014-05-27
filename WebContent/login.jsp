@@ -41,9 +41,9 @@
                             var name = document.getElementById('name');
                             name.innerHTML = user.name;
                             var email = document.getElementById('email');
-                            
                             email.innerHTML = user.email;                            
                             alert(user.email);
+         
                         }
                     });   
 			    } else if (response.status === 'not_authorized') {
@@ -131,13 +131,10 @@
 								<form action="home.do" method="post">
 									<div align="left">
 										<img id="image"/>
-										<input type="hidden" name="fbImage" value="image"/>
 										<div id="name"></div>
-										<input type="hidden" name="fbName" value="name"/>
 										<div id="email"></div>
-										<input type="hidden" name="fbEmail" value="email"/>
-										<input type="hidden" name="userid" value="hoonc"/>
-										<input type="hidden" name="pwd" value="tjdgns"/>
+										<!-- <input type="hidden" name="userid" value="hoonc"/>
+										<input type="hidden" name="pwd" value="tjdgns"/> -->
 									</div>
 									<input type="submit" value="submit"/>
 								</form>

@@ -87,7 +87,6 @@ public class MissingBoardWriteAction implements Action {
 			MFBoardDAO.insertMissing(new MissingBoardDTO(brdno,mloc,mdate,mcontact,mkind,mgender,
 					mage, mname));
 					
-			
 		}
 		MissingBoardDTO mbdto = new MissingBoardDTO(title, brdcontent, userid, brdtype, 0, mloc,
 				mdate, mcontact, mkind, mgender, mage, mname);
