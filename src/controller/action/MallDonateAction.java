@@ -31,7 +31,7 @@ public class MallDonateAction implements Action {
 		ItemDTO item = ItemDAO.selectOne(itemno);
 		DonReqDTO donnation = new DonReqDTO(userno, itemno, targetcntr, qty, item.getPrice() * qty, 'N');
 		String cntrname = CenterDAO.selectOne(targetcntr).getCntrname();
-		String url = "mall/donsuccess.jsp";
+		String url = "/mall/donsuccess.jsp";
 		//user.setPoint(Integer.parseInt(request.getParameter("gnr_point")));
 		
 		try {
