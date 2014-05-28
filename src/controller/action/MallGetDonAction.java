@@ -22,14 +22,14 @@ import model.dto.ItemDTO;
 
 import org.apache.log4j.Logger;
 
-public class MallGetDonreqAction implements Action {
+public class MallGetDonAction implements Action {
 
-	private static final Logger log = Logger.getLogger(MallGetDonreqAction.class);
+	private static final Logger log = Logger.getLogger(MallGetDonAction.class);
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<DonReqDTO> donreqList = DonReqDAO.selectAll(0);
+		List<DonReqDTO> donreqList = DonReqDAO.selectAll(1);
 		String result = "";
 		
 		PrintWriter out = response.getWriter();
@@ -45,7 +45,7 @@ public class MallGetDonreqAction implements Action {
 				result += "<donreq>";
 				result += "<drno>"+d.getDrno()+"</drno>";
 				result += "<userid>"+UserDAO.selectOne(d.getUserno()).getUserid()+"</userid>";
-				result += "<cntrname>"+CenterDAO.selectOne(d.getTargetcntr()).getCntrname()+"</cntrname>";
+				result += "<targetcntr>"+CenterDAO.selectOne(d.getTargetcntr()).getCntrname()+"</targetcntr>";
 				result += "<itemname>"+ItemDAO.selectOne(d.getItemno()).getItemname()+"</itemname>";
 				result += "<qty>"+d.getQty()+"</qty>";
 				result += "<sent>"+d.getSent()+"</sent>";

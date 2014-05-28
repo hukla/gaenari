@@ -24,7 +24,7 @@
 				<font face="서울한강체">
 					<ul class="nav nav-pills nav-stacked">
 						<li><a href="/gaenari/mallMain.do">기부몰 메인</a></li>
-						<li><a href="/gaenari/mallMyPage.do">기부몰 마이페이지</a></li><!-- TODO -->
+						<c:if test="${sessionScope.user.usertype == 0}"><li><a href="/gaenari/mallMyPage.do">나의 기부 내역</a></li></c:if><!-- TODO -->
 						<c:if test="${sessionScope.user.usertype == -1}"><li><a href="/gaenari/mallManage.do">기부몰 관리하기</a></li></c:if>
 					</ul>
 				</font>

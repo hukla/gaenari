@@ -15,7 +15,7 @@
 	<table width=950 cellpadding=0 cellspacing=0 align=center valign='top' border=0>
 		<tr>
 			<td>
-				<form name="itemlist" method=post action="#" onsubmit="return submitSel()">
+				<form name="itemlist" id="item_list" method='post'>
 				<input type="hidden" name="selectedItemNo" value="${selectedItem.itemno }">
 				<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
@@ -131,6 +131,7 @@
 									</tr>
 									<!-- 기부 수량 끝 -->
 									<!-- 기부 대상 시작 -->
+									<c:if test="${sessionScope.user.usertype == 0}">
 									<tr>
 										<td width="115" height="27" bgcolor="#FFFFFF" class="list3">
 											<img src='mall/img/dot_n.gif'> 기부 대상
@@ -148,6 +149,7 @@
 											<input type='hidden' name='cntrname' id='cntr_name' value=''>
 										</td>
 									</tr>
+									</c:if>
 									<!-- 기부 대상 끝 -->
 									<!-- 밑줄 시작 -->
 									<tr>
@@ -165,8 +167,8 @@
 										<c:when test="${sessionScope.user.usertype > 0}">
 											<input type="submit" value="요청하기">
 										</c:when>
-										<c:when test="${sessionScope.user.usertype == -1 }">
-											<input type="submit" value="상품 정보\n수정하기">
+										<c:when test="${sessionScope.user.usertype < 0}">
+											<input type="submit" value="상품 정보 수정하기">
 										</c:when>
 										<c:otherwise>
 											<input type="submit" value="기부하기">
@@ -241,30 +243,6 @@
 			}
 		}
 		
-		function donnate() {
-			document.itemlist.action = "donnate.do";
-			document.itemlist.submit();
-		}
-		
-		/*
-		function submitSel() {
-			var usertype = document.getElementById("usertype");
-			var action = document.itemlist.action;
-			
-			if(usertype == 0) {
-				action = "control?command=donnate";
-				return true;
-			} else if(usertype == -1) {
-				action = "control?command=itemUpdateForm&itemno="+itemno; // TODO 새 창을 열고 싶은데...!!!
-				return true;
-			} else {
-				action = "";
-				return true;
-			}
-			
-			return false;
-		}*/
-		
 		$(function(){
 			// selected되면 값을 hidden에 저장
 			$('#target_sel').blur(function(){
@@ -272,17 +250,32 @@
 				//alert($('#cntr_name').val());
 			});
 			
+			// user type에 따라 submit action 다르게 하기
 			$('#item_list').submit(function(){
-				if($('usertype').val() < 0) {
-					$(this).prop('action', '/gaenari/donnate.do');
-				} else if($('usertype').val() > 0) {
-					$(this).prop('action', '');
-				} else if($('usertype').val() == 0){
-					$(this).prop('action', '');
+				//alert($('input[name=usertype]').val());
+				if($('input[name=usertype]').val() == 0) {
+					$('#item_list').prop('action', '/gaenari/donnate.do');
+					alert($('#item_list').prop('action').val());
+					return true;
+				} else if($('input[name=usertype]').val() > 0) {
+					$('#item_list').prop('action', '/gaenari/mallRequest.do');
+					return true;
+				} else if($('input[name=usertype]').val() < 0){
+					var newwindow;
+					var url ="/gaenari/itemUpdateForm.do?itemno="+$('input[name=selectedItemNo]').val();
+					
+					newwindow=window.open(url, '상품 상세 정보 수정 페이지', 'height=550,width=660');
+					if(window.focus) {
+						newwindow.focus;
+					}
 				} else {
 					alert("로그인해주세요!");
 				}
+				
+				$('#item_list').submit();
 			});
+			
+			
 		});
 	</script>
 	

@@ -44,7 +44,7 @@ public class MallDonateAction implements Action {
 		
 		
 		try {
-			if(!DonReqDAO.donnate(donnation)) {
+			if(!DonReqDAO.insertDonReq(donnation)) {
 				throw new Exception("");
 			}
 		} catch(Exception e) {

@@ -42,7 +42,7 @@
 	</td>
 	<td width="600px">
 	<!-- 기부 관리 테이블 -->
-	<table id="donreq_mgt">
+	<table id="don_mgt">
 		<tr>
 			<td colspan="6"><font size="8"><strong>기부 관리</strong></font></td>
 		</tr>
@@ -64,6 +64,31 @@
 	<!-- 기부 관리 테이블 끝-->
 	</td>
 </tr>
+<tr>
+	<td width="600px">
+	<!-- 기부 요청 관리 테이블 -->
+	<table id="donreq_mgt">
+		<tr>
+			<td colspan="6"><font size="8"><strong>기부 요청 관리</strong></font></td>
+		</tr>
+		<tr>
+			<td>#</td>
+			<td>요청자</td>
+			<td>요청센터명</td>
+			<td>상품명</td>
+			<td>수량</td>
+			<td>요청 마감하기</td>
+		</tr>
+		<tr>
+			<td colspan="6" align="center">로딩중...</td>
+		</tr>
+	</table>
+	<!-- 기부 요청 테이블 끝-->
+	</td>
+	<td width='600px'>
+	암것도없지ㅓㄹㅇ
+	</td>
+</tr>
 </table>
 </body>
 
@@ -76,13 +101,13 @@ $(function(){
 		type:"post"
 	});
 	
-	function getDonReq() {
+	function getDonList() {
 		$.ajax({
-			url: "/gaenari/getDonreqList.do",
+			url: "/gaenari/getDonList.do",
 			dataType: "xml",
 			success: function(data) {
 				//alert("success");
-				$("#donreq_mgt tr:gt(1)").remove();
+				$("#don_mgt tr:gt(1)").remove();
 				var table="";
 				
 				$(data).find('donreq').each(function (index){
@@ -101,7 +126,7 @@ $(function(){
 					table += "</tr>";
 				});
 				
-				$('#donreq_mgt tr:eq(1)').after(table);
+				$('#don_mgt tr:eq(1)').after(table);
 			},
 			error: function(data) { alert(data+' => 에러 발생');}
 			
@@ -137,6 +162,38 @@ $(function(){
 		});// ajax 끝
 	}// getItemList() 함수 끝
 	
+	function getDonReqList() {
+		$.ajax({
+			url: "/gaenari/getDonreqList.do",
+			dataType: "xml",
+			success: function(data) {
+				//alert("success");
+				$("#donreq_mgt tr:gt(1)").remove();
+				var table="";
+				
+				$(data).find('donreq').each(function (index){
+					table += "<tr>";
+					table += "<td>"+$(this).find("drno").text()+"</td>";
+					table += "<td>"+$(this).find("userid").text()+"</td>";
+					table += "<td>"+$(this).find("cntrname").text()+"</td>";
+					table += "<td>"+$(this).find("itemname").text()+"</td>";
+					table += "<td>"+$(this).find("qty").text()+"</td>";
+					if($(this).find("sent").text() == 'N') {
+						table += "<td id='reqSend'>"+"<input type='button' value='요청마감하기' id='send' name='"
+						+$(this).find("drno").text()+"'>"+"</td>";	
+					} else {
+						table += "<td>요청마감</td>";	
+					}
+					table += "</tr>";
+				});
+				
+				$('#donreq_mgt tr:eq(1)').after(table);
+			},
+			error: function(data) { alert(data+' => 에러 발생');}
+			
+		});// ajax 끝
+	}// getDonReq() 함수 끝
+	
 	// 배송하기 버튼 클릭시
 	$(document).on('click',"#send", function(){
 		$.ajax({
@@ -146,7 +203,7 @@ $(function(){
 			success: function(data) {
 				if(data > 0) {
 					alert('배송처리되었습니다.');
-					getDonReq();
+					getDonList();
 				} else {
 					alert('배송되지 않았습니다');
 				}
@@ -169,7 +226,8 @@ $(function(){
 		window.location.reload();
 	});
 
-	getDonReq();
+	getDonList();
+	getDonReqList();
 	getItemList();
 	
 });
