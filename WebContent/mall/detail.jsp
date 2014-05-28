@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8" info="2014-05-03:장재희:제품 상세 정보 페이지"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="/frame.jsp" %>
+<%@ include file="/mall/menu.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,6 +57,7 @@
 										<td valign=top>
 											<span style='font-size: 18px; font-family: 돋움; line-height: 130%;'>
 												<strong><!-- 상품명 -->${selectedItem.itemname}</strong>
+												<input type='hidden' name='item_name' value='${selectedItem.itemname}'>
 											</span>
 										</td>
 									</tr>
@@ -87,7 +90,7 @@
 														<b> <font color="#777777">\</font>
 															<font style="font-size: 14px;"><fmt:formatNumber value="${selectedItem.price}"/></font>
 														</b>
-														<input type=hidden name=disp_cust_amount size=12 style='text-align: left; background-color: E7F2FB; border: none; border-width: 0px; font-weight: bold; width: 90px; color: #777777; text-decoration: line-through;' readonly value='40,000'>
+														<input type=hidden name='price' value='${selectedItem.price}'>
 													</td>
 												</tr>
 											</table>
@@ -136,12 +139,13 @@
 											<img src='mall/img/line_dot4.gif'>
 										</td>
 										<td bgcolor="#FFFFFF">&nbsp;&nbsp; 
-											<select name="don_target">
+											<select name="don_target" id="target_sel">
 												<option value="0">기부할 센터 선택</option>
 												<c:forEach items="${sessionScope.centerList}" var="cntr">
 												<option value="${cntr.cntrno}">${cntr.cntrname }</option>
 												</c:forEach>
 											</select>
+											<input type='hidden' name='cntrname' id='cntr_name' value=''>
 										</td>
 									</tr>
 									<!-- 기부 대상 끝 -->
@@ -238,7 +242,7 @@
 		}
 		
 		function donnate() {
-			document.itemlist.action = "control?command=donnate";
+			document.itemlist.action = "donnate.do";
 			document.itemlist.submit();
 		}
 		
@@ -260,7 +264,16 @@
 			
 			return false;
 		}*/
+		
+		$(function(){
+			// selected되면 값을 hidden에 저장
+			$('#target_sel').blur(function(){
+				$('#cntr_name').val($('#target_sel option:selected').text());
+				//alert($('#cntr_name').val());
+			});
+		});
 	</script>
+	
 <!-- 상품정보 소셜네트워크로 보내기
 							<table border="0" cellspacing="0" cellpadding="0" align="center">
 								<tr>

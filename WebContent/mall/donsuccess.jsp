@@ -20,7 +20,7 @@
 			<td>금액</td>
 		</tr>
 		<tr>
-			<td>${requestScope.item.itemname}</td>
+			<td>${requestScope.itemname}</td>
 			<td>${requestScope.donnation.qty }</td>
 			<td>${requestScope.cntrname }</td>
 			<td>${requestScope.donnation.price }</td>

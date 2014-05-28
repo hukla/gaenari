@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="/frame.jsp" %>
+<%@ include file="/mall/menu.jsp"%>
 <!-- 
 	2014-05-27 수정 장재희
 	db가져오기 ajax로 변경

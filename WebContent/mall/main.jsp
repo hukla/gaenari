@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" info="2014-05-03:장재희:기부몰 메인 페이지"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="/frame.jsp" %>
+<%@ include file="/mall/menu.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,10 +11,6 @@
 </head>
 <body>
 	<h1 align="center">사랑을 나누세요</h1><!-- 기부몰 메인 배너 -->
-	
-	<c:if test="${sessionScope.user.usertype == -1}">
-		<h2 align="right"><a href="/gaenari/mallManage.do"><button>관리하기</button></a></h2>
-	</c:if>
 	
 	<hr>
 
@@ -132,24 +129,7 @@ $(function(){
 		}
 	});// 수량 입력 유효성 검사 끝
 	
-	// 기부하기 버튼 클릭
-	$(document).on('click', '.don', function(){
-		//alert($(this).attr('name'));
-		
-	}); // 기부하기 끝
 });
-	/* // 수량 키보드 입력 예외 처리
-	function qty_keyup() {
-		if(parseInt(document.itemlist.ct_qty.value) < 0) {
-			document.itemlist.ct_qty.value=1;
-		}
-	}
-	 */
-	function donnate() {
-		document.itemlist.action = "control?command=donnate";
-		document.itemlist.submit();
-	}
-
 </script>
 
 </html>
