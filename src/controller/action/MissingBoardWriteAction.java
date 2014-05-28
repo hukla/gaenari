@@ -2,6 +2,7 @@ package controller.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,9 @@ public class MissingBoardWriteAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
+		System.out.println("==MissingBoardWriteAction 진입==");
 		String url = "login/error.jsp";
 
 		String imagefile = null;
@@ -74,25 +77,28 @@ public class MissingBoardWriteAction implements Action {
 			
 			if(fileName==null){
 				System.out.println("파일 업로드 되지 않았음");
-				boardDTO = new BoardDTO(imagefile+"!split!"+brdcontent, (String)session.getAttribute("today"),
+				boardDTO = new BoardDTO(brdcontent, (String)session.getAttribute("today"),
 						(String)session.getAttribute("userid"),title,"mb",
 						(int) ((UserDTO) session.getAttribute("user")).getUserno());
 			} else {
 				System.out.println("File Name : "+fileName);
 				boardDTO = new BoardDTO(imagefile + "!split!" + brdcontent, (String) session.getAttribute("today"),
-							(String) session.getAttribute("userid"), title,"dy",
+							(String) session.getAttribute("userid"), title,"mb",
 							(int) ((UserDTO) session.getAttribute("user")).getUserno());
 			}
 			brdno = MFBoardDAO.insertMissingBoard(boardDTO);
 			MFBoardDAO.insertMissing(new MissingBoardDTO(brdno,mloc,mdate,mcontact,mkind,mgender,
 					mage, mname));
+			url = "control?command=missingBoardList";
 					
+		} catch(SQLException e){
+			e.printStackTrace();
+			request.setAttribute("errorMsg", e.getMessage());
+		} catch(Exception e){
+			e.printStackTrace();
+			request.setAttribute("errorMsg", e.getMessage());
 		}
-		MissingBoardDTO mbdto = new MissingBoardDTO(title, brdcontent, userid, brdtype, 0, mloc,
-				mdate, mcontact, mkind, mgender, mage, mname);
-		mbdto.toString();
-		System.out.println("content="+mbdto.getBrdcontent());
-		System.out.println("id="+mbdto.getUserid());
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 }
