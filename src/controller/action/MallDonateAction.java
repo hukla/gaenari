@@ -2,6 +2,9 @@
  * 작성자 : 장재희
  * 작성일 : 2014-05-24
  * 내용 : 기부하기
+ * 
+ * 수정 2014-05-28 장재희
+ *  : 기부하면 포인트 증가하도록 수정
  */
 package controller.action;
 
@@ -23,16 +26,22 @@ public class MallDonateAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// donate 수행하기 전에 필요한 정보를 request에서 가져옴
 		UserDTO user = (UserDTO)request.getSession().getAttribute("user");
 		int itemno = Integer.parseInt(request.getParameter("selectedItemNo"));
 		int userno = user.getUserno();
 		int qty = Integer.parseInt(request.getParameter("ct_qty"));
-		int targetcntr = Integer.parseInt(request.getParameter("don_target"));
-		ItemDTO item = ItemDAO.selectOne(itemno);
-		DonReqDTO donnation = new DonReqDTO(userno, itemno, targetcntr, qty, item.getPrice() * qty, 'N');
-		String cntrname = CenterDAO.selectOne(targetcntr).getCntrname();
+		int targetcntrno = Integer.parseInt(request.getParameter("don_target"));
+		int price = Integer.parseInt(request.getParameter("price"));
+		double point = Double.parseDouble(request.getParameter("gnr_point"));
+		String targetcntrname = request.getParameter("cntrname");
+		
+		// 기부하기 위한 dto생성
+		DonReqDTO donnation = new DonReqDTO(userno, itemno, targetcntrno, qty, price * qty, 'N');
+		
+		
 		String url = "/mall/donsuccess.jsp";
-		//user.setPoint(Integer.parseInt(request.getParameter("gnr_point")));
+		
 		
 		try {
 			if(!DonReqDAO.donnate(donnation)) {
@@ -43,9 +52,12 @@ public class MallDonateAction implements Action {
 			request.setAttribute("errorMsg", e.getMessage());
 			url = "error.jsp";
 		}
+		// 성공 페이지에서 결과 출력하기 위해 attribute 설정
 		request.setAttribute("donnation", donnation);
-		request.setAttribute("item", item);
-		request.setAttribute("cntrname", cntrname);
+		request.setAttribute("itemname", request.getParameter("item_name"));
+		request.setAttribute("cntrname", targetcntrname);
+		
+		// forward
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
