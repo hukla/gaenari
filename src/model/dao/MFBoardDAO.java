@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
@@ -21,7 +22,7 @@ public class MFBoardDAO {
 		try{
 			session = DBUtil.getSqlSession();
 			result = session.insert("mfboard.Minsert",boardDTO)>0 ? true:false;
-			brdno = session.selectOne("test.selectBoard", boardDTO);
+			brdno = session.selectOne("test.selectBoard",boardDTO);
 		}finally{
 			DBUtil.closeSession(session, result);
 		}
@@ -38,13 +39,15 @@ public class MFBoardDAO {
 		boolean result = false;
 		try{
 			session = DBUtil.getSqlSession();
-			System.out.println("==Mboard insert 진입==");
-			result = session.insert("insert.insertDiary",mDTO)>0 ? true:false;
-			System.out.println("==Mboard insert 완료==");
+			result = session.insert("mfboard.insertMissing",mDTO)>0 ? true:false;
 		}finally{
 			DBUtil.closeSession(session, result);
 		}
 		return result;
+	}
+	
+	public static List<MissingBoardDTO> selectAll(){
+		return null;
 	}
 
 }

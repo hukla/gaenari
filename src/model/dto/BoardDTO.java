@@ -21,6 +21,7 @@ public class BoardDTO {
 	private int userno;
 	
 	public BoardDTO(){}
+	
 	public BoardDTO(String brdcontent, String wrdate, 
 			String userid, String title, String brdtype, int userno){
 		this.brdcontent = brdcontent;

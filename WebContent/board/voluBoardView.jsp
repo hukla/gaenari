@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="model.dto.VoluBoardDTO" %>
 <%@ include file="/frame.jsp"%>
 <%@ include file="menu.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,14 +16,14 @@ function send(){
 	else return false;
 }
 function voluDelete(){
-	var sessionId="${sessionScope.userid}";
+	/* var sessionId="${sessionScope.userid}";
 	var boardWriter=$('#boardWriter').val();
 	alert(sessionId);
 	alert(boardWriter);
 	alert(sessionId!=boardWriter);
 	if((sessionId!=boardWriter)==true){
 		alert("작성자만 삭제가 가능합니다.");
-	}else{
+	}else{ */
 		if(confirm("삭제하시겠습니까?")){
 			alert("삭제되었습니다.");
 			document.requestForm.vbrdno=vbrdno;
@@ -30,7 +32,7 @@ function voluDelete(){
 			alert("뀨?");
 			return;
 		}
-	}
+	/* } */
 }
  </script>
 </head>
@@ -84,8 +86,19 @@ function voluDelete(){
 							<input type=hidden name="vbrdno" value="${requestScope.resultContent.vbrdno}">
 							<input type=hidden name="command" value="voluBoardUpdateForm">
 							<input type=hidden name="writer" value="<%=session.getAttribute("userid")%>">
-							<input type=submit value="수정하기"">
-							<input type=button value="삭제하기" onClick="voluDelete()">
+							<input type=submit value="수정하기">
+							<%
+							VoluBoardDTO vdto = null;
+							vdto=(VoluBoardDTO)request.getAttribute("resultContent");
+							String id=vdto.getUserid();
+							
+							System.out.println("requestScopeid="+id);
+							System.out.println("sessionScopeid="+session.getAttribute("userid").toString());
+							%>
+							<c:if test="${requestScope.id eq sessionScope.userid }">
+								<input type=button value="삭제하기" onClick="voluDelete()">
+							</c:if>
+							<!-- <input type=button value="삭제하기" onClick="voluDelete()"> -->
 					</form>
 				</table>
 				<div align=center><span style="font-size:9pt;"><a href="/gaenari/control?command=voluBoardList"><input type="submit" value="목록으로"></a></span></div>

@@ -16,7 +16,6 @@ import model.dao.MFBoardDAO;
 import model.dto.BoardDTO;
 import model.dto.MissingBoardDTO;
 import model.dto.UserDTO;
-import model.dto.VoluBoardDTO;
 
 public class MissingBoardWriteAction implements Action {
 
@@ -25,8 +24,7 @@ public class MissingBoardWriteAction implements Action {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		System.out.println("==MissingBoardWriteAction 진입==");
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 
 		String imagefile = null;
 		String savePath = null;
@@ -66,14 +64,14 @@ public class MissingBoardWriteAction implements Action {
 			brdtype = "mb";
 			mloc = multi.getParameter("mloc");
 			mdate = multi.getParameter("mdate");
-			mcontact = multi.getParameter("contact1")+request.getParameter("contact2")+request.getParameter("contact3");
+			mcontact = multi.getParameter("contact1")+multi.getParameter("contact2")+multi.getParameter("contact3");
 			mkind = multi.getParameter("mkind");
 			mgender = multi.getParameter("mgender");
 			mage = multi.getParameter("mage");
 			mname = multi.getParameter("mname");
 			fileName = multi.getFilesystemName("uploadFile");
 			
-			imagefile = "/gaenari/image/"+userid+"/board/"+fileName;
+			imagefile = "/gaenari/image/board/"+fileName;
 			
 			if(fileName==null){
 				System.out.println("파일 업로드 되지 않았음");
@@ -87,9 +85,10 @@ public class MissingBoardWriteAction implements Action {
 							(int) ((UserDTO) session.getAttribute("user")).getUserno());
 			}
 			brdno = MFBoardDAO.insertMissingBoard(boardDTO);
+			System.out.println("DAO.insertMissingBoard 이후의 brdno="+brdno);
 			MFBoardDAO.insertMissing(new MissingBoardDTO(brdno,mloc,mdate,mcontact,mkind,mgender,
 					mage, mname));
-			url = "control?command=missingBoardList";
+			url = "missingBoardList.do";
 					
 		} catch(SQLException e){
 			e.printStackTrace();

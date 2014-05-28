@@ -16,7 +16,8 @@
 	</insert>
 	
 	<insert id="insertMissing" parameterType="MissingBoardDTO">
-		insert into missingboardinfo(brdno, mloc, mdate, mcontact, mkind, mgender, mage, mname) values(#{brdno}, #{mood})
+		insert into mboardinfo(brdno, mloc, mdate, mcontact, mkind, mgender, mage, mname)
+		values(#{brdno}, #{mloc}, #{mdate}, #{mcontact}, #{mkind}, #{mgender}, #{mage}, #{mname})
 	</insert>
 	<!-- 
 	<select id="MselectAll" resultMap="brdMap">
