@@ -25,10 +25,12 @@
 
 수정: 2014-05-27, 최성훈
 내용: 위치 miniHome -> webcontent밑으로 이동
+
+수정: 2014-05-28, 최성훈
+내용: 로그아웃 버튼 페이스북로그아웃 연동 추가
  -->
 </head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="/gaenari/bootstrap/js/bootstrap.min.js"></script>
 
 <body>
 <font face="서울한강체" size="4">
@@ -68,7 +70,8 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle glyphicon glyphicon-cog" data-toggle="dropdown"><b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/gaenari/logout.do">로그아웃</a></li>
+          <!-- <li><a id="fbLogoutBtn" href="/gaenari/logout.do">로그아웃</a></li> -->
+          <li><a id="fbLogoutBtn" href="#" onclick="location.href='/gaenari/login.jsp'">로그아웃</a></li>
           <li><a href="#">개인정보수정</a></li>
           <li><a href="#">회원탈퇴</a></li>
           <li><a href="#">개발자정보</a></li>
@@ -88,5 +91,30 @@
 		<td>
 	</tr>
 </table>
+
+	<script src="/gaenari/bootstrap/js/bootstrap.min.js"></script>
+<div id="fb-root"></div>
+	<script src="//connect.facebook.net/en_US/all.js"></script>
+	<script>
+		$(window).load(function() {
+			// init the FB JS SDK
+			FB.init({
+				appId : '846213518728713', // App ID from the App Dashboard
+				// check the login status upon init?
+				cookie : true, // set sessions cookies to allow your server to access the session?
+				xfbml : false, // parse XFBML tags on this page?
+				version : 'v2.0'
+			});
+
+			FB.getLoginStatus(function(response) {
+				$("#fbLogoutBtn").show();
+			});
+
+			$("#fbLogoutBtn").click(function() {
+				FB.logout(function(response) {
+				});
+			});
+		});
+	</script>
 </body>
 </html>

@@ -36,6 +36,12 @@ public class UserService {
 		return user;
 	}
 	
+	//14-05-28 성훈추가: 이메일로 user정보 받아넘기기
+	public static UserDTO fbLogin(String email) throws SQLException, LoginException {
+		UserDTO user = UserDAO.emailCheck(email);
+		return user;
+	}
+	
 /*	public static void logout(UserDTO user) throws Exception {
 		int result = UserDAO.logoutCheck(user);
 		if(result==0){

@@ -14,4 +14,9 @@
 		SELECT * FROM userinfo WHERE userno = #{userno}
 	</select>
 	
+	<!-- 2014-05-28 성훈추가: 페이스북으로 받은 email로 user 불러오기 -->
+	<select id="getEmailCheck" parameterType="string" resultType="UserDTO">
+		SELECT * FROM userinfo WHERE email = #{email}
+	</select>
+	
 </mapper>					

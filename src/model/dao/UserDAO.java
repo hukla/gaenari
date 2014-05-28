@@ -32,6 +32,21 @@ public class UserDAO {
 		}
 		return user;
 	}
+	
+	//14-05-28 성훈추가: 이메일로 user정보 받아넘기기
+	public static UserDTO emailCheck(String email) throws SQLException {
+		SqlSession session =null;
+		UserDTO user =null;
+		try{
+			session = DBUtil.getSqlSession();
+			System.out.println("==UserDAO 진입==");
+			user = session.selectOne("u.getEmailCheck",email);
+			System.out.println("==UserDAO 종료==");
+		}finally{
+			DBUtil.closeSession(session);
+		}
+		return user;
+	}
 
 	/**
 	 * userno를 가지고 UserDTO를 가져오는 함수
