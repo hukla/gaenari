@@ -19,4 +19,8 @@
 		SELECT * FROM userinfo WHERE email = #{email}
 	</select>
 	
+	<!-- 2014-05-28 재희 추가: point 더하기 -->
+	<update id="updatePoint" parameterType="model.dto.DonReqDTO">
+		UPDATE userinfo SET point = point + #{price}*0.05 WHERE userno=#{userno}
+	</update>
 </mapper>					

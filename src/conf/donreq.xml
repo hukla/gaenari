@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="donreq">
-	<select id="selectAll" resultType="model.dto.DonReqDTO">
-		SELECT * FROM donreq
+	<select id="selectDonAll" resultType="model.dto.DonReqDTO">
+		SELECT * FROM donreq WHERE targetcntr != 0
+	</select>
+	
+	<select id="selectReqAll" resultType="model.dto.DonReqDTO">
+		SELECT * FROM donreq WHERE targetcntr = 0
 	</select>
 	
 	<select id="selectOne" resultType="model.dto.DonReqDTO" parameterType="int">
 		SELECT * FROM donreq WHERE drno=${value}
+	</select>
+	
+	<select id="selectByUserno" resultType="model.dto.DonReqDTO" parameterType="int">
+		SELECT * FROM donreq WHERE userno=${value}
 	</select>
 	
 	<select id="cntByItemno" parameterType="int" resultType="int">

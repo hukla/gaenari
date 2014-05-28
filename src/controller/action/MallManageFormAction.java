@@ -33,7 +33,7 @@ public class MallManageFormAction implements Action {
 			url = "error.jsp";
 		}
 		request.getSession().setAttribute("itemList", ItemDAO.selectAll());
-		request.getSession().setAttribute("donreq", DonReqDAO.selectAll());
+		//request.getSession().setAttribute("donreq", DonReqDAO.selectAll());
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 

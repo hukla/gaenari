@@ -11,9 +11,9 @@ import model.dao.DonReqDAO;
 
 import org.apache.log4j.Logger;
 
-public class MallSendDonreqAction implements Action {
+public class MallSendDonAction implements Action {
 
-	private static final Logger log = Logger.getLogger(MallSendDonreqAction.class);
+	private static final Logger log = Logger.getLogger(MallSendDonAction.class);
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,9 +23,9 @@ public class MallSendDonreqAction implements Action {
 		
 		try {
 			
-			log.info(DonReqDAO.send(drno));
+			log.info(DonReqDAO.send(DonReqDAO.selectOne(drno)));
 			
-			out.print(DonReqDAO.send(drno));
+			out.print(DonReqDAO.send(DonReqDAO.selectOne(drno)));
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -66,7 +66,7 @@
           <li><a href="/gaenari/ptBoardList.do">펫 도우미</a></li>
         </ul>
       </li>
-      <li><a href="/gaenari/mall/mall_index.jsp">기부몰</a></li>
+      <li><a href="/gaenari/mall/mallMain.do">기부몰</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
