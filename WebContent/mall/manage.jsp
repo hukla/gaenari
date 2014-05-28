@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="/frame.jsp" %>
+<!-- 
+	2014-05-27 수정 장재희
+	db가져오기 ajax로 변경
+ -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,13 +18,13 @@
 <tr>
 	<td width="600px">
 	<!-- 상품 관리 테이블 -->
-	<table>
+	<table id="item_mgt">
 		<tr>
 			<td colspan="6"><font size="8"><strong>상품 관리</strong></font></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td colspan="6"><button id="refresh">새로 고침</button></td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td>#</td>
 			<td>상품명</td>
@@ -28,18 +33,8 @@
 			<td>수정하기</td>
 			<td>삭제하기</td>
 		</tr>
-		<c:forEach items="${itemList}" var="item">
 		<tr>
-			<td>${item.itemno}</td>
-			<td>${item.itemname}</td>
-			<td>${item.price}</td>
-			<td>${item.qty}</td>
-			<td><div onclick="modifyItem(${item.itemno})" class="delmod">수정하기</div></td>
-			<td><div onclick="deleteItem(${item.itemno})" class="delmod">삭제하기</div></td>
-		</tr>
-		</c:forEach>
-		<tr>
-			<td colspan="6"><button onclick="insertItem()">상품 등록하기</button></td>
+			<td colspan="6" align="center">로딩중...</td>
 		</tr>
 	</table>
 	<!-- 상품 관리 테이블 끝 -->
@@ -50,9 +45,9 @@
 		<tr>
 			<td colspan="6"><font size="8"><strong>기부 관리</strong></font></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td colspan="6"><button id="refresh">새로 고침</button></td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td>#</td>
 			<td>기부자</td>
@@ -61,13 +56,14 @@
 			<td>수량</td>
 			<td>배송하기</td>
 		</tr>
+		<tr>
+			<td colspan="6" align="center">로딩중...</td>
+		</tr>
 	</table>
 	<!-- 기부 관리 테이블 끝-->
 	</td>
 </tr>
-
 </table>
-
 </body>
 
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -81,11 +77,11 @@ $(function(){
 	
 	function getDonReq() {
 		$.ajax({
-			url: "/gaenari/control?command=getDonreqList",
+			url: "/gaenari/getDonreqList.do",
 			dataType: "xml",
 			success: function(data) {
-				alert("success");
-				$("#donreq_mgt tr:gt(2)").remove();
+				//alert("success");
+				$("#donreq_mgt tr:gt(1)").remove();
 				var table="";
 				
 				$(data).find('donreq').each(function (index){
@@ -104,16 +100,46 @@ $(function(){
 					table += "</tr>";
 				});
 				
-				$('#donreq_mgt tr:eq(2)').after(table);
+				$('#donreq_mgt tr:eq(1)').after(table);
 			},
 			error: function(data) { alert(data+' => 에러 발생');}
 			
 		});// ajax 끝
 	}// getDonReq() 함수 끝
 	
+	function getItemList() {
+		$.ajax({
+			url: "/gaenari/itemList.do",
+			dataType: "xml",
+			success: function(data) {
+				//alert("success");
+				$("#item_mgt tr:gt(1)").remove();
+				var table="";
+				
+				$(data).find('item').each(function (index){
+					table += "<tr>";
+					table += "<td>"+$(this).find("itemno").text()+"</td>";
+					table += "<td>"+$(this).find("itemname").text()+"</td>";
+					table += "<td>"+$(this).find("price").text()+"</td>";
+					table += "<td>"+$(this).find("qty").text()+"</td>";
+					table += "<td>"+"<div class='delmod' onclick='modifyItem("+$(this).find("itemno").text()+")'>수정하기</div>"+"</td>";
+					table += "<td>"+"<div class='delmod' onclick='deleteItem("+$(this).find("itemno").text()+")'>삭제하기</div>"+"</td>";
+					table += "</tr>";
+				});
+				
+				table += "<tr><td colspan='6' align='center'><button onclick='insertItem()'>상품 등록하기</button></td></tr>"
+				
+				$('#item_mgt tr:eq(1)').after(table);
+			},
+			error: function(data) { alert(data+' => 에러 발생');}
+			
+		});// ajax 끝
+	}// getItemList() 함수 끝
+	
+	// 배송하기 버튼 클릭시
 	$(document).on('click',"#send", function(){
 		$.ajax({
-			url: "/gaenari/control?command=sendDonreq",
+			url: "/gaenari/sendDonreq.do",
 			dataType: "text",
 			data: "drno="+$(this).attr("name"),
 			success: function(data) {
@@ -125,34 +151,36 @@ $(function(){
 				}
 			},
 			error: function(data) { alert(data+' => 에러 발생');}
-		})
-	})
+		});// ajax 끝
+	}); // 배송하기 버튼 처리 끝
+	
+	// '수정하기', '삭제하기' mouseover event 
+	$(document).on('mouseover', '.delmod', function(){
+		$(this).css("text-decoration","underline");
+	}); // '수정하기', '삭제하기' mouseover event 끝
+	
+	// '수정하기', '삭제하기' mouseleave event 
+	$(document).on('mouseleave', '.delmod', function(){
+		$(this).css("text-decoration","none");
+	}); // '수정하기', '삭제하기' mouseleave event 끝
 	
 	$("#refresh").click(function(){
 		window.location.reload();
 	});
-	
-	$(".delmod").mouseover(function(){
-		$(this).css("text-decoration","underline");
-	});
-	
-	$(".delmod").mouseleave(function(){
-		$(this).css("text-decoration","none");
-	});
-	
-	getDonReq();	
+
+	getDonReq();
+	getItemList();
 	
 });
 
 </script>
 
 <script type="text/javascript">
-
-
+// '삭제하기' 버튼 클릭시 호출되는 함수
 function deleteItem(itemno) {
 	var res = confirm("정말 삭제하시겠습니까?");
 	var newwindow;
-	var url = "control?command=rmItem&itemno="+itemno;
+	var url = "/gaenari/rmItem.do?itemno="+itemno;
 	if(res == true) {
 		newwindow=window.open(url,'삭제 완료','height=150,width=400');
 		if(window.focus) {
@@ -160,28 +188,29 @@ function deleteItem(itemno) {
 		}
 	}
 	window.location.reload();
-}
+}// '삭제하기' 끝
 
+// '수정하기' 버튼 클릭시 호출되는 함수
 function modifyItem(itemno) {
 	var newwindow;
-	var url ="control?command=itemUpdateForm&itemno="+itemno;
+	var url ="/gaenari/itemUpdateForm.do?itemno="+itemno;
 	
 	newwindow=window.open(url, '상품 상세 정보 수정 페이지', 'height=550,width=660');
 	if(window.focus) {
 		newwindow.focus;
 	}
-}
+}// '수정하기' 끝
 
+// '등록하기' 버튼 클릭시 호출되는 함수
 function insertItem() {
 	var newwindow;
-	var url = "control?command=itemInsertForm";
+	var url = "/gaenari/itemInsertForm.do";
 	
 	newwindow = window.open(url, '상품 등록 페이지', 'height=550,width=660');
 	if(window.focus) {
 		newwindow.focus;
 	}
-}
-
+}// '등록하기' 끝
 </script>
 
 </html>

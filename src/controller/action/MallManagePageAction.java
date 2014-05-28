@@ -1,24 +1,17 @@
 package controller.action;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.CenterDAO;
-import model.dao.ItemDAO;
-import model.dto.ItemDTO;
-
-public class MallMainAction implements Action {
-
+public class MallManagePageAction implements Action {
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getSession().setAttribute("centerList", CenterDAO.selectAll());
-		request.getRequestDispatcher("/mall/main.jsp").forward(request, response);
-
+		request.getRequestDispatcher("/mall/manage.jsp").forward(request, response);
 	}
 
 }
