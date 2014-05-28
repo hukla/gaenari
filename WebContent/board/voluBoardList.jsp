@@ -13,6 +13,15 @@
 
 </head>
 <body>
+<%
+String link = request.getParameter("link");
+int pageTotal=0;
+int cpage=0;
+int psize=10;
+int pageGroupStart=0;
+int pageGroupEnd=0;
+
+%>
 	<table align="center" border="1" cellpadding="5" cellspacing="2" width="80%">
 					<tr>
 						<td>

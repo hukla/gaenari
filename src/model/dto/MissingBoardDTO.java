@@ -26,7 +26,7 @@ public class MissingBoardDTO extends BoardDTO {
 	public MissingBoardDTO() {}
 	public MissingBoardDTO(int brdno, String mloc, String mdate, String mcontact, String mkind, String mgender,
 			String mage, String mname){
-		super(brdno);
+		super.setBrdno(brdno);
 		this.mloc = mloc;
 		this.mdate = mdate;
 		this.mcontact = mcontact;

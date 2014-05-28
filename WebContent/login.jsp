@@ -33,9 +33,6 @@
 	    xfbml      : true,  // parse social plugins on this page
 	    version    : 'v2.0' // use version 2.0
 	  });
-	  FB.logout(function(response) {
-		  // user is now logged out
-		});
 	  FB.getLoginStatus(function(response) {
 			    if (response.status === 'connected') {
 			    	FB.api('/me', function(user) {

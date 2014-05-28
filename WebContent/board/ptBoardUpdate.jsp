@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>    
+<%@ page import="model.dto.PtBoardDTO" %>
 <%@ include file="/frame.jsp"%>
 <%@ include file="menu.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -89,10 +90,15 @@ function checkValid() {
 				</td>
 				<td width="450" height="20"><b><span style="font-size: 9pt;">
 				
-				<input type="hidden" id="worktype" value="${requestScope.resultContent.worktype }">
-				<input type="radio" name="worktype" value="산책" checked='checked'>산책
-				<input type="radio" name="worktype" value="목욕">목욕
-				<input type="radio" name="worktype" value="위탁">위탁
+				<input type="hidden" id="worktype" value="${requestScope.resultContent.worktype}">
+				<%
+				PtBoardDTO ptboard = null;
+				ptboard=(PtBoardDTO)request.getAttribute("resultContent");
+				String worktype=ptboard.getWorktype();
+				System.out.println("worktype="+worktype);%>
+				<input type="radio" name="worktype" value="산책" <%=(worktype.equals("산책")?"checked":"") %>>산책
+				<input type="radio" name="worktype" value="목욕" <%=(worktype.equals("목욕")?"checked":"") %>>목욕
+				<input type="radio" name="worktype" value="위탁" <%=(worktype.equals("위탁")?"checked":"") %>>위탁
 				</span></b>
 			</tr>
 			<tr>
