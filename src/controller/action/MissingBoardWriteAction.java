@@ -75,7 +75,8 @@ public class MissingBoardWriteAction implements Action {
 			
 			if(fileName==null){
 				System.out.println("파일 업로드 되지 않았음");
-				boardDTO = new BoardDTO(brdcontent, (String)session.getAttribute("today"),
+				boardDTO = new BoardDTO("/gaenari/image/defaultDog!split!"+brdcontent,
+						(String)session.getAttribute("today"),
 						(String)session.getAttribute("userid"),title,"mb",
 						(int) ((UserDTO) session.getAttribute("user")).getUserno());
 			} else {

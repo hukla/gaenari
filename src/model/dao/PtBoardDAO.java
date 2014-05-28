@@ -11,6 +11,38 @@ import org.apache.ibatis.session.SqlSession;
 import util.DBUtil;
 
 public class PtBoardDAO {
+	public static int getPtCount() throws SQLException{
+		SqlSession session = null;
+		int ptCount = 0;
+		int pageCount = 0;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==getPtCount진입==");
+			ptCount = session.selectOne("ptboard.selectCountPt");
+			System.out.println("==getVoluCount종료==");
+			pageCount = ptCount/10;
+			if(ptCount%10 > 0) pageCount++;
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return pageCount;
+	}
+	
+	public static List<PtBoardDTO> getTenPt(int pageCount) throws SQLException{
+		SqlSession session = null;
+		List<PtBoardDTO> list = null;
+
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==getTenPt진입==");
+			list = session.selectList("ptboard.selectTenPt",pageCount);
+			System.out.println("==getTenPt종료==");
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return list;
+	}
+
 	public static boolean updateContent (PtBoardDTO ptbdto) throws SQLException{
 		SqlSession session = DBUtil.getSqlSession();
 		session.commit();
@@ -48,7 +80,7 @@ public class PtBoardDAO {
 		return result;
 	}
 	
-	public static List<PtBoardDTO> selectAll() throws SQLException {
+/*	public static List<PtBoardDTO> selectAll() throws SQLException {
 		SqlSession session =null;
 		List<PtBoardDTO> list =null;
 		try{
@@ -59,7 +91,7 @@ public class PtBoardDAO {
 		}
 		return list;
 	}
-	public static PtBoardDTO getContent(int  num, boolean check) throws SQLException{		
+*/	public static PtBoardDTO getContent(int  num, boolean check) throws SQLException{		
 		SqlSession session = DBUtil.getSqlSession();
 		session.commit();
 		PtBoardDTO pbdto = null;

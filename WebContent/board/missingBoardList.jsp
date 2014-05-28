@@ -75,7 +75,7 @@ $(function(){
 					// 상품이미지
 					table += "<td align='center', valign='middle'><a href='/gaenari/missingBoardView.do?brdno="
 							+$(this).find("brdno").text()+"'><img class='mdog_img' id='img_"+$(this).find("brdno").text()
-							+"' src='/gaenari/image/board/"+$(this).find("itemno").text()+".jpg' width='160' height='160' border='0' align='absmiddle'></a></td>";
+							+"' src='/gaenari/image/board/"+$(this).find("brdno").text()+".jpg' width='160' height='160' border='0' align='absmiddle'></a></td>";
 					
 					//상품명
 					table += "<tr align='center'><td height='35' class='item_name'><a href='/gaenari/mallDetail.do?itemno='"
