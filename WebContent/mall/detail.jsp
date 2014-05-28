@@ -28,7 +28,7 @@
 												<tr>
 									  		  	<td>
 									  		  		<!-- popup TODO -->
-								                	<a href="javascript:popupOpen(${selectedItem.itemno})"><img id='${selectedItem.itemno}' src='mall/img/${selectedItem.itemno}_s.jpg' width='350' height='350' border='0' align='absmiddle'></a>
+								                	<a href="javascript:popupOpen(${selectedItem.itemno})"><img id='${selectedItem.itemno}' src='mall/img/${selectedItem.itemno}.jpg' width='350' height='350' border='0' align='absmiddle'></a>
 								              	</td>
 												</tr>
 											</table>
@@ -42,7 +42,7 @@
 								  	<tr>
 								    	<td align="center">
 								    		<a href="javascript:popupOpen(${selectedItem.itemno})">
-								       		<img id='middle1' src='mall/img/${selectedItem.itemno}_s.jpg' border=0 width=80 height=80 style='border: 2px solid #E4E4E4;' ></a>
+								       		<img id='middle1' src='mall/img/${selectedItem.itemno}.jpg' border=0 width=80 height=80 style='border: 2px solid #E4E4E4;' ></a>
 								    	</td>
 								  	</tr>
 								  	<!--작은이미지 끝-->
@@ -156,20 +156,20 @@
 									<!-- 밑줄 끝 -->
 							</table>
 							<!-- 상품 정보 끝 -->
-							<!-- 구매하기 버튼 시작 -->
+							<!-- submit 버튼 시작 -->
 							<table cellpadding="0" cellspacing="0">
 								<tr>
 									<td height=65 width="126">
 									<input type="hidden" name="usertype" id="usertype" value="${sessionScope.user.usertype }">
 									<c:choose>
-										<c:when test="${sessionScope.user.usertype == 0}">
-											<button onclick="donnate()">기부하기</button>
+										<c:when test="${sessionScope.user.usertype > 0}">
+											<input type="submit" value="요청하기">
 										</c:when>
 										<c:when test="${sessionScope.user.usertype == -1 }">
-											<input type="submit" value="상품 정보<br/>수정하기">
+											<input type="submit" value="상품 정보\n수정하기">
 										</c:when>
 										<c:otherwise>
-											<input type="submit" value="요청하기">
+											<input type="submit" value="기부하기">
 										</c:otherwise>
 									</c:choose>
 									</td>
@@ -270,6 +270,18 @@
 			$('#target_sel').blur(function(){
 				$('#cntr_name').val($('#target_sel option:selected').text());
 				//alert($('#cntr_name').val());
+			});
+			
+			$('#item_list').submit(function(){
+				if($('usertype').val() < 0) {
+					$(this).prop('action', '/gaenari/donnate.do');
+				} else if($('usertype').val() > 0) {
+					$(this).prop('action', '');
+				} else if($('usertype').val() == 0){
+					$(this).prop('action', '');
+				} else {
+					alert("로그인해주세요!");
+				}
 			});
 		});
 	</script>
