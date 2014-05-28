@@ -31,9 +31,6 @@
 		</colgroup>
 		<tr>
 			<td style="text-align: center;vertical-align: middle;">
-				<!-- <a href="addDog()">
-					<img src="image/euriiiii.jpg" width="50" class="img-rounded">나의 개나으리 추가
-				</a> -->
 				<button onclick="addDog()">
 					<img src="image/euriiiii.jpg" width="50" class="img-rounded">나의 개나으리 추가
 				</button>
@@ -41,6 +38,7 @@
 				<td align="center"><a href="#">난?</a>
 			</td>
 				<td align="left"><a href="#">난이?</a>
+									
 			</td>
 		</tr>
 	</table>

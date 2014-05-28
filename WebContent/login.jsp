@@ -21,6 +21,8 @@
 수정: 2014-05-25, 최성훈
 내용: UI변경 - 캐러셀로 사진 슬라이드보기 추가
 
+수정: 2014-05-28, 최성훈
+내용: 페이스북 로그인으로 email, userid 파라미터로 넘기기
  -->
 <script language="javascript">
  window.fbAsyncInit = function() {
@@ -31,7 +33,9 @@
 	    xfbml      : true,  // parse social plugins on this page
 	    version    : 'v2.0' // use version 2.0
 	  });
-
+	  FB.logout(function(response) {
+		  // user is now logged out
+		});
 	  FB.getLoginStatus(function(response) {
 			    if (response.status === 'connected') {
 			    	FB.api('/me', function(user) {
@@ -41,15 +45,18 @@
                             var name = document.getElementById('name');
                             name.innerHTML = user.name;
                             var email = document.getElementById('email');
-                            email.innerHTML = user.email;                            
-                            alert(user.email);
-         
+                            email.innerHTML = user.email; 
+                            location.href="login?command=fbLogCheck&email="+user.email+"&username="+user.name;
+                            //이메일이랑 이름 넘기기
                         }
                     });   
 			    } else if (response.status === 'not_authorized') {
 			    } else {
 			    }
 	  });
+	  FB.Event.subscribe('auth.login', function(response) {
+		    document.location.reload();
+		});
 	  };
 	  (function(d, s, id) {
 		    var js, fjs = d.getElementsByTagName(s)[0];
@@ -127,6 +134,7 @@
 									<div align="center" class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"  scope="email"></div>
 									
 								</form>
+								
 								<p>사용자정보 출력</p>
 								<form action="home.do" method="post">
 									<div align="left">

@@ -4,8 +4,8 @@
 
 <configuration>
 
-    <properties resource="conf/dbInfo.properties"/>
-   <!-- <properties resource="conf/dbConnection.properties"/> -->
+    <!-- <properties resource="conf/dbInfo.properties"/> -->
+   <properties resource="conf/dbConnection.properties"/>
    <!-- test용도로 이용하기위해 cubridManager 드라이버, url등의 프로퍼티 이용 -->
    
    <typeAliases>
@@ -18,6 +18,7 @@
      <typeAlias type="model.dto.VisitDTO" alias="VisitDTO"/>
      <typeAlias type="model.dto.VoluBoardDTO" alias="VoluBoardDTO"/>
      <typeAlias type="model.dto.PtBoardDTO" alias="PtBoardDTO"/>
+     <typeAlias type="model.dto.MissingBoardDTO" alias="MissingBoardDTO"/>
      <!-- <typeAlias type="model.dto.BoardPlanDTO" alias="BoardPlanDTO"/> -->
      
      <!-- <typeAlias type="model.test.dto.BoardVo" alias="boardVo"/>
@@ -49,7 +50,6 @@
 		<!-- <mapper resource="conf/diary.xml"/> -->
 		<mapper resource="conf/voluBoard.xml"/>
 		<mapper resource="conf/ptBoard.xml"/>
-		<!-- <mapper resource="conf/missingBoard.xml"/> -->
 		
 		<!-- 2014-05-03 재희가 추가 -->
 		<mapper resource="conf/item.xml" />
@@ -63,6 +63,9 @@
 		
 		<!-- 2014-05-24 재희가 추가 -->
 		<mapper resource="conf/center.xml"/>
+		
+		<!-- 2014-05-27 수진 추가 -->
+		<mapper resource="conf/mfBoard.xml"/>
 	</mappers>
 	
 </configuration>

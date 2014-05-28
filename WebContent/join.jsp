@@ -5,6 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<!-- 
+작성: 2014-05-23
+작성자: 최성훈
+내용: 회원가입 받기
+
+수정: 2014-05-28, 최성훈
+내용: 첫 방문시 가입하도록 하고 페북을 통해 받은 이메일, 아이디 뿌려주기
+ -->
 </head>
 <body>
 	<form action="login?command=join" method="post">
@@ -14,13 +22,13 @@
 			<col width="70%">
 		</colgroup>
 		<tr>	
-			<td>E-mail</td><td><input type="text" name="email" value=""></td>
+			<td>E-mail</td><td><input type="text" name="email" value="${requestScope.email}"></td>
 		</tr>
 		<tr>
 			<td>ID</td><td><input type="text" name="userid"></td>
 		</tr>
 		<tr>
-			<td>이름</td><td><input type="text" name="username"></td>
+			<td>이름</td><td><input type="text" name="username" value="${requestScope.username}"></td>
 		</tr>
 		<tr>
 			<td>Password</td><td><input type="password" name="pwd"></td>
