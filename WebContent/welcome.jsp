@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <title>환영합니다.</title>
 <!-- 
 작성: 2014-05-24
@@ -12,8 +13,9 @@
 
  -->
 </head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <body>
-	<form action="/gaenari/home.do">
+	<form action="/gaenari/home.do" method="post">
 	<table align="center" width="400" height="600">
 		<colgroup>
 			<col align="center" width="30%"><col align="center" width="70%">
@@ -28,18 +30,42 @@
 			<td>PASSWORD</td>
 			<td>
 				<input type="password" name="pwd">
-				<input type="hidden" name="userid" value="${sesssionScope.userid}">
+				<input type="hidden" name="userid" value="${sessionScope.userid}">
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
 				<input type="submit" value="로그인">
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="reset" value="취소하기">
+				<!-- <a id="fbLogoutBtn" href="#" onclick="location.href='/gaenari/logout.do'">첫 페이지로</a> -->
+				<input type="button" value="첫 페이지로" id="fbLogoutBtn" onclick="location.href='/gaenari/logout.do'">
 			</td>
 		</tr>
 	</table>
 	</form>
-</body>
+	<script src="/gaenari/bootstrap/js/bootstrap.min.js"></script>
+<div id="fb-root"></div>
+	<script src="//connect.facebook.net/en_US/all.js"></script>
+	<script>
+		$(window).load(function() {
+			// init the FB JS SDK
+			FB.init({
+				appId : '846213518728713', // App ID from the App Dashboard
+				// check the login status upon init?
+				cookie : true, // set sessions cookies to allow your server to access the session?
+				xfbml : false, // parse XFBML tags on this page?
+				version : 'v2.0'
+			});
+
+			FB.getLoginStatus(function(response) {
+				$("#fbLogoutBtn").show();
+			});
+
+			$("#fbLogoutBtn").click(function() {
+				FB.logout(function(response) {
+				});
+			});
+		});
+	</script>
 </html>
 <%@ include file="bottom.jsp"%>

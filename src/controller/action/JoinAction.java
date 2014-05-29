@@ -39,10 +39,10 @@ public class JoinAction implements Action {
 			addr = request.getParameter("addr");
 			
 			//입력 정보 불충분시
-			if(userid.equals(null) || userid.trim().length()==0 || email.equals(null) || email.trim().length()==0
-					|| pwd.equals(null) || pwd.trim().length()==0 || pwd1.equals(null) || pwd1.trim().length()==0
-					|| email.equals(null) || email.trim().length()==0 || username.equals(null) || username.trim().length()==0
-					|| type.equals(null) || type.trim().length()==0 || addr.equals(null) || addr.trim().length()==0){
+			if(userid==null || userid.trim().length()==0 || email==null || email.trim().length()==0
+					|| pwd==null || pwd.trim().length()==0 || pwd1==null || pwd1.trim().length()==0
+					|| username==null || username.trim().length()==0
+					|| type==null || type.trim().length()==0 || addr==null || addr.trim().length()==0){
 				throw new Exception("정보를 모두 입력해주세요.");
 			}
 			

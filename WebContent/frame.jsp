@@ -5,6 +5,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 <link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="//code.jquery.com/jquery.js"></script>
+
+<!--<link href="/gaenari/bootstrap/css/bootstrap-ko.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.9.1.min.js"></script> -->
+
 <style type="text/css">
 	body { padding-top: 55px; }
 </style>
@@ -30,7 +35,7 @@
 내용: 로그아웃 버튼 페이스북로그아웃 연동 추가
  -->
 </head>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
 
 <body>
 <font face="서울한강체" size="4">
@@ -42,7 +47,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a class="navbar-brand" href="/gaenari/home.do" class="active">GAENARY</a>
+    <a class="navbar-brand" href="/gaenari/home.do" class="active">GAENARI</a>
   </div>
  
   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -71,7 +76,7 @@
         <a href="#" class="dropdown-toggle glyphicon glyphicon-cog" data-toggle="dropdown"><b class="caret"></b></a>
         <ul class="dropdown-menu">
           <!-- <li><a id="fbLogoutBtn" href="/gaenari/logout.do">로그아웃</a></li> -->
-          <li><a id="fbLogoutBtn" href="#" onclick="location.href='/gaenari/login.jsp'">로그아웃</a></li>
+          <li><a id="fbLogoutBtn" href="#" onclick="location.href='/gaenari/logout.do'">로그아웃</a></li>
           <li><a href="#">개인정보수정</a></li>
           <li><a href="#">회원탈퇴</a></li>
           <li><a href="#">개발자정보</a></li>

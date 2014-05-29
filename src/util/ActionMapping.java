@@ -54,7 +54,6 @@ public class ActionMapping implements ServletContextListener {
 			}
     		mapper.put(key, action);
     	}
-    	
     	context.setAttribute("mapper", mapper);
     }
 

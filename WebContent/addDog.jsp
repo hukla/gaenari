@@ -10,8 +10,6 @@
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <title>기르시는 강아지를 등록하세요</title>
 <!-- 
@@ -33,11 +31,11 @@
 				<table class="table" align="center">
 					<tr>
 						<th>강아지 이름</th>
-						<td><input type="text" size="13" name="dogname"></td>
+						<td><input type="text" size="29" name="dogname"></td>
 					</tr>
 					<tr>
 						<th>강아지 생일</th>
-						<td><input type="text" size="13" id="datepicker" name="dogbirth"></td>
+						<td><input type="text" size="29" id="datepicker" name="dogbirth"></td>
 					</tr>
 					<tr>
 						<th>강아지 종류</th>
@@ -55,7 +53,7 @@
 						<td colspan="2">
 							<input type="submit" value="등록하기">
 							&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="reset" value="취소하기">
+							<input type="button" value="취소하기" id="close">
 						</td>
 					</tr>
 				</table>
@@ -64,5 +62,13 @@
 		</tr>
 	</table>
 </body>
+<script>
+	$(function(){
+		$("#close").click(function(){
+			opener.location.reload();
+			self.close();
+		});
+	});
+</script>
 </html>
 <%@ include file="bottom.jsp"%>

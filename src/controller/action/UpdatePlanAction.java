@@ -16,6 +16,10 @@ import model.dto.PlanDTO;
  * 
  * 수정: 2014-05-26, 최성훈
  * 내용: 컨텐츠 줄바꿈추가
+ * 
+ * 수정: 2014-05-29, 최성훈
+ * 내용: 갑자기 한글입력 깨지는 현상 막기위해 new String(변수명.getBytes("8859_1"),"utf-8")추가
+ * 		 문제 해결하기 위해, new String부분은 우선 주석처리
  */
 public class UpdatePlanAction implements Action {
 
@@ -32,6 +36,11 @@ public class UpdatePlanAction implements Action {
 			tmpdate = request.getParameter("wrdate");
 			ploc = request.getParameter("ploc");
 			brdno = request.getParameter("brdno");
+			
+			/*title = new String(title.getBytes("8859_1"),"utf-8");
+			ploc = new String(ploc.getBytes("8859_1"),"utf-8");
+			tmpdate = new String(tmpdate.getBytes("8859_1"),"utf-8");
+			brdcontent = new String(brdcontent.getBytes("8859_1"),"utf-8");*/
 			
 			if(title.equals(null) || title.trim().length()==0 || brdcontent.equals(null) || brdcontent.trim().length()==0 
 					|| tmpdate.equals(null) || tmpdate.trim().length()==0 || ploc.equals(null) || ploc.trim().length()==0

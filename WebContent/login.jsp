@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
 <title>Welcome to the GNR!</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,9 +33,6 @@
 	    xfbml      : true,  // parse social plugins on this page
 	    version    : 'v2.0' // use version 2.0
 	  });
-	  FB.logout(function(response) {
-		  // user is now logged out
-		});
 	  FB.getLoginStatus(function(response) {
 			    if (response.status === 'connected') {
 			    	FB.api('/me', function(user) {
@@ -46,9 +43,10 @@
                             name.innerHTML = user.name;
                             var email = document.getElementById('email');
                             email.innerHTML = user.email; 
-                            location.href="login?command=fbLogCheck&email="+user.email+"&username="+user.name;
+                            
                             //이메일이랑 이름 넘기기
                         }
+                        location.href="fbLogCheck.do?email="+user.email+"&username="+user.name;
                     });   
 			    } else if (response.status === 'not_authorized') {
 			    } else {
@@ -131,18 +129,24 @@
 									<button class="btn btn-lg btn-primary btn-block" type="submit">SIGN IN</button>
 									<button class="btn btn-lg btn-primary btn-block" type="button" onclick="location.href='join.jsp'">JOIN US</button>
 									<br>
-									<div align="center" class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"  scope="email"></div>
-									
+									<table>
+										<tr>
+											<td width="80%"><h3>Facebook 계정으로 로그인하기</h3></td>
+											<td><div align="center" class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" scope="email"></div></td>
+										</tr>
+									</table>
 								</form>
-								
+								<img id="image"/>
+								<div id="name"></div>
+								<div id="email"></div>
 								<p>사용자정보 출력</p>
 								<form action="home.do" method="post">
 									<div align="left">
 										<img id="image"/>
 										<div id="name"></div>
 										<div id="email"></div>
-										<!-- <input type="hidden" name="userid" value="hoonc"/>
-										<input type="hidden" name="pwd" value="tjdgns"/> -->
+										<input type="hidden" name="userid" value="hoonc"/>
+										<input type="hidden" name="pwd" value="tjdgns"/>
 									</div>
 									<input type="submit" value="submit"/>
 								</form>

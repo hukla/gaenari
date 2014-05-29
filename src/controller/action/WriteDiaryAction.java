@@ -62,8 +62,6 @@ public class WriteDiaryAction implements Action {
 			if (!targetDir.exists()) {				//파일이 존재하지 않는다면
 				targetDir.mkdirs();					//새로운 디렉토리를 만들어준다.
 			}
-			/*MultipartRequest multi = new MultipartRequest(request, savePath,
-					maxSize, "utf-8", new DefaultFileRenamePolicy());*/
 			MultipartRequest multi = new MultipartRequest(request, realPath,
 					maxSize, "utf-8", new DefaultFileRenamePolicy());
 			
@@ -100,7 +98,7 @@ public class WriteDiaryAction implements Action {
 				InsertService.insertDiary(new DiaryDTO(brdno, mood));
 				// 보드DTO와 다이어리DTO에 받은 값들을 입력해준다.
 			}
-			url = "control?command=diaryList";
+			url = "/diaryList.do";
 		} catch(SQLException e){
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

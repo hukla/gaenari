@@ -20,7 +20,15 @@ import model.dto.UserDTO;
 import org.apache.log4j.Logger;
 
 import exception.LoginException;
-
+/**
+ * 작성: 최성훈
+ * 작성일: 2014-05-25
+ * 내용: 개나리페이지 홈
+ * 
+ * 수정: 2014-05-29, 최성훈
+ * 내용: 필요없는 session 이용 제거
+ *
+ */
 public class HomeAction implements Action {
 	
 	Calendar cal = Calendar.getInstance();
@@ -39,9 +47,6 @@ public class HomeAction implements Action {
 		String pwd = null;
 		UserDTO loginUser = null;
 		List<DogDTO> dog = null;
-		List<BoardDTO> allPlanList = null;
-		List<BoardDTO> allDiaryList = null;
-		List<BoardDTO> allVisitList = null;
 		HttpSession session = request.getSession();
 		String url = "login/error.jsp";
 		
@@ -57,9 +62,9 @@ public class HomeAction implements Action {
 		
 		userid = (String)session.getAttribute("userid");
 		pwd = (String)session.getAttribute("pwd");
-		
+		if(request.getParameter("userid")!=null)	userid = request.getParameter("userid");
+		if(request.getParameter("pwd")!=null)	pwd = request.getParameter("pwd");
 		try {
-			
 			if (userid.equals(null) || userid.length() == 0 || pwd.equals(null) || pwd.length() == 0) {
 				throw new LoginException("아이디와 비밀번호를 모두 입력해주세요.");
 				// 14-05-20 성훈 추가: LoginException 추가
@@ -69,22 +74,14 @@ public class HomeAction implements Action {
 					throw new LoginException("비밀번호를 확인해주세요.");
 					// 14-05-20 성훈 추가: LoginException 추가
 				}else{
-					
-					allPlanList = TestService.planService(loginUser);
-					allDiaryList = TestService.diaryService(loginUser);	//14-05-21 성훈추가
-					allVisitList = TestService.visitService(loginUser);	//14-05-21 성훈추가
 					dog = DogService.getInfo(new DogDTO(loginUser));
 					
 					session.setAttribute("user", loginUser);
 					session.setAttribute("dog", dog);
-					session.setAttribute("allPlanList", allPlanList);
-					session.setAttribute("allDiaryList", allDiaryList);	//14-05-21 성훈추가
-					session.setAttribute("allVisitList", allVisitList);	//14-05-21 성훈추가
-					
+				
 					url = "home.jsp";
 				}
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
@@ -98,5 +95,4 @@ public class HomeAction implements Action {
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-
 }

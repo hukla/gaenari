@@ -4,8 +4,8 @@
 
 <configuration>
 
-    <!-- <properties resource="conf/dbInfo.properties"/> -->
-   <properties resource="conf/dbConnection.properties"/>
+    <properties resource="conf/dbInfo.properties"/>
+   <!-- <properties resource="conf/dbConnection.properties"/> -->
    <!-- test용도로 이용하기위해 cubridManager 드라이버, url등의 프로퍼티 이용 -->
    
    <typeAliases>

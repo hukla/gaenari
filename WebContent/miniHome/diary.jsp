@@ -8,10 +8,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="/gaenari/bootstrap/css/bootstrap-ko.css" rel="stylesheet">
-<script src="//code.jquery.com/jquery.js"></script>
-<script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
 <title>미니홈피 일기</title>
 <!-- 
 작성자: 최성훈
@@ -91,7 +87,7 @@
 		<tr>
 			<c:if test="${requestScope.user.userid eq sessionScope.userid }">
 			<td width="33%">
-				<form action="writeDiary.do" method="post" enctype="multipart/form-data">
+				<form action="/gaenari/writeDiary.do" method="post" enctype="multipart/form-data">
 					<table border="0" width="100%" height="380" style="outline-style: double; table-layout: fixed;">
 						<tr height="18%">
 							<td><h2>오늘 일기</h2></td>

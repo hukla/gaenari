@@ -7,10 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>일정 수정하기</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <script>
   $(function() {
     $( "#datepicker" ).datepicker();
@@ -28,12 +26,6 @@
 <body>
 	<form action="/gaenari/updatePlan.do" method="post">
 		<table border="0" width="80%" height="480">
-			<tr>
-				<td width="100%" align="right">
-					<input type="button" onclick="location.href='/gaenari/planList.do'" value="일정전체">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				</td>
-			</tr>
 			<tr>
 				<td>
 					<table border="1" align="center" width="50%" height="80%">

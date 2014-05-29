@@ -12,6 +12,10 @@ package controller.action;
  * 
  * 수정: 2014-05-26, 최성훈
  * 내용: 컨텐츠 입력시 줄바꿈추가
+ * 
+ * 수정: 2014-05-29, 최성훈
+ * 내용: 갑자기 한글입력 깨지는 현상 막기위해 new String(변수명.getBytes("8859_1"),"utf-8")추가
+ * 		 문제 해결하기 위해, new String부분은 우선 주석처리
  */
 import java.io.IOException;
 import java.sql.SQLException;
@@ -43,6 +47,13 @@ public class WritePlanAction implements Action {
 			loc = request.getParameter("loc");
 			tmpDate = request.getParameter("date"); // "05/11/2014"
 			content = request.getParameter("content").replaceAll("\r\n", "<br/>");
+			
+			/*title = new String(title.getBytes("8859_1"),"utf-8");
+			loc = new String(loc.getBytes("8859_1"),"utf-8");
+			tmpDate = new String(tmpDate.getBytes("8859_1"),"utf-8");
+			content = new String(content.getBytes("8859_1"),"utf-8");*/
+			
+			System.out.println(title+loc+tmpDate+content);
 			if (title.equals(null) || title.trim().length() == 0 || loc.equals(null) || loc.trim().length() == 0
 					|| tmpDate.equals(null) || tmpDate.trim().length() == 0
 					|| content.equals(null) || content.trim().length() == 0) {
@@ -56,7 +67,7 @@ public class WritePlanAction implements Action {
 				InsertService.insertPlan(new PlanDTO(brdno, loc, date));
 				// 입력값들을 보드DTO와 플랜DTO에 insert해준다.
 			}
-			url = "control?command=planList";
+			url = "/planList.do";
 		} catch (StringIndexOutOfBoundsException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

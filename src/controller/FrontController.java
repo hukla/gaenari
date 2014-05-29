@@ -23,18 +23,21 @@ public class FrontController extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		doProcess(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		doProcess(request, response);
 	}
 	
 	public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("==FrontController==");
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
+		
 		
 		String key = request.getServletPath(); // *.do
 		if(key.contains(".do")) {
@@ -42,7 +45,6 @@ public class FrontController extends HttpServlet {
 		} else {
 			key = request.getParameter("command");
 		}
-		
 		mapper.get(key);
 		/*
 		String key = request.getParameter("command");*/

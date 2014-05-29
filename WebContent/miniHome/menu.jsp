@@ -8,8 +8,6 @@
 	h1,h2,h3,h4,h5 {   font-family:'서울한강체' } 
 </style>
 </head>
-<!-- <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="/gaenari/bootstrap/js/bootstrap.min.js"></script> -->
 <body>
 	<table border="0" align="left" width="14%" >
 		<tr>

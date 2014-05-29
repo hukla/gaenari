@@ -54,12 +54,6 @@
 <body>
 	<table border="0" width="80%" height="480">
 		<tr>
-			<td width="100%" align="right">
-				<input type="button" onclick="location.href='/gaenari/planList.do'" value="일정전체">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			</td>
-		</tr>
-		<tr>
 			<td>
 				<table border="1" align="center" width="50%" height="80%">
 					<tr>

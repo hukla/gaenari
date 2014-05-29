@@ -48,9 +48,15 @@ public class SessionFilter implements Filter {
 		
 		System.out.println("==SessionFilter 진입==");
 		
+		String email,username = null;
+		email= request.getParameter("email");
+		username = request.getParameter("username");
+		
 		if(session.isNew()){
 			System.out.println("session  null임!");
-			response.sendRedirect("login.jsp");
+			if(email==null && username==null){
+				response.sendRedirect("login.jsp");
+			}
 		}else{
 			String userid = null;
 			String pwd = null;
@@ -58,7 +64,6 @@ public class SessionFilter implements Filter {
 				System.out.println("session.getAttribute('userid')는 null임!");
 				userid = request.getParameter("userid");
 				pwd = request.getParameter("pwd");
-				
 			}else{
 				System.out.println("session.getAttribute('userid')는 null이 아님");
 				System.out.println((String)session.getAttribute("userid"));
@@ -69,8 +74,8 @@ public class SessionFilter implements Filter {
 			session.setAttribute("pwd", pwd);
 			
 			System.out.println("==SessionFilter종료==");
-			chain.doFilter(request, resp);
 		}
+		chain.doFilter(request, response);
 	}
 
 	/**

@@ -30,7 +30,7 @@ public class FBLogCheckAction implements Action {
 		try{
 			email = request.getParameter("email");
 			username = request.getParameter("username");
-			if(email.equals(null) || email.trim().length() == 0){
+			if(email.equals(null) || email.trim().length() == 0 || username.equals(null) || username.trim().length()==0){
 				throw new Exception("Facebook Email Login 접속에러");
 			}
 			user = UserService.fbLogin(email);
@@ -38,11 +38,9 @@ public class FBLogCheckAction implements Action {
 			request.setAttribute("username", username);
 			url = "join.jsp";
 			if (user != null) {
-				if (user.getUsername().equals(username)) {
-					session.setAttribute("userid", user.getUserid());
-					session.setAttribute("pwd", user.getPasswd());
-					url = "home.do";
-				}
+				session.setAttribute("userid", user.getUserid());
+				session.setAttribute("pwd", user.getPasswd());
+				url = "/home.do";
 			}
 		}catch(Exception e){
 			e.printStackTrace();

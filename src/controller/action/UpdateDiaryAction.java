@@ -53,8 +53,6 @@ public class UpdateDiaryAction implements Action{
 			if (!targetDir.exists()) {				//파일이 존재하지 않는다면
 				targetDir.mkdirs();					//새로운 디렉토리를 만들어준다.
 			}
-			/*MultipartRequest multi = new MultipartRequest(request, savePath,
-					maxSize, "utf-8", new DefaultFileRenamePolicy());*/
 			maxSize = 5 * 1024 * 1024; // 최대 업로드 파일 크기 5MB(메가)로 제한
 			multi = new MultipartRequest(request, realPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
 			
@@ -66,17 +64,6 @@ public class UpdateDiaryAction implements Action{
 			
 			imagefile = "/gaenari/image/"+userid+"/"+fileName;	//방금등록한 이미지실제경로(사용자별 폴더)
 			
-			/*maxSize = 5 * 1024 * 1024; // 최대 업로드 파일 크기 5MB(메가)로 제한
-			multi = new MultipartRequest(request, savePath, maxSize, "utf-8", new DefaultFileRenamePolicy());
-			
-			title = multi.getParameter("title");
-			mood = multi.getParameter("mood");
-			brdcontent = multi.getParameter("brdcontent").replaceAll("\r\n", "<br/>");
-			brdno = multi.getParameter("brdno");
-			fileName = multi.getFilesystemName("uploadFile"); 	// 파일의 이름 얻기
-			
-			imagefile = "http://localhost:9000/gaenari/image/"+fileName;		//방금등록한 이미지실제경로
-			*/
 			if (fileName == null) System.out.print("파일 업로드 되지 않았음");	// 파일이 업로드 되지 않았을때
 			else System.out.println("File Name  : " + fileName);				// 파일이 업로드 되었을때
 			
