@@ -66,10 +66,12 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="/gaenari/missingBoardList.do">유기견</a></li>
-          <li><a href="/gaenari/voluBoardList.do">봉사/PartTim</a></li>
+          <li><a href="/gaenari/adpBoardList.do">애견입양</a></li>
+          <li><a href="/gaenari/voluBoardList.do">자원봉사</a></li>
+          <li><a href="/gaenari/ptBoardList.do">펫 도우미</a></li>
         </ul>
       </li>
-      <li><a href="/gaenari/mall/mall_index.jsp">기부몰</a></li>
+      <li><a href="/gaenari/mall/mallMain.do">기부몰</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">

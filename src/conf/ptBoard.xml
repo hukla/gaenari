@@ -8,6 +8,15 @@
 			<case value="pt" resultType="model.dto.PtBoardDTO"/>
 		</discriminator>
 	</resultMap>
+
+	<select id="selectTenPt" parameterType="int" resultType="PtBoardDTO">
+		SELECT * FROM board b JOIN ptboardinfo p ON b.brdno = p.brdno WHERE b.brdtype='pt' order by b.brdno desc limit #{value}, 10
+	</select>
+	
+	<select id="selectCountPt" resultType="int">
+		select count(*) from board where board.brdtype='pt'
+	</select>
+	
 	
 	<select id="selectAll" resultType="PtBoardDTO">
 		select b.brdno, b.brdcontent, b.wrdate, b.userid, b.title, b.brdtype, b.userno, p.ptbrdno

@@ -1,8 +1,10 @@
 package model.dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
+import model.dto.DiaryDTO;
 import model.dto.VoluBoardDTO;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,7 +12,39 @@ import org.apache.ibatis.session.SqlSession;
 import util.DBUtil;
 
 public class VoluBoardDAO {
+
+	public static int getVoluCount() throws SQLException{
+		SqlSession session = null;
+		int voluCount = 0;
+		int pageCount = 0;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==getVoluCount진입==");
+			voluCount = session.selectOne("voluboard.selectCountVolu");
+			System.out.println("==getVoluCount종료==");
+			pageCount = voluCount/10;
+			if(voluCount%10 > 0) pageCount++;
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return pageCount;
+	}
 	
+	public static List<VoluBoardDTO> getTenVolu(int pageCount) throws SQLException{
+		SqlSession session = null;
+		List<VoluBoardDTO> list = null;
+
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==getTenVolu진입==");
+			list = session.selectList("voluboard.selectTenVolu",pageCount);
+			System.out.println("==getTenVolu종료==");
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return list;
+	}
+
 	public static boolean updateContent (VoluBoardDTO vbdto) throws SQLException{
 		SqlSession session = DBUtil.getSqlSession();
 		session.commit();
@@ -43,7 +77,7 @@ public class VoluBoardDAO {
 		return result;
 	}
 	
-	public static List<VoluBoardDTO> selectAll() throws SQLException {
+/*	public static List<VoluBoardDTO> selectAll() throws SQLException {
 		SqlSession session =null;
 		List<VoluBoardDTO> list =null;
 		try{
@@ -54,7 +88,7 @@ public class VoluBoardDAO {
 		}
 		return list;
 	}
-	public static VoluBoardDTO getContent(int  num, boolean check) throws SQLException{		
+*/	public static VoluBoardDTO getContent(int  num, boolean check) throws SQLException{		
 		SqlSession session = DBUtil.getSqlSession();
 		session.commit();
 		VoluBoardDTO vbdto = null;

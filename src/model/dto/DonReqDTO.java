@@ -8,6 +8,13 @@
  */
 package model.dto;
 
+/**
+ * 
+ * 작성자 : 장재희
+ * 
+ * 수정 2014-05-28 장재희
+ *  - 수정용 생성자 추가
+ */
 public class DonReqDTO {
 	
 	private int drno;
@@ -20,6 +27,7 @@ public class DonReqDTO {
 	
 	public DonReqDTO(){}
 	
+	// 기부하기용 생성자
 	public DonReqDTO(int userno, int itemno, int targetcntr, int qty, int price, char sent) {
 		super();
 		this.userno = userno;
@@ -28,6 +36,17 @@ public class DonReqDTO {
 		this.qty = qty;
 		this.price = price;
 		this.sent = sent;
+	}
+	
+	// 요청하기용 생성자
+	public DonReqDTO(int userno, int itemno, int qty) {
+		super();
+		this.userno = userno;
+		this.itemno = itemno;
+		this.targetcntr = 0; // targetcntr이 0이면 요청임
+		this.qty = qty;
+		this.price = 0;
+		this.sent = 'N';
 	}
 
 	public int getDrno() {

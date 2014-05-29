@@ -40,7 +40,7 @@
 </SCRIPT>
 </head>
 <body>
-			<form name="boardWriteForm" method="post" action="../control?command=missingBoardWrite"
+			<form name="boardWriteForm" method="post" action="missingBoardWrite.do"
 		 enctype="multipart/form-data" onSubmit='return checkValid()'>
 
 		<input type="hidden" name="command" value="missingBoardWrite">
@@ -138,7 +138,19 @@
 					</p>
 				</td>
 				<td width="450" height="20"><b><span
-				style="font-size: 9pt;"><input type="text" name="mage" size="10">
+				style="font-size: 9pt;"><select name="mage">
+					<option value="0">1살이하</option>
+					<option value="1">1살</option>
+					<option value="2">2살</option>
+					<option value="3">3살</option>
+					<option value="4">4살</option>
+					<option value="5">5살</option>
+					<option value="6">6살</option>
+					<option value="7">7살</option>
+					<option value="8">8살</option>
+					<option value="9">9살</option>
+					<option value="10">10살이상</option>
+				</select>
 				</span></b>
 			</tr>
 			<tr>
@@ -181,7 +193,7 @@
 	</form>
 
 	<div align=center>
-		<span style="font-size: 9pt;"><a href="/gaenari/control?missingBoardList.do">
+		<span style="font-size: 9pt;"><a href="/missingBoardList.do">
 		<input type="submit" value="리스트로 돌아가기"></a></span>
 	</div>
 </body>

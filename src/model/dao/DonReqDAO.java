@@ -17,13 +17,22 @@ import org.apache.ibatis.session.SqlSession;
 import util.DBUtil;
 
 public class DonReqDAO {
-	public static List<DonReqDTO> selectAll() { // TODO
+	/**
+	 * donreq에 있는 모든 레코드를 가져옴
+	 * @param type(1이면 기부 / 0이면 기부 요청)
+	 * @return
+	 */
+	public static List<DonReqDTO> selectAll(int type) {
 		SqlSession session = null;
 		List<DonReqDTO> list = null;
 		
 		try {
 			session = DBUtil.getSqlSession();
-			list = session.selectList("donreq.selectAll"); 
+			if(type == 0) {
+				list = session.selectList("donreq.selectReqAll"); 
+			} else {
+				list = session.selectList("donreq.selectDonAll");
+			}
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -73,7 +82,7 @@ public class DonReqDAO {
 		return res;
 	}
 
-	public static boolean donnate(DonReqDTO donnation) {
+	public static boolean insertDonReq(DonReqDTO donnation) {
 		boolean res = false;
 		SqlSession session = null;
 		
@@ -87,20 +96,36 @@ public class DonReqDAO {
 		return res;
 	}
 
-	public static int send(int drno) {
+	public static int send(DonReqDTO dr) {
 		int res = 0;
 		SqlSession session = null;
 		boolean commit = false;
 		
 		try {
 			session = DBUtil.getSqlSession();
-			res = session.update("donreq.sendOne", drno);
-			
+			res = session.update("donreq.sendOne", dr.getDrno());
 			commit = res > 0 ? true : false;
+			if(commit) {
+				commit = (session.update("u.updatePoint", dr) > 0)? true : false;
+			}
 		} finally {
 			DBUtil.closeSession(session, commit);
 		}
 		
+		return res;
+	}
+
+	public static List<DonReqDTO> selectByUserno(int userno) {
+		SqlSession session = null;
+		List<DonReqDTO> res = null;
+		
+		try {
+			session = DBUtil.getSqlSession();
+			res = session.selectList("donreq.selectByUserno", userno);
+		} finally {
+			DBUtil.closeSession(session);
+		}
+				
 		return res;
 	}
 	
