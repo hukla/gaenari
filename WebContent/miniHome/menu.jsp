@@ -16,12 +16,12 @@
 			<td width="90%">
 				<font face="서울한강체">
 					<ul class="nav nav-pills nav-stacked">
-						<li><a href="/gaenari/control?command=login&userid=${requestScope.user.userid}">메인페이지</a></li>
-						<li><a href="/gaenari/control?command=calendar&userid=${requestScope.user.userid}">달력</a></li>
-						<li><a href="/gaenari/control?command=diaryList&userid=${requestScope.user.userid}">일기</a></li>
-						<li><a href="/gaenari/control?command=planList&userid=${requestScope.user.userid}">일정</a></li>
-						<li><a href="/gaenari/control?command=visitList&userid=${requestScope.user.userid}">방명록</a></li>
-						<li><a href="/gaenari/control?command=friends&userid=${requestScope.user.userid}">친구목록</a></li>
+						<li><a href="/gaenari/login.do?userid=${requestScope.user.userid}">메인페이지</a></li>
+						<li><a href="/gaenari/calendar.do?userid=${requestScope.user.userid}">달력</a></li>
+						<li><a href="/gaenari/diaryList.do?userid=${requestScope.user.userid}">일기</a></li>
+						<li><a href="/gaenari/planList.do?userid=${requestScope.user.userid}">일정</a></li>
+						<li><a href="/gaenari/visitList.do?userid=${requestScope.user.userid}">방명록</a></li>
+						<li><a href="/gaenari/friends.do?userid=${requestScope.user.userid}">친구목록</a></li>
 					</ul>
 				</font>
 			</td>

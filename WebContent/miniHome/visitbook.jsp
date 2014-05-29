@@ -49,7 +49,7 @@
 				<c:forEach items="${sessionScope.visitAllList}" var="visit">
 					<tr>
 						<td>
-							<form action="/gaenari/writeVisit.do">
+							<form action="/gaenari/writeVisit.do" method="post">
 								<table border="0" align="center" width="783"
 									style="outline-style: double;">
 									<tr>

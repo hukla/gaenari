@@ -17,12 +17,12 @@ public class LogoutAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url = "/login/error.jsp";
+		String url = "/error.jsp";
 		HttpSession session = request.getSession();
 		
 		session.invalidate();
 		try{
-			url = "login.jsp";
+			url = "/login.jsp";
 		}catch(Exception e){
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

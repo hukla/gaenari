@@ -20,7 +20,7 @@ public class VisitBookAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		UserDTO user = null;
 		String userid = null;
 		List<BoardDTO> visitList = null;

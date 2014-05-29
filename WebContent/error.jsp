@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>에러 처리 page</title>
 </head>
 <body>
-Error!!
+	<script type="text/javascript">
+		alert('${requestScope.errorMsg}');
+		history.back();
+	</script>
 </body>
 </html>

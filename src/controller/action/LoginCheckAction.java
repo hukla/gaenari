@@ -83,7 +83,7 @@ public class LoginCheckAction implements Action {
 		List<BoardDTO> diaryList = null;
 		List<BoardDTO> visitList = null;
 		HttpSession session = request.getSession();
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		
 		try {
 			//14-05-25 성훈추가: 친구아이디인지 내아이디인지 구분하기

@@ -71,7 +71,7 @@
 				<!-- 자기가 설정한 메인사진 -->
 
 				<div align="center">
-					<img src="http://localhost:9000/gaenari/image/hoonc.jpg">
+					<img src="/gaenari/image/hoonc.jpg">
 				</div> <br>
 				<div align="center">${sessionScope.user.username}</div>
 			</td>
@@ -83,7 +83,7 @@
 						<c:forEach items="${requestScope.planList}" var="plan">
 							<ul>
 								<li>
-									<a href="control?command=planDetail&brdno=${plan.brdno}&userid=${requestScope.user.userid}"> 
+									<a href="/gaenari/planDetail.do?brdno=${plan.brdno}&userid=${requestScope.user.userid}"> 
 										${plan.title} - ${plan.wrdate} 
 									</a>
 								</li>
@@ -98,7 +98,7 @@
 						<c:forEach items="${requestScope.diary}" var="diary">
 							<ul>
 								<li>
-									<a href="control?command=diaryDetail&brdno=${diary.brdno}&userid=${requestScope.user.userid}">
+									<a href="/gaenari/diaryDetail.do?brdno=${diary.brdno}&userid=${requestScope.user.userid}">
 										${diary.title} - ${diary.wrdate}
 									</a>
 								</li>
@@ -118,7 +118,7 @@
 						<c:forEach items="${requestScope.visit}" var="visit">
 							<ul>
 								<li>
-									<a href="control?command=visitDetail&brdno=${visit.brdno}&userid=${requestScope.user.userid}">
+									<a href="/gaenari/visitDetail.do?brdno=${visit.brdno}&userid=${requestScope.user.userid}">
 										${visit.userid} - ${visit.wrdate}
 									</a>
 								</li>

@@ -31,7 +31,7 @@ public class UpdateFormPlanAction implements Action {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		String url="login/error.jsp";
+		String url="/error.jsp";
 		BoardDTO boardDTO = null;
 		String chosenDate = null;	//등록할 때 선택했던 날짜형태(yyyy-mm-dd)
 		String date = null;			//수정페이지에서 보여줄 날짜형태(mm/dd/yyyy)

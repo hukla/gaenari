@@ -98,17 +98,17 @@
 						<!-- 14-05-21 성훈 수정: 이전 글, 다음 글 index로 이동, 수정, 삭제하기 기능 -->
 						<td align="center" colspan="2" height="7%">
 							<form action="/gaenari/control" method="post" name="requestForm">
-								<input type="button" onclick="location.href='/gaenari/control?command=diaryDetail&index=${requestScope.index - 1}&userid=${requestScope.user.userid}'" value="이전 글"> 
+								<input type="button" onclick="location.href='/gaenari/diaryDetail.do?index=${requestScope.index - 1}&userid=${requestScope.user.userid}'" value="이전 글"> 
 								&nbsp;&nbsp;&nbsp;&nbsp; 
 								<c:if test="${requestScope.user.userid eq sessionScope.userid }">
-									<input type="button" onclick="location.href='/gaenari/control?command=updateFormDiary&brdno=${requestScope.oneDiary.brdno}&userid=${requestScope.user.userid}'" value="수정하기">
+									<input type="button" onclick="location.href='/gaenari/updateFormDiary.do?brdno=${requestScope.oneDiary.brdno}&userid=${requestScope.user.userid}'" value="수정하기">
 									&nbsp;&nbsp;&nbsp;&nbsp; 
 									<input type="hidden" name="command" value="">
 									<input type="hidden" name="brdno" value="${requestScope.oneDiary.brdno}"> 
 									<input type="submit" onclick="javascript:deleteCheck();" value="삭제하기">
 									&nbsp;&nbsp;&nbsp;&nbsp; 
 								</c:if>
-								<input type="button" onclick="location.href='/gaenari/control?command=diaryDetail&index=${requestScope.index + 1}&userid=${requestScope.user.userid}'" value="다음 글">
+								<input type="button" onclick="location.href='/gaenari/diaryDetail.do?index=${requestScope.index + 1}&userid=${requestScope.user.userid}'" value="다음 글">
 							</form>
 						</td>
 					</tr>

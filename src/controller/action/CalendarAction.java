@@ -36,7 +36,7 @@ public class CalendarAction implements Action {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		int date,month,year=0;
 		String wrdate,today=null;
 		List<DiaryDTO> dlist = null;

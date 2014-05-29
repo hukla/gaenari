@@ -49,7 +49,7 @@ public class MallRequestAction implements Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
-			url = "error.jsp";
+			url = "/error.jsp";
 		}
 		// 성공 페이지에서 결과 출력하기 위해 attribute 설정
 		request.setAttribute("donrequest", donrequest);

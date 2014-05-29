@@ -50,7 +50,7 @@ public class OneDiaryAction implements Action {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		String [] oneDiaryContents = null;
 		List<DiaryDTO> dlist = null;
 		BoardDTO oneDiary = null;

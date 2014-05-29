@@ -29,7 +29,7 @@ public class MallUpdateFormAction implements Action {
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
-			url = "error.jsp";
+			url = "/error.jsp";
 		}
 		request.setAttribute("selectedItem", item);
 		request.getRequestDispatcher(url).forward(request, response);

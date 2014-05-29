@@ -19,7 +19,7 @@ public class FriendsAction implements Action {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		String userid = null;
 		UserDTO user = null;
 		//List<String> friends = null;

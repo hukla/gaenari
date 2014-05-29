@@ -39,6 +39,6 @@ public class PtBoardUpdateAction implements Action {
 		}catch (Exception e) {
 			request.setAttribute("errorMsg", e.getMessage());
 		}
-		request.getRequestDispatcher("error.jsp").forward(request, response);
+		request.getRequestDispatcher("/error.jsp").forward(request, response);
 	}
 }

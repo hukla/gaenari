@@ -36,7 +36,7 @@ public class PlanListAction implements Action {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		String pageNumber = null;
 		String planNumber = null;
 		List<PlanDTO> tenPlans = null;

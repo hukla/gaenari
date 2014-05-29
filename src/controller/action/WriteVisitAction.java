@@ -32,7 +32,7 @@ public class WriteVisitAction implements Action {
 
 		HttpSession session = request.getSession();
 		String content = null;
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		int brdno = 0;
 		
 		try {

@@ -132,7 +132,7 @@
 								<tr height="30" style="table-layout: fixed;">
 									<td align="center">${plan.wrdate}</td>
 									<td>
-										<a href="control?command=planDetail&brdno=${plan.brdno}&userid=${requestScope.user.userid}">${plan.title}</a>
+										<a href="/gaenari/planDetail.do?brdno=${plan.brdno}&userid=${requestScope.user.userid}">${plan.title}</a>
 									</td>
 									<td align="center">${plan.ploc}</td>
 								</tr>
@@ -159,7 +159,7 @@
 									<ul class="pagination">
 										<c:choose>
 											<c:when test="${requestScope.pageNumber-1 > 0}">
-												<li><a href="control?command=planList&pageNumber=${requestScope.pageNumber-1}&userid=${requestScope.user.userid}">«</a></li>
+												<li><a href="/gaenari/planList.do?pageNumber=${requestScope.pageNumber-1}&userid=${requestScope.user.userid}">«</a></li>
 											</c:when>
 											<c:otherwise>
 												<li><a href="#">«</a></li>
@@ -169,17 +169,17 @@
 											<c:choose>
 												<c:when test="${cnt eq requestScope.pageNumber}">
 													<li class="active">
-														<a href="control?command=planList&pageNumber=${cnt}&userid=${requestScope.user.userid}">${cnt}<span class="sr-only">(current)</span></a>
+														<a href="/gaenari/planList?pageNumber=${cnt}&userid=${requestScope.user.userid}">${cnt}<span class="sr-only">(current)</span></a>
 													</li>
 												</c:when>
 												<c:otherwise>
-													<li><a href="control?command=planList&pageNumber=${cnt}&userid=${requestScope.user.userid}">${cnt}</a></li>
+													<li><a href="/gaenari/planList?pageNumber=${cnt}&userid=${requestScope.user.userid}">${cnt}</a></li>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
 										<c:choose>
 											<c:when test="${requestScope.pageNumber+1 < requestScope.pageCount+1}">
-												<li><a href="control?command=planList&pageNumber=${requestScope.pageNumber+1}&userid=${requestScope.user.userid}">»</a></li>
+												<li><a href="planList?pageNumber=${requestScope.pageNumber+1}&userid=${requestScope.user.userid}">»</a></li>
 											</c:when>
 											<c:otherwise>
 												<li><a href="#">»</a></li>

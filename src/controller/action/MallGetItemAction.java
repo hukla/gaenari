@@ -44,7 +44,7 @@ public class MallGetItemAction implements Action {
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
-			url = "error.jsp";
+			url = "/error.jsp";
 		}
 		request.setAttribute("selectedItem", item);
 		request.getSession().setAttribute("centerList", centerList); // TODO 여기에??????

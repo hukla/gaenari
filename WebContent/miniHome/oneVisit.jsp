@@ -28,12 +28,6 @@
 <body>
 	<table border="0" width="80%" height="480">
 		<tr>
-			<td width="100%" align="right">
-				<input type="button" onclick="/gaenari/visitList.do'" value="방명록전체">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			</td>
-		</tr>
-		<tr>
 			<td>
 				<table border="1" align="center" width="50%" height="80%">
 					<tr>
@@ -68,7 +62,7 @@
 					<tr>
 						<!-- 14-05-21 성훈 수정: 이전 글, 다음 글 index로 이동 -->
 						<td align="center" colspan="2" height="7%">
-							<input type="button" onclick="location.href='control?command=visitDetail&index=${requestScope.index + 1}&userid=${requestScope.user.userid}'" value="이전 글">
+							<input type="button" onclick="location.href='/gaenari/visitDetail.do?index=${requestScope.index + 1}&userid=${requestScope.user.userid}'" value="이전 글">
 							&nbsp;&nbsp;&nbsp;&nbsp; 
 							<c:if test="${requestScope.user.userid eq sessionScope.userid }">
 								<input type="button" onclick="" value="수정하기"> 
@@ -76,7 +70,7 @@
 								<input type="button" onclick="" value="삭제하기">
 								&nbsp;&nbsp;&nbsp;&nbsp; 
 							</c:if>
-							<input type="button" onclick="location.href='control?command=visitDetail&index=${requestScope.index - 1}&userid=${requestScope.user.userid}'" value="다음 글">
+							<input type="button" onclick="location.href='/gaenari/visitDetail.do?index=${requestScope.index - 1}&userid=${requestScope.user.userid}'" value="다음 글">
 						</td>
 					</tr>
 				</table>

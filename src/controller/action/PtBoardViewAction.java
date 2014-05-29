@@ -18,7 +18,7 @@ public class PtBoardViewAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String url = "error.jsp";
+		String url = "/error.jsp";
 		String ptbrdno = request.getParameter("ptbrdno");
 		boolean result=true;
 		if(request.getParameter("result")!=null){

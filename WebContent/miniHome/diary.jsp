@@ -272,7 +272,7 @@
 							<tr height="25">
 								<td colspan="2" align="center"><font size="6"> <c:choose>
 											<c:when test="${requestScope.diaryNumber < fn:length(diaryList)-1}">
-												<a href="/gaenari/control?command=diaryList&diaryNumber=${requestScope.diaryNumber+1}&userid=${requestScope.user.userid}" class="glyphicon glyphicon-chevron-left"></a>
+												<a href="/gaenari/diaryList.do?diaryNumber=${requestScope.diaryNumber+1}&userid=${requestScope.user.userid}" class="glyphicon glyphicon-chevron-left"></a>
 											</c:when>
 											<c:otherwise>
 												<a href="#" class="glyphicon glyphicon-chevron-left"></a>
@@ -282,7 +282,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:choose>
 											<c:when test="${requestScope.diaryNumber > 1}">
-												<a href="/gaenari/control?command=diaryList&diaryNumber=${requestScope.diaryNumber-1}&userid=${requestScope.user.userid}" class="glyphicon glyphicon-chevron-right"></a>
+												<a href="/gaenari/diaryList.do?diaryNumber=${requestScope.diaryNumber-1}&userid=${requestScope.user.userid}" class="glyphicon glyphicon-chevron-right"></a>
 											</c:when>
 											<c:otherwise>
 												<a href="#" class="glyphicon glyphicon-chevron-right"></a>
@@ -317,7 +317,7 @@
 									<c:forEach items="${requestScope.tenDiaries}" var="diary">
 										<tr height="30" style="table-layout: fixed;">
 											<td align="center">${diary.wrdate}</td>
-											<td><a href="control?command=diaryDetail&brdno=${diary.brdno}&userid=${requestScope.user.userid}">
+											<td><a href="/gaenari/diaryDetail.do?brdno=${diary.brdno}&userid=${requestScope.user.userid}">
 													${diary.title}
 												</a>
 											</td>
@@ -347,7 +347,7 @@
 											<ul class="pagination">
 												<c:choose>
 													<c:when test="${requestScope.pageNumber-1 > 0}">
-														<li><a href="control?command=diaryList&pageNumber=${requestScope.pageNumber-1}&userid=${requestScope.user.userid}">«</a></li>
+														<li><a href="/gaenari/diaryList.do?pageNumber=${requestScope.pageNumber-1}&userid=${requestScope.user.userid}">«</a></li>
 													</c:when>
 													<c:otherwise>
 														<li><a href="#">«</a></li>
@@ -357,19 +357,19 @@
 													<c:choose>
 														<c:when test="${cnt eq requestScope.pageNumber}">
 															<li class="active">
-																<a href="control?command=diaryList&pageNumber=${cnt}&userid=${requestScope.user.userid}">
+																<a href="/gaenari/diaryList.do?pageNumber=${cnt}&userid=${requestScope.user.userid}">
 																	${cnt}<span class="sr-only">(current)</span>
 																</a>
 															</li>
 														</c:when>
 														<c:otherwise>
-															<li><a href="control?command=diaryList&pageNumber=${cnt}&userid=${requestScope.user.userid}">${cnt}</a></li>
+															<li><a href="/gaenari/diaryList.do?pageNumber=${cnt}&userid=${requestScope.user.userid}">${cnt}</a></li>
 														</c:otherwise>
 													</c:choose>
 												</c:forEach>
 												<c:choose>
 													<c:when test="${requestScope.pageNumber+1 < requestScope.pageCount+1}">
-														<li><a href="control?command=diaryList&pageNumber=${requestScope.pageNumber+1}&userid=${requestScope.user.userid}">»</a></li>
+														<li><a href="/gaenari/diaryList.do?pageNumber=${requestScope.pageNumber+1}&userid=${requestScope.user.userid}">»</a></li>
 													</c:when>
 													<c:otherwise>
 														<li><a href="#">»</a></li>

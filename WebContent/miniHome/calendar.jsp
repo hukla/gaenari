@@ -89,7 +89,7 @@ A:hover {text-decoration:none; color:'ff9900'}
 	/* calStr+="<td style='text-align: left;vertical-align: top;'><font size='4'>" */
   }
 	
-  calStr+="<a href='/gaenari/control?command=calendar&userid=${requestScope.user.userid}&date="+dayCount+"&month="+(parseInt(month)+1)+"&year="+nowy+"'>" // 링크설정
+  calStr+="<a href='/gaenari/calendar.do?userid=${requestScope.user.userid}&date="+dayCount+"&month="+(parseInt(month)+1)+"&year="+nowy+"'>" // 링크설정
 	//지운거 여깄다 (nowm+1)
   calStr+=dayCount++   // 날짜
   
@@ -154,7 +154,7 @@ A:hover {text-decoration:none; color:'ff9900'}
 				<h3>일정</h3> <c:choose>
 					<c:when test="${not empty requestScope.plist}">
 						<c:forEach items="${requestScope.plist}" var="plan">
-							<a href="/gaenari/control?command=planDetail&brdno=${plan.brdno}&userid=${requestScope.user.userid}">
+							<a href="/gaenari/planDetail.do?brdno=${plan.brdno}&userid=${requestScope.user.userid}">
 								<h4>${plan.title}- ${plan.wrdate}</h4>
 							</a>
 						</c:forEach>
@@ -170,7 +170,7 @@ A:hover {text-decoration:none; color:'ff9900'}
 				<h3>일기</h3> <c:choose>
 					<c:when test="${not empty requestScope.dlist}">
 						<c:forEach items="${requestScope.dlist}" var="diary">
-							<a href="/gaenari/control?command=diaryDetail&brdno=${diary.brdno}&userid=${requestScope.user.userid}">
+							<a href="/gaenari/diaryDetail.do?brdno=${diary.brdno}&userid=${requestScope.user.userid}">
 								<h4>${diary.title}- ${diary.wrdate}</h4>
 							</a>
 						</c:forEach>

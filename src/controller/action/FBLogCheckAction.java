@@ -23,7 +23,7 @@ public class FBLogCheckAction implements Action {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		String email,username = null;
 		UserDTO user = null;
 		

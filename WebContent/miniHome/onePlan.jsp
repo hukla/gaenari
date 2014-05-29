@@ -101,24 +101,24 @@
 					<!-- 14-05-14 성훈 추가: 이전 글, 다음 글 보기 -->
 					<!-- 14-05-16 01:03 성훈추가 이전글,다음글 해결하고싶다 -->
 					<!-- 14-05-21 성훈 수정: 이전 글, 다음 글 index로 이동, 수정, 삭제추가 -->
-					<input type="button" onclick="location.href='control?command=planDetail&index=${requestScope.index -1}&userid=${requestScope.user.userid}'" value="이전 글">
+					<input type="button" onclick="location.href='/gaenari/planDetail.do?index=${requestScope.index -1}&userid=${requestScope.user.userid}'" value="이전 글">
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<c:if test="${requestScope.user.userid eq sessionScope.userid }">
-						<input type="button" onclick="location.href='control?command=updateFormPlan&brdno=${requestScope.onePlan.brdno}&userid=${requestScope.user.userid}'" value="수정하기"> 
+						<input type="button" onclick="location.href='/gaenari/updateFormPlan.do?brdno=${requestScope.onePlan.brdno}&userid=${requestScope.user.userid}'" value="수정하기"> 
 						&nbsp;&nbsp;&nbsp;&nbsp; 
 						<input type="hidden" name="command" value="">
 						<input type="hidden" name="brdno" value="${requestScope.onePlan.brdno}">
 						<input type="submit" onclick="javascript:deleteCheck();" value="삭제하기">
 						&nbsp;&nbsp;&nbsp;&nbsp; 
 					</c:if>
-					<input type="button" onclick="location.href='control?command=planDetail&index=${requestScope.index +1}&userid=${requestScope.user.userid}'" value="다음 글">
+					<input type="button" onclick="location.href='/gaenari/planDetail.do?index=${requestScope.index +1}&userid=${requestScope.user.userid}'" value="다음 글">
 					<ul class="pager">
-						<li><a href="control?command=planDetail&index=${requestScope.index +1}&userid=${requestScope.user.userid}">Previous</a></li>
+						<li><a href="/gaenari/planDetail.do?index=${requestScope.index +1}&userid=${requestScope.user.userid}">Previous</a></li>
 						<c:if test="${requestScope.user.userid eq sessionScope.userid }">
-							<li><a href="control?command=updateFormPlan&brdno=${requestScope.onePlan.brdno}&userid=${requestScope.user.userid}">수정하기</a></li>
+							<li><a href="/gaenari/updateFormPlan.do?brdno=${requestScope.onePlan.brdno}&userid=${requestScope.user.userid}">수정하기</a></li>
 							<li><a href="javascript:deleteCheck();">삭제하기</a></li>
 						</c:if>
-						<li><a href="control?command=planDetail&index=${requestScope.index -1}&userid=${requestScope.user.userid}">Next</a></li>
+						<li><a href="/gaenari/planDetail.do?index=${requestScope.index -1}&userid=${requestScope.user.userid}">Next</a></li>
 					</ul>
 				</form>
 			</td>

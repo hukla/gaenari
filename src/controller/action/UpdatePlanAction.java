@@ -27,7 +27,7 @@ public class UpdatePlanAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		String title,brdcontent,wrdate,tmpdate,ploc,brdno=null;
 		
 		try{

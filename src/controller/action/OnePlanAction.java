@@ -46,7 +46,7 @@ public class OnePlanAction implements Action {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		List<PlanDTO> plist = null;
 		BoardDTO onePlan = null;
 		PlanDTO planDTO = null;

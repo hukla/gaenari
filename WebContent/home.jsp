@@ -46,7 +46,7 @@
 <script type="text/javascript">
 function addDog() {
 	var newwindow;
-	var url = "control?command=addDog&userid=${sessionScope.user.userid}";
+	var url = "/gaenari/addDog.do?userid=${sessionScope.user.userid}";
 	
 	newwindow = window.open(url, '강아지등록 페이지', 'height=550,width=660');
 	if(window.focus) {

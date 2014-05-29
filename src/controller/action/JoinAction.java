@@ -26,7 +26,7 @@ public class JoinAction implements Action {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		String url="login/error.jsp";
+		String url="/error.jsp";
 		String userid,pwd,pwd1,addr,username,type,email=null;
 		
 		try{

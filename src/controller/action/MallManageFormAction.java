@@ -30,7 +30,7 @@ public class MallManageFormAction implements Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
-			url = "error.jsp";
+			url = "/error.jsp";
 		}
 		request.getSession().setAttribute("itemList", ItemDAO.selectAll());
 		//request.getSession().setAttribute("donreq", DonReqDAO.selectAll());

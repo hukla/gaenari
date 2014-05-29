@@ -15,7 +15,7 @@ public class VoluBoardUpdateFormAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url = "error.jsp";
+		String url = "/error.jsp";
 		String vbrdno=request.getParameter("vbrdno");
 		try{
 			if(vbrdno == null || vbrdno.trim().length() == 0){

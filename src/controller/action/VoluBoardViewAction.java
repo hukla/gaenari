@@ -17,7 +17,7 @@ public class VoluBoardViewAction implements Action {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String url = "error.jsp";
+		String url = "/error.jsp";
 		String vbrdno = request.getParameter("vbrdno");
 		boolean result=true;
 		if(request.getParameter("result")!=null){

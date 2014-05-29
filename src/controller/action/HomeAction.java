@@ -48,7 +48,7 @@ public class HomeAction implements Action {
 		UserDTO loginUser = null;
 		List<DogDTO> dog = null;
 		HttpSession session = request.getSession();
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		
 		if(mth<10)	month = "0"+Integer.toString(mth);
 		else	month = Integer.toString(mth);
@@ -79,7 +79,7 @@ public class HomeAction implements Action {
 					session.setAttribute("user", loginUser);
 					session.setAttribute("dog", dog);
 				
-					url = "home.jsp";
+					url = "/home.jsp";
 				}
 			}
 		} catch (SQLException e) {

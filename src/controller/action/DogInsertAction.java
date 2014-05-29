@@ -20,7 +20,7 @@ public class DogInsertAction implements Action {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		String dogName,dogBirth,dogType=null;
 		UserDTO user = null;
 		List<DogDTO> dog = null;

@@ -15,7 +15,7 @@ public class PtBoardUpdateFormAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url = "error.jsp";
+		String url = "/error.jsp";
 		String ptbrdno=request.getParameter("ptbrdno");
 		System.out.println(ptbrdno);
 		try{

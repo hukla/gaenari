@@ -32,7 +32,7 @@ public class UpdateDiaryAction implements Action{
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		String title,brdcontent,mood,brdno=null;
 		MultipartRequest multi = null;
 		BoardDTO boardDTO = null;

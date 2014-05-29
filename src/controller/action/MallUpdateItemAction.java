@@ -73,7 +73,7 @@ public class MallUpdateItemAction implements Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
-			url = "error.jsp";
+			url = "/error.jsp";
 		}
 		
 		request.setAttribute("operation", operation);

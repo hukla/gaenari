@@ -37,7 +37,7 @@ public class OneVisitAction implements Action {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		List<VisitDTO> vlist = null;
 		VisitDTO visitDTO = null;
 		BoardDTO oneVisit = null;

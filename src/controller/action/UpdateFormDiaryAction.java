@@ -30,7 +30,7 @@ public class UpdateFormDiaryAction implements Action {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		String url="login/error.jsp";
+		String url="/error.jsp";
 		BoardDTO boardDTO = null;
 		String brdcontent = null;
 		String diaryImg = null;

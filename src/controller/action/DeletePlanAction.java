@@ -20,7 +20,7 @@ public class DeletePlanAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String url = "login/error.jsp";
+		String url = "/error.jsp";
 		String brdno = null;
 		try{
 			brdno = request.getParameter("brdno");

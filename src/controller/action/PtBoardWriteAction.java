@@ -39,7 +39,7 @@ public class PtBoardWriteAction implements Action {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 		}
-		request.getRequestDispatcher("error.jsp").forward(request, response);
+		request.getRequestDispatcher("/error.jsp").forward(request, response);
 	}
 
 }
