@@ -15,11 +15,11 @@
 3. 친구검색하기<br>
 4. 추천받은 친구목록보기<br>
 
-<a href="/gaenari/login.do&userid=hukla">hukla</a><br>
-<a href="/gaenari/login.do&userid=lyuel">lyuel</a><br>
-<a href="/gaenari/login.do&userid=hukla">admin</a><br>
-<a href="/gaenari/login.do&userid=csh8908">csh8908</a><br>
-<a href="/gaenari/login.do&userid=csh0806">csh0806</a><br>
+<a href="/gaenari/miniHome.do?userid=hukla">hukla</a><br>
+<a href="/gaenari/miniHome.do?userid=lyuel">lyuel</a><br>
+<a href="/gaenari/miniHome.do?userid=hukla">admin</a><br>
+<a href="/gaenari/miniHome.do?userid=csh8908">csh8908</a><br>
+<a href="/gaenari/miniHome.do?userid=csh0806">csh0806</a><br>
 </body>
 </html>
 <%@ include file="/bottom.jsp"%>

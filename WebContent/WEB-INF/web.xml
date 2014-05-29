@@ -42,6 +42,7 @@
     <url-pattern>/miniHome/*</url-pattern>
     <url-pattern>/control</url-pattern>
     <url-pattern>*.do</url-pattern>
+    <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
 	  
 	<!-- sitemesh -->

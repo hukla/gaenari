@@ -67,7 +67,7 @@ import model.dto.UserDTO;
  * 		 session스코프 컨트롤은 HomeAction에서 하도록 한다.
  */
 
-public class LoginCheckAction implements Action {  
+public class MinihomeMainAction implements Action {  
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{  
 		

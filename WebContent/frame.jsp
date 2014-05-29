@@ -56,7 +56,7 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">내 홈피<b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/gaenari/login.do">메인페이지</a></li>
+          <li><a href="/gaenari/miniHome.do">메인페이지</a></li>
           <li><a href="/gaenari/calendar.do">달력보기</a></li>
           <li><a href="/gaenari/visitList.do">방명록</a></li>
           <li><a href="/gaenari/friends.do">친구관리</a></li>

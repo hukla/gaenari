@@ -55,7 +55,7 @@ public class SessionFilter implements Filter {
 		if(session.isNew()){
 			System.out.println("session  null임!");
 			if(email==null && username==null){
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("/gaenari/login.do");
 			}
 		}else{
 			String userid = null;
