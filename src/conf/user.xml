@@ -3,6 +3,7 @@
 <!-- 다수의 xml 문서 자체를 구분하기 위한 xml 문서 별칭 -->
 <mapper namespace="u">
 
+
 	
 	<!-- 14-05-20 성훈수정: 로그인 아이디만 보내도록 수정 -->
 	<select id="getOneLoginUser" parameterType="String" resultType="UserDTO" >
@@ -23,4 +24,24 @@
 	<update id="updatePoint" parameterType="model.dto.DonReqDTO">
 		UPDATE userinfo SET point = point + #{price}*0.05 WHERE userno=#{userno}
 	</update>
+	
+	<!-- 2014-05-29 성훈추가: 이름으로 user정보얻어 dogDTO로 담아보내기 -->
+	<select id="getUserByname" parameterType="String" resultType="DogDTO" >
+		SELECT username,userid,dogname,dogkind,address FROM userinfo u JOIN dog d 
+		ON u.userno = d.userno AND username LIKE '%'||#{username}||'%'
+	</select>
+	
+	<!-- 2014-05-29 성훈추가: 주소로 user정보얻어 dogDTO로 담아보내기 -->
+	<select id="getUserByAddr" parameterType="String" resultType="DogDTO" >
+		SELECT username,userid,dogname,dogkind,address FROM userinfo u JOIN dog d 
+		ON u.userno = d.userno AND address LIKE '%'||#{address}||'%'
+	</select>
+	
+	<!-- 2014-05-29 성훈추가: ID로 user정보얻어 dogDTO로 담아보내기 -->
+	<select id="getUserById" parameterType="String" resultType="DogDTO" >
+		SELECT u.username,u.userid,d.dogname,d.dogkind,u.address FROM userinfo u JOIN dog d 
+		ON u.userno = d.userno AND u.userid=#{userid}
+	</select>
+	
+	
 </mapper>					

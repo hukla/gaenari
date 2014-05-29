@@ -9,8 +9,12 @@ package model.dao;
  * 
  * 수정: 2014-05-24, 최성훈
  * 내용: 회원가입 메소드 추가
+ * 
+ * 수정: 2014-05-28, 최성훈
+ * 내용: 강아지정보 등록
  */
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
@@ -158,7 +162,7 @@ public class InsertDAO {
 		}
 		if(!result)	throw new SQLException("회원가입에 실패했습니다.");
 	}
-	
+	//14-05-28 성훈추가: 강아지 정보입력
 	public static void insertDoginfo(DogDTO dog) throws SQLException {
 
 		SqlSession session = null;
@@ -173,4 +177,5 @@ public class InsertDAO {
 		}
 		if(!result)	throw new SQLException("강아지 등록에 실패했습니다.");
 	}
+	
 }

@@ -38,6 +38,10 @@
 수정일: 2014-05-27
 수정내용: 	내 홈피, 친구홈피 방문의 경우를 나누기 위해 a태그 접근시 꼭
 			requestScope의 userid를 지니고 가게함.
+			
+수정: 최성훈
+수정일: 2014-05-29
+수정내용:	페이스북 메인사진 받아서 뿌리기
  -->
 </head>
 <body>
@@ -71,9 +75,9 @@
 				<!-- 자기가 설정한 메인사진 -->
 
 				<div align="center">
-					<img src="/gaenari/image/hoonc.jpg">
+					<img src="${requestScope.user.img}">
 				</div> <br>
-				<div align="center">${sessionScope.user.username}</div>
+				<div align="center">${requestScope.user.username}</div>
 			</td>
 			<td width="37%" height="40%">
 				<!-- 일정미리보기 [제목]-[날짜] 형태에 최신순으로 목록나열 -->

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.InsertDAO;
+import model.dao.UpdateDAO;
 import model.dto.UserDTO;
 /**
  * 작성: 2014-05-24
@@ -18,6 +19,10 @@ import model.dto.UserDTO;
  * 					가입돼있는 사람인지 아닌지 체크해서 가입자는
  * 					LoginCheckAction으로 보내고 가입되지 않은 사람은
  * 					join.jsp로 보내도록 하기
+ * 
+ * 수정: 2014-05-29, 최성훈
+ * 내용: 페이스북 로그인을 통해 첫 방문자인 경우 회원가입시킴.
+ * 		 가입 후, 페이스북 메인사진을 insert, 가입완료되면 welcome.jsp로 이동시킴.
  */
 public class JoinAction implements Action {
 
@@ -27,7 +32,7 @@ public class JoinAction implements Action {
 		
 		HttpSession session = request.getSession();
 		String url="/error.jsp";
-		String userid,pwd,pwd1,addr,username,type,email=null;
+		String userid,pwd,pwd1,addr,username,type,email,fbImage=null;
 		
 		try{
 			userid = request.getParameter("userid");
@@ -37,6 +42,7 @@ public class JoinAction implements Action {
 			username = request.getParameter("username");
 			type = request.getParameter("type");
 			addr = request.getParameter("addr");
+			fbImage = request.getParameter("image");
 			
 			//입력 정보 불충분시
 			if(userid==null || userid.trim().length()==0 || email==null || email.trim().length()==0
@@ -54,7 +60,10 @@ public class JoinAction implements Action {
 			session.setAttribute("userid", userid);
 			session.setAttribute("pwd", pwd);
 			request.setAttribute("email", email);
-			
+			if(fbImage!=null){
+				UpdateDAO.updateImg(userid,fbImage);
+				request.setAttribute("image", fbImage);
+			}
 			url = "welcome.jsp";
 		}catch(SQLException e){
 			e.printStackTrace();

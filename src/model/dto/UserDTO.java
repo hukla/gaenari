@@ -12,11 +12,14 @@ package model.dto;
  * 
  * 수정: 2014-05-24, 최성훈
  * 내용: 회원가입을 위한 생성자 추가
+ * 
+ * 수정: 2014-05-29, 최성훈
+ * 내용: 메인사진경로 img추가
  */
 public class UserDTO {
 	
 	private String userid;
-	
+	private String img;	//(추가)user의 메인사진 경로 
 	private String passwd;
 	private String email;
 	private String username;
@@ -101,11 +104,24 @@ public class UserDTO {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 	@Override
 	public String toString() {
-		return "UserDTO [userid=" + userid + ", passwd=" + passwd + ", email="
-				+ email + ", username=" + username + ", address=" + address
-				+ ", userno=" + userno + ", usertype=" + usertype + ", point=" + point + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserDTO [userid=").append(userid).append(", img=")
+				.append(img).append(", passwd=").append(passwd)
+				.append(", email=").append(email).append(", username=")
+				.append(username).append(", address=").append(address)
+				.append(", userno=").append(userno).append(", usertype=")
+				.append(usertype).append(", point=").append(point).append("]");
+		return builder.toString();
 	}
+	
+	
 
 }

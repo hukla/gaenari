@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
@@ -13,6 +14,9 @@ import util.DBUtil;
  * 작성: 2014-05-21
  * 작성자: 최성훈
  * 내용: 게시판정보 수정하기
+ * 
+ * 수정: 2014-05-29, 최성훈
+ * 내용: 메인사진 추가하기
  */
 public class UpdateDAO {
 
@@ -80,4 +84,23 @@ public class UpdateDAO {
 		if(!result)	throw new SQLException("일정 수정에 실패했습니다.");
 	}
 
+	// 14-05-29 성훈추가: userid에 해당하는user정보에 메인사진 경로추가
+	public static void updateImg(String userid, String image)
+			throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		HashMap<String, String> map = null;
+		try {
+			session = DBUtil.getSqlSession();
+			map = new HashMap<String, String>();
+			map.put("userid", userid);
+			map.put("img", image);
+			result = session.update("update.updateImg", map) > 0 ? true : false;
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if (!result)
+			throw new SQLException("메인사진 설정에 실패했습니다.");
+	}
 }

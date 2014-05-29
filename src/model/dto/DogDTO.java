@@ -1,6 +1,13 @@
 package model.dto;
-
-public class DogDTO{
+/**
+ * 작성: 프로젝트 시작
+ * 작성자: 최성훈
+ * 내용: 강아지정보DTO
+ * 
+ * 수정: 최성훈,2014-05-29
+ * 내용: UserDTO상속받도록 수정
+ */
+public class DogDTO extends UserDTO{
 	
 	private int dogno;
 	private String dogname;

@@ -4,23 +4,29 @@
  * 
  * 수정 2014-05-24(재희)
  * selectOne함수 추가
+ * 
+ * 수정: 2014-05-29, 최성훈
+ * id,name,addr로 user정보 얻어오기 추가
  */
 package model.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
+import model.dto.DogDTO;
 import model.dto.UserDTO;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 
-import exception.LoginException;
 import util.DBUtil;
+import exception.LoginException;
 
 public class UserDAO {
 	
 	private static final Logger log = Logger.getLogger(UserDAO.class);
-
+	
+	//userid로 User정보가져가기(UserDTO 타입반환)
 	public static UserDTO logCheck(String userid) throws SQLException, LoginException {
 		SqlSession session =null;
 		UserDTO user =null;
@@ -31,9 +37,52 @@ public class UserDAO {
 		}finally{
 			DBUtil.closeSession(session);
 		}
+		if(user==null)	throw new LoginException("User정보 없음");
+		return user;
+	}
+	//14-05-29 성훈추가: userid로 User정보가져가기(DogDTO 타입반환)
+	public static List<DogDTO> logIdCheck(String userid) throws SQLException, LoginException {
+		SqlSession session =null;
+		List<DogDTO> user =null;
+		try{
+			System.out.println("==UserDAO 진입==");
+			session = DBUtil.getSqlSession();
+			user = session.selectList("u.getUserById",userid);
+		}finally{
+			DBUtil.closeSession(session);
+		}
 		if(user==null)	throw new LoginException("정보 없음");
 		return user;
 	}
+	//14-05-29 성훈추가: username으로 User정보가져가기(DogDTO 타입반환)
+	public static List<DogDTO> logNameCheck(String username) throws SQLException, LoginException {
+		SqlSession session =null;
+		List<DogDTO> user =null;
+		try{
+			System.out.println("==UserDAO 진입==");
+			session = DBUtil.getSqlSession();
+			user = session.selectList("u.getUserByname",username);
+		}finally{
+			DBUtil.closeSession(session);
+		}
+		if(user==null)	throw new LoginException("정보 없음");
+		return user;
+	}
+	//14-05-29 성훈추가: useraddress로 User정보가져가기(DogDTO 타입반환)
+	public static List<DogDTO> logAddrCheck(String addr) throws SQLException, LoginException {
+		SqlSession session =null;
+		List<DogDTO> user =null;
+		try{
+			System.out.println("==UserDAO 진입==");
+			session = DBUtil.getSqlSession();
+			user = session.selectList("u.getUserByAddr",addr);
+		}finally{
+			DBUtil.closeSession(session);
+		}
+		if(user==null)	throw new LoginException("정보 없음");
+		return user;
+	}
+	//14-05-29 성훈추가: userid로 user정보가져가기(Exception없음)
 	public static UserDTO idCheck(String userid) throws SQLException{
 		SqlSession session =null;
 		UserDTO user =null;

@@ -17,6 +17,9 @@
 
 수정: 2014-05-28, 최성훈
 내용: 첫 방문시 가입하도록 하고 페북을 통해 받은 이메일, 아이디 뿌려주기
+
+수정: 2014-05-29, 최성훈
+내용: ui수정 및 페이스북 메인사진받아서 뿌리기
  -->
 </head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -25,7 +28,9 @@
 
 <body>
 	<h1 align="center">
-		<c:if test="${requestScope.username ne null}">${requestScope.username}님 </c:if>
+		<c:if test="${requestScope.username ne null}">
+			<img src="${requestScope.image}" width="100" class="img-rounded"><p><p>${requestScope.username}님
+		</c:if>
 		첫 방문을 환영합니다.
 	</h1>
 	<h4 align="center">회원정보를 입력해주세요</h4>
@@ -64,6 +69,9 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
+						<c:if test="${requestScope.image != null}">
+							<input type="hidden" name="image" value="${requestScope.image}">
+						</c:if>
 						<input type="hidden" name="email" value="${requestScope.email}">
 						<input type="submit" value="가입하기">
 						&nbsp;&nbsp;&nbsp;&nbsp;

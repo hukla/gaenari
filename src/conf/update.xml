@@ -27,4 +27,8 @@
 		update diaryinfo set mood=#{mood} where brdno=#{brdno}
 	</update>
 	
+	<!-- 2014-05-29 성훈추가: userid에 해당하는 user정보에 메인사진 img를 업데이트함 -->
+	<update id="updateImg" parameterType="map">
+		update userinfo set img=#{img} where userid=#{userid}
+	</update>
 </mapper>

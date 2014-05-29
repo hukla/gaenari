@@ -33,6 +33,9 @@
 
 수정: 2014-05-28, 최성훈
 내용: 로그아웃 버튼 페이스북로그아웃 연동 추가
+
+수정: 2014-05-29, 최성훈
+내용: 개인정보보기 기능추가
  -->
 </head>
 <!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
@@ -78,7 +81,7 @@
         <a href="#" class="dropdown-toggle glyphicon glyphicon-cog" data-toggle="dropdown"><b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a id="fbLogoutBtn" href="#" onclick="location.href='/gaenari/login.do'">로그아웃</a></li>
-          <li><a href="#">개인정보수정</a></li>
+          <li><a href="#" onclick="getUserinfo()">개인정보수정</a></li>
           <li><a href="#">회원탈퇴</a></li>
           <li><a href="#">개발자정보</a></li>
         </ul>
@@ -121,6 +124,16 @@
 				});
 			});
 		});
+		
+		function getUserinfo() {
+			var newwindow;
+			var url = "/gaenari/userinfo.do";
+			
+			newwindow = window.open(url, '회원정보', 'height=700,width=660,scrollbars=yes');
+			if(window.focus) {
+				newwindow.focus;
+			}
+		}
 	</script>
 </body>
 </html>

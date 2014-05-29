@@ -71,7 +71,7 @@ public class HomeAction implements Action {
 					
 					session.setAttribute("user", loginUser);
 					session.setAttribute("dog", dog);
-				
+					
 					url = "/home.jsp";
 				}
 			}

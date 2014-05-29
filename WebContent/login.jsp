@@ -38,7 +38,7 @@
 			    	FB.api('/me', function(user) {
                         if (user) {
                             var image = document.getElementById('image');
-                            image.src = 'http://graph.facebook.com/' + user.id + '/picture';
+                            image.src = 'http://graph.facebook.com/' + user.id + '/picture?type=large';
                             var name = document.getElementById('name');
                             name.innerHTML = user.name;
                             var email = document.getElementById('email');
@@ -46,7 +46,8 @@
                             
                             //이메일이랑 이름 넘기기
                         }
-                        location.href="fbLogCheck.do?email="+user.email+"&username="+user.name;
+                        location.href="fbLogCheck.do?email="+user.email+"&username="+user.name+"&image="+image.src;
+                        
                     });   
 			    } else if (response.status === 'not_authorized') {
 			    } else {
@@ -136,20 +137,19 @@
 										</tr>
 									</table>
 								</form>
-								<img id="image"/>
+								<img id="image" width="50"/>
 								<div id="name"></div>
 								<div id="email"></div>
-								<p>사용자정보 출력</p>
+								<!-- <p>사용자정보 출력</p>
 								<form action="home.do" method="post">
 									<div align="left">
-										<img id="image"/>
 										<div id="name"></div>
 										<div id="email"></div>
 										<input type="hidden" name="userid" value="hoonc"/>
 										<input type="hidden" name="pwd" value="tjdgns"/>
 									</div>
 									<input type="submit" value="submit"/>
-								</form>
+								</form> -->
 							</div>
 						</td>
 					</tr>
@@ -157,5 +157,6 @@
 			</td>
 	</table>
 </body>
+
 </html>
 <%@ include file="bottom.jsp"%>
