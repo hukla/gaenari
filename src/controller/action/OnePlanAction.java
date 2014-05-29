@@ -1,7 +1,5 @@
 package controller.action;
 
-import exception.LoginException;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -11,11 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.TestService;
-import model.UserService;
+import model.dao.TestDAO;
+import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.PlanDTO;
 import model.dto.UserDTO;
+import exception.LoginException;
 /**
  * 작성: 2014.04.21
  * 작성 목적: 일정의 상세보기 서비스 제공
@@ -67,10 +66,10 @@ public class OnePlanAction implements Action {
 			if(request.getParameter("userid")!=null){				//만약 userid 파라미터를 넘겨 받았다면
 				if(userid!=request.getParameter("userid")){			//그리고 만약 세션 userid와 파라미터userid가 다르다면
 					userid = request.getParameter("userid");		//userid에 파라미터userid를 저장하기
-					user = UserService.login(userid);
+					user = UserDAO.logCheck(userid);
 				}
 			}
-			plist = TestService.allPlanService(user);		//user정보를 이용하여 전체 일정 리스트받아오기
+			plist = TestDAO.selectAllPlan(user);			//user정보를 이용하여 전체 일정 리스트받아오기
 			for(PlanDTO dto: plist){
 				dto.setBrdcontent(dto.getBrdcontent().replaceAll("\r\n", "<br/>"));
 			}
@@ -87,19 +86,20 @@ public class OnePlanAction implements Action {
 				if(Integer.parseInt(index)<0 || Integer.parseInt(index)>plist.size()-1)	
 					throw new IndexOutOfBoundsException("페이지의 끝입니다.");
 				//이전글, 다음글 클릭하여 얻은 index가 정해진 범위를 초과하면 Exception발생!
-				planDTO = TestService.getOnePlan(plist.get(Integer.parseInt(index)).getPbrdno(),user.getUserno());
+				planDTO = TestDAO.getOnePlan(plist.get(Integer.parseInt(index)).getPbrdno(),user.getUserno());
 				//이전글, 다음글 클릭하여 얻능 index와 현재 user정보에 해당하는 planDTO가져오기
 			}
 			
 			else if(request.getParameter("brdno")!=null)//미리보기 버튼 클릭하여 들어올 경우
-				planDTO = TestService.getJustPlan(Integer.parseInt(request.getParameter("brdno")));	
+				planDTO = TestDAO.getJustPlan(Integer.parseInt(request.getParameter("brdno")));
+			
 			//14-05-26 성훈추가: 줄바꿈추가
-			//planDTO.setBrdcontent(planDTO.getBrdcontent().replaceAll("\r\n", "<br/>"));
 			for(PlanDTO dto:plist)
 				if(dto.getBrdno()==planDTO.getBrdno())	indexInt = plist.indexOf(dto);
 				//전체 일정중 현재 보여지는 일정에 해당하는 index를 구함
 			
-			onePlan = TestService.onePlanService(planDTO.getBrdno());
+			onePlan = TestDAO.selectOnePlan(planDTO.getBrdno());
+			
 			request.setAttribute("index", indexInt);	//현재 보여지는 일정의 index 번호 setAttribute
 			request.setAttribute("onePlan", onePlan);	//선택된 일정의 전체정보 setAttribute
 			request.setAttribute("user", user);

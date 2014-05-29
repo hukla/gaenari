@@ -267,6 +267,7 @@ public class TestDAO {
 		} finally {
 			DBUtil.closeSession(session);
 		}
+		if(diaryDTO == null)	throw new SQLException("페이지의 마지막입니다.");
 		return diaryDTO;
 	}
 	
@@ -288,6 +289,7 @@ public class TestDAO {
 		} finally {
 			DBUtil.closeSession(session);
 		}
+		if(planDTO == null)	throw new SQLException("페이지끝입니다.");
 		return planDTO;
 	}
 	
@@ -308,6 +310,7 @@ public class TestDAO {
 		} finally {
 			DBUtil.closeSession(session);
 		}
+		if(visitDTO == null)	throw new SQLException("페이지끝입니다.");
 		return visitDTO;
 	}
 

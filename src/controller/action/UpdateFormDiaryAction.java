@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.TestService;
-import model.UserService;
+import model.dao.TestDAO;
+import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.UserDTO;
 /**
@@ -43,10 +43,10 @@ public class UpdateFormDiaryAction implements Action {
 			if(userid==null){
 				userid = (String) session.getAttribute("userid");
 			}
-			user = UserService.login(userid);
+			user = UserDAO.logCheck(userid);
 			brdno = request.getParameter("brdno");
 			if(brdno.equals(null) || brdno.trim().length()==0)	throw new Exception("일기정보가 없습니다.");
-			boardDTO = TestService.oneDiaryService(Integer.parseInt(brdno));
+			boardDTO = TestDAO.selectOneDiary(Integer.parseInt(brdno));
 			brdcontent = boardDTO.getBrdcontent().split("!split!")[1];
 			diaryImg = boardDTO.getBrdcontent().split("!split!")[0];
 			

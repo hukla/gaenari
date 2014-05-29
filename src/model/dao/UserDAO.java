@@ -14,13 +14,14 @@ import model.dto.UserDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 
+import exception.LoginException;
 import util.DBUtil;
 
 public class UserDAO {
 	
 	private static final Logger log = Logger.getLogger(UserDAO.class);
 
-	public static UserDTO logCheck(String userid) throws SQLException {
+	public static UserDTO logCheck(String userid) throws SQLException, LoginException {
 		SqlSession session =null;
 		UserDTO user =null;
 		try{
@@ -30,9 +31,20 @@ public class UserDAO {
 		}finally{
 			DBUtil.closeSession(session);
 		}
+		if(user==null)	throw new LoginException("정보 없음");
 		return user;
 	}
-	
+	public static UserDTO idCheck(String userid) throws SQLException{
+		SqlSession session =null;
+		UserDTO user =null;
+		try{
+			session = DBUtil.getSqlSession();
+			user = session.selectOne("u.getOneLoginUser",userid);
+		}finally{
+			DBUtil.closeSession(session);
+		}
+		return user;
+	}	
 	//14-05-28 성훈추가: 이메일로 user정보 받아넘기기
 	public static UserDTO emailCheck(String email) throws SQLException {
 		SqlSession session =null;

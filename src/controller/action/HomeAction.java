@@ -10,15 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.DogService;
-import model.TestService;
-import model.UserService;
-import model.dto.BoardDTO;
+import model.dao.DogDAO;
+import model.dao.UserDAO;
 import model.dto.DogDTO;
 import model.dto.UserDTO;
-
-import org.apache.log4j.Logger;
-
 import exception.LoginException;
 /**
  * 작성: 최성훈
@@ -66,15 +61,13 @@ public class HomeAction implements Action {
 		if(request.getParameter("pwd")!=null)	pwd = request.getParameter("pwd");
 		try {
 			if (userid.equals(null) || userid.length() == 0 || pwd.equals(null) || pwd.length() == 0) {
-				throw new LoginException("아이디와 비밀번호를 모두 입력해주세요.");
-				// 14-05-20 성훈 추가: LoginException 추가
+				throw new LoginException("아이디와 비밀번호를 모두 입력해주세요.");	// 14-05-20 성훈 추가: LoginException 추가
 			} else {
-				loginUser = UserService.login(userid);
+				loginUser = UserDAO.logCheck(userid);
 				if(!pwd.equals(loginUser.getPasswd())){
-					throw new LoginException("비밀번호를 확인해주세요.");
-					// 14-05-20 성훈 추가: LoginException 추가
+					throw new LoginException("비밀번호를 확인해주세요.");			// 14-05-20 성훈 추가: LoginException 추가
 				}else{
-					dog = DogService.getInfo(new DogDTO(loginUser));
+					dog = DogDAO.getInfo(new DogDTO(loginUser));
 					
 					session.setAttribute("user", loginUser);
 					session.setAttribute("dog", dog);

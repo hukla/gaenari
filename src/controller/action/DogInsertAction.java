@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.InsertService;
-import model.TestService;
+import model.dao.InsertDAO;
+import model.dao.TestDAO;
 import model.dto.DogDTO;
 import model.dto.UserDTO;
 
@@ -48,11 +48,13 @@ public class DogInsertAction implements Action {
 			if(nowMonth-prmMonth<0){
 				dogage = (dogage*12 - Math.abs(nowMonth-prmMonth))/12;
 			}
-			InsertService.insertDoginfo(new DogDTO(dogName,dogage,dogType,user.getUserno()));
-			dog = TestService.getMyDogInfo(user.getUserno());
+			
+			InsertDAO.insertDoginfo(new DogDTO(dogName,dogage,dogType,user.getUserno()));
+			dog = TestDAO.getMyDogInfo(user.getUserno());
 			request.setAttribute("user", user);
 			request.setAttribute("dog", dog);
 			url="dogComplete.jsp";
+			
 		}catch(Exception e){
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.TestService;
-import model.UserService;
+import model.dao.TestDAO;
+import model.dao.UserDAO;
 import model.dto.DiaryDTO;
 import model.dto.PlanDTO;
 import model.dto.UserDTO;
@@ -51,7 +51,7 @@ public class CalendarAction implements Action {
 			if(request.getParameter("userid")!=null){				//만약 userid 파라미터를 넘겨 받았다면
 				if(userid!=request.getParameter("userid")){			//그리고 만약 세션 userid와 파라미터userid가 다르다면
 					userid = request.getParameter("userid");		//userid에 파라미터userid를 저장하기
-					user = UserService.login(userid);
+					user = UserDAO.logCheck(userid);
 				}
 			}
 			//14-05-26 성훈추가: 세션에서 현재 날짜, 월, 년도, 오늘날짜 받아오기
@@ -60,8 +60,9 @@ public class CalendarAction implements Action {
 			year = (int) session.getAttribute("toYear");
 			today = (String) session.getAttribute("today");	
 			
-			dlist = TestService.getDiaryBydate(today,userid);		//오늘날짜와 아이디 넘겨서 일기리스트받기
-			plist = TestService.getPlanBydate(today,userid);		//오늘날짜와 아이디 넘겨서 일정리스트받기
+			dlist = TestDAO.getDiaryBydate(today, userid);		//오늘날짜와 아이디 넘겨서 일기리스트받기
+			plist = TestDAO.getPlanBydate(today, userid);		//오늘날짜와 아이디 넘겨서 일정리스트받기
+			
 			
 			//14-05-26 성훈추가: 날짜 파라미터를 받았을 때
 			if(request.getParameter("date")!=null && request.getParameter("month")!=null 
@@ -71,8 +72,8 @@ public class CalendarAction implements Action {
 				year=Integer.parseInt(request.getParameter("year"));		//대체한다.
 				
 				wrdate = year+"-"+month+"-"+date;
-				dlist = TestService.getDiaryBydate(wrdate,userid);			//달력에서 받은 날짜 파라미터로 일기리스트받기
-				plist = TestService.getPlanBydate(wrdate,userid);			//달력에서 받은 날짜 파라미터로 일정리스트받기
+				dlist = TestDAO.getDiaryBydate(wrdate, userid);			//달력에서 받은 날짜 파라미터로 일기리스트받기
+				plist = TestDAO.getPlanBydate(wrdate, userid);			//달력에서 받은 날짜 파라미터로 일정리스트받기
 			}
 			
 			request.setAttribute("dlist", dlist);		//현재날짜 or 달력에서 클릭한 날짜의 일기리스트 setAttribute

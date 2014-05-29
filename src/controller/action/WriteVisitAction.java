@@ -8,10 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.InsertService;
+import model.dao.InsertDAO;
 import model.dto.BoardDTO;
 import model.dto.UserDTO;
-import model.dto.VisitDTO;
 /**
  * 작성일: 2014-04-26
  * 작성자: 최성훈
@@ -47,9 +46,9 @@ public class WriteVisitAction implements Action {
 						(int) ((UserDTO) session.getAttribute("user")).getUserno());
 				// 현재 시간과 보드 타입 "vi"와 userno를 넣어준다.
 
-				brdno = InsertService.insertVisitBoard(boardDTO);
+				brdno = InsertDAO.insertVisitBoard(boardDTO);
 				System.out.println("인서트된 보드넘버" + brdno);
-				InsertService.insertVisitbook(brdno);
+				InsertDAO.insertVisitbook(brdno);
 				// 보드DTO와 방명록DTO에 받은 값들을 입력해준다.
 			}
 			url = "/visitList.do";

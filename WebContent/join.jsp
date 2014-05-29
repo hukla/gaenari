@@ -67,7 +67,7 @@
 						<input type="hidden" name="email" value="${requestScope.email}">
 						<input type="submit" value="가입하기">
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="button" value="취소하기" id="fbLogoutBtn" onclick="location.href='/gaenari/logout.do'">
+						<input type="button" value="취소하기" id="fbLogoutBtn" onclick="location.href='/gaenari/login.do'">
 					</td>
 				</tr>
 			</table>

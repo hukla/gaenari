@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.InsertService;
+import model.dao.InsertDAO;
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
 import model.dto.UserDTO;
@@ -94,8 +94,8 @@ public class WriteDiaryAction implements Action {
 							(int) ((UserDTO) session.getAttribute("user")).getUserno());
 					// 현재 시간과 보드 타입 "dy"와 userno를 넣어준다.
 				}
-				brdno = InsertService.insertDiaryBoard(boardDTO);	//boardDTO를 insert하며 해당 brdno를 가져옴
-				InsertService.insertDiary(new DiaryDTO(brdno, mood));
+				brdno = InsertDAO.insertDiaryBoard(boardDTO);		//boardDTO를 insert하며 해당 brdno를 가져옴
+				InsertDAO.insertDiary(new DiaryDTO(brdno, mood));
 				// 보드DTO와 다이어리DTO에 받은 값들을 입력해준다.
 			}
 			url = "/diaryList.do";

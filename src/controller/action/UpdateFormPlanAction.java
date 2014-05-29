@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.TestService;
-import model.UserService;
+import model.dao.TestDAO;
+import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.UserDTO;
 
@@ -44,10 +44,10 @@ public class UpdateFormPlanAction implements Action {
 			if(userid==null){
 				userid = (String) session.getAttribute("userid");
 			}
-			user = UserService.login(userid);
+			user = UserDAO.logCheck(userid);
 			brdno = request.getParameter("brdno");
 			if(brdno.equals(null) || brdno.trim().length()==0)	throw new Exception("일정정보가 없습니다.");
-			boardDTO = TestService.onePlanService(Integer.parseInt(brdno));
+			boardDTO = TestDAO.selectOnePlan(Integer.parseInt(brdno));
 			chosenDate = boardDTO.getWrdate();	//저장된 wrdate(yyyy-mm-dd)를 가져옴
 			date = chosenDate.substring(5,7)+"/"+chosenDate.substring(8)+"/"+chosenDate.substring(0, 4);
 			//wrdate를 (mm/dd/yyyy)형태의 날짜형식으로 바꿔줌

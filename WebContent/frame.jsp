@@ -77,7 +77,7 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle glyphicon glyphicon-cog" data-toggle="dropdown"><b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a id="fbLogoutBtn" href="#" onclick="location.href='/gaenari/logout.do'">로그아웃</a></li>
+          <li><a id="fbLogoutBtn" href="#" onclick="location.href='/gaenari/login.do'">로그아웃</a></li>
           <li><a href="#">개인정보수정</a></li>
           <li><a href="#">회원탈퇴</a></li>
           <li><a href="#">개발자정보</a></li>

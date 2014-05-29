@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.TestService;
-import model.UserService;
+import model.dao.TestDAO;
+import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.PlanDTO;
 import model.dto.UserDTO;
@@ -52,22 +52,20 @@ public class PlanListAction implements Action {
 			if(request.getParameter("userid")!=null){				//만약 userid 파라미터를 넘겨 받았다면
 				if(userid!=request.getParameter("userid")){			//그리고 만약 세션 userid와 파라미터userid가 다르다면
 					userid = request.getParameter("userid");		//userid에 파라미터userid를 저장하기
-					user = UserService.login(userid);
+					user = UserDAO.logCheck(userid);
 				}
 			}
 			
-			//planList = (List<BoardDTO>) session.getAttribute("allPlanList");	//전체 일정목록
-			planList = TestService.planService(user);
-			
+			planList = TestDAO.selectPlan(user);
 			pageNumber = request.getParameter("pageNumber");
 			planNumber = request.getParameter("planNumber");
 			if(pageNumber==null)	pageNumber="1";
 			if(planNumber==null)	planNumber=Integer.toString(planList.size()-1);
-			
-			pageCount = TestService.getPlanCount(user.getUserno());		
+				
+			pageCount = TestDAO.getPlanCount(user.getUserno());
 			//전체 일정을 10개단위로 나눴을 때의 페이지 수 
 			
-			tenPlans = TestService.getTenPlans((Integer.parseInt(pageNumber)-1)*10,user.getUserno());
+			tenPlans = TestDAO.getTenPlans((Integer.parseInt(pageNumber)-1)*10,user.getUserno());
 			//pageNumber에 해당하는 페이지수의 일정 10개의 리스트
 			
 			request.setAttribute("pageNumber", pageNumber);

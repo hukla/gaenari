@@ -38,7 +38,7 @@
 				<input type="submit" value="로그인">
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<!-- <a id="fbLogoutBtn" href="#" onclick="location.href='/gaenari/logout.do'">첫 페이지로</a> -->
-				<input type="button" value="첫 페이지로" id="fbLogoutBtn" onclick="location.href='/gaenari/logout.do'">
+				<input type="button" value="첫 페이지로" id="fbLogoutBtn" onclick="location.href='/gaenari/login.do'">
 			</td>
 		</tr>
 	</table>

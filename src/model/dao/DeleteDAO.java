@@ -13,7 +13,7 @@ import util.DBUtil;
 public class DeleteDAO {
 
 	//BoardDTO의 일정 내용을 delete
-	public static boolean deleteBoard(int brdno) throws SQLException {
+	public static void deleteBoard(int brdno) throws SQLException {
 
 		SqlSession session = null;
 		boolean result = false;
@@ -25,11 +25,11 @@ public class DeleteDAO {
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
-		return result;
+		if(!result)	throw new SQLException("일정(보드) 삭제에 실패했습니다.");
 	}
 	
 	//PlanDTO의 일정 내용을 delete
-	public static boolean deletePlan(int brdno) throws SQLException {
+	public static void deletePlan(int brdno) throws SQLException {
 
 		SqlSession session = null;
 		boolean result = false;
@@ -41,11 +41,11 @@ public class DeleteDAO {
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
-		return result;
+		if(!result) throw new SQLException("일정 삭제에 실패했습니다.");
 	}
 
 	// DiaryDTO의 일기 내용을 update
-	public static boolean deleteDiary(int brdno) throws SQLException {
+	public static void deleteDiary(int brdno) throws SQLException {
 
 		SqlSession session = null;
 		boolean result = false;
@@ -57,7 +57,7 @@ public class DeleteDAO {
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
-		return result;
+		if(!result)	throw new SQLException("일정 삭제에 실패했습니다.");
 	}
 
 }

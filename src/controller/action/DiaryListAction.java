@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.TestService;
-import model.UserService;
+import model.dao.TestDAO;
+import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
 import model.dto.UserDTO;
@@ -55,14 +55,13 @@ public class DiaryListAction implements Action {
 			if(request.getParameter("userid")!=null){				//만약 userid 파라미터를 넘겨 받았다면
 				if(userid!=request.getParameter("userid")){			//그리고 만약 세션 userid와 파라미터userid가 다르다면
 					userid = request.getParameter("userid");		//userid에 파라미터userid를 저장하기
-					user = UserService.login(userid);
+					user = UserDAO.logCheck(userid);
 				}
 			}
 			
-			diaryList = TestService.diaryService(user);
+			diaryList = TestDAO.selectDiary(user);
 			pageNumber = request.getParameter("pageNumber");
 			diaryNumber = request.getParameter("diaryNumber");
-			
 			
 			if(pageNumber==null){
 				pageNumber="1";
@@ -73,10 +72,9 @@ public class DiaryListAction implements Action {
 				flag = true;
 			}
 			
-			pageCount = TestService.getDiaryCount(user.getUserno());
+			pageCount = TestDAO.getDiaryCount(user.getUserno());
 			System.out.println("선택페이지:"+Integer.parseInt(pageNumber)+", 계산값:"+(Integer.parseInt(pageNumber)-1)*10);
-			tenDiaries = TestService.getTenDiaries((Integer.parseInt(pageNumber)-1)*10,user.getUserno());
-			
+			tenDiaries = TestDAO.getTenDiaries((Integer.parseInt(pageNumber)-1)*10,user.getUserno());
 			//14-05-20 성훈 수정: 다이어리 정보가 있을 때만 출력하기
 			if (!diaryList.isEmpty()) {
 				

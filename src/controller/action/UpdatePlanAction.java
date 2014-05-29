@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.UpdateService;
+import model.dao.UpdateDAO;
 import model.dto.BoardDTO;
 import model.dto.PlanDTO;
 /**
@@ -51,10 +51,9 @@ public class UpdatePlanAction implements Action {
 			//
 			BoardDTO boardDTO = new BoardDTO(Integer.parseInt(brdno),brdcontent,wrdate,title);
 
-			UpdateService.updatePlanBoard(boardDTO);
-			UpdateService.updatePlan(new PlanDTO(Integer.parseInt(brdno),ploc,wrdate));
-			
-			url="control?command=planDetail&brdno="+brdno;
+			UpdateDAO.updatePlanBoard(boardDTO);
+			UpdateDAO.updatePlan(new PlanDTO(Integer.parseInt(brdno),ploc,wrdate));
+			url="/planDetail.do?brdno="+brdno;
 		} catch(Exception e){
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

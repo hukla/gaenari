@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.UserService;
+import model.dao.UserDAO;
 import model.dto.UserDTO;
 /**
  * 작성: 2014-05-28
@@ -33,7 +33,7 @@ public class FBLogCheckAction implements Action {
 			if(email.equals(null) || email.trim().length() == 0 || username.equals(null) || username.trim().length()==0){
 				throw new Exception("Facebook Email Login 접속에러");
 			}
-			user = UserService.fbLogin(email);
+			user = UserDAO.emailCheck(email);
 			request.setAttribute("email", email);
 			request.setAttribute("username", username);
 			url = "join.jsp";

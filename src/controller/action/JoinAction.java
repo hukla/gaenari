@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.InsertService;
+import model.dao.InsertDAO;
 import model.dto.UserDTO;
 /**
  * 작성: 2014-05-24
@@ -50,7 +50,7 @@ public class JoinAction implements Action {
 			if(!pwd.equals(pwd1)){
 				throw new Exception("비밀번호가 일치하지 않습니다.");
 			}
-			InsertService.insertUser(new UserDTO(userid,pwd,email,username,addr,Integer.parseInt(type)));
+			InsertDAO.insertUser(new UserDTO(userid,pwd,email,username,addr,Integer.parseInt(type)));
 			session.setAttribute("userid", userid);
 			session.setAttribute("pwd", pwd);
 			request.setAttribute("email", email);
@@ -64,7 +64,5 @@ public class JoinAction implements Action {
 			request.setAttribute("errorMsg", e.getMessage());
 		}
 		request.getRequestDispatcher(url).forward(request, response);
-
 	}
-
 }

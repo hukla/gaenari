@@ -17,7 +17,7 @@ import util.DBUtil;
 public class UpdateDAO {
 
 	//BoardDTO의 일정 내용을 update
-	public static boolean updatePlanBoard(BoardDTO boardDTO) throws SQLException {
+	public static void updatePlanBoard(BoardDTO boardDTO) throws SQLException {
 
 		SqlSession session = null;
 		boolean result = false;
@@ -29,11 +29,11 @@ public class UpdateDAO {
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
-		return result;
+		if(!result)	throw new SQLException("일정(보드) 수정에 실패했습니다.");
 	}
 	
 	//PlanDTO의 일정 내용을 update
-	public static boolean updatePlan(PlanDTO planDTO) throws SQLException {
+	public static void updatePlan(PlanDTO planDTO) throws SQLException {
 
 		SqlSession session = null;
 		boolean result = false;
@@ -45,11 +45,11 @@ public class UpdateDAO {
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
-		return result;
+		if(!result) throw new SQLException("일정 수정에 실패했습니다.");
 	}
 	
 	// BoardDTO의 일기 내용을 update
-	public static boolean updateDiaryBoard(BoardDTO boardDTO) throws SQLException {
+	public static void updateDiaryBoard(BoardDTO boardDTO) throws SQLException {
 
 		SqlSession session = null;
 		boolean result = false;
@@ -61,11 +61,11 @@ public class UpdateDAO {
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
-		return result;
+		if(!result)	throw new SQLException("일정(보드) 수정에 실패했습니다.");
 	}
 
 	// DiaryDTO의 일기 내용을 update
-	public static boolean updateDiary(DiaryDTO diaryDTO) throws SQLException {
+	public static void updateDiary(DiaryDTO diaryDTO) throws SQLException {
 
 		SqlSession session = null;
 		boolean result = false;
@@ -77,7 +77,7 @@ public class UpdateDAO {
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
-		return result;
+		if(!result)	throw new SQLException("일정 수정에 실패했습니다.");
 	}
 
 }

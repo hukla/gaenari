@@ -41,7 +41,7 @@ public class InsertDAO {
 		}finally{
 			DBUtil.closeSession(session, result);
 		}
-		if(!result){
+		if(!result || brdno==0){
 			throw new SQLException("다이어리보드 입력실패!");
 		}
 		return brdno;
@@ -64,7 +64,7 @@ public class InsertDAO {
 		}finally{
 			DBUtil.closeSession(session, result);
 		}
-		if(!result){
+		if(!result || brdno==0){
 			throw new SQLException("일정보드 입력실패!");
 		}
 		return brdno;
@@ -89,14 +89,14 @@ public class InsertDAO {
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
-		if (!result) {
+		if (!result || brdno == 0) {
 			throw new SQLException("방명록보드 입력실패!");
 		}
 		return brdno;
 	}
 
 	//다이어리 내용 입력하기 
-	public static boolean insertDiary(DiaryDTO diaryDTO) throws SQLException{
+	public static void insertDiary(DiaryDTO diaryDTO) throws SQLException{
 		
 		SqlSession session = null;
 		boolean result = false;
@@ -108,11 +108,11 @@ public class InsertDAO {
 		}finally{
 			DBUtil.closeSession(session, result);
 		}
-		return result;
+		if(!result)	throw new SQLException("일기 등록에 실패했습니다.");
 	}
 	
 	//일정 내용 입력하기
-	public static boolean insertPlan(PlanDTO planDTO) throws SQLException{
+	public static void insertPlan(PlanDTO planDTO) throws SQLException{
 		
 		SqlSession session = null;
 		boolean result = false;
@@ -124,11 +124,11 @@ public class InsertDAO {
 		}finally{
 			DBUtil.closeSession(session, result);
 		}
-		return result;
+		if(!result)	throw new SQLException("일정 등록에 실패했습니다.");
 	}
 	
 	// 방명록 내용 입력하기
-	public static boolean insertVisitbook(int brdno) throws SQLException {
+	public static void insertVisitbook(int brdno) throws SQLException {
 
 		SqlSession session = null;
 		boolean result = false;
@@ -140,11 +140,11 @@ public class InsertDAO {
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
-		return result;
+		if(!result)	throw new SQLException("방명록 등록에 실패했습니다.");
 	}
 
 	// 14-05-23 성훈추가: 회원 가입하기
-	public static boolean insertUser(UserDTO user) throws SQLException {
+	public static void insertUser(UserDTO user) throws SQLException {
 
 		SqlSession session = null;
 		boolean result = false;
@@ -156,10 +156,10 @@ public class InsertDAO {
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
-		return result;
+		if(!result)	throw new SQLException("회원가입에 실패했습니다.");
 	}
 	
-	public static boolean insertDoginfo(DogDTO dog) throws SQLException {
+	public static void insertDoginfo(DogDTO dog) throws SQLException {
 
 		SqlSession session = null;
 		boolean result = false;
@@ -171,6 +171,6 @@ public class InsertDAO {
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
-		return result;
+		if(!result)	throw new SQLException("강아지 등록에 실패했습니다.");
 	}
 }
