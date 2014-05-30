@@ -59,7 +59,7 @@
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">내 홈피<b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/gaenari/image/house.jpg"><b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="/gaenari/miniHome.do">메인페이지</a></li>
           <li><a href="/gaenari/calendar.do">달력보기</a></li>
@@ -68,9 +68,10 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티<b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 으헛헛<b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/gaenari/missingBoardList.do">유기견</a></li>
+          <!-- <li><a href="/gaenari/missingBoardList.do">유기견</a></li> -->
+          <li><a href="/gaenari/missingBoardMain.do">유기견</a></li>
           <li><a href="/gaenari/adpBoardList.do">애견입양</a></li>
           <li><a href="/gaenari/voluBoardList.do">자원봉사</a></li>
           <li><a href="/gaenari/ptBoardList.do">펫 도우미</a></li>

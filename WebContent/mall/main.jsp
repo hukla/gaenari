@@ -103,7 +103,7 @@ $(function(){
 					"</select></td></tr>";
 					//기부하기
 					table += "<tr><td align='center'><input type='submit' value='기부하기'></td></tr>";
-					table += "</table>"
+					table += "</table>";
 					table += "</form></li>";
 					table += "</ul>";
 					table += "</div>";

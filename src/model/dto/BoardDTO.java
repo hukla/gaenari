@@ -116,5 +116,8 @@ public class BoardDTO {
 				+ ", wrdate=" + wrdate + ", userid=" + userid + ", title="
 				+ title + ", brdtype=" + brdtype + ", userno=" + userno + "]";
 	}
+	public String toStringBrdno(int brdno){
+		return ""+brdno+""; //brdno를 String으로 반환
+	}
 	
 }
