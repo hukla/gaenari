@@ -40,6 +40,25 @@
 					</td>
 					<td colspan="4">
 						<font size="4">이름: ${requestScope.user.username}</font> 
+						<c:choose>
+							<c:when test="${sessionScope.userid == requestScope.user.userid}">
+								<button onclick="goModify()">정보수정하기</button>
+							</c:when>
+							<c:otherwise>
+								<form action="/gaenari/frndReq.do" id="form">
+									<c:choose>
+										<c:when test="${requestScope.flag eq true}">
+											<button onclick="sendReq()">친구신청하기</button>
+										</c:when>
+										<c:otherwise>
+											친구요청된 상태입니다.
+										</c:otherwise>
+									</c:choose>
+									<input type="hidden" name="sender" value="${sessionScope.userid}">
+									<input type="hidden" name="receiver" value="${requestScope.user.userid}">
+								</form>
+							</c:otherwise>
+						</c:choose>
 					</td>
 				</tr>
 				<tr>
@@ -106,6 +125,21 @@
 			self.close();
 		});
 	});
+
+	function goModify() {
+		opener.location.href = "/gaenari/miniHome.do";
+		window.close();
+	}
+	function sendReq() {
+		var result = confirm("친구 요청을 보내시겠습니까?");
+		if(result){
+			$("#form").submit();
+			alert("친구요청이 완료됐습니다!");
+		}else{
+			alert("친구요청이 취소됐습니다");
+			return;
+		}
+	}
 </script>
 </html>
 <%@ include file="/bottom.jsp"%>

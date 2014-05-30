@@ -174,5 +174,12 @@
 	<select id="selectMyDogInfo" parameterType="int" resultType="DogDTO">
 		SELECT * FROM dog where userno=#{userno} 
 	</select>
-
+	
+	<select id="checkFrndReq" parameterType="map" resultType="int">
+		SELECT req FROM reqfrnd where sender=#{sender} and receiver=#{receiver}
+	</select>
+	
+	<select id="checkMyReqinfo" parameterType="int" resultType="int">
+		SELECT sender FROM reqfrnd where receiver=#{receiver}
+	</select>
 </mapper>

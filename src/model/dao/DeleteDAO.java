@@ -1,6 +1,8 @@
 package model.dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -59,5 +61,22 @@ public class DeleteDAO {
 		}
 		if(!result)	throw new SQLException("일정 삭제에 실패했습니다.");
 	}
+	public static void deleteFrndReq(int sender, int receiver) throws SQLException {
 
+		SqlSession session = null;
+		boolean result = false;
+		Map<String,Integer> map = null;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==deleteFrndReq 진입==");
+			map = new HashMap<String,Integer>();
+			map.put("receiver", receiver);
+			map.put("sender", sender);
+			result = session.insert("delete.deleteFrndReq", map) > 0 ? true : false;
+			System.out.println("==deleteFrndReq 완료==");
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if(!result)	throw new SQLException("친구요청 삭제에 실패했습니다.");
+	}
 }

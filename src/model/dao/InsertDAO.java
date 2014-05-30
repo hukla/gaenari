@@ -15,6 +15,7 @@ package model.dao;
  */
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
@@ -178,4 +179,44 @@ public class InsertDAO {
 		if(!result)	throw new SQLException("강아지 등록에 실패했습니다.");
 	}
 	
+	//14-05-28 성훈추가: 강아지 정보입력
+	public static void insertFrndReq(int sender, int receiver) throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		Map<String,Integer> map = null;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==insertFrndReq insert 진입==");
+			map = new HashMap<String,Integer>();
+			map.put("sender", sender);
+			map.put("receiver", receiver);
+			result = session.insert("insert.insertFrndReq", map) > 0 ? true : false;
+			System.out.println("==insertFrndReq insert 완료==");
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if (!result)
+			throw new SQLException("친구 요청에 실패했습니다.");
+	}
+	
+	public static void insertFriends(int sender, int receiver) throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		Map<String,Integer> map = null;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==insertFriends insert 진입==");
+			map = new HashMap<String,Integer>();
+			map.put("subuser", sender);
+			map.put("prmuser", receiver);
+			result = session.insert("insert.insertFriends", map) > 0 ? true : false;
+			System.out.println("==insertFriends insert 완료==");
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if (!result)
+			throw new SQLException("친구요청수락에 실패했습니다.");
+	}
 }

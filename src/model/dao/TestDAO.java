@@ -533,4 +533,35 @@ public class TestDAO {
 		}
 		return list;
 	}
+	public static boolean checkFrndReq(int sender, int receiver) throws SQLException{
+		SqlSession session = null;
+		Map<String,Integer> map = null;
+		int reqNo = 0;
+		boolean result = false;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==checkFrndReq진입==");
+			map = new HashMap<String,Integer>();
+			map.put("sender", sender);
+			map.put("receiver", receiver);
+			if(session.selectOne("test.checkFrndReq",map)==null)	return true;
+			System.out.println("==checkFrndReq종료==");
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return result;
+	}	
+	public static List<Integer> checkMyReqinfo(int receiver) throws SQLException{
+		SqlSession session = null;
+		List<Integer> list = null;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==checkMyReqinfo진입==");
+			list = session.selectList("test.checkMyReqinfo",receiver);
+			System.out.println("==checkMyReqinfo종료==");
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return list;
+	}	
 }

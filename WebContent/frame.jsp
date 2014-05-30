@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -77,6 +79,32 @@
       <li><a href="/gaenari/mall/mallMain.do">기부몰</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+    <c:if test="${not empty sessionScope.sender}">
+      <li class="dropdown active" id="bell">
+    </c:if>
+        <a href="#" class="dropdown-toggle glyphicon glyphicon-bell" data-toggle="dropdown"><b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <c:choose>
+          	<c:when test="${not empty sessionScope.sender}">
+          		<c:choose>
+          			<c:when test="${fn:length(sender) > 1}">
+          				<li><a href="/gaenari/friends.do">${fn:length(sender)}명의 친구요청이있습니다.</a></li>
+          			</c:when>
+          			<c:otherwise>
+          				<c:forEach items="${sessionScope.sender}" var="sender">
+          					<li><a href="/gaenari/friends.do">${sender.userid}님의 친구요청이있습니다.</a></li>
+          				</c:forEach>
+          			</c:otherwise>
+          		</c:choose>
+          		
+          	</c:when>
+          	<c:otherwise>
+          		<li>새로운 소식이 없습니다.</li>
+          	</c:otherwise>
+          </c:choose>
+        </ul>
+      </li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle glyphicon glyphicon-cog" data-toggle="dropdown"><b class="caret"></b></a>
         <ul class="dropdown-menu">

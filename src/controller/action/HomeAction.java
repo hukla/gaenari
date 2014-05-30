@@ -2,6 +2,7 @@ package controller.action;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.DogDAO;
+import model.dao.TestDAO;
 import model.dao.UserDAO;
 import model.dto.DogDTO;
 import model.dto.UserDTO;
@@ -44,6 +46,7 @@ public class HomeAction implements Action {
 		List<DogDTO> dog = null;
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
+		List<Integer> senderNo =null;
 		
 		if(mth<10)	month = "0"+Integer.toString(mth);
 		else	month = Integer.toString(mth);
@@ -68,6 +71,15 @@ public class HomeAction implements Action {
 					throw new LoginException("비밀번호를 확인해주세요.");			// 14-05-20 성훈 추가: LoginException 추가
 				}else{
 					dog = DogDAO.getInfo(new DogDTO(loginUser));
+					senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno());
+					if(!senderNo.isEmpty()){
+						senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno());	//나한테 친구요청한 사람의 리스트를 받음
+						List<UserDTO> list = new ArrayList<UserDTO>();
+						for(int no: senderNo){
+							list.add(UserDAO.selectOne(no));
+						}
+						session.setAttribute("sender", list);
+					}
 					
 					session.setAttribute("user", loginUser);
 					session.setAttribute("dog", dog);

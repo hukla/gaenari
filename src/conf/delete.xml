@@ -22,4 +22,7 @@
 		delete from diaryinfo where brdno=#{brdno}
 	</update>
 	
+	<update id="deleteFrndReq" parameterType="map">
+		delete from reqfrnd where sender=#{sender} and receiver=#{receiver}
+	</update>
 </mapper>
