@@ -43,5 +43,14 @@
 		ON u.userno = d.userno AND u.userid=#{userid}
 	</select>
 	
+	<!-- 2014-05-30 성훈추가: 이름으로 user검색하기(강아지 정보 없을 때) -->
+	<select id="checkByName" parameterType="String" resultType="UserDTO" >
+		select * from userinfo where username = #{username}
+	</select>
+	
+	<!-- 2014-05-30 성훈추가: 주소로 user검색하기(강아지 정보 없을 때) -->
+	<select id="checkByAddr" parameterType="String" resultType="UserDTO" >
+		select * from userinfo where address = #{address}
+	</select>
 	
 </mapper>					

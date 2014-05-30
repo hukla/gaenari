@@ -520,6 +520,7 @@ public class TestDAO {
 		}
 		return list;
 	}
+	//14-05-29 성훈추가: 내 강아지정보 가져오기
 	public static List<DogDTO> getMyDogInfo(int userno) throws SQLException{
 		SqlSession session = null;
 		List<DogDTO> list = null;
@@ -533,24 +534,56 @@ public class TestDAO {
 		}
 		return list;
 	}
+	//14-05-30 성훈추가: 나와 친구 간의 친구요청상태 확인
 	public static boolean checkFrndReq(int sender, int receiver) throws SQLException{
 		SqlSession session = null;
 		Map<String,Integer> map = null;
-		int reqNo = 0;
-		boolean result = false;
 		try {
 			session = DBUtil.getSqlSession();
 			System.out.println("==checkFrndReq진입==");
 			map = new HashMap<String,Integer>();
 			map.put("sender", sender);
 			map.put("receiver", receiver);
-			if(session.selectOne("test.checkFrndReq",map)==null)	return true;
+			if(session.selectOne("test.checkFrndReq",map)==null){
+				map = new HashMap<String,Integer>();
+				map.put("sender", receiver);
+				map.put("receiver", sender);
+				if(session.selectOne("test.checkFrndReq",map)==null){
+					return true;
+				}
+			}
 			System.out.println("==checkFrndReq종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
-		return result;
+		return false;
 	}	
+	//14-05-30 성훈추가: 나와 친구간의 친구상태 확인
+	public static boolean areWeFriends(int sender, int receiver) throws SQLException{
+		SqlSession session = null;
+		Map<String,Integer> map = null;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==areWeFriends진입==");
+			map = new HashMap<String,Integer>();
+			map.put("subuser", sender);
+			map.put("prmuser", receiver);	//누가 친구신청했는지 누가 승인했는지 구분없이 쿼리문 돌리려면?
+			if(session.selectOne("test.areWeFriends",map)==null){
+				map = new HashMap<String,Integer>();
+				map.put("subuser", receiver);
+				map.put("prmuser", sender);
+				if(session.selectOne("test.areWeFriends",map)==null){
+					return false;
+				}
+			}
+			System.out.println("==areWeFriends종료==");
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return true;
+	}	
+	
+	//14-05-30 성훈추가: 내가 받은 친구요청리스트
 	public static List<Integer> checkMyReqinfo(int receiver) throws SQLException{
 		SqlSession session = null;
 		List<Integer> list = null;
@@ -559,6 +592,24 @@ public class TestDAO {
 			System.out.println("==checkMyReqinfo진입==");
 			list = session.selectList("test.checkMyReqinfo",receiver);
 			System.out.println("==checkMyReqinfo종료==");
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return list;
+	}	
+	//14-05-30 성훈추가: 내 친구목록불러오기(selfJoin + Union)
+	public static List<Integer> getMyFriends(int userno) throws SQLException{
+		SqlSession session = null;
+		List<Integer> list = null;
+		Map<String,Integer> map = null;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==getMyFriends진입==");
+			map = new HashMap<String,Integer>();
+			map.put("subuser", userno);
+			map.put("prmuser", userno);
+			list = session.selectList("test.getMyFriends",map);
+			System.out.println("==getMyFriends종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}

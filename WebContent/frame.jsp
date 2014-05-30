@@ -28,6 +28,9 @@
 수정: 2014-05-28, 최성훈	내용: 로그아웃 버튼 페이스북로그아웃 연동 추가
 수정: 2014-05-29, 최성훈	내용: 개인정보보기 기능추가
 수정: 2014-05-30, 최성훈	내용: 친구요청받았을 때 알림창 active로하고 요청정보dropdown에 띄우기
+수정: 2014-05-30, 이수진	내용: 내 홈피 a태그 house모양 버튼 추가, 커뮤니티 드롭다운 태그추가
+수정: 2014-05-30, 최성훈	내용: 내 홈피 a태그 bootstrap house모양으로 active-inactive 효과추가, 
+친구요청수락 시 알림버튼 inactive시킴 -> 친구요청수락 후 요청정보메시지 없애기
  -->
 </head>
 <!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
@@ -49,7 +52,7 @@
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/gaenari/image/house.jpg"><b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle glyphicon glyphicon-home" data-toggle="dropdown"></a>
         <ul class="dropdown-menu">
           <li><a href="/gaenari/miniHome.do">메인페이지</a></li>
           <li><a href="/gaenari/calendar.do">달력보기</a></li>
@@ -74,7 +77,7 @@
     <c:if test="${not empty sessionScope.sender}">
       <li class="dropdown active" id="bell">
     </c:if>
-        <a href="#" class="dropdown-toggle glyphicon glyphicon-bell" data-toggle="dropdown"><b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle glyphicon glyphicon-bell" data-toggle="dropdown"></a>
         <ul class="dropdown-menu">
           <c:choose>
           	<c:when test="${not empty sessionScope.sender}">
@@ -88,10 +91,9 @@
           				</c:forEach>
           			</c:otherwise>
           		</c:choose>
-          		
           	</c:when>
           	<c:otherwise>
-          		<li>새로운 소식이 없습니다.</li>
+          		<li><div align="center">새로운 소식이 없습니다.</div></li>
           	</c:otherwise>
           </c:choose>
         </ul>

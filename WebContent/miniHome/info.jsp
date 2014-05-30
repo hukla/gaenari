@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <style type="text/css">
-	td,th {	text-align: center; font-family: '서울한강체'	}
+	td,th {	font-family: '서울한강체'	}
 	#bigimg > img{
 		width: 400px;
 		height: 330px;
@@ -16,6 +17,11 @@
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <title>개인정보</title>
+<!-- 
+작성자: 최성훈
+작성: 2014-05-29
+내용: 회원정보 보기-> 개인정보수정하도록, 다른 유저의 회원정보 보기-> 친구신청하기 로 경우 나눔.
+ -->
 </head>
 <body>
 	<h1 align="center">
@@ -47,10 +53,17 @@
 							<c:otherwise>
 								<form action="/gaenari/frndReq.do" id="form">
 									<c:choose>
-										<c:when test="${requestScope.flag eq true}">
-											<button onclick="sendReq()">친구신청하기</button>
+										<c:when test="${requestScope.flag eq true}"><!-- 내가 요청 안 했으면 -->
+											<c:choose>
+												<c:when test="${requestScope.friend eq true}">
+												친구입니다.
+												</c:when>
+												<c:otherwise>
+												<button onclick="sendReq()">친구신청하기</button>
+												</c:otherwise>
+											</c:choose>
 										</c:when>
-										<c:otherwise>
+										<c:otherwise><!-- 내가 요청 했으면 -->
 											친구요청된 상태입니다.
 										</c:otherwise>
 									</c:choose>
@@ -73,11 +86,11 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<font size="4"> 친구 몇명?</font>
+						<font size="4">${requestScope.user.userid}님의 친구: ${fn:length(friendList)}명</font>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="6">
+					<td colspan="6" align="center">
 						<c:choose>
 							<c:when test="${not empty requestScope.dog}">
 							기르는 강아지: <c:forEach items="${requestScope.dog}" var="doggy">
@@ -91,7 +104,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="6" height="300">
+					<td colspan="6" height="300" align="center">
 						<div id="bigimg"><img src="/gaenari/image/logo.jpg" height="70" width="100"></div>
 					</td>
 				</tr>
@@ -104,7 +117,7 @@
 					<td id="p"><img src="/gaenari/image/horse.jpg" height="55" width="80"></td>
 				</tr>
 				<tr>
-					<td colspan="6"><button id="close">닫기</button></td>
+					<td colspan="6" align="center"><button id="close">닫기</button></td>
 				</tr>
 				</table>
 			</td>

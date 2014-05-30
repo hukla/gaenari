@@ -3,6 +3,7 @@ package controller.action;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,6 +18,9 @@ import exception.LoginException;
  * 작성: 2014-05-29
  * 작성자: 최성훈
  * 내용: ajax비동기화 통신으로 조건에 해당하는 친구 검색결과 보내기
+ * 
+ * 수정: 2014-05-30, 최성훈
+ * 내용: 기르는 강아지가 없을 때 검색이 안되는 오류수정
  */
 public class SearchFriendsAction implements Action {
 
@@ -29,16 +33,38 @@ public class SearchFriendsAction implements Action {
 		String word = null;
 		String result = "";
 		List<DogDTO> dog = null;
+		UserDTO user = null;
 		try {
 			
-			searchType = request.getParameter("searchType");
-			word = request.getParameter("word");
+			searchType = request.getParameter("searchType");		// 주소,아이디,이름 중에 조건선택
+			word = request.getParameter("word");					// 검색어
 			System.out.println("검색구분:"+searchType+", 검색단어:"+word);
 			
 			if(searchType!=null || word!=null){
-				if(searchType.equals("userid"))	dog = UserDAO.logIdCheck(word);
-				else if(searchType.equals("username"))	dog = UserDAO.logNameCheck(word);
-				else if(searchType.equals("address"))	dog = UserDAO.logAddrCheck(word);
+				if(searchType.equals("userid")){
+					dog = UserDAO.logIdCheck(word);		//id검색시
+					if(dog.isEmpty()){	//강아지 정보가 한 마리도 없을 때
+						user = UserDAO.logCheck(word);
+						dog = new ArrayList<DogDTO>();
+						dog.add(new DogDTO(user.getUsername(),user.getUserid(),null,null,user.getAddress()));
+					}
+				}
+				else if(searchType.equals("username")){
+					dog = UserDAO.logNameCheck(word);	//이름검색시
+					if(dog.isEmpty()){	//강아지 정보가 한 마리도 없을 때
+						user = UserDAO.checkByName(word);
+						dog = new ArrayList<DogDTO>();
+						dog.add(new DogDTO(user.getUsername(),user.getUserid(),null,null,user.getAddress()));
+					}
+				}
+				else if(searchType.equals("address")){
+					dog = UserDAO.logAddrCheck(word);	//주소검색시
+					if(dog.isEmpty()){	//강아지 정보가 한 마리도 없을 때
+						user = UserDAO.checkByAddr(word);
+						dog = new ArrayList<DogDTO>();
+						dog.add(new DogDTO(user.getUsername(),user.getUserid(),null,null,user.getAddress()));
+					}
+				}
 				result+="<users>";
 				for (DogDTO dto : dog) {
 					result += "<user>";

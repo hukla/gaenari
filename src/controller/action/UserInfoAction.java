@@ -1,6 +1,7 @@
 package controller.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,10 @@ import model.dto.UserDTO;
  * 작성: 2014-05-29
  * 작성자: 최성훈
  * 내용: 개인정보열람 위해 user정보 얻어오기
+ * 
+ * 수정: 2014-05-30, 최성훈
+ * 내용: 친구정보 볼 때 나와 1.친구관계인지, 2.나와 친구사이에 친구요청정보가 있는지 확인
+ * 		 내 친구 몇명인지 보이기
  */
 public class UserInfoAction implements Action {
 
@@ -28,8 +33,11 @@ public class UserInfoAction implements Action {
 		String userid = null;
 		UserDTO user = null;
 		List<DogDTO> list = null;
+		List<UserDTO> friendList = null;
+		List<Integer> friendNo = null;
 		int sender,receiver = 0;
 		boolean flag = false;
+		boolean friend = false;
 		try{
 			userid = (String) session.getAttribute("userid");	// 세션의 userid가져오기
 
@@ -40,14 +48,23 @@ public class UserInfoAction implements Action {
 				sender = UserDAO.logCheck((String) session.getAttribute("userid")).getUserno();
 				receiver = UserDAO.logCheck(userid).getUserno();
 				flag = TestDAO.checkFrndReq(sender,receiver);
+				friend = TestDAO.areWeFriends(sender, receiver);
 			}
 			
 			
 			user = UserDAO.logCheck(userid);
 			list = TestDAO.getMyDogInfo(user.getUserno());
+			
+			friendNo = TestDAO.getMyFriends(user.getUserno());
+			friendList = new ArrayList<UserDTO>();
+			for(int no: friendNo){
+				friendList.add(UserDAO.selectOne(no));
+			}
+			request.setAttribute("friendList", friendList);
 			request.setAttribute("dog", list);
 			request.setAttribute("user", user);
-			request.setAttribute("flag", flag);
+			request.setAttribute("flag", flag);		//요청했으면 false
+			request.setAttribute("friend", friend);	//친구이면 true
 			url = "/miniHome/info.jsp";
 		}catch(Exception e){
 			e.printStackTrace();

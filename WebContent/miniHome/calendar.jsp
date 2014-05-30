@@ -48,11 +48,11 @@ A:hover {text-decoration:none; color:'ff9900'}
      {
   if ((year%4==0||year%100==0)&&(year%400==0)) monthDays[1]=29; else monthDays[1]=28 //leap year test
   var firstDay=new Date(year,month,1).getDay()
-  var calStr="<table border=0 cellpadding=5 cellspacing=1 align=center bgcolor=#CCCCCC>"
+  var calStr="<table border=0 cellpadding=5 cellspacing=1 class='table' align=center bgcolor=#CCCCCC>"
 
   calStr+="<tr bgcolor=white><td colspan=7>"
 
-  calStr+="<table border=0 cellpadding=0 cellspacing=0 align=center width=700  height=100>"
+  calStr+="<table border=0 cellpadding=0 cellspacing=0 align=center width=800  height=100><tr>"
   calStr+="<td><font size='6'><a href='javascript:;' onClick='nowm--; if (nowm<0) { nowy--; nowm=11; } showCalendar(nowd,nowm,nowy)' title='이전 월'> <<</a></font></td>"
   calStr+="<td align=center><font size='6'>"+monthName[month].toUpperCase()+" "+year+"년</font></td>"
   calStr+="<td align=right><font size='6'><a href='javascript:;'  onClick='nowm++; if (nowm>11) { nowy++; nowm=0; } showCalendar(nowd,nowm,nowy)' title='다음 월'> >></a></font></td>"
@@ -142,7 +142,8 @@ A:hover {text-decoration:none; color:'ff9900'}
  -->
 </head>
 <body>
-	<table border="1" align="center" width="80%" height="100%">
+	<table align="center"><tr><td width="80%" align="center">
+	<table border="0" align="center" width="80%" height="100%" class="table">
 		<tr>
 			<td rowspan="3" width="70%">
 				<SPAN ID=calendar STYLE="position: relative;"></SPAN> 
@@ -182,6 +183,7 @@ A:hover {text-decoration:none; color:'ff9900'}
 			</td>
 		</tr>
 	</table>
+	</td></tr></table>
 </body>
 </html>
 <%@ include file="/bottom.jsp"%>

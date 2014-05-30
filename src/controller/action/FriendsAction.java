@@ -1,15 +1,24 @@
 package controller.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.TestDAO;
 import model.dao.UserDAO;
 import model.dto.UserDTO;
-
+/**
+ * 작성: 2014-05-29
+ * 작성자: 최성훈
+ * 내용: 친구 관리 페이지
+ * 
+ * 수정: 친구 요청정보 보이기, 내 친구 목록 가져오기
+ */
 public class FriendsAction implements Action {
 
 	@Override
@@ -20,7 +29,10 @@ public class FriendsAction implements Action {
 		String url = "/error.jsp";
 		String userid = null;
 		UserDTO user = null;
-		//List<String> friends = null;
+		List<UserDTO> list = null;
+		List<Integer> senderNo = null;
+		List<UserDTO> friendList = null;
+		List<Integer> friendNo = null;
 		try{
 			user = (UserDTO) session.getAttribute("user");
 			userid = user.getUserid();
@@ -31,8 +43,22 @@ public class FriendsAction implements Action {
 					user = UserDAO.logCheck(userid);
 				}
 			}
-			/*friends = TestService.getFriendsName(user);
-			request.setAttribute("freinds", friends);*/
+			senderNo = TestDAO.checkMyReqinfo(user.getUserno());
+			if(!senderNo.isEmpty()){
+				senderNo = TestDAO.checkMyReqinfo(user.getUserno());	//나한테 친구요청한 사람의 리스트를 받음
+				list = new ArrayList<UserDTO>();
+				for(int no: senderNo){
+					list.add(UserDAO.selectOne(no));
+				}
+			}
+			session.removeAttribute("sender");
+			session.setAttribute("sender", list);
+			friendNo = TestDAO.getMyFriends(user.getUserno());
+			friendList = new ArrayList<UserDTO>();
+			for(int no: friendNo){
+				friendList.add(UserDAO.selectOne(no));
+			}
+			request.setAttribute("friendList", friendList);
 			request.setAttribute("user", user);
 			url="miniHome/friends.jsp";
 		}catch(Exception e){

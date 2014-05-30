@@ -24,6 +24,9 @@ import exception.LoginException;
  * 
  * 수정: 2014-05-29, 최성훈
  * 내용: 필요없는 session 이용 제거
+ * 
+ * 수정: 2014-05-30, 최성훈
+ * 내용: 친구요청정보 존재여부 보이기
  *
  */
 public class HomeAction implements Action {
@@ -47,6 +50,7 @@ public class HomeAction implements Action {
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		List<Integer> senderNo =null;
+		List<UserDTO> list = null;
 		
 		if(mth<10)	month = "0"+Integer.toString(mth);
 		else	month = Integer.toString(mth);
@@ -74,13 +78,13 @@ public class HomeAction implements Action {
 					senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno());
 					if(!senderNo.isEmpty()){
 						senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno());	//나한테 친구요청한 사람의 리스트를 받음
-						List<UserDTO> list = new ArrayList<UserDTO>();
+						list = new ArrayList<UserDTO>();
 						for(int no: senderNo){
 							list.add(UserDAO.selectOne(no));
 						}
-						session.setAttribute("sender", list);
 					}
-					
+					session.removeAttribute("sender");
+					session.setAttribute("sender", list);
 					session.setAttribute("user", loginUser);
 					session.setAttribute("dog", dog);
 					

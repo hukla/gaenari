@@ -28,7 +28,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				${requestScope.user.userid}님<br>홈페이지
+				${requestScope.user.userid}님<br>홈페이지 이용중
 			</td>
 		</tr>
 	</table>

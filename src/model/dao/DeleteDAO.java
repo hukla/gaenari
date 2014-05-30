@@ -61,6 +61,7 @@ public class DeleteDAO {
 		}
 		if(!result)	throw new SQLException("일정 삭제에 실패했습니다.");
 	}
+	//14-05-30 성훈추가: 친구요청이 수락되면 요청정보 지우기
 	public static void deleteFrndReq(int sender, int receiver) throws SQLException {
 
 		SqlSession session = null;
@@ -72,7 +73,7 @@ public class DeleteDAO {
 			map = new HashMap<String,Integer>();
 			map.put("receiver", receiver);
 			map.put("sender", sender);
-			result = session.insert("delete.deleteFrndReq", map) > 0 ? true : false;
+			result = session.delete("delete.deleteFrndReq", map) > 0 ? true : false;
 			System.out.println("==deleteFrndReq 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);

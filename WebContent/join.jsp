@@ -17,6 +17,7 @@
 
 수정: 2014-05-28, 최성훈	내용: 첫 방문시 가입하도록 하고 페북을 통해 받은 이메일, 아이디 뿌려주기
 수정: 2014-05-29, 최성훈	내용: ui수정 및 페이스북 메인사진받아서 뿌리기
+수정: 2014-05-30, 최성훈	내용: 일반회원가입시 email 파라미터 넘겨주기 오류 수정
  -->
 </head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -40,7 +41,7 @@
 					<col width="60%">
 				</colgroup>
 				<tr>	
-					<th>E-mail</th><td><input type="text" value="${requestScope.email}" id="email"></td>
+					<th>E-mail</th><td><input type="text" value="${requestScope.email}" name="email" id="email"></td>
 				</tr>
 				<tr>
 					<th>ID</th><td><input type="text" name="userid" id="id"><span>중복결과 여부</span></td>
@@ -69,7 +70,9 @@
 						<c:if test="${requestScope.image != null}">
 							<input type="hidden" name="image" value="${requestScope.image}">
 						</c:if>
-						<input type="hidden" name="email" value="${requestScope.email}">
+						<c:if test="${requestScope.email != null}">
+							<input type="hidden" name="email" value="${requestScope.email}">
+						</c:if>
 						<input type="submit" value="가입하기">
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="button" value="취소하기" id="fbLogoutBtn" onclick="location.href='/gaenari/login.do'">

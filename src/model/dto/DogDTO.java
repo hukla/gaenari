@@ -31,6 +31,14 @@ public class DogDTO extends UserDTO{
 		this.userno = userno;
 		this.dogno = dogno;
 	}
+	//14-05-30 성훈추가
+	public DogDTO(String username,String userid, String dogname, String dogkind,String address){
+		super.setUsername(username);
+		super.setUserid(userid);
+		this.dogname = dogname;
+		this.dogkind = dogkind;
+		super.setAddress(address);
+	}
 	//14-05-27 성훈추가
 	public DogDTO(String dogname, int dogage, String dogkind, int userno){
 		this.dogage = dogage;

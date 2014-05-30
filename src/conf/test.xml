@@ -152,34 +152,52 @@
 		select count(*) from board b join planboardinfo p on b.brdno = p.brdno and b.userno = #{userno}
 	</select>
 	
-	<!-- 14-05-23 성훈추가 --><!-- b.wrdate, b.title, d.mood -->
+	<!-- 14-05-23 성훈추가 -->
 	<select id="selectTenPlans" parameterType="map" resultType="PlanDTO">
 		SELECT * FROM board b JOIN planboardinfo p ON b.brdno = p.brdno and b.userno = #{userno}
 		ORDER BY b.wrdate DESC LIMIT #{value},10
 	</select>
 
 
-	<!-- 14-05-23 성훈추가 --><!-- b.wrdate, b.title, d.mood -->
+	<!-- 14-05-23 성훈추가 -->
 	<select id="selectPlanBydate" parameterType="map" resultType="PlanDTO">
 		SELECT * FROM board b JOIN planboardinfo p ON b.brdno = p.brdno 
 		AND b.userid=#{userid} AND b.wrdate=#{wrdate} order by b.wrdate desc limit 5
 	</select>
 	
-	<!-- 14-05-23 성훈추가 --><!-- b.wrdate, b.title, d.mood -->
+	<!-- 14-05-23 성훈추가 -->
 	<select id="selectDiaryBydate" parameterType="map" resultType="DiaryDTO">
 		SELECT * FROM board b JOIN diaryinfo d ON b.brdno = d.brdno 
 		AND b.userid=#{userid} AND b.wrdate=#{wrdate} order by b.wrdate desc limit 5
 	</select>
 
+	<!-- 14-05-29 성훈추가: 내 userno로 내 강아지 정보 가져오기 -->
 	<select id="selectMyDogInfo" parameterType="int" resultType="DogDTO">
 		SELECT * FROM dog where userno=#{userno} 
 	</select>
 	
+	<!-- 14-05-30 성훈추가: 나와 친구요청한 친구간의 요청정보 존재 확인 -->
 	<select id="checkFrndReq" parameterType="map" resultType="int">
 		SELECT req FROM reqfrnd where sender=#{sender} and receiver=#{receiver}
 	</select>
 	
+	<!-- 14-05-30 성훈추가: 나한테 친구요청한 사람이 누군지 확인 -->
 	<select id="checkMyReqinfo" parameterType="int" resultType="int">
 		SELECT sender FROM reqfrnd where receiver=#{receiver}
 	</select>
+	
+	<!-- 14-05-30 성훈추가: 나와 친구가 친구상태인지 확인 -->
+	<select id="areWeFriends" parameterType="map" resultType="int">
+		SELECT frndno FROM friendinfo where prmuser=#{prmuser} and subuser=#{subuser}
+	</select>
+	
+	<!-- 14-05-30 성훈추가: 내 userno로 내 친구 목록 가져오기
+		(내가 prmuser일수도, subuser일수도 있기 때문에 union,selfjoin 기능 사용) -->
+	<select id="getMyFriends" parameterType="map" resultType="int">
+		SELECT DISTINCT f1.prmuser FROM friendinfo f1 JOIN friendinfo f2 
+		ON f1.subuser=f2.prmuser WHERE f1.subuser=#{subuser} AND f2.prmuser=#{prmuser}
+		UNION SELECT DISTINCT f2.subuser FROM friendinfo f1 JOIN friendinfo f2 
+		ON f1.subuser=f2.prmuser WHERE f1.subuser=#{subuser} AND f2.prmuser=#{prmuser}
+	</select>
+	
 </mapper>

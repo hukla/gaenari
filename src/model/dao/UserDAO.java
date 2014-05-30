@@ -40,6 +40,35 @@ public class UserDAO {
 		if(user==null)	throw new LoginException("User정보 없음");
 		return user;
 	}
+	//14-05-30 성훈추가: 이름으로 user정보검색하기(기르는 강아지 없을경우를 위해서)
+	public static UserDTO checkByName(String username) throws SQLException, LoginException {
+		SqlSession session =null;
+		UserDTO user =null;
+		try{
+			System.out.println("==UserDAO 진입==");
+			session = DBUtil.getSqlSession();
+			user = session.selectOne("u.checkByName",username);
+		}finally{
+			DBUtil.closeSession(session);
+		}
+		if(user==null)	throw new LoginException("User정보 없음");
+		return user;
+	}
+	//14-05-30 성훈추가: 주소로 user정보검색하기(기르는 강아지 없을경우를 위해서)
+	public static UserDTO checkByAddr(String address) throws SQLException, LoginException {
+		SqlSession session =null;
+		UserDTO user =null;
+		try{
+			System.out.println("==UserDAO 진입==");
+			session = DBUtil.getSqlSession();
+			user = session.selectOne("u.checkByAddr",address);
+		}finally{
+			DBUtil.closeSession(session);
+		}
+		if(user==null)	throw new LoginException("User정보 없음");
+		return user;
+	}
+	
 	//14-05-29 성훈추가: userid로 User정보가져가기(DogDTO 타입반환)
 	public static List<DogDTO> logIdCheck(String userid) throws SQLException, LoginException {
 		SqlSession session =null;

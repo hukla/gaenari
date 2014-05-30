@@ -14,8 +14,8 @@
 작성일: 2014-05-29
 내용: 친구관리기능, 친구검색 후 검색된 친구 user정보 미리보기(진행중)
 
-수정: 2014-05-30, 최성훈
-내용: 친구요청하기, 친구요청 있을시 띄우기(진행중)
+수정: 2014-05-30, 최성훈	내용: 친구요청하기, 친구요청 있을시 띄우기(진행중)
+수정: 2014-05-30, 최성훈	내용: 친구검색 후 친구요청하기, 친구 요청상태확인, 친구인상태보이기
  -->
 <body>
 [구현할 기능]<br>
@@ -26,7 +26,18 @@
 
 <table border="1">
 	<tr>
-		<td></td>
+		<td>
+			<c:choose>
+				<c:when test="${not empty requestScope.friendList}">
+					<c:forEach items="${requestScope.friendList}" var="friends">
+						<a href="/gaenari/miniHome.do?userid=${friends.userid}">${friends.userid}</a>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+				친구목록이 없습니다.
+				</c:otherwise>
+			</c:choose>
+		</td>
 		<td align="center">
 			<c:if test="${sessionScope.userid eq requestScope.user.userid}">
 				<c:choose>
@@ -41,12 +52,12 @@
 						 				</a>
 						 				<form id="acform" action="/gaenari/acptRequest.do">
 						 					<input type="hidden" name="sender" value="${sender.userno}">
-						 					<input type="hidden" name="receiver" value="${requestScope.user.userid}">
+						 					<input type="hidden" name="receiver" value="${requestScope.user.userno}">
 						 					<button onclick="accept()">수락</button>&nbsp;
 						 				</form>
 						 				<form id="reform" action="/gaenari/rjctRequest.do">
 						 					<input type="hidden" name="sender" value="${sender.userno}">
-						 					<input type="hidden" name="receiver" value="${requestScope.user.userid}">
+						 					<input type="hidden" name="receiver" value="${requestScope.user.userno}">
 						 					<button onclick="reject()">거절</button>
 						 				</form>
 						 			</td>
