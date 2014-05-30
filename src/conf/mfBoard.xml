@@ -25,12 +25,13 @@
 		m.mcontact, m.mkind, m.mgender, m.mage, m.mname from board b join mboardinfo m on b.brdno=m.brdno
 		where b.brdtype='mb' order by m.mbrdno desc
 	</select>
-	<!--
-	<select id="selectByNum" resultMap="brdMap" parameterType="int">
-		select m.mfbrdno, b.brdno. b.title, b.userid, b.wrdate, b.content, m.mfloc, m.mfdoginfo, m.mftype
-		from mfboardinfo m and board b where m.mfbrdno=#{num}
+	
+	<select id="MselectOne" resultMap="brdMap" parameterType="int">
+		select b.brdno, b.brdcontent, b.wrdate, b.userid, b.title, b.brdtype, b.userno, m.mbrdno, m.mloc, m.mdate,
+		m.mcontact, m.mkind, m.mgender, m.mage, m.mname from board b join mboardinfo m on b.brdno=m.brdno
+		where m.mfbrdno=#{num}
 	</select>
-	 
+	 <!--
 	<insert id="insert" parameterType="MfBoardDTO">
 		insert into mfboardinfo VALUES(#{mfloc},#{mfdoginfo}, #{mftype})
 	</insert>

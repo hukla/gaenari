@@ -60,5 +60,17 @@ public class MFBoardDAO {
 		
 		return list;
 	}
-
+	public static MissingBoardDTO selectOne(int brdno) {
+		SqlSession session = null;
+		MissingBoardDTO mdto = null;
+		
+		try {
+			session = DBUtil.getSqlSession();
+			mdto = session.selectOne("mfboard.selectOne", brdno);
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		
+		return mdto;
+	}
 }

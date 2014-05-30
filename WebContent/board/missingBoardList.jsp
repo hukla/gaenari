@@ -65,17 +65,23 @@ $(function(){
 				$('#mdog_table tr:eq(0)').remove();
 				var table="";
 				table += "<tr><td>";
-				$(data).find('mList').each(function (index){
+				$(data).find('item').each(function (index){
 					table += "<div id='mdog_list'>";
 					table += "<ul>";
 					table += "<input type='hidden' name='selectedBrdNo' value='"+$(this).find("brdno").text()+"'>";
 					table += "<table>";
 					table += "<tr>";
 					
-					// 상품이미지
+					// 이미지
 					table += "<td align='center', valign='middle'><a href='/gaenari/missingBoardView.do?brdno="
 							+$(this).find("brdno").text()+"'><img class='mdog_img' id='img_"+$(this).find("brdno").text()
 							+"' src='/gaenari/image/board/"+$(this).find("brdno").text()+".jpg' width='160' height='160' border='0' align='absmiddle'></a></td>";
+				
+					// 장소/일시
+					table += "<tr align='center'><td height='35' class='mdog_loc'><a href='/gaenari/missingBoardView.do?brdno="
+						+$(this).find("brdno").text()+"'>"+"실종 장소: "+$(this).find("mloc").text()+"</a></td></tr>";
+					table += "<tr align='center'><td height='35' class='mdog_date'><a href='/gaenari/missingBoardView.do?brdno="
+						+$(this).find("brdno").text()+"'>"+"실종 날짜: "+$(this).find("mdate").text()+"</a></td></tr>";
 				});	
 				
 				table+="</tr></td>";
