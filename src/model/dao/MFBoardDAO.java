@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
+import model.dto.ItemDTO;
 import model.dto.MissingBoardDTO;
 
 import org.apache.ibatis.session.SqlSession;
@@ -47,7 +48,17 @@ public class MFBoardDAO {
 	}
 	
 	public static List<MissingBoardDTO> selectAll(){
-		return null;
+		SqlSession session = null;
+		List<MissingBoardDTO> list = null;
+		
+		try {
+			session = DBUtil.getSqlSession();
+			list = session.selectList("mfboard.MselectAll");
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		
+		return list;
 	}
 
 }

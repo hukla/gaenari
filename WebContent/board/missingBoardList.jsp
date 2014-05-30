@@ -57,7 +57,7 @@ $(function(){
 		type:"post"
 	});
 	
-	function getItemList() {
+	function getMdogList() {
 		$.ajax({
 			url: "/gaenari/missingBoardList.do",
 			dataType: "xml",
@@ -65,7 +65,7 @@ $(function(){
 				$('#mdog_table tr:eq(0)').remove();
 				var table="";
 				table += "<tr><td>";
-				$(data).find('item').each(function (index){
+				$(data).find('mList').each(function (index){
 					table += "<div id='mdog_list'>";
 					table += "<ul>";
 					table += "<input type='hidden' name='selectedBrdNo' value='"+$(this).find("brdno").text()+"'>";
@@ -76,55 +76,17 @@ $(function(){
 					table += "<td align='center', valign='middle'><a href='/gaenari/missingBoardView.do?brdno="
 							+$(this).find("brdno").text()+"'><img class='mdog_img' id='img_"+$(this).find("brdno").text()
 							+"' src='/gaenari/image/board/"+$(this).find("brdno").text()+".jpg' width='160' height='160' border='0' align='absmiddle'></a></td>";
-					
-					//상품명
-					table += "<tr align='center'><td height='35' class='item_name'><a href='/gaenari/mallDetail.do?itemno='"
-							+$(this).find("itemno").text()+"'>"+$(this).find("itemname").text()+"</a></td></tr>";
-					
-					//가격 및 마일리지
-					table += "<tr><td align='center'><font color='#777777'>\</font><span class='item_price'>"+$(this).find("price").text()+"</span>"
-					+"&nbsp; &nbsp;<span class='item_mileage'><img src='/gaenari/mall/img/btn_point.png' align='absmiddle' width='10' height='relative'>&nbsp;"+(parseInt($(this).find("price").text())*0.05)+"</span></td></tr>";
-					
-					//수량
-					table += "<tr><td bgcolor='#FFFFFF'>&nbsp;&nbsp;"+ 
-					"<input type=text name='ct_qty' value='1' size=5 maxlength=5 class='ed' autocomplete='off' style='text-align: center;'>개"+ 
-					"</td></tr>";
-					//대상
-					table +="<tr><td bgcolor='#FFFFFF'>&nbsp;&nbsp;"+ 
-					"<select name='don_target'>"+
-					"<option value='0'>기부할 센터 선택</option>"+
-					"<c:forEach items='${sessionScope.centerList}' var='cntr'>"+
-					"<option value='${cntr.cntrno}'>${cntr.cntrname }</option>"+
-					"</c:forEach>"+
-					"</select></td></tr>";
-					//기부하기
-					table += "<tr><td align='center'><input type='submit' value='기부하기'></td></tr>";
-					table += "</table>"
-					table += "</form></li>";
-					table += "</ul>";
-					table += "</div>";
-				});
+				});	
+				
 				table+="</tr></td>";
 				//alert(table);
-				$('#item_table').html(table);
+				$('#mdog_table').html(table);
 			},
 			error: function(data) { alert(data+' => 에러 발생');}
 			
 		});// ajax 끝
 	}// getItemList() 함수 끝
-	
-	getItemList();
-	
-	// 수량 입력 유효성 검사
-	$(document).on('blur', '.ct_qty', function(){
-		//alert($(this).val());
-		if(parseInt($(this).val()) < 0) {
-			alert('1보다 큰 값을 입력해주세요!');
-			$(this).val(1);
-			$(this).focus();
-		}
-	});// 수량 입력 유효성 검사 끝
-	
+	getMdogList();
 });
 </script>
 
