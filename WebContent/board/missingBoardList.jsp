@@ -19,8 +19,10 @@
 			</tr>
 		</table>
 	</center>
+	<div align=right>
 		<span style="font-size:9pt;"><a href="/gaenari/board/missingBoardWrite.jsp">
-		<input type="hidden" value=${id} name="id"><input type=submit value=글쓰기></a></span></div>
+		<input type="hidden" value=${id} name="id">
+		<input type=submit value=글쓰기></a></span></div>
 </body>
 <style>
 		#mdog_list {
@@ -36,16 +38,6 @@
 			outline: 0;
 			padding: 0;
 			list-style: none;
-		}
-		
-		#mdog_list ul li {
-			width: 20%;
-			height: 500px;
-			vertical-align: baseline;
-			overflow: hidden;
-			display: inline;
-			float: left;
-			text-align: center;
 		}
 	</style>
 	
@@ -68,23 +60,23 @@ $(function(){
 				$(data).find('item').each(function (index){
 					table += "<div id='mdog_list'>";
 					table += "<ul>";
-					table += "<input type='hidden' name='selectedBrdNo' value='"+$(this).find("brdno").text()+"'>";
+					table += "<input type='hidden' name='selectedBrdNo' value='"+$(this).find("mbrdno").text()+"'>";
 					table += "<table>";
 					table += "<tr>";
 					
 					// 이미지
-					table += "<td align='center', valign='middle'><a href='/gaenari/missingBoardView.do?brdno="
+					table += "<td align='center', valign='middle'><a href='/gaenari/missingBoardView.do?mbrdno="
 							+$(this).find("brdno").text()+"'><img class='mdog_img' id='img_"+$(this).find("brdno").text()
-							+"' src='/gaenari/image/board/"+$(this).find("brdno").text()+".jpg' width='160' height='160' border='0' align='absmiddle'></a></td>";
+							+"' src='/gaenari/image/board/"+$(this).find("mbrdno").text()+".jpg' width='160' height='160' border='0' align='absmiddle'></a></td>";
 				
 					// 장소/일시
-					table += "<tr align='center'><td height='35' class='mdog_loc'><a href='/gaenari/missingBoardView.do?brdno="
-						+$(this).find("brdno").text()+"'>"+"실종 장소: "+$(this).find("mloc").text()+"</a></td></tr>";
-					table += "<tr align='center'><td height='35' class='mdog_date'><a href='/gaenari/missingBoardView.do?brdno="
-						+$(this).find("brdno").text()+"'>"+"실종 날짜: "+$(this).find("mdate").text()+"</a></td></tr>";
+					table += "<tr align='center'><td height='35' class='mdog_loc'><a href='/gaenari/missingBoardView.do?mbrdno="
+						+$(this).find("mbrdno").text()+"'>"+"실종 장소: "+$(this).find("mloc").text()+"</a></td></tr>";
+					table += "<tr align='center'><td height='35' class='mdog_date'><a href='/gaenari/missingBoardView.do?mbrdno="
+						+$(this).find("mbrdno").text()+"'>"+"실종 날짜: "+$(this).find("mdate").text()+"</a></td></tr>";
 				});	
 				
-				table+="</tr></td>";
+				table+="</tr></table>";
 				//alert(table);
 				$('#mdog_table').html(table);
 			},

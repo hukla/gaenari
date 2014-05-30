@@ -66,7 +66,7 @@ public class MFBoardDAO {
 		
 		try {
 			session = DBUtil.getSqlSession();
-			mdto = session.selectOne("mfboard.selectOne", brdno);
+			mdto = session.selectOne("mfboard.MselectOne", brdno);
 		} finally {
 			DBUtil.closeSession(session);
 		}
