@@ -16,11 +16,11 @@
 <!-- <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="/gaenari/bootstrap/js/bootstrap.min.js"></script> -->
 <body>
-	<table border="0" align="left" width="14%" >
+	<table border="0" style='text-align:left' align='left' width="14%" height='100%'>
 		<tr>
 			<td width="10%">
 			</td>
-			<td width="90%">
+			<td width="90%" >
 				<font face="서울한강체">
 					<ul class="nav nav-pills nav-stacked">
 						<li><a href="/gaenari/mallMain.do">기부몰 메인</a></li>

@@ -1,6 +1,8 @@
 package model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import model.dto.ItemDTO;
 
@@ -97,6 +99,27 @@ public class ItemDAO {
 			DBUtil.closeSession(session, res);
 		}
 		
+		return res;
+	}
+
+	public static boolean insertReqCntr(int cntrno, int itemno) {
+		boolean res = false;
+		SqlSession session = null;
+		Map<String, String> input = new HashMap<String, String>();
+		
+		input.put("itemno", ""+itemno);
+		input.put("cntrno", ":"+cntrno+":");
+		
+		log.info(input);
+		
+		// cntrno랑 itemno가 필요!
+		try {
+			session = DBUtil.getSqlSession();
+			res = (session.update("iteminfo.updateReqcntr", input) > 0)? true : false;
+		} finally {
+			DBUtil.closeSession(session, res);
+		}
+
 		return res;
 	}
 

@@ -29,5 +29,11 @@
 		SET itemname=#{itemname}, price=${price}, qty=${qty}, itemdetail=#{itemdetail}
 		WHERE itemno=#{itemno}
 	</update>
+	
+	<update id="updateReqcntr" parameterType="Map">	
+		UPDATE iteminfo
+		SET reqcntr=reqcntr+#{cntrno}
+		WHERE itemno=${itemno}
+	</update>
 
 </mapper>

@@ -14,6 +14,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import model.dao.CenterDAO;
 import model.dao.DonReqDAO;
 import model.dao.ItemDAO;
@@ -23,7 +25,9 @@ import model.dto.ItemDTO;
 import model.dto.UserDTO;
 
 public class MallDonateAction implements Action {
-
+	
+	private static final Logger log = Logger.getLogger(MallDonateAction.class);
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// donate 수행하기 전에 필요한 정보를 request에서 가져옴
@@ -53,8 +57,12 @@ public class MallDonateAction implements Action {
 			url = "/error.jsp";
 		}
 		// 성공 페이지에서 결과 출력하기 위해 attribute 설정
+		log.debug("1");
 		request.setAttribute("donnation", donnation);
+		log.debug("2");
 		request.setAttribute("itemname", request.getParameter("item_name"));
+		log.debug("3");
+		System.out.println(request.getParameter("item_name"));
 		request.setAttribute("cntrname", targetcntrname);
 		
 		// forward

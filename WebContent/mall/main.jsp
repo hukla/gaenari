@@ -13,9 +13,9 @@
 	<h1 align="center">사랑을 나누세요</h1><!-- 기부몰 메인 배너 -->
 	
 	<hr>
-
+	<input type='hidden' name='usertype' value='${sessionScope.user.usertype}'>
 	<!-- 상품 리스트 -->
-	<table id="item_table">
+	<table id="item_table" width='86%' align='right'>
 		<tr><td>로딩중</td></tr>
 	</table>
 	<!-- //상품 리스트 -->
@@ -71,8 +71,10 @@ $(function(){
 				$(data).find('item').each(function (index){
 					table += "<div id='item_list'>";
 					table += "<ul>";
-					table += "<li><form action='/gaenari/donnate.do' method='post'>";
+					table += "<li><form id='item' method='post'>";
 					table += "<input type='hidden' name='selectedItemNo' value='"+$(this).find("itemno").text()+"'>";
+					table += "<input type='hidden' name='price' value='"+$(this).find('price').text()+"'>";
+					table += "<input type='hidden' name='gnr_point' value='"+(parseInt($(this).find("price").text())*0.05)+"'>";
 					table += "<table>";
 					table += "<tr>";
 					
@@ -93,17 +95,26 @@ $(function(){
 					table += "<tr><td bgcolor='#FFFFFF'>&nbsp;&nbsp;"+ 
 					"<input type=text name='ct_qty' value='1' size=5 maxlength=5 class='ed' autocomplete='off' style='text-align: center;'>개"+ 
 					"</td></tr>";
+					
 					//대상
 					table +="<tr><td bgcolor='#FFFFFF'>&nbsp;&nbsp;"+ 
-					"<select name='don_target'>"+
+					"<select name='don_target' id='target_sel'>"+
 					"<option value='0'>기부할 센터 선택</option>"+
 					"<c:forEach items='${sessionScope.centerList}' var='cntr'>"+
 					"<option value='${cntr.cntrno}'>${cntr.cntrname }</option>"+
 					"</c:forEach>"+
 					"</select></td></tr>";
 					//기부하기
-					table += "<tr><td align='center'><input type='submit' value='기부하기'></td></tr>";
-					table += "</table>";
+					table += "<tr><td align='center'>";
+					//alert($('input[name=usertype]').val());
+					if($('input[name=usertype]').val() > 0) {
+						table += "<input type='submit' value='요청하기'>";
+					} else if ($('input[name=usertype]').val() < 0) {
+						table += "<input type='submit' value='상품 정보 수정하기'>";	
+					} else {	
+						table += "<input type='submit' value='기부하기'>"; 
+					}
+					table += "</td></tr></table>";
 					table += "</form></li>";
 					table += "</ul>";
 					table += "</div>";
@@ -116,6 +127,35 @@ $(function(){
 			
 		});// ajax 끝
 	}// getItemList() 함수 끝
+	
+	// user type에 따라 submit action 다르게 하기
+	$(document).on('submit', '#item', function(){
+		if($('#target_sel option:selected').val() == 0) {
+			alert("기부할 대상을 선택해주세요!");
+			return false;
+		}
+		
+		//alert($('input[name=usertype]').val());
+		if($('input[name=usertype]').val() == 0) {
+			$('#item').prop('action', '/gaenari/donnate.do');
+			alert($('#item').prop('action').val());
+			return true;
+		} else if($('input[name=usertype]').val() > 0) {
+			$('#item').prop('action', '/gaenari/mallRequest.do');
+			return true;
+		} else if($('input[name=usertype]').val() < 0){
+			var newwindow;
+			var url ="/gaenari/itemUpdateForm.do?itemno="+$('input[name=selectedItemNo]').val();
+			
+			newwindow=window.open(url, '상품 상세 정보 수정 페이지', 'height=550,width=660');
+			if(window.focus) {
+				newwindow.focus;
+			}
+		} else {
+			alert("로그인해주세요!");
+		}
+	});
+	
 	
 	getItemList();
 	
