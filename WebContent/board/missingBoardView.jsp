@@ -45,6 +45,14 @@
 					<td><p align="center"><font color="black"><b><span style="font-size:10pt;">연 락 처</span></b></font></p></td>
 					<td><span style="font-size:9pt;"><b>${requestScope.resultContent.mcontact}</b></span></td>
 				</tr>
+				<tr>
+					<td><p align="center"><font color="black"><b><span style="font-size:10pt;">제 목</span></b></font></p></td>
+					<td><span style="font-size:9pt;"><b>${requestScope.resultContent.title}</b></span></td>
+				</tr>
+				<tr>
+					<td><p align="center"><font color="black"><b><span style="font-size:10pt;">내 용</span></b></font></p></td>
+					<td><span style="font-size:9pt;"><b>${requestScope.resultContent.brdcontent}</b></span></td>
+				</tr>
 			</table>
 		</td>
 	</tr>

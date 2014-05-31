@@ -71,7 +71,7 @@ public class MissingBoardWriteAction implements Action {
 			mgender = multi.getParameter("mgender");
 			mage = multi.getParameter("mage");
 			mname = multi.getParameter("mname");
-			fileName = multi.getFilesystemName("uploadFile");
+			fileName = new String((multi.getFilesystemName("uploadFile")).getBytes(),"UTF-8").trim();
 			imageFile="/gaenari/image/board/"+fileName;
 			
 			/*boardDTO = new BoardDTO(brdcontent, (String)session.getAttribute("today"),

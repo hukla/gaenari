@@ -7,11 +7,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import model.dao.MFBoardDAO;
 import model.dto.FindingBoardDTO;
 import model.dto.MissingBoardDTO;
 
 public class FindingBoardListAction implements Action {
+	
+	private Logger log = Logger.getLogger(this.getClass());
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
@@ -38,7 +42,8 @@ public class FindingBoardListAction implements Action {
 				xmlData += "<picPath>"+brdcontent[0]+"</picPath>";
 				xmlData += "</item>"; 
 			}
-			xmlData += "</fList>";						
+			xmlData += "</fList>";			
+			log.info(xmlData);
 			response.getWriter().print(xmlData);
 		} catch (Exception e) {
 			e.printStackTrace();
