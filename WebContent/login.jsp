@@ -64,7 +64,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="/gaenari/bootstrap/js/bootstrap.min.js"></script>
 <body>
-<% if(!session.isNew()) session.invalidate(); %>
+<%-- <% if(!session.isNew()) session.invalidate(); %> --%>
 <div id="fb-root"></div>
 	<table height="60" width="100%">
 		<tr>
