@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
-
 import controller.action.Action;
 
 

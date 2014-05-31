@@ -144,7 +144,7 @@
 	});
 
 	function goModify() {
-		opener.location.href = "/gaenari/miniHome.do";
+		opener.location.href = "/gaenari/modifyInfo.do";
 		window.close();
 	}
 	function sendReq() {

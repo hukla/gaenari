@@ -24,14 +24,14 @@ public class PtBoardWriteAction implements Action {
 		String worktype = request.getParameter("worktype");
 		String workloc = request.getParameter("workloc");
 		String workhour  = request.getParameter("workhour");
+		String url = "/error.jsp";
 		System.out.println("PtBoardWriteAction입니다!");
 		PtBoardDTO pbdto = new PtBoardDTO(title, brdcontent, userid, brdtype, worktype, workloc, workhour);
 		System.out.println(pbdto.toString());
 		try{
 			boolean result = PtBoardDAO.writeContent(pbdto);
 			if(result){
-				response.sendRedirect("control?command=ptBoardList");
-				return;
+				url = "/ptBoardList.do";
 			}else{
 				throw new Exception("입력값이 충분하지 않습니다.");
 			}
@@ -39,7 +39,7 @@ public class PtBoardWriteAction implements Action {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 		}
-		request.getRequestDispatcher("/error.jsp").forward(request, response);
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 }

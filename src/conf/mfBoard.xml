@@ -10,6 +10,28 @@
 		</discriminator>
 	</resultMap>
 	
+	<insert id="Finsert" parameterType="BoardDTO">
+		insert into board(brdcontent,wrdate,userid,title,brdtype,userno)
+		values(#{brdcontent},#{wrdate},#{userid},#{title},#{brdtype},#{userno})
+	</insert>
+	
+	<insert id="insertFinding" parameterType="FindingBoardDTO">
+		insert into fboardinfo(brdno, floc)
+		values(#{brdno}, #{floc})
+	</insert>
+	 
+	<select id="FselectAll" resultMap="brdMap">
+		select b.brdno, b.brdcontent, b.wrdate, b.userid, b.title, b.brdtype, b.userno,
+		f.fbrdno, f.floc from board b join fboardinfo f on b.brdno=f.brdno
+		where b.brdtype='fb' order by f.fbrdno desc
+	</select>
+	
+	<select id="FselectOne" resultMap="brdMap" parameterType="int">
+		select b.brdno, b.brdcontent, b.wrdate, b.userid, b.title, b.brdtype, b.userno,
+		f.fbrdno, f.floc from board b join fboardinfo f on b.brdno=f.brdno
+		where f.fbrdno=#{num}
+	</select>
+	
 	<insert id="Minsert" parameterType="BoardDTO">
 		insert into board(brdcontent,wrdate,userid,title,brdtype,userno)
 		values(#{brdcontent},#{wrdate},#{userid},#{title},#{brdtype},#{userno})

@@ -115,9 +115,11 @@ CREATE TABLE mboardinfo(
 	mname VARCHAR(50) NOT NULL
 );
 --2014.05.27 새로 생성! - 수진
+--2014.05.31 fboardinfo 테이블에 brdno 칼럼 추가 - 수진
 DROP TABLE fboardinfo;
 CREATE TABLE fboardinfo(
 	fbrdno INT PRIMARY KEY AUTO_INCREMENT,
+	brdno INT CONSTRAINT brd_no_fk REFERENCES board(brdno) NOT NULL,
 	floc VARCHAR(50) NOT NULL
 );
 

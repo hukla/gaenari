@@ -26,10 +26,12 @@ public class MissingBoardViewAction implements Action {
 		String no = request.getParameter("mbrdno");
 		int mbrdno = Integer.parseInt(no);
 		System.out.println("mbrdno="+mbrdno);
-		MissingBoardDTO mdto = MFBoardDAO.selectOne(mbrdno);
+		MissingBoardDTO mdto = MFBoardDAO.MselectOne(mbrdno);
+		String picPath = mdto.getBrdcontent().split("!split!")[0];
 		
 		if(mdto!=null){
 			request.setAttribute("resultContent", mdto);
+			request.setAttribute("picPath",picPath);
 			url = "board/missingBoardView.jsp";
 			
 		request.getRequestDispatcher(url).forward(request, response);

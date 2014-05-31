@@ -16,6 +16,13 @@
 <body>
 
 	<table align="center" border="1" cellpadding="5" cellspacing="2" width="80%">
+				<colgroup>
+						<col width="7%"/>
+						<col width="60%"/>
+						<col width="11%"/>
+						<col width="15%"/>
+						<col width="7%"/>
+					</colgroup>
 					<tr>
 						<td>
 							<p align="center"><font color="black"><b><span style="font-size:10pt;">글번호</span></b></font></p>

@@ -59,6 +59,7 @@ public class SessionFilter implements Filter {
 			log.info("session null임!");
 			if(email==null && username==null){
 				response.sendRedirect("/gaenari/login.do"); // TODO
+				//request.getRequestDispatcher("/gaenari/login.do").forward(request, response);
 			}
 		}else{
 			String userid = null;
@@ -68,6 +69,10 @@ public class SessionFilter implements Filter {
 				userid = request.getParameter("userid");
 				pwd = request.getParameter("pwd");
 			}else{
+				System.out.println(request.getRequestURI());
+				if(request.getRequestURI().contains("login.jsp")){
+					response.sendRedirect("/gaenari/login.do");
+				}
 				log.info("session.getAttribute('userid') = "+(String)session.getAttribute("userid"));
 				userid = (String) session.getAttribute("userid");
 				pwd = (String) session.getAttribute("pwd");
