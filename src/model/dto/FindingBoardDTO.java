@@ -9,9 +9,8 @@ public class FindingBoardDTO extends BoardDTO {
 	private String floc;
 	
 	public FindingBoardDTO() {}
-	public FindingBoardDTO(int fbrdno, String floc) {
-		super();
-		this.fbrdno = fbrdno;
+	public FindingBoardDTO(int brdno,String floc) {
+		super.setBrdno(brdno);
 		this.floc = floc;
 	}
 	public int getFbrdno() {

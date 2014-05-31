@@ -31,7 +31,7 @@ public class MissingBoardListAction implements Action  {
 		int pagecount=0;
 		
 		try {
-			mList = MFBoardDAO.selectAll();
+			mList = MFBoardDAO.MselectAll();
 			
 			if(mList == null) {
 				throw new Exception("mList가 null입니다.");

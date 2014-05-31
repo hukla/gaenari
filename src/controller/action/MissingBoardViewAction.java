@@ -26,7 +26,7 @@ public class MissingBoardViewAction implements Action {
 		String no = request.getParameter("mbrdno");
 		int mbrdno = Integer.parseInt(no);
 		System.out.println("mbrdno="+mbrdno);
-		MissingBoardDTO mdto = MFBoardDAO.selectOne(mbrdno);
+		MissingBoardDTO mdto = MFBoardDAO.MselectOne(mbrdno);
 		String picPath = mdto.getBrdcontent().split("!split!")[0];
 		
 		if(mdto!=null){
