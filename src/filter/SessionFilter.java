@@ -46,6 +46,7 @@ public class SessionFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) resp;
 		HttpSession session = request.getSession();
 		
+		request.setCharacterEncoding("utf-8");
 		System.out.println("==SessionFilter 진입==");
 		
 		String email,username = null;
