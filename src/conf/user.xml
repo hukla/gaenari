@@ -3,8 +3,6 @@
 <!-- 다수의 xml 문서 자체를 구분하기 위한 xml 문서 별칭 -->
 <mapper namespace="u">
 
-
-	
 	<!-- 14-05-20 성훈수정: 로그인 아이디만 보내도록 수정 -->
 	<select id="getOneLoginUser" parameterType="String" resultType="UserDTO" >
 		select * from userinfo where userid = #{userid}

@@ -10,12 +10,11 @@
 <title>기부몰 메인 페이지</title>
 </head>
 <body>
-	<h1 align="center">사랑을 나누세요</h1><!-- 기부몰 메인 배너 -->
-	
-	<hr>
 	<input type='hidden' name='usertype' value='${sessionScope.user.usertype}'>
 	<!-- 상품 리스트 -->
 	<table id="item_table" width='86%' align='right'>
+		<tr><td><h1>사랑을 나누세요</h1></td></tr>
+		<tr><td height='1px' background-color='gray'></td></tr>
 		<tr><td>로딩중</td></tr>
 	</table>
 	<!-- //상품 리스트 -->
@@ -41,7 +40,7 @@
 		
 		#item_list ul li {
 			width: 20%;
-			height: 500px;
+			height: 320px;
 			vertical-align: baseline;
 			overflow: hidden;
 			display: inline;
@@ -65,7 +64,7 @@ $(function(){
 			url: "/gaenari/itemList.do",
 			dataType: "xml",
 			success: function(data) {
-				$('#item_table tr:eq(0)').remove();
+				$('#item_table tr:eq(2)').remove();
 				var table="";
 				table += "<tr><td>";
 				$(data).find('item').each(function (index){
@@ -75,6 +74,9 @@ $(function(){
 					table += "<input type='hidden' name='selectedItemNo' value='"+$(this).find("itemno").text()+"'>";
 					table += "<input type='hidden' name='price' value='"+$(this).find('price').text()+"'>";
 					table += "<input type='hidden' name='gnr_point' value='"+(parseInt($(this).find("price").text())*0.05)+"'>";
+					table += "<input type='hidden' name='don_target'>";
+					table += "<input type='hidden' name='item_name' value='"+$(this).find('itemname').text()+"'>";
+					table += "<input type='hidden' name='cntrname'>";
 					table += "<table>";
 					table += "<tr>";
 					
@@ -98,7 +100,7 @@ $(function(){
 					
 					//대상
 					table +="<tr><td bgcolor='#FFFFFF'>&nbsp;&nbsp;"+ 
-					"<select name='don_target' id='target_sel'>"+
+					"<select name='"+$(this).find("itemno").text()+"' class='target_sel'>"+
 					"<option value='0'>기부할 센터 선택</option>"+
 					"<c:forEach items='${sessionScope.centerList}' var='cntr'>"+
 					"<option value='${cntr.cntrno}'>${cntr.cntrname }</option>"+
@@ -121,7 +123,7 @@ $(function(){
 				});
 				table+="</tr></td>";
 				//alert(table);
-				$('#item_table').html(table);
+				$('#item_table tr:eq(1)').after(table);
 			},
 			error: function(data) { alert(data+' => 에러 발생');}
 			
@@ -130,22 +132,28 @@ $(function(){
 	
 	// user type에 따라 submit action 다르게 하기
 	$(document).on('submit', '#item', function(){
-		if($('#target_sel option:selected').val() == 0) {
-			alert("기부할 대상을 선택해주세요!");
-			return false;
-		}
 		
-		//alert($('input[name=usertype]').val());
 		if($('input[name=usertype]').val() == 0) {
-			$('#item').prop('action', '/gaenari/donnate.do');
-			alert($('#item').prop('action').val());
+
+			if($(this).find('select option:selected').val() == 0) {
+				alert("기부할 대상을 선택해주세요!");
+				return false;
+			} else {
+				$(this).find('input[name=don_target]').val($(this).find('select option:selected').val());
+				$(this).find('input[name=cntrname]').val($(this).find('select option:selected').text());
+				alert($(this).find('input[name=cntrname]').val());
+			}
+
+			$(this).attr('action', '/gaenari/donnate.do');
 			return true;
+			
 		} else if($('input[name=usertype]').val() > 0) {
-			$('#item').prop('action', '/gaenari/mallRequest.do');
+			
+			$('#item').attr('action', '/gaenari/mallRequest.do');
 			return true;
 		} else if($('input[name=usertype]').val() < 0){
 			var newwindow;
-			var url ="/gaenari/itemUpdateForm.do?itemno="+$('input[name=selectedItemNo]').val();
+			var url ="/gaenari/itemUpdateForm.do?itemno="+$(this).find('input[name=selectedItemNo]').val();
 			
 			newwindow=window.open(url, '상품 상세 정보 수정 페이지', 'height=550,width=660');
 			if(window.focus) {

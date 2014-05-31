@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import model.dao.DogDAO;
 import model.dao.TestDAO;
 import model.dao.UserDAO;
@@ -28,15 +30,18 @@ import exception.LoginException;
  * 수정: 2014-05-30, 최성훈
  * 내용: 친구요청정보 존재여부 보이기
  *
+ * 수정: 2014-05-31, 장재희
+ * 내용: logger 추가
  */
 public class HomeAction implements Action {
 	
+	private static final Logger log = Logger.getLogger(HomeAction.class);
 	Calendar cal = Calendar.getInstance();
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{  
 		
-		System.out.println(request.getAttribute("user.name"));
-		System.out.println(request.getAttribute("user.email"));
+		//System.out.println(request.getAttribute("user.name"));
+		//System.out.println(request.getAttribute("user.email"));
 		
 		int year = cal.get(cal.YEAR);
 		int mth = cal.get(cal.MONTH)+1;
@@ -86,6 +91,7 @@ public class HomeAction implements Action {
 					session.removeAttribute("sender");
 					session.setAttribute("sender", list);
 					session.setAttribute("user", loginUser);
+					log.info("logined user : "+loginUser);
 					session.setAttribute("dog", dog);
 					
 					url = "/home.jsp";

@@ -35,6 +35,7 @@ public class MallDonateAction implements Action {
 		int itemno = Integer.parseInt(request.getParameter("selectedItemNo"));
 		int userno = user.getUserno();
 		int qty = Integer.parseInt(request.getParameter("ct_qty"));
+		log.info("itemno : "+itemno);
 		int targetcntrno = Integer.parseInt(request.getParameter("don_target"));
 		int price = Integer.parseInt(request.getParameter("price"));
 		double point = Double.parseDouble(request.getParameter("gnr_point"));
@@ -57,11 +58,8 @@ public class MallDonateAction implements Action {
 			url = "/error.jsp";
 		}
 		// 성공 페이지에서 결과 출력하기 위해 attribute 설정
-		log.debug("1");
 		request.setAttribute("donnation", donnation);
-		log.debug("2");
 		request.setAttribute("itemname", request.getParameter("item_name"));
-		log.debug("3");
 		System.out.println(request.getParameter("item_name"));
 		request.setAttribute("cntrname", targetcntrname);
 		

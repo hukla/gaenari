@@ -215,7 +215,7 @@
 		<!-- 상세정보 제목 테이블 끝 -->
 		<!-- 상품설명 시작 -->
 		<div id='item_explan' style='display: block;'>
-			<table width=100% align="center" cellpadding=0 cellspacing=0>
+			<table width=86% align="right" cellpadding=0 cellspacing=0>
 				<tr>
 					<td style='padding: 15px'>
 						${selectedItem.itemdetail}						
@@ -228,7 +228,7 @@
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript">
 		function popupOpen(itemno){
-			var popUrl = "mall/img/"+itemno+"_s.jpg";	//팝업창에 출력될 페이지 URL
+			var popUrl = "mall/img/"+itemno+".jpg";	//팝업창에 출력될 페이지 URL
 			var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 		window.open(popUrl,"",popOption);
 		}

@@ -57,8 +57,9 @@ public class MallUpdateItemAction implements Action {
 				log.info("File Name  : " + fileName);
 				//파일명 변경
 				String realFileName = itemno + fileName.substring(fileName.lastIndexOf("."), fileName.length());
-				File oldFile = new File(savePath + fileName);
-				File newFile = new File(savePath + realFileName);
+				File oldFile = new File(savePath +"/"+ fileName);
+				File newFile = new File(savePath +"/"+ realFileName);
+				newFile.delete();
 				oldFile.renameTo(newFile);
 			}// else
 			
