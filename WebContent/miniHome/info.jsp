@@ -105,16 +105,20 @@
 				</tr>
 				<tr>
 					<td colspan="6" height="300" align="center">
-						<div id="bigimg"><img src="/gaenari/image/logo.jpg" height="70" width="100"></div>
+						<div id="bigimg"><img src="${requestScope.imageList[0]}" height="70" width="100"></div>
 					</td>
 				</tr>
 				<tr>
-					<td id="p"><img src="/gaenari/image/47H.jpg" height="55" width="80"></td>
-					<td id="p"><img src="/gaenari/image/defaultDog.jpg" height="55" width="80"></td>
-					<td id="p"><img src="/gaenari/image/logo.jpg" height="55" width="100"></td>
-					<td id="p"><img src="/gaenari/image/retriever-348572.jpg" height="55" width="80"></td>
-					<td id="p"><img src="/gaenari/image/euriiiii.jpg" height="55" width="80"></td>
-					<td id="p"><img src="/gaenari/image/horse.jpg" height="55" width="80"></td>
+					<c:choose>
+						<c:when test="${not empty requestScope.imageList}">
+							<c:forEach items="${requestScope.imageList}" var="image" end="5">
+								<td id="p"><img src="${image}" height="55" width="80"></td>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<h4>등록된 사진이 없습니다.</h4>
+						</c:otherwise>
+					</c:choose>
 				</tr>
 				<tr>
 					<td colspan="6" align="center"><button id="close">닫기</button></td>
