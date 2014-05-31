@@ -24,6 +24,7 @@
 					</span>
 					</td>
 				</tr>
+				<tr height="100"></tr>
 				<tr>
 					<td><p align="center"><font color="black"><b><span style="font-size:10pt;">이 름</span></b></font></p></td>
 					<td><span style="font-size:9pt;"><b>${requestScope.resultContent.mname}</b></span></td>

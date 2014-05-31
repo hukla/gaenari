@@ -61,10 +61,16 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle glyphicon glyphicon-dog" data-toggle="dropdown"><b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/gaenari/image/glyphicons_002_dog.png"></a>
         <ul class="dropdown-menu">
-          <li><a href="/gaenari/missingBoardMain.do">유기견</a></li>
+          <li><a href="/gaenari/missingBoardMain.do">유기견 신고</a></li>
+          <li><a href="/gaenari/findingBoardMain.do">유기견 제보</a></li>
           <li><a href="/gaenari/adpBoardList.do">애견입양</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/gaenari/image/glyphicons_043_group.png"></a>
+        <ul class="dropdown-menu">
           <li><a href="/gaenari/voluBoardList.do">자원봉사</a></li>
           <li><a href="/gaenari/ptBoardList.do">펫 도우미</a></li>
         </ul>
