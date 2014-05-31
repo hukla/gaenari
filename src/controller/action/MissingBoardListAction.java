@@ -24,11 +24,10 @@ public class MissingBoardListAction implements Action  {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
 		
 		List<MissingBoardDTO> mList = null;
 		String xmlData = "";
-		PrintWriter out = response.getWriter();
+		
 		int pagecount=0;
 		
 		try {
@@ -49,10 +48,8 @@ public class MissingBoardListAction implements Action  {
 				xmlData += "<picPath>"+brdcontent[0]+"</picPath>";
 				xmlData += "</item>"; 
 			}
-			xmlData += "</mList>";
-						
-			log.info(xmlData);
-			
+			xmlData += "</mList>";						
+			response.getWriter().print(xmlData);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

@@ -193,7 +193,7 @@
 	</form>
 
 	<div align=center>
-		<span style="font-size: 9pt;"><a href="/missingBoardMain.do">
+		<span style="font-size: 9pt;"><a href="/gaenari/missingBoardMain.do">
 		<input type="submit" value="리스트로 돌아가기"></a></span>
 	</div>
 </body>

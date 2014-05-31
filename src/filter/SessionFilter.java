@@ -68,7 +68,7 @@ public class SessionFilter implements Filter {
 				pwd = request.getParameter("pwd");
 			}else{
 				System.out.println(request.getRequestURI());
-				if(request.getRequestURI().contains(".jsp")){
+				if(request.getRequestURI().contains("login.jsp")){
 					response.sendRedirect("/gaenari/login.do");
 				}
 				System.out.println("session.getAttribute('userid')는 null이 아님");

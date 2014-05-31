@@ -12,7 +12,6 @@ public class MissingBoardMainAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("MissingBoardMainAction에서 missingBoardList.jsp로 이동할겁니다");
 		request.getRequestDispatcher("/board/missingBoardList.jsp").forward(request, response);
 	}
 
