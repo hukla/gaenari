@@ -19,14 +19,13 @@
  -->
 <body>
 [구현할 기능]<br>
-1. 친구목록보기<br>
-2. 요청받은 친구목록보기<br>
-3. 친구검색하기<br>
 4. 추천받은 친구목록보기<br>
 
-<table border="1">
+<table align="center"><tr><td align="center" width="80%">
+
+<table border="1" class="table">
 	<tr>
-		<td>
+		<td width="35%">
 			<c:choose>
 				<c:when test="${not empty requestScope.friendList}">
 					<c:forEach items="${requestScope.friendList}" var="friends">
@@ -38,7 +37,7 @@
 				</c:otherwise>
 			</c:choose>
 		</td>
-		<td align="center">
+		<td align="center" width="65%">
 			<c:if test="${sessionScope.userid eq requestScope.user.userid}">
 				<c:choose>
 					<c:when test="${not empty sessionScope.sender}">
@@ -50,6 +49,8 @@
 						 				<a href="/gaenari/miniHome.do?userid=${sender.userid}">
 						 					<img src="${sender.img}" width="50"> ${sender.username}
 						 				</a>
+						 			</td>
+						 			<td>
 						 				<form id="acform" action="/gaenari/acptRequest.do">
 						 					<input type="hidden" name="sender" value="${sender.userno}">
 						 					<input type="hidden" name="receiver" value="${requestScope.user.userno}">
@@ -101,7 +102,7 @@
 		</td>
 	</tr>
 </table>
-
+</td></tr></table>
 
 <a href="/gaenari/miniHome.do?userid=hukla">hukla</a><br>
 <a href="/gaenari/miniHome.do?userid=lyuel">lyuel</a><br>

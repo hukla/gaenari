@@ -56,9 +56,9 @@
 <body>
 	<table border="0" align="center" width="80%" height="100%" cellpadding="20">
 		<tr>
-			<c:if test="${requestScope.user.userid eq sessionScope.userid }">
+			<c:if test="${requestScope.user.userid eq sessionScope.userid}">
 			<td width="33%">
-				<form action="/gaenari/writePlan.do" method="get">
+				<form action="/gaenari/writePlan.do" method="post">
 					<table border="0" width="100%" height="380" style="outline-style: double;">
 						<tr height="18%">
 							<td><h2>일정 등록하기</h2></td>

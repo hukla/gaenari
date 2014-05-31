@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import model.dao.TestDAO;
 import model.dao.UserDAO;
+import model.dto.BoardDTO;
 import model.dto.DogDTO;
 import model.dto.UserDTO;
 /**
@@ -35,6 +36,9 @@ public class UserInfoAction implements Action {
 		List<DogDTO> list = null;
 		List<UserDTO> friendList = null;
 		List<Integer> friendNo = null;
+		List<BoardDTO> diaryList = null;
+		List<String> imageList = null;
+		String image = null;
 		int sender,receiver = 0;
 		boolean flag = false;
 		boolean friend = false;
@@ -60,6 +64,22 @@ public class UserInfoAction implements Action {
 			for(int no: friendNo){
 				friendList.add(UserDAO.selectOne(no));
 			}
+			
+			diaryList = TestDAO.selectDiary(user);
+			imageList = new ArrayList<String>();
+			for(BoardDTO dto: diaryList){
+				image = dto.getBrdcontent().split("!split!")[0];
+				
+				if(image!=null){
+					imageList.add(image);
+				}
+			}
+			for(String img: imageList){
+				System.out.println(img);
+			}
+			request.setAttribute("user", user);
+			request.setAttribute("imageList", imageList);
+			
 			request.setAttribute("friendList", friendList);
 			request.setAttribute("dog", list);
 			request.setAttribute("user", user);
