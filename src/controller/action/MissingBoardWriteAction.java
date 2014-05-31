@@ -31,7 +31,7 @@ public class MissingBoardWriteAction implements Action {
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 
-		String imagefile = null;
+		String imageFile = null;
 		String savePath = null;
 		String fileName = null;
 		int maxSize = 0;
@@ -75,24 +75,25 @@ public class MissingBoardWriteAction implements Action {
 			mage = multi.getParameter("mage");
 			mname = multi.getParameter("mname");
 			fileName = multi.getFilesystemName("uploadFile");
+			imageFile="/gaenari/image/board/"+fileName;
 			
-			boardDTO = new BoardDTO(brdcontent, (String)session.getAttribute("today"),
+			/*boardDTO = new BoardDTO(brdcontent, (String)session.getAttribute("today"),
 					(String)session.getAttribute("userid"),title,"mb",
-					(int)((UserDTO)session.getAttribute("user")).getUserno());
+					(int)((UserDTO)session.getAttribute("user")).getUserno());*/
 			
-			/*if(fileName==null){
+			if(fileName==null){
 				System.out.println("파일 업로드 되지 않았음");
-				boardDTO = new BoardDTO("/gaenari/image/defaultDog!split!"+brdcontent,
+				boardDTO = new BoardDTO("/gaenari/image/board/defaultDog.jpg!split!"+brdcontent,
 						(String)session.getAttribute("today"),
 						(String)session.getAttribute("userid"),title,"mb",
 						(int) ((UserDTO) session.getAttribute("user")).getUserno());
 			} else {
 				System.out.println("File Name : "+fileName);
 			
-				boardDTO = new BoardDTO(imagefile + "!split!" + brdcontent, (String) session.getAttribute("today"),
+				boardDTO = new BoardDTO(imageFile + "!split!" + brdcontent, (String) session.getAttribute("today"),
 							(String) session.getAttribute("userid"), title,"mb",
 							(int) ((UserDTO) session.getAttribute("user")).getUserno());
-			}*/
+			}
 			brdno = MFBoardDAO.insertMissingBoard(boardDTO);
 
 			if (fileName == null) { // 파일이 업로드 되지 않았을때
@@ -101,12 +102,13 @@ public class MissingBoardWriteAction implements Action {
 				log.info("File Name  : " + fileName);
 			//파일명 변경
 				/*String realFileName = boardDTO.toStringBrdno(brdno);*/
-				int index = fileName.indexOf(".");
-				String realFileName = fileName.substring(index, fileName.length());
-				String newFileName = boardDTO.toStringBrdno(brdno) + realFileName;
+				/*int index = -1;
+				index = fileName.lastIndexOf(".");
+				String realFileName = boardDTO.toStringBrdno(brdno)+fileName.substring(index, fileName.length());
+				log.info("realFileName : "+realFileName);
 				File oldFile = new File(savePath + fileName);
-				File newFile = new File(savePath + newFileName);
-				oldFile.renameTo(newFile);			
+				File newFile = new File(savePath + realFileName);
+				oldFile.renameTo(newFile);*/			
 			}
 			MFBoardDAO.insertMissing(new MissingBoardDTO(brdno,mloc,mdate,mcontact,mkind,mgender,
 					mage, mname));

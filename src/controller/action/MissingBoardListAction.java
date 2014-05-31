@@ -26,12 +26,14 @@ public class MissingBoardListAction implements Action  {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		
-		List<MissingBoardDTO> mList = MFBoardDAO.selectAll();
+		List<MissingBoardDTO> mList = null;
 		String xmlData = "";
 		PrintWriter out = response.getWriter();
 		int pagecount=0;
 		
 		try {
+			mList = MFBoardDAO.selectAll();
+			
 			if(mList == null) {
 				throw new Exception("mList가 null입니다.");
 			}
@@ -39,21 +41,18 @@ public class MissingBoardListAction implements Action  {
 			xmlData += "<mList>";
 			for(MissingBoardDTO m : mList) {
 				xmlData += "<item>";
+				xmlData += "<brdno>"+m.getBrdno()+"</brdno>";
 				xmlData += "<mbrdno>"+m.getMbrdno()+"</mbrdno>";
 				xmlData += "<mloc>"+m.getMloc()+"</mloc>";
 				xmlData += "<mdate>"+m.getMdate()+"</mdate>";
-				xmlData += "<mcontact>"+m.getMcontact()+"</mcontact>";
-				xmlData += "<mkind>"+m.getMkind()+"</mkind>";
-				xmlData += "<mgender>"+m.getMgender()+"</mgender>";
-				xmlData += "<mage>"+m.getMage()+"</mage>";
-				xmlData += "<mname>"+m.getMname()+"</mname>";
+				String[] brdcontent = m.getBrdcontent().split("!split!");
+				xmlData += "<picPath>"+brdcontent[0]+"</picPath>";
 				xmlData += "</item>"; 
 			}
 			xmlData += "</mList>";
 						
 			log.info(xmlData);
 			
-			out.print(xmlData);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

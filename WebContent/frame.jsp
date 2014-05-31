@@ -61,9 +61,8 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 으헛헛<b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle glyphicon glyphicon-dog" data-toggle="dropdown"><b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <!-- <li><a href="/gaenari/missingBoardList.do">유기견</a></li> -->
           <li><a href="/gaenari/missingBoardMain.do">유기견</a></li>
           <li><a href="/gaenari/adpBoardList.do">애견입양</a></li>
           <li><a href="/gaenari/voluBoardList.do">자원봉사</a></li>
