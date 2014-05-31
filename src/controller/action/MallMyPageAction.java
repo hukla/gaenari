@@ -23,7 +23,7 @@ public class MallMyPageAction implements Action {
 				throw new Exception("로그인해주세요");
 			}
 			
-			log.info(user.getUsertype());
+			log.debug("usertype : " + user.getUsertype());
 			
 			if(user.getUsertype() == 0) {
 				url = "/mall/mydon.jsp";
@@ -37,7 +37,7 @@ public class MallMyPageAction implements Action {
 			url = "/error.jsp";
 		}
 			
-		request.getRequestDispatcher("/mall/mydon.jsp").forward(request, response);
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 }

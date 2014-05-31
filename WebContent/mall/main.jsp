@@ -95,10 +95,11 @@ $(function(){
 					
 					//수량
 					table += "<tr><td bgcolor='#FFFFFF'>&nbsp;&nbsp;"+ 
-					"<input type=text name='ct_qty' value='1' size=5 maxlength=5 class='ed' autocomplete='off' style='text-align: center;'>개"+ 
+					"<input type=text class='ct_qty' value='1' size=5 maxlength=5 class='ed' autocomplete='off' style='text-align: center;'>개"+ 
 					"</td></tr>";
 					
 					//대상
+					table +="<c:if test='${sessionScope.user.usertype == 0}'>";
 					table +="<tr><td bgcolor='#FFFFFF'>&nbsp;&nbsp;"+ 
 					"<select name='"+$(this).find("itemno").text()+"' class='target_sel'>"+
 					"<option value='0'>기부할 센터 선택</option>"+
@@ -106,6 +107,7 @@ $(function(){
 					"<option value='${cntr.cntrno}'>${cntr.cntrname }</option>"+
 					"</c:forEach>"+
 					"</select></td></tr>";
+					table += "</c:if>";
 					//기부하기
 					table += "<tr><td align='center'>";
 					//alert($('input[name=usertype]').val());
@@ -148,8 +150,7 @@ $(function(){
 			return true;
 			
 		} else if($('input[name=usertype]').val() > 0) {
-			
-			$('#item').attr('action', '/gaenari/mallRequest.do');
+			$(this).attr('action', '/gaenari/mallRequest.do');
 			return true;
 		} else if($('input[name=usertype]').val() < 0){
 			var newwindow;

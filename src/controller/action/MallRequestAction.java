@@ -28,7 +28,7 @@ public class MallRequestAction implements Action {
 		int itemno = Integer.parseInt(request.getParameter("selectedItemNo"));
 		int userno = user.getUserno();
 		int qty = Integer.parseInt(request.getParameter("ct_qty"));
-		int cntrno = Integer.parseInt(request.getParameter("usertype"));
+		int cntrno = user.getUsertype();
 
 		// 기부요청하기 위한 dto생성
 		DonReqDTO donrequest = new DonReqDTO(userno, itemno, qty);
@@ -37,13 +37,12 @@ public class MallRequestAction implements Action {
 		
 
 		try {
-			if(DonReqDAO.selectByUserno(userno).size() <= 0)	{
-				if(!DonReqDAO.insertDonReq(donrequest) || !ItemDAO.insertReqCntr(UserDAO.selectOne(userno).getUsertype(), itemno)) {
+			if(cntrno <= 0) {
+				throw new Exception("센터 운영자가 아닙니다. 센터 운영자로 로그인해주세요.");
+			}
+			
+			if(!DonReqDAO.insertDonReq(donrequest) || !ItemDAO.insertReqCntr(UserDAO.selectOne(userno).getUsertype(), itemno)) {
 					throw new Exception("요청을 실패하였습니다.");
-				}
-			} else {
-				response.getWriter().print("alert('요청은 센터당 한 번만 가능합니다.')");
-				return;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -50,7 +50,7 @@ private static final Logger log = Logger.getLogger(MallGetDonAction.class);
 			}
 			result += "</donreqlist>";
 			
-			log.info(result);
+			log.debug(result);
 			
 			out.print(result);
 			

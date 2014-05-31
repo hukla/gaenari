@@ -22,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dto.UserDTO;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -79,8 +81,13 @@ public class SessionFilter implements Filter {
 			}
 			session.setAttribute("userid",userid);
 			session.setAttribute("pwd", pwd);
-			
 		}
+		
+		UserDTO user = (UserDTO) session.getAttribute("user");
+		if(user != null) {
+			log.info("session.getAttribute('user') = "+user);
+		}
+		
 		chain.doFilter(request, response);
 	}
 
