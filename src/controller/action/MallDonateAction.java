@@ -34,7 +34,7 @@ public class MallDonateAction implements Action {
 		UserDTO user = (UserDTO)request.getSession().getAttribute("user");
 		int itemno = Integer.parseInt(request.getParameter("selectedItemNo"));
 		int userno = user.getUserno();
-		int qty = Integer.parseInt(request.getParameter("ct_qty"));
+		int qty = Integer.parseInt(request.getParameter("qty"));
 		log.info("itemno : "+itemno);
 		int targetcntrno = Integer.parseInt(request.getParameter("don_target"));
 		int price = Integer.parseInt(request.getParameter("price"));

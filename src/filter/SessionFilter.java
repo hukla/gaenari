@@ -47,22 +47,26 @@ public class SessionFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+		
 		HttpServletRequest request = (HttpServletRequest)req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		HttpSession session = request.getSession();
 		
 		request.setCharacterEncoding("utf-8");
 		
+		// facebook으로 가입하던 중에 첫 화면으로 돌아갔을 때 발생하는 에러
 		String email,username = null;
 		email= request.getParameter("email");
 		username = request.getParameter("username");
 		
 		if(session.isNew()){
-			log.info("session null임!");
+			log.info("session is new!");
+			/*
 			if(email==null && username==null){
 				response.sendRedirect("/gaenari/login.do"); // TODO
 				//request.getRequestDispatcher("/gaenari/login.do").forward(request, response);
-			}
+			}*/
+			
 		}else{
 			String userid = null;
 			String pwd = null;

@@ -95,7 +95,7 @@ $(function(){
 					
 					//수량
 					table += "<tr><td bgcolor='#FFFFFF'>&nbsp;&nbsp;"+ 
-					"<input type=text class='ct_qty' value='1' size=5 maxlength=5 class='ed' autocomplete='off' style='text-align: center;'>개"+ 
+					"<input type=text class='ct_qty' name ='qty' value='1' size=5 maxlength=5 class='ed' autocomplete='off' style='text-align: center;'>개"+ 
 					"</td></tr>";
 					
 					//대상
