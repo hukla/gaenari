@@ -67,6 +67,7 @@
 		
 		<!-- 2014-05-27 수진 추가 -->
 		<mapper resource="conf/mfBoard.xml"/>
+		
 	</mappers>
 	
 </configuration>
