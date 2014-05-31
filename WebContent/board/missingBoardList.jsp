@@ -97,8 +97,8 @@ $(function(){
 			},
 			error: function(data) {alert(data+' => 에러 발생');}
 			
-		});// ajax 끝
-	}// getItemList() 함수 끝
+		});
+	}
 	getMdogList();
 });
 </script>
