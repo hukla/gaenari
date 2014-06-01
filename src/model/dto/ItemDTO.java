@@ -1,6 +1,9 @@
 /**
  *  작성일 : 2014-05-02
  *  작성자 : 장재희
+ *  
+ *  수정 2014-05-31 장재희
+ *  reqcntr(요청한 센터 목록) 추가
  */
 package model.dto;
 
@@ -10,6 +13,7 @@ public class ItemDTO {
 	private int price;
 	private int qty;
 	private String itemdetail;
+	private String reqcntr;
 	
 	public ItemDTO(){}
 
@@ -61,11 +65,20 @@ public class ItemDTO {
 		this.itemdetail = itemdetail;
 	}
 
+	public String getReqcntr() {
+		return reqcntr;
+	}
+
+	public void setReqcntr(String reqcntr) {
+		this.reqcntr = reqcntr;
+	}
+
 	@Override
 	public String toString() {
 		return "ItemDTO [itemno=" + itemno + ", itemname=" + itemname
 				+ ", price=" + price + ", qty=" + qty + ", itemdetail="
-				+ itemdetail + "]";
+				+ itemdetail + ", reqcntr=" + reqcntr + "]";
 	}
+	
 	
 }

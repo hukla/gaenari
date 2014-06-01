@@ -24,7 +24,7 @@
 				<font face="서울한강체">
 					<ul class="nav nav-pills nav-stacked">
 						<li><a href="/gaenari/missingBoardMain.do">유기견신고</a></li>
-						<li><a href="/gaenari/findingBoardList.do">유기견제보</a></li>
+						<li><a href="/gaenari/findingBoardMain.do">유기견제보</a></li>
 						<li><a href="/gaenari/adpBoardList.do">애견입양</a></li>
 						<li><a href="/gaenari/voluBoardList.do">자원봉사</a></li>
 						<li><a href="/gaenari/ptBoardList.do">펫 도우미</a></li>

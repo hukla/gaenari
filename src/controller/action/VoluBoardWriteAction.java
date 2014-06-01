@@ -18,6 +18,7 @@ public class VoluBoardWriteAction implements Action {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
+		String url = "/error.jsp";
 		String title = request.getParameter("title");
 		String brdcontent = request.getParameter("brdcontent");
 		String userid = session.getAttribute("userid").toString();
@@ -32,8 +33,7 @@ public class VoluBoardWriteAction implements Action {
 			System.out.println("result가 뜰까요???");
 			boolean result = VoluBoardDAO.writeContent(vbdto);
 			if(result){
-				response.sendRedirect("control?command=voluBoardList");
-				return;
+				url = "/voluBoardList.do";
 			}else{
 				throw new Exception("입력값이 충분하지 않습니다.");
 			}
@@ -41,7 +41,7 @@ public class VoluBoardWriteAction implements Action {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 		}
-		request.getRequestDispatcher("/error.jsp").forward(request, response);
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 }

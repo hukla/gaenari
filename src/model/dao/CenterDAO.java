@@ -43,5 +43,4 @@ public class CenterDAO {
 		
 		return center;
 	}
-
 }

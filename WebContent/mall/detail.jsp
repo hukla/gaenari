@@ -130,7 +130,7 @@
 										</td>
 									</tr>
 									<!-- 기부 수량 끝 -->
-									<!-- 기부 대상 시작 -->
+									<!-- 기부 대상 시작 --> 
 									<c:if test="${sessionScope.user.usertype == 0}">
 									<tr>
 										<td width="115" height="27" bgcolor="#FFFFFF" class="list3">
@@ -143,7 +143,12 @@
 											<select name="don_target" id="target_sel">
 												<option value="0">기부할 센터 선택</option>
 												<c:forEach items="${sessionScope.centerList}" var="cntr">
-												<option value="${cntr.cntrno}">${cntr.cntrname }</option>
+													<c:set var="test" value="${':'}${cntr.cntrno}${':'}"/>
+													<c:choose>
+													<c:when test="${fn:contains(selectedItem.reqcntr, test)}"><option value="${cntr.cntrno}" style="color:red;font-weight:bold;">${cntr.cntrname}</option></c:when>
+													<c:otherwise><option value="${cntr.cntrno}">${cntr.cntrname }</option></c:otherwise>
+													</c:choose>
+												
 												</c:forEach>
 											</select>
 											<input type='hidden' name='cntrname' id='cntr_name' value=''>
@@ -210,7 +215,7 @@
 		<!-- 상세정보 제목 테이블 끝 -->
 		<!-- 상품설명 시작 -->
 		<div id='item_explan' style='display: block;'>
-			<table width=100% align="center" cellpadding=0 cellspacing=0>
+			<table width=86% align="right" cellpadding=0 cellspacing=0>
 				<tr>
 					<td style='padding: 15px'>
 						${selectedItem.itemdetail}						
@@ -223,7 +228,7 @@
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript">
 		function popupOpen(itemno){
-			var popUrl = "mall/img/"+itemno+"_s.jpg";	//팝업창에 출력될 페이지 URL
+			var popUrl = "mall/img/"+itemno+".jpg";	//팝업창에 출력될 페이지 URL
 			var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 		window.open(popUrl,"",popOption);
 		}
@@ -252,6 +257,13 @@
 			
 			// user type에 따라 submit action 다르게 하기
 			$('#item_list').submit(function(){
+				// 기부 대상 선택하지 않으면 에러메시지 출력
+				//alert($('#target_sel option:selected').val());
+				if($('#target_sel option:selected').val() == 0) {
+					alert("기부할 대상을 선택해주세요!");
+					return false;
+				}
+				
 				//alert($('input[name=usertype]').val());
 				if($('input[name=usertype]').val() == 0) {
 					$('#item_list').prop('action', '/gaenari/donnate.do');
@@ -274,7 +286,6 @@
 				
 				$('#item_list').submit();
 			});
-			
 			
 		});
 	</script>

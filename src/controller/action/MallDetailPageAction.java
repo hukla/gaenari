@@ -12,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import model.dao.CenterDAO;
 import model.dao.ItemDAO;
 import model.dto.CenterDTO;
@@ -19,6 +21,8 @@ import model.dto.ItemDTO;
 
 public class MallDetailPageAction implements Action {
 
+	private static final Logger log = Logger.getLogger(MallDetailPageAction.class);
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -30,6 +34,9 @@ public class MallDetailPageAction implements Action {
 			if (item == null) {
 				throw new Exception("아이템이 존재하지 않습니다.");
 			}
+			
+			item.setItemdetail(item.getItemdetail().replaceAll("\n", "<br>"));
+			log.debug("item detail : "+item.getItemdetail()); 
 			
 		} catch(Exception e) {
 			e.printStackTrace();

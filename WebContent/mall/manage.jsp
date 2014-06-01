@@ -17,7 +17,7 @@
 
 <table>
 <tr>
-	<td width="600px">
+	<td width="600px" style=''>
 	<!-- 상품 관리 테이블 -->
 	<table id="item_mgt">
 		<tr>

@@ -60,9 +60,19 @@ public class MallInsertItemAction implements Action {
 
 				//파일명 변경
 				String realFileName = itemno + fileName.substring(fileName.lastIndexOf("."), fileName.length());
-				File oldFile = new File(savePath + fileName);
-				File newFile = new File(savePath + realFileName);
-				oldFile.renameTo(newFile);
+
+				log.debug(realFileName);
+				
+				File oldFile = new File(savePath +"/"+ fileName);
+				File newFile = new File(savePath +"/"+ realFileName);
+				
+				log.debug("oldFile : "+oldFile);
+				log.debug("newFile : "+newFile);
+				
+				if(!oldFile.renameTo(newFile)) {
+					log.error("이름 변경 에러 : "+oldFile);
+				}
+				
 			}// else
 			
 		

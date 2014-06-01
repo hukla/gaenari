@@ -88,10 +88,17 @@
 		</table>
 
 	</form>
-
-	<div align=center>
-		<span style="font-size: 9pt;"><a href="control?command=ptBoardList">
-		<input type="submit" value="리스트로 돌아가기"></a></span>
-	</div>
+				<div align=center>
+						<span style="font-size: 9pt;"><input type='button' id='close_btn' value='닫기'></span>
+				</div>
 </body>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+	$(function(){
+		$("#close_btn").click(function(){
+			opener.location.reload();
+			self.close();
+		});
+	});
+</script>
 </html>

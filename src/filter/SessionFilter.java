@@ -6,6 +6,9 @@ package filter;
  * 		   session이 유효한 경우엔 url패턴에 의해 서블릿으로 이동할 때
  * 		   user정보인 id와 pwd를 setAttribute해준다.
  * 		   session이 유효하지 않은 경우엔 login.jsp페이지로 redirect해준다.
+ * 
+ * 수정 : 2014-05-31, 장재희
+ * 내용 : logger 추가
  */
 import java.io.IOException;
 
@@ -19,74 +22,82 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dto.UserDTO;
+
+import org.apache.log4j.Logger;
+
 /**
  * Servlet Filter implementation class SessionFilter
  */
 public class SessionFilter implements Filter {
+	
+	private final static Logger log = Logger.getLogger(SessionFilter.class);
 
     /**
      * Default constructor. 
      */
-    public SessionFilter() {
-        // TODO Auto-generated constructor stub
-    }
+    public SessionFilter() { }
 
 	/**
 	 * @see Filter#destroy()
 	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
+	public void destroy() { }
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+		
 		HttpServletRequest request = (HttpServletRequest)req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		HttpSession session = request.getSession();
 		
 		request.setCharacterEncoding("utf-8");
-		System.out.println("==SessionFilter 진입==");
 		
+		// facebook으로 가입하던 중에 첫 화면으로 돌아갔을 때 발생하는 에러
 		String email,username = null;
 		email= request.getParameter("email");
 		username = request.getParameter("username");
 		
 		if(session.isNew()){
-			System.out.println("session  null임!");
+			log.info("session is new!");
+			/*
 			if(email==null && username==null){
-				response.sendRedirect("/gaenari/login.do");
+				response.sendRedirect("/gaenari/login.do"); // TODO
 				//request.getRequestDispatcher("/gaenari/login.do").forward(request, response);
-			}
+			}*/
+			
 		}else{
 			String userid = null;
 			String pwd = null;
 			if(session.getAttribute("userid") == null && session.getAttribute("pwd") == null){
-				System.out.println("session.getAttribute('userid')는 null임!");
+				log.info("session.getAttribute('userid')는 null임!");
 				userid = request.getParameter("userid");
 				pwd = request.getParameter("pwd");
 			}else{
 				System.out.println(request.getRequestURI());
-				
-				System.out.println("session.getAttribute('userid')는 null이 아님");
-				System.out.println((String)session.getAttribute("userid"));
+				if(request.getRequestURI().contains("login.jsp")){
+					response.sendRedirect("/gaenari/login.do");
+				}
+				log.info("session.getAttribute('userid') = "+(String)session.getAttribute("userid"));
 				userid = (String) session.getAttribute("userid");
 				pwd = (String) session.getAttribute("pwd");
 			}
 			session.setAttribute("userid",userid);
 			session.setAttribute("pwd", pwd);
-			
-			System.out.println("==SessionFilter종료==");
 		}
+		
+		UserDTO user = (UserDTO) session.getAttribute("user");
+		if(user != null) {
+			log.info("session.getAttribute('user') = "+user);
+		}
+		
 		chain.doFilter(request, response);
 	}
 
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
-	}
+	public void init(FilterConfig fConfig) throws ServletException { }
 
 }

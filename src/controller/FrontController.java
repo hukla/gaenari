@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+import org.apache.log4j.Logger;
 
 import controller.action.Action;
 
 
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final Logger log = Logger.getLogger(FrontController.class);
 	HashMap<String,Action> mapper =null;
 	
 	@Override
@@ -37,8 +37,7 @@ public class FrontController extends HttpServlet {
 	}
 	
 	public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("==FrontController==");
-		
+		log.info("진입");
 		
 		String key = request.getServletPath(); // *.do
 		if(key.contains(".do")) {
@@ -49,8 +48,7 @@ public class FrontController extends HttpServlet {
 		mapper.get(key);
 		/*
 		String key = request.getParameter("command");*/
-		System.out.println(key);
-		System.out.println(mapper.get(key));
+		log.info("url-pattern : "+key+"\t mapped class : "+mapper.get(key));
 		
 		if(key == null){
 			key = "login";

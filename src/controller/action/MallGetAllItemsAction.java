@@ -47,7 +47,7 @@ public class MallGetAllItemsAction implements Action {
 			}
 			xmlData += "</itemlist>";
 			
-			log.info(xmlData);
+			log.debug(xmlData);
 			
 			out.print(xmlData);
 		} catch (Exception e) {

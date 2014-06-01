@@ -20,7 +20,10 @@ public class LogoutAction implements Action {
 		String url = "/error.jsp";
 		HttpSession session = request.getSession();
 		
-		session.invalidate();
+		if(!session.isNew()) {
+			session.invalidate();
+		}
+		
 		try{
 			url = "/login.jsp";
 		}catch(Exception e){
