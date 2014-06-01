@@ -31,4 +31,9 @@
 	<update id="updateImg" parameterType="map">
 		update userinfo set img=#{img} where userid=#{userid}
 	</update>
+	
+	<update id="updateInfo" parameterType="UserDTO">
+		update userinfo set userid=#{userid},username=#{username},passwd=#{passwd},address=#{address}
+		where userno=#{userno}
+	</update>
 </mapper>

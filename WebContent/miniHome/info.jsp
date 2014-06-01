@@ -48,7 +48,7 @@
 						<font size="4">이름: ${requestScope.user.username}</font> 
 						<c:choose>
 							<c:when test="${sessionScope.userid == requestScope.user.userid}">
-								<button onclick="goModify()">정보수정하기</button>
+								<button onclick="goModify('${requestScope.user.userid}')">정보수정하기</button>
 							</c:when>
 							<c:otherwise>
 								<form action="/gaenari/frndReq.do" id="form">
@@ -143,9 +143,8 @@
 		});
 	});
 
-	function goModify() {
-		opener.location.href = "/gaenari/modifyInfo.do";
-		window.close();
+	function goModify(userid) {
+		location.href = "/gaenari/modifyform.do?userid="+userid;
 	}
 	function sendReq() {
 		var result = confirm("친구 요청을 보내시겠습니까?");

@@ -54,17 +54,18 @@
 </head>
 
 <body>
-	<table border="0" align="center" width="80%" height="100%" cellpadding="20">
+<table><tr><td width="100%">
+	<table border="0" align="center" width="100%" height="100%" cellpadding="20" class="table">
 		<tr>
 			<c:if test="${requestScope.user.userid eq sessionScope.userid}">
 			<td width="33%">
 				<form action="/gaenari/writePlan.do" method="post">
-					<table border="0" width="100%" height="380" style="outline-style: double;">
+					<table class="table" border="0" width="100%" height="380" style="outline-style: double; table-layout: fixed;"">
 						<tr height="18%">
 							<td><h2>일정 등록하기</h2></td>
 						</tr>
 						<tr height="10%">
-							<td>&nbsp;&nbsp;제목 : <input type="text" size="33" name="title">
+							<td>&nbsp;&nbsp;제목 : <input class="form-control" type="text" size="33" name="title">
 							</td>
 						</tr>
 						<tr height="65%">
@@ -95,8 +96,8 @@
 									<option value="종로구">종로구</option>
 									<option value="중구">중구</option>
 									<option value="성북구">성북구</option>
-							</select><br/> &nbsp;&nbsp;날짜 : <input type="text" id="datepicker" name="date"><br/>
-								<p/> &nbsp; <textarea rows="10" cols="35" name="content"></textarea>
+							</select><br/> &nbsp;&nbsp;날짜 : <input class="form-control" type="text" id="datepicker" name="date"><br/>
+								<p/> &nbsp; <textarea rows="10" cols="35" name="content" class="form-control"></textarea>
 											<p/>
 										</td>
 						</tr>
@@ -197,6 +198,7 @@
 			</td>
 		</tr>
 	</table>
+	</td></tr></table>
 </body>
 </html>
 <%@ include file="/bottom.jsp"%>

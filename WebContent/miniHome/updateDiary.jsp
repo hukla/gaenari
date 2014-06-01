@@ -63,7 +63,7 @@
 								<div align="center">
 									<input type="file" name="uploadFile" value="${requestScope.diaryImg}">
 									<div align="center">
-										<textarea rows="10" cols="50" name="brdcontent">${requestScope.brdcontent}</textarea>
+										<textarea rows="10" cols="50" name="brdcontent" class="form-control" rows="3">${requestScope.brdcontent}</textarea>
 									</div>
 								</div>
 							</td>

@@ -2,6 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
+<style type="text/css">
+	small {	font-family: '맑은 고딕';	}
+	h2{	font-family: '맑은 고딕';	}
+</style>
 <title>Welcome to the GNR!</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,16 +34,22 @@
 			    if (response.status === 'connected') {
 			    	FB.api('/me', function(user) {
                         if (user) {
-                            var image = document.getElementById('image');
+                            /* var image = document.getElementById('image');
                             image.src = 'http://graph.facebook.com/' + user.id + '/picture?type=large';
                             var name = document.getElementById('name');
                             name.innerHTML = user.name;
                             var email = document.getElementById('email');
-                            email.innerHTML = user.email; 
+                            email.innerHTML = user.email;  */
                             
+                            var image = 'http://graph.facebook.com/' + user.id + '/picture?type=large';
+                            var name = user.name;
+                            var email = user.email; 
+                           
+                           	//location.assign("/gaenari/fbLogCheck.do","email="+email+"&username="+name+"&image="+image);
+                            location.href="fbLogCheck.do?email="+email+"&username="+name+"&image="+image;
                             //이메일이랑 이름 넘기기
                         }
-                        location.href="fbLogCheck.do?email="+user.email+"&username="+user.name+"&image="+image.src;
+                        
                         
                     });   
 			    } else if (response.status === 'not_authorized') {
@@ -130,19 +140,6 @@
 										</tr>
 									</table>
 								</form>
-								<img id="image" width="50"/>
-								<div id="name"></div>
-								<div id="email"></div>
-								<!-- <p>사용자정보 출력</p>
-								<form action="home.do" method="post">
-									<div align="left">
-										<div id="name"></div>
-										<div id="email"></div>
-										<input type="hidden" name="userid" value="hoonc"/>
-										<input type="hidden" name="pwd" value="tjdgns"/>
-									</div>
-									<input type="submit" value="submit"/>
-								</form> -->
 							</div>
 						</td>
 					</tr>

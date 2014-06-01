@@ -6,6 +6,7 @@
  * 추가: 2014-05-29,최성훈
  * 내용: 친구검색결과 얻어오고, 결과정보(user정보미리보기)확인 기능
  */
+
 $(document).ready(function() {
 
 	$.ajaxSetup({
@@ -34,6 +35,22 @@ $(document).ready(function() {
 					table+="</tr>"
 				})
 				$("#listTable tr:eq(0)").after(table);
+			},
+			error: function (data){alert(data+'=>에러발생');}
+		});
+	})
+	//////////////////////////////////////////////////////////////////////////////////14-05-31 하던중
+	$("#dogbtn").click(function(){
+		$.ajax({
+			url:"/gaenari/modDogname.do",
+			dataType: "text",
+			data: "dogname="+$(this).attr("name"),
+			success: function (data){
+				if(data>0){
+					alert("변경되었습니다.");
+				}else{
+					alert("변경에 실패했습니다.");
+				}
 			},
 			error: function (data){alert(data+'=>에러발생');}
 		});

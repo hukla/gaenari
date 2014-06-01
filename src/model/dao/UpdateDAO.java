@@ -6,6 +6,7 @@ import java.util.HashMap;
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
 import model.dto.PlanDTO;
+import model.dto.UserDTO;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -102,5 +103,19 @@ public class UpdateDAO {
 		}
 		if (!result)
 			throw new SQLException("메인사진 설정에 실패했습니다.");
+	}
+	
+	// 14-05-31 성훈추가: userno에 해당하는 user정보 수정
+	public static void updateInfo(UserDTO user) throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		try {
+			session = DBUtil.getSqlSession();
+			result = session.update("update.updateInfo", user) > 0 ? true : false;
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if (!result)	throw new SQLException("정보수정에 실패했습니다.");
 	}
 }

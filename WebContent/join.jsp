@@ -7,7 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <style type="text/css">
-	th{ text-align:center; font: bold; font-family: '맑은고딕'}
+	th{ text-align:left; font-family: '서울한강체';font-size: large;}
+	td{ text-align:left; font-family: '서울한강체';font-size: medium;}
+	span{ font-size: small; font-weight: lighter; }
+	button,h1,h4{	font-family: '맑은 고딕';	}
 </style>
 <title>회원가입 페이지</title>
 <!-- 
@@ -25,42 +28,49 @@
 <script src="/gaenari/dupcheck.js"></script>
 
 <body>
-	<h1 align="center">
+	<h1 class="form-signin-heading" align="center">
+		<font size="8" color="#3f4536" face="맑은 고딕">
 		<c:if test="${requestScope.username ne null}">
 			<img src="${requestScope.image}" width="100" class="img-rounded"><p><p>${requestScope.username}님
 		</c:if>
-		첫 방문을 환영합니다.
+		첫 방문을 환영합니다.</font>
 	</h1>
 	<h4 align="center">회원정보를 입력해주세요</h4>
 	<hr color="blue">
-	<form action="/gaenari/join.do" method="post">
-		<table align="center"><tr><td width="600">
+	<form action="/gaenari/join.do" method="post" id="joinForm">
+		<table align="center"><tr><td width="500">
 			<table align="center" border="0" class="table">
 				<colgroup>
 					<col width="40%" align="center">
 					<col width="60%">
 				</colgroup>
 				<tr>	
-					<th>E-mail</th><td><input type="text" value="${requestScope.email}" name="email" id="email"></td>
+					<th>E-mail</th>
+					<td><input class="form-control" type="text" value="${requestScope.email}" name="email" id="email" placeholder="Email을 입력하세요"></td>
 				</tr>
 				<tr>
-					<th>ID</th><td><input type="text" name="userid" id="id"><span>중복결과 여부</span></td>
+					<th>ID&nbsp;&nbsp;&nbsp;<span>중복결과 여부</span></th>
+					<td><input class="form-control" type="text" name="userid" id="id" placeholder="ID를 4자 이상 입력하세요"></td>
 				</tr>
 				<tr>
-					<th>이름</th><td><input type="text" name="username" value="${requestScope.username}"></td>
+					<th>이름</th>
+					<td><input class="form-control" type="text" name="username" value="${requestScope.username}" placeholder="이름을 입력하세요"></td>
 				</tr>
 				<tr>
-					<th>Password</th><td><input type="password" name="pwd"></td>
+					<th>Password</th>
+					<td><input class="form-control" type="password" name="pwd" placeholder="비밀번호를 입력하세요"></td>
 				</tr>
 				<tr>
-					<th>Password확인</th><td><input type="password" name="pwd1"></td>
+					<th>Password 확인</th>
+					<td><input class="form-control" type="password" name="pwd1" placeholder="비밀번호를 확인하세요"></td>
 				</tr>
 				<tr>
-					<th>주소</th><td><input type="text" name="addr"></td>
+					<th>주소</th>
+					<td><input class="form-control" type="text" name="addr" placeholder="주소를 입력하세요"></td>
 				</tr>
 				<tr>
 					<th>타입</th>
-					<td>
+					<td align="center">
 						유기견센터운영자<input type="radio" name="type" value="1">
 						일반사용자<input type="radio" name="type" value="0">
 					</td>
@@ -73,13 +83,17 @@
 						<c:if test="${requestScope.email != null}">
 							<input type="hidden" name="email" value="${requestScope.email}">
 						</c:if>
-						<input type="submit" value="가입하기">
+						<!-- <input type="submit" value="가입하기"> -->
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="button" value="취소하기" id="fbLogoutBtn" onclick="location.href='/gaenari/login.do'">
+						<!-- <input type="button" value="취소하기" id="fbLogoutBtn" onclick="location.href='/gaenari/login.do'"> -->
 					</td>
 				</tr>
 			</table>
 	</td></tr></table>
+	<div align="center">
+	<button type="button" class="btn btn-primary" onclick="login()">가입하기</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	<button type="button" class="btn btn-default" id="fbLogoutBtn" onclick="location.href='/gaenari/login.do'">취소하기</button></div>
 	</form>
 	<div id="fb-root"></div>
 	<script src="//connect.facebook.net/en_US/all.js"></script>
@@ -102,9 +116,16 @@
 				FB.logout(function(response) {
 				});
 			});
+			
+			
+			});
 		});
 	</script>
 	<script type="text/javascript">
+		function login(){
+			$("#joinForm").submit();
+		}
+	
 		var emailResult = "${requestScope.email}";
 		var email = document.getElementById("email");
 		if(emailResult.length != 0){

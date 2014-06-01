@@ -83,17 +83,18 @@
 </script>
 
 <body>
-	<table border="0" align="center" width="80%" height="100%" cellpadding="20">
+<table><tr><td width="80%">
+	<table border="0" align="center" width="80%" height="100%" cellpadding="20" class="table">
 		<tr>
 			<c:if test="${requestScope.user.userid eq sessionScope.userid }">
 			<td width="33%">
 				<form action="/gaenari/writeDiary.do" method="post" enctype="multipart/form-data">
-					<table border="0" width="100%" height="380" style="outline-style: double; table-layout: fixed;">
+					<table border="0" class="table" width="100%" height="380" style="outline-style: double; table-layout: fixed;">
 						<tr height="18%">
 							<td><h2>오늘 일기</h2></td>
 						</tr>
 						<tr height="10%">
-							<td>&nbsp;&nbsp;제목 : <input type="text" size="33" name="title">
+							<td>&nbsp;&nbsp;제목 : <input type="text" size="33" class="form-control" name="title">
 							</td>
 						</tr>
 						<tr height="65%">
@@ -103,8 +104,8 @@
 							보통<input type="radio" name="mood" value="soso">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 							구림<input type="radio" name="mood" value="bad"> <br/> 
-							&nbsp; <textarea rows="10" cols="35" name="content"></textarea><p/> 
-							&nbsp; <input type="file" name="uploadFile" size="29" value="찾아보기"><br/>
+							&nbsp; <textarea rows="10" cols="35" name="content" class="form-control"></textarea><p/> 
+							&nbsp; <input type="file" class="form-control" name="uploadFile" size="29" value="찾아보기"><br/>
 							</td>
 						</tr>
 						<tr height="7%">
@@ -389,6 +390,7 @@
 			</td>
 		</tr>
 	</table>
+	</td></tr></table>
 </body>
 </html>
 <%@ include file="/bottom.jsp"%>

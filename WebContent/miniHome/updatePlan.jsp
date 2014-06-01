@@ -62,7 +62,7 @@
 							<td align="center" height="40%">내용</td>
 							<td>
 								<div align="center">
-									<textarea rows="10" cols="50" name="brdcontent">${requestScope.onePlan.brdcontent}</textarea>
+									<textarea rows="10" cols="50" name="brdcontent" class="form-control" rows="3">${requestScope.onePlan.brdcontent}</textarea>
 								</div>
 							</td>
 						</tr>

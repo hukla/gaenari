@@ -13,7 +13,9 @@
 <script src="//code.jquery.com/jquery-1.9.1.min.js"></script> -->
 
 <style type="text/css">
-	body { padding-top: 55px; }
+	body { padding-top: 45px; }
+	h1,h2,h3,h4,small,a,button,p{
+	font-family: "맑은 고딕";
 </style>
 <!-- (0 399px 29px 293px
 작성자: 최성훈
@@ -109,10 +111,9 @@
       </li>
     </ul>
   </div><!-- /.navbar-collapse -->
- 
 </nav></font>
 <table align="center" width="100%" border="0">
-	<tr height="45%">
+	<tr>
 		<td><div align="center">
 		<h2 align="center">
 			<a href="/gaenari/home.do">
@@ -121,6 +122,7 @@
 		<td>
 	</tr>
 </table>
+<hr>
 
 	<script src="/gaenari/bootstrap/js/bootstrap.min.js"></script>
 <div id="fb-root"></div>
