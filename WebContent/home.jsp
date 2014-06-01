@@ -81,7 +81,7 @@ div#thumb2{
 				</div>
 			</div>
 			<div class="item">
-				<img src="image/woman-335394.jpg" width="980">
+				<img src="dogonroad.jpg" width="980">
 				<div class="carousel-caption">
 					<div align="left"><h1>기부몰에 방문하셔서 유기견들에게 사랑을 나눠주세요</h1></div>
 					<p>...</p>
