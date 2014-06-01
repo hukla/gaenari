@@ -322,7 +322,7 @@
 						</c:otherwise>
 					</c:choose>
 					<!-- <div class="tab-pane" id="getList"> -->
-						<table class="table table-condensed" width="100%" height="395">
+						<table class="table table-condensed" width="100%" height="395" style="table-layout: fixed;">
 							<colgroup>
 								<col width="20%">
 								<col width="50%">

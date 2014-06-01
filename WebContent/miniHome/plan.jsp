@@ -60,7 +60,7 @@
 			<c:if test="${requestScope.user.userid eq sessionScope.userid}">
 			<td width="33%">
 				<form action="/gaenari/writePlan.do" method="post" id="planForm">
-					<table class="table" border="0" width="100%" height="380" style="outline-style: double; table-layout: fixed;"">
+					<table class="table" border="0" width="100%" height="380" style="outline-style: double; table-layout: fixed;">
 						<colgroup>
 							<col width="20%"><col width="80%">
 						</colgroup>
@@ -128,7 +128,7 @@
 			</td>
 			</c:if>
 			<td width="67%">
-				<table class="table table-condensed" width="100%" height="395">
+				<table class="table table-condensed" width="100%" height="395" style="table-layout: fixed;">
 					<colgroup>
 						<col width="20%">
 						<col width="50%">

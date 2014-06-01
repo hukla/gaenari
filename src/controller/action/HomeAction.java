@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 
 import model.dao.DogDAO;
 import model.dao.TestDAO;
+import model.dao.UpdateDAO;
 import model.dao.UserDAO;
 import model.dto.DogDTO;
 import model.dto.UserDTO;
@@ -79,6 +80,9 @@ public class HomeAction implements Action {
 				if(!pwd.equals(loginUser.getPasswd())){
 					throw new LoginException("비밀번호를 확인해주세요.");			// 14-05-20 성훈 추가: LoginException 추가
 				}else{
+					if(loginUser.getImg()==null){
+						UpdateDAO.updateImg(loginUser.getUserid(),"/gaenari/image/usericon.jpg");
+					}
 					dog = DogDAO.getInfo(new DogDTO(loginUser));
 					senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno());
 					if(!senderNo.isEmpty()){

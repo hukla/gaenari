@@ -23,8 +23,8 @@
 	</insert>
 	
 	<insert id="insertVisitBoard" parameterType="BoardDTO">
-		insert into board(brdcontent,wrdate,userid,brdtype,userno)
-		values(#{brdcontent},#{wrdate},#{userid},#{brdtype},#{userno})
+		insert into board(brdcontent,wrdate,userid,title,brdtype,userno)
+		values(#{brdcontent},#{wrdate},#{userid},#{title},#{brdtype},#{userno})
 	</insert>
 
 	<insert id="insertVisitbook" parameterType="int">
