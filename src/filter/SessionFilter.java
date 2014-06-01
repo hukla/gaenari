@@ -61,8 +61,8 @@ public class SessionFilter implements Filter {
 		
 		if(session.isNew()){
 			log.info("session is new!");
-			/*
-			if(email==null && username==null){
+			
+			/*if(email==null && username==null){
 				response.sendRedirect("/gaenari/login.do"); // TODO
 				//request.getRequestDispatcher("/gaenari/login.do").forward(request, response);
 			}*/
@@ -76,9 +76,9 @@ public class SessionFilter implements Filter {
 				pwd = request.getParameter("pwd");
 			}else{
 				System.out.println(request.getRequestURI());
-				if(request.getRequestURI().contains("login.jsp")){
+				/*if(request.getRequestURI().contains("login.jsp")){
 					response.sendRedirect("/gaenari/login.do");
-				}
+				}*/
 				log.info("session.getAttribute('userid') = "+(String)session.getAttribute("userid"));
 				userid = (String) session.getAttribute("userid");
 				pwd = (String) session.getAttribute("pwd");
@@ -91,7 +91,9 @@ public class SessionFilter implements Filter {
 		if(user != null) {
 			log.info("session.getAttribute('user') = "+user);
 		}
-		
+		if(request.getRequestURI().contains("login.jsp")){
+			response.sendRedirect("/gaenari/login.do");
+		}
 		chain.doFilter(request, response);
 	}
 

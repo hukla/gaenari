@@ -59,17 +59,24 @@
 		<tr>
 			<c:if test="${requestScope.user.userid eq sessionScope.userid}">
 			<td width="33%">
-				<form action="/gaenari/writePlan.do" method="post">
+				<form action="/gaenari/writePlan.do" method="post" id="planForm">
 					<table class="table" border="0" width="100%" height="380" style="outline-style: double; table-layout: fixed;"">
-						<tr height="18%">
-							<td><h2>일정 등록하기</h2></td>
+						<colgroup>
+							<col width="20%"><col width="80%">
+						</colgroup>
+						<tr>
+							<td colspan="2"><h2>일정 등록하기</h2></td>
 						</tr>
-						<tr height="10%">
-							<td>&nbsp;&nbsp;제목 : <input class="form-control" type="text" size="33" name="title">
+						<tr>
+							<td>&nbsp;&nbsp;제목 : </td>
+							<td>
+								<input class="form-control" type="text" size="33" name="title">
 							</td>
 						</tr>
-						<tr height="65%">
-							<td>&nbsp;&nbsp;지역 : <select name="loc" class="btn btn-default">
+						<tr>
+							<td>&nbsp;&nbsp;지역 : </td>
+							<td>
+							<select name="loc" class="btn btn-default">
 									<option selected="selected">지역 선택</option>
 									<option value="광진구">광진구</option>
 									<option value="동대문구">동대문구</option>
@@ -96,18 +103,23 @@
 									<option value="종로구">종로구</option>
 									<option value="중구">중구</option>
 									<option value="성북구">성북구</option>
-							</select><br/> &nbsp;&nbsp;날짜 : <input class="form-control" type="text" id="datepicker" name="date"><br/>
-								<p/> &nbsp; <textarea rows="10" cols="35" name="content" class="form-control"></textarea>
+							</select></td>
+							</tr>
+							<tr><td> &nbsp;&nbsp;날짜 : </td>
+							<td><input class="form-control" type="text" id="datepicker" name="date"></td>
+							</tr>
+							<tr><td colspan="2">
+								<textarea rows="5" cols="35" name="content" class="form-control"></textarea>
 											<p/>
 										</td>
 						</tr>
-						<tr height="7%">
-							<td>
+						<tr>
+							<td colspan="2">
 								<div align="center">
 									<input type="hidden" name="userid" value="${requestScope.user.userid}">
-									<input type="submit" value="등록하기">
+									<button type="button" onclick="submit()" class="btn btn-success" data-toggle="button">등록하기</button>
 									&nbsp;&nbsp;&nbsp; 
-									<input type="reset" value="취소하기">
+									<button type="button" onclick="reset()" class="btn btn-default" data-toggle="button">취소하기</button>
 								</div>
 							</td>
 						</tr>
@@ -200,5 +212,13 @@
 	</table>
 	</td></tr></table>
 </body>
+<script type="text/javascript">
+	function submit(){
+		$("#planForm").submit();
+	}
+	function reset(){
+		$("#planForm").reset();
+	}
+</script>
 </html>
 <%@ include file="/bottom.jsp"%>

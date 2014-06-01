@@ -107,10 +107,10 @@
 							<img src="image/retriever-348572.jpg" width="800">
 						</div>
 						<div class="item">
-							<img src="image/woman-335394.jpg" width="800">
+							<img src="image/dog-115078.jpg" width="800">
 						</div>
 						<div class="item">
-							<img src="image/47H.jpg" width="800">
+							<img src="image/smalldog.jpg" width="800">
 						</div>
 					</div>
 					<!-- 회전광고판 탐색 -->

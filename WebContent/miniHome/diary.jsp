@@ -88,33 +88,53 @@
 		<tr>
 			<c:if test="${requestScope.user.userid eq sessionScope.userid }">
 			<td width="33%">
-				<form action="/gaenari/writeDiary.do" method="post" enctype="multipart/form-data">
+				<form action="/gaenari/writeDiary.do" method="post" enctype="multipart/form-data" id="diaryForm">
 					<table border="0" class="table" width="100%" height="380" style="outline-style: double; table-layout: fixed;">
-						<tr height="18%">
-							<td><h2>오늘 일기</h2></td>
+						<colgroup>
+							<col width="20%"><col width="80%">
+						</colgroup>
+						<tr>
+							<td colspan="2"><h2>오늘 일기</h2></td>
 						</tr>
-						<tr height="10%">
-							<td>&nbsp;&nbsp;제목 : <input type="text" size="33" class="form-control" name="title">
+						<tr>
+							<td>&nbsp;&nbsp;제목 : </td>
+							<td>
+								<input type="text" size="33" class="form-control" name="title">
 							</td>
 						</tr>
-						<tr height="65%">
-							<td>&nbsp;&nbsp;기분 : 
+						<tr>
+							<td colspan="2">&nbsp;&nbsp;기분 : 
 							좋음<input type="radio" name="mood" value="good"> 
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 							보통<input type="radio" name="mood" value="soso">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 							구림<input type="radio" name="mood" value="bad"> <br/> 
-							&nbsp; <textarea rows="10" cols="35" name="content" class="form-control"></textarea><p/> 
-							&nbsp; <input type="file" class="form-control" name="uploadFile" size="29" value="찾아보기"><br/>
+							&nbsp; 
 							</td>
 						</tr>
-						<tr height="7%">
-							<td>
-								<div align="center">
+						<tr>
+							<td colspan="2">
+							<textarea rows="10" cols="35" name="content" class="form-control"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+							<input type="file" class="form-control" name="uploadFile">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<%-- <div align="center">
 									<input type="hidden" name="userid" value="${requestScope.user.userid}">
 									<input type="submit" value="등록하기">
 									&nbsp;&nbsp;&nbsp; 
 									<input type="reset" value="취소하기">
+								</div> --%>
+								<div align="center">
+									<input type="hidden" name="userid" value="${requestScope.user.userid}">
+									<button type="button" onclick="submit()" class="btn btn-success" data-toggle="button">등록하기</button>
+									&nbsp;&nbsp;&nbsp; 
+									<button type="button" onclick="reset()" class="btn btn-default" data-toggle="button">취소하기</button>
 								</div>
 							</td>
 						</tr>
@@ -392,5 +412,13 @@
 	</table>
 	</td></tr></table>
 </body>
+<script type="text/javascript">
+function submit(){
+	$("#diaryForm").submit();
+}
+function reset(){
+	$("#diaryForm").reset();
+}
+</script>
 </html>
 <%@ include file="/bottom.jsp"%>
