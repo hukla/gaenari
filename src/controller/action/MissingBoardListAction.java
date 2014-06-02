@@ -27,6 +27,7 @@ public class MissingBoardListAction implements Action  {
 		
 		List<MissingBoardDTO> mList = null;
 		String xmlData = "";
+		String picPath = null;
 		
 		int pagecount=0;
 		
@@ -44,8 +45,13 @@ public class MissingBoardListAction implements Action  {
 				xmlData += "<mbrdno>"+m.getMbrdno()+"</mbrdno>";
 				xmlData += "<mloc>"+m.getMloc()+"</mloc>";
 				xmlData += "<mdate>"+m.getMdate()+"</mdate>";
-				String[] brdcontent = m.getBrdcontent().split("!split!");
-				xmlData += "<picPath>"+brdcontent[0]+"</picPath>";
+				if(m.getBrdcontent().contains("split")){
+					picPath = m.getBrdcontent().split("!split!")[0];
+				}else{
+					picPath = "/gaenari/image/board/"+m.getBrdno()+".jpg";
+				}
+				log.info("picPath="+picPath);
+				xmlData += "<picPath>"+picPath+"</picPath>";
 				xmlData += "</item>"; 
 			}
 			xmlData += "</mList>";						

@@ -19,12 +19,16 @@ public class FindingBoardViewAction implements Action {
 		int fbrdno = Integer.parseInt(no);
 		System.out.println("fbrdno="+fbrdno);
 		FindingBoardDTO fdto = MFBoardDAO.FselectOne(fbrdno);
-		/*String picPath = fdto.getBrdcontent().split("!split!")[0];
-		fdto.setBrdcontent(fdto.getBrdcontent().split("!split!")[1]);*/
+		if(fdto.getBrdcontent().contains("split")){
+			String picPath = fdto.getBrdcontent().split("!split!")[0];
+			request.setAttribute("picPath", picPath);
+			fdto.setBrdcontent(fdto.getBrdcontent().split("!split!")[1]);
+		}else{
+			request.setAttribute("picPath","image/board/"+fdto.getBrdno()+".jpg");
+		}
 		
 		if(fdto!=null){
 			request.setAttribute("resultContent", fdto);
-		/*	request.setAttribute("picPath",picPath);*/
 			url = "board/findingBoardView.jsp";
 			
 		request.getRequestDispatcher(url).forward(request, response);

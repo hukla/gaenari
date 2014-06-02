@@ -75,40 +75,36 @@ public class MissingBoardWriteAction implements Action {
 			mage = multi.getParameter("mage");
 			mname = multi.getParameter("mname");
 			fileName = multi.getFilesystemName("uploadFile");
-			
+			/*
 			boardDTO = new BoardDTO(brdcontent, (String)session.getAttribute("today"),
 					(String)session.getAttribute("userid"),title,"mb",
 					(int)((UserDTO)session.getAttribute("user")).getUserno());
-			/*
+			*/
 			if(fileName==null){
 				System.out.println("파일 업로드 되지 않았음");
 				boardDTO = new BoardDTO("/gaenari/image/board/defaultDog.jpg!split!"+brdcontent,
 						(String)session.getAttribute("today"),
 						(String)session.getAttribute("userid"),title,"mb",
 						(int) ((UserDTO) session.getAttribute("user")).getUserno());
+				brdno = MFBoardDAO.insertMissingBoard(boardDTO);
 			} else {
-				System.out.println("File Name : "+fileName);
-			
-				boardDTO = new BoardDTO(imageFile + "!split!" + brdcontent, (String) session.getAttribute("today"),
+				System.out.println("File Name : "+fileName);			
+				boardDTO = new BoardDTO(brdcontent, (String) session.getAttribute("today"),
 							(String) session.getAttribute("userid"), title,"mb",
 							(int) ((UserDTO) session.getAttribute("user")).getUserno());
-			}
-			*/
-			brdno = MFBoardDAO.insertMissingBoard(boardDTO);
-
-			if (fileName == null) { // 파일이 업로드 되지 않았을때
-				log.error("파일 업로드 되지 않았음");
-			} else { // 파일이 업로드 되었을때
-				log.info("File Name  : " + fileName);
-			//파일명 변경
+				
 				int index = -1;
 				index = fileName.lastIndexOf(".");
+				brdno = MFBoardDAO.insertMissingBoard(boardDTO);
+				
 				String realFileName = boardDTO.toStringBrdno(brdno)+fileName.substring(index, fileName.length());
 				log.info("realFileName : "+realFileName);
 				File oldFile = new File(realPath + "/" + fileName);
 				File newFile = new File(realPath + "/" + realFileName);
-				oldFile.renameTo(newFile);			
+				oldFile.renameTo(newFile);
+				
 			}
+			
 			MFBoardDAO.insertMissing(new MissingBoardDTO(brdno,mloc,mdate,mcontact,mkind,mgender,
 					mage, mname));
 			url = "/missingBoardMain.do";

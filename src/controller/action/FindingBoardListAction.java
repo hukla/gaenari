@@ -22,6 +22,7 @@ public class FindingBoardListAction implements Action {
 			throws ServletException, IOException {
 		List<FindingBoardDTO> fList = null;
 		String xmlData = "";
+		String picPath = null;
 		
 		int pagecount=0;
 		
@@ -38,8 +39,12 @@ public class FindingBoardListAction implements Action {
 				xmlData += "<brdno>"+f.getBrdno()+"</brdno>";
 				xmlData += "<fbrdno>"+f.getFbrdno()+"</fbrdno>";
 				xmlData += "<floc>"+f.getFloc()+"</floc>";
-				String[] brdcontent = f.getBrdcontent().split("!split!");
-				xmlData += "<picPath>"+brdcontent[0]+"</picPath>";
+				if(f.getBrdcontent().contains("split")){
+					picPath = f.getBrdcontent().split("!split!")[0];
+				}else{
+					picPath = "/gaenari/image/board/"+f.getBrdno()+".jpg";
+				}
+				xmlData += "<picPath>"+picPath+"</picPath>";
 				xmlData += "</item>"; 
 			}
 			xmlData += "</fList>";			

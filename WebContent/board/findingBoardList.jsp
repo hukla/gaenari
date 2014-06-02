@@ -80,7 +80,7 @@ $(function(){
 					// 이미지
 					table += "<td align='center', valign='middle'><a href='/gaenari/findingBoardView.do?fbrdno="
 							+$(this).find("fbrdno").text()+"'><img class='fdog_img' id='img_"+$(this).find("fbrdno").text()+
-							"' src='image/board/"+$(this).find("brdno").text()+".jpg' width='160' height='160' border='0' align='absmiddle'></a></td>";
+							"' src='"+$(this).find("picPath").text()+"' width='160' height='160' border='0' align='absmiddle'></a></td>";
 				
 					// 발견장소
 					table += "<tr align='center'><td height='35' class='fdog_loc'><a href='/gaenari/findingBoardView.do?fbrdno="
