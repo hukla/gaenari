@@ -8,7 +8,6 @@
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 <link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script src="//code.jquery.com/jquery.js"></script>
-
 <!--<link href="/gaenari/bootstrap/css/bootstrap-ko.css" rel="stylesheet">
 <script src="//code.jquery.com/jquery-1.9.1.min.js"></script> -->
 
@@ -63,7 +62,7 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/gaenari/image/glyphicons_002_dog.png"></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dog"><img src="/gaenari/image/glyphicons_002_dog.png"></a>
         <ul class="dropdown-menu">
           <li><a href="/gaenari/missingBoardMain.do">유기견 신고</a></li>
           <li><a href="/gaenari/findingBoardMain.do">유기견 제보</a></li>
