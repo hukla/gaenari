@@ -1,6 +1,6 @@
 <%@page import="model.dto.BoardDTO"%>
 <%@ include file="/frame.jsp"%>
-<%@ include file="menu.jsp"%>
+<%@ include file="menu1.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,7 +13,7 @@
 	<table width=950 cellpadding=0 cellspacing=0 align=center valign='top' border=0>
 		<tr>
 			<td>
-				<img src='${picPath}' width='350' height='350' border='0' align='absmiddle'></a>
+				<img src='${requestScope.picPath}' width='350' height='350' border='0' align='absmiddle'></a>
 			</td>
 			<td valign="top" width=520 align=center cellpadding=0 cellspacing=0>
 			<table width=500 valign="top" cellpadding=0 cellspacing=0>

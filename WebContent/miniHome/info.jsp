@@ -121,7 +121,8 @@
 					</c:choose>
 				</tr>
 				<tr>
-					<td colspan="6" align="center"><button id="close">닫기</button></td>
+					<td colspan="3" align="center"><button onclick="goQuest('${requestScope.user.userid}')">애견입양적합도테스트</button></td>
+					<td colspan="2" align="center"><button id="close">닫기</button></td>
 				</tr>
 				</table>
 			</td>
@@ -145,6 +146,9 @@
 
 	function goModify(userid) {
 		location.href = "/gaenari/modifyform.do?userid="+userid;
+	}
+	function goQuest(userid){
+		location.href = "/gaenari/questionform.do?userid="+userid;
 	}
 	function sendReq() {
 		var result = confirm("친구 요청을 보내시겠습니까?");

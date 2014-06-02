@@ -12,7 +12,7 @@ public class AdpBoardListAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("adpBoardList.do").forward(request, response);
+		request.getRequestDispatcher("/board/adpBoardList.jsp").forward(request, response);
 
 	}
 

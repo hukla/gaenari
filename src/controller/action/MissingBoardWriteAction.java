@@ -1,7 +1,9 @@
 package controller.action;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,8 +30,8 @@ public class MissingBoardWriteAction implements Action {
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 
-		String imageFile = null;
 		String savePath = null;
+		String realPath = null;
 		String fileName = null;
 		int maxSize = 0;
 		int brdno = 0;
@@ -48,16 +50,17 @@ public class MissingBoardWriteAction implements Action {
 		String mname = null;
 		
 		try{
-			savePath=session.getServletContext().getRealPath("image/board/");
+			savePath=session.getServletContext().getRealPath("image");
 			maxSize = 5 * 1024 * 1024;
 
-			//realPath = savePath+"/board";
-			/*File targetDir = new File(realPath); 	//경로를 가진 파일객체 생성하기
+			realPath = savePath+"/board";
+			log.info(realPath);
+			File targetDir = new File(realPath); 	//경로를 가진 파일객체 생성하기
 			if (!targetDir.exists()) {				//파일이 존재하지 않는다면
 				targetDir.mkdirs();					//새로운 디렉토리를 만들어준다.
-			}*/
+			}
 		
-			MultipartRequest multi = new MultipartRequest(request, savePath, maxSize,
+			MultipartRequest multi = new MultipartRequest(request, realPath, maxSize,
 					"utf-8", new DefaultFileRenamePolicy());
 			
 			title = multi.getParameter("title");
@@ -71,45 +74,40 @@ public class MissingBoardWriteAction implements Action {
 			mgender = multi.getParameter("mgender");
 			mage = multi.getParameter("mage");
 			mname = multi.getParameter("mname");
-			fileName = new String((multi.getFilesystemName("uploadFile")).getBytes(),"UTF-8").trim();
-			imageFile="/gaenari/image/board/"+fileName;
-			
-			/*boardDTO = new BoardDTO(brdcontent, (String)session.getAttribute("today"),
+			fileName = multi.getFilesystemName("uploadFile");
+			/*
+			boardDTO = new BoardDTO(brdcontent, (String)session.getAttribute("today"),
 					(String)session.getAttribute("userid"),title,"mb",
-					(int)((UserDTO)session.getAttribute("user")).getUserno());*/
-			
+					(int)((UserDTO)session.getAttribute("user")).getUserno());
+			*/
 			if(fileName==null){
 				System.out.println("파일 업로드 되지 않았음");
 				boardDTO = new BoardDTO("/gaenari/image/board/defaultDog.jpg!split!"+brdcontent,
 						(String)session.getAttribute("today"),
 						(String)session.getAttribute("userid"),title,"mb",
 						(int) ((UserDTO) session.getAttribute("user")).getUserno());
+				brdno = MFBoardDAO.insertMissingBoard(boardDTO);
 			} else {
-				System.out.println("File Name : "+fileName);
-			
-				boardDTO = new BoardDTO(imageFile + "!split!" + brdcontent, (String) session.getAttribute("today"),
+				System.out.println("File Name : "+fileName);			
+				boardDTO = new BoardDTO(brdcontent, (String) session.getAttribute("today"),
 							(String) session.getAttribute("userid"), title,"mb",
 							(int) ((UserDTO) session.getAttribute("user")).getUserno());
-			}
-			brdno = MFBoardDAO.insertMissingBoard(boardDTO);
-
-			if (fileName == null) { // 파일이 업로드 되지 않았을때
-				log.error("파일 업로드 되지 않았음");
-			} else { // 파일이 업로드 되었을때
-				log.info("File Name  : " + fileName);
-			//파일명 변경
-				/*String realFileName = boardDTO.toStringBrdno(brdno);*/
-				/*int index = -1;
+				
+				int index = -1;
 				index = fileName.lastIndexOf(".");
+				brdno = MFBoardDAO.insertMissingBoard(boardDTO);
+				
 				String realFileName = boardDTO.toStringBrdno(brdno)+fileName.substring(index, fileName.length());
 				log.info("realFileName : "+realFileName);
-				File oldFile = new File(savePath + fileName);
-				File newFile = new File(savePath + realFileName);
-				oldFile.renameTo(newFile);*/			
+				File oldFile = new File(realPath + "/" + fileName);
+				File newFile = new File(realPath + "/" + realFileName);
+				oldFile.renameTo(newFile);
+				
 			}
+			
 			MFBoardDAO.insertMissing(new MissingBoardDTO(brdno,mloc,mdate,mcontact,mkind,mgender,
 					mage, mname));
-			url = "missingBoardMain.do";
+			url = "/missingBoardMain.do";
 					
 		} catch(SQLException e){
 			e.printStackTrace();

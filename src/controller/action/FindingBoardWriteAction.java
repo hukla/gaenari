@@ -1,5 +1,6 @@
 package controller.action;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -28,7 +29,6 @@ public class FindingBoardWriteAction implements Action {
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 
-		String imageFile = null;
 		String savePath = null;
 		String fileName = null;
 		int maxSize = 0;
@@ -42,11 +42,16 @@ public class FindingBoardWriteAction implements Action {
 		String floc = null;
 		
 		try{
-			savePath=session.getServletContext().getRealPath("image/board/");
+			savePath=session.getServletContext().getRealPath("image/board");
 			maxSize = 5 * 1024 * 1024;
 
 			MultipartRequest multi = new MultipartRequest(request, savePath, maxSize,
 					"utf-8", new DefaultFileRenamePolicy());
+			
+			File targetDir = new File(savePath); 	//경로를 가진 파일객체 생성하기
+			if (!targetDir.exists()) {				//파일이 존재하지 않는다면
+				targetDir.mkdirs();					//새로운 디렉토리를 만들어준다.
+			}
 			
 			title = multi.getParameter("title");
 			brdcontent = multi.getParameter("brdcontent");
@@ -54,40 +59,32 @@ public class FindingBoardWriteAction implements Action {
 			brdtype = "fb";
 			floc = multi.getParameter("floc");
 			fileName = multi.getFilesystemName("uploadFile");
-			imageFile="/gaenari/image/board/"+fileName;
-			
-			/*boardDTO = new BoardDTO(brdcontent, (String)session.getAttribute("today"),
+			/*
+			boardDTO = new BoardDTO(brdcontent, (String)session.getAttribute("today"),
 					(String)session.getAttribute("userid"),title,brdtype,
-					(int)((UserDTO)session.getAttribute("user")).getUserno());*/
-			
-			if(fileName==null){
-				System.out.println("파일 업로드 되지 않았음");
+					(int)((UserDTO)session.getAttribute("user")).getUserno());
+			*/
+			if(fileName==null){ //파일이 업로드되지 않을 경우
 				boardDTO = new BoardDTO("/gaenari/image/board/defaultDog.jpg!split!"+brdcontent,
 						(String)session.getAttribute("today"),
 						(String)session.getAttribute("userid"),title,brdtype,
 						(int) ((UserDTO) session.getAttribute("user")).getUserno());
+				brdno = MFBoardDAO.insertFindingBoard(boardDTO);
 			} else {
-				System.out.println("File Name : "+fileName);
 			
-				boardDTO = new BoardDTO(imageFile + "!split!" + brdcontent, (String) session.getAttribute("today"),
+				boardDTO = new BoardDTO(brdcontent, (String) session.getAttribute("today"),
 							(String) session.getAttribute("userid"), title,brdtype,
 							(int) ((UserDTO) session.getAttribute("user")).getUserno());
-			}
-			brdno = MFBoardDAO.insertFindingBoard(boardDTO);
-
-			if (fileName == null) { // 파일이 업로드 되지 않았을때
-				log.error("파일 업로드 되지 않았음");
-			} else { // 파일이 업로드 되었을때
-				log.info("File Name  : " + fileName);
-			//파일명 변경
-				/*String realFileName = boardDTO.toStringBrdno(brdno);*/
-				/*int index = -1;
+				brdno = MFBoardDAO.insertFindingBoard(boardDTO);
+				
+				int index = -1;
 				index = fileName.lastIndexOf(".");
 				String realFileName = boardDTO.toStringBrdno(brdno)+fileName.substring(index, fileName.length());
 				log.info("realFileName : "+realFileName);
-				File oldFile = new File(savePath + fileName);
-				File newFile = new File(savePath + realFileName);
-				oldFile.renameTo(newFile);*/			
+				File oldFile = new File(savePath + "/" + fileName);
+				File newFile = new File(savePath + "/" + realFileName);
+				oldFile.renameTo(newFile);			
+
 			}
 			MFBoardDAO.insertFinding(new FindingBoardDTO(brdno,floc));
 			url = "findingBoardMain.do";

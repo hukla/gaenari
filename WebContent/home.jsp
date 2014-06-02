@@ -122,7 +122,7 @@ div#thumb2{
 					<p>말을잃어버려서기분이안좋스빈다.</p>
 					<p>
 						<a href="#" class="btn btn-primary">봤어요</a> 
-						<a href="#" class="btn btn-default">다른신고보기</a>
+						<a href="/gaenari/missingBoardMain.do" class="btn btn-default">다른신고보기</a>
 					</p>
 				</div>
 			</div>

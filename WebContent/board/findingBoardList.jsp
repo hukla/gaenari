@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/frame.jsp"%>
-<%@ include file="menu.jsp"%>
+<%@ include file="menu1.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -83,7 +83,7 @@ $(function(){
 							"' src='"+$(this).find("picPath").text()+"' width='160' height='160' border='0' align='absmiddle'></a></td>";
 				
 					// 발견장소
-					table += "<tr align='center'><td height='35' class='fdog_loc'><a href='/gaenari/findingBoardView.do?mbrdno="
+					table += "<tr align='center'><td height='35' class='fdog_loc'><a href='/gaenari/findingBoardView.do?fbrdno="
 						+$(this).find("fbrdno").text()+"'>"+"발견 장소: "+$(this).find("floc").text()+"</a></td></tr>";
 				
 					table += "</tr></table></form></li></ul></div>";
