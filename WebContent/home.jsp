@@ -81,7 +81,7 @@ div#thumb2{
 				</div>
 			</div>
 			<div class="item">
-				<img src="dogonroad.jpg" width="980">
+				<img src="image/dogonroad.jpg" width="980">
 				<div class="carousel-caption">
 					<div align="left"><h1>기부몰에 방문하셔서 유기견들에게 사랑을 나눠주세요</h1></div>
 					<p>...</p>
@@ -122,7 +122,7 @@ div#thumb2{
 					<p>말을잃어버려서기분이안좋스빈다.</p>
 					<p>
 						<a href="#" class="btn btn-primary">봤어요</a> 
-						<a href="#" class="btn btn-default">다른신고보기</a>
+						<a href="/gaenari/missingBoardMain.do" class="btn btn-default">다른신고보기</a>
 					</p>
 				</div>
 			</div>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>    
 <%@ page import="model.dto.PtBoardDTO" %>
 <%@ include file="/frame.jsp"%>
-<%@ include file="menu.jsp"%>
+<%@ include file="menu2.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
