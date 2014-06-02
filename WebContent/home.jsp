@@ -65,7 +65,7 @@ div#thumb2{
 		<!-- 회전광고판 항목 -->
 		<div class="carousel-inner" align="left">
 			<div class="active item">
-				<img src="image/SplitShire_IMG_1177.jpg" width="980">
+				<img src="/gaenari/image/SplitShire_IMG_1177.jpg" width="980">
 				<div class="carousel-caption">
 					<div align="left"><h1>개나리 홈페이지에 오신 것을 환영합니다.</h1></div>
 					<p>애견 관련 세계 최대 포탈, GAENARI에 방문하신것을 환영합니다. 저희 개나리 서비스는 강아지와 내 정보를
@@ -74,14 +74,18 @@ div#thumb2{
 				</div>
 			</div>
 			<div class="item">
-				<img src="image/dogface.jpg" width="980">
+				<img src="/gaenari/image/dogface.jpg" width="980">
 				<div class="carousel-caption">
 					<div align="left"><h1>커뮤니티와 내 홈페이지를 이용해보세요!</h1></div>
 					<p>...</p>
 				</div>
 			</div>
 			<div class="item">
+<<<<<<< HEAD
 				<img src="image/dogonroad.jpg" width="980">
+=======
+				<img src="/gaenari/image/dogonroad.jpg" width="980">
+>>>>>>> branch 'master' of https://github.com/hukla/gaenari/
 				<div class="carousel-caption">
 					<div align="left"><h1>기부몰에 방문하셔서 유기견들에게 사랑을 나눠주세요</h1></div>
 					<p>...</p>

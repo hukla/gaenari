@@ -48,6 +48,9 @@ public class FBLogCheckAction implements Action {
 			if (user != null) {
 				if(user.getImg()==null){
 					System.out.println("페북로그인체크에서 이미지:"+image);
+					if(image==null){
+						image="/gaenari/image/usericon.jpg";
+					}
 					UpdateDAO.updateImg(user.getUserid(),image);
 				}
 				session.setAttribute("userid", user.getUserid());

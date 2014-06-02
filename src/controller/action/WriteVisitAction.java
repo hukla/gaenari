@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.InsertDAO;
+import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.UserDTO;
 /**
@@ -31,19 +32,24 @@ public class WriteVisitAction implements Action {
 
 		HttpSession session = request.getSession();
 		String content = null;
+		UserDTO user = null;
+		UserDTO writer = null;
+		String img = null;
 		String url = "/error.jsp";
 		int brdno = 0;
 		
 		try {
+			user = UserDAO.logCheck(request.getParameter("hostid"));
 			content = request.getParameter("content").replaceAll("\r\n", "<br/>");
+			writer = UserDAO.logCheck((String)session.getAttribute("userid"));
 			if (content.equals(null) || content.trim().length() == 0) {
 				throw new Exception("방명록 내용을 입력해주세요.");
 			} else {
 
 				BoardDTO boardDTO = new BoardDTO(content,
 						(String) session.getAttribute("today"),
-						(String) session.getAttribute("userid"), "vi",
-						(int) ((UserDTO) session.getAttribute("user")).getUserno());
+						(String) session.getAttribute("userid"),writer.getImg(), "vi",
+						(int) (user.getUserno()));
 				// 현재 시간과 보드 타입 "vi"와 userno를 넣어준다.
 
 				brdno = InsertDAO.insertVisitBoard(boardDTO);
@@ -51,7 +57,8 @@ public class WriteVisitAction implements Action {
 				InsertDAO.insertVisitbook(brdno);
 				// 보드DTO와 방명록DTO에 받은 값들을 입력해준다.
 			}
-			url = "/visitList.do";
+			
+			url = "/visitList.do?userid="+user.getUserid();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
