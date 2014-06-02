@@ -3,6 +3,14 @@
 
 <mapper namespace="insert">
 	
+	<insert id="insertCmtBoard" parameterType="BoardDTO">
+		insert into board(brdcontent,wrdate,userid,title,brdtype,userno) values(#{brdcontent},#{wrdate},#{userid},#{title},#{brdtype},#{userno})
+	</insert>
+	
+	<insert id="insertComment" parameterType="CommentDTO">
+		insert into comment(brdno, prmno) values(#{brdno}, #{prmno})
+	</insert>
+	
 	<insert id="insertDiaryBoard" parameterType="BoardDTO">
 		insert into board(brdcontent,wrdate,userid,title,brdtype,userno)
 		values(#{brdcontent},#{wrdate},#{userid},#{title},#{brdtype},#{userno})

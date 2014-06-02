@@ -39,29 +39,7 @@ $(document).ready(function() {
 			error: function (data){alert(data+'=>에러발생');}
 		});
 	})
-	//"content="+$("#reply").val()+"&userid="+$("#getid").val()+"&brdno="+$("#brdno").val()
-	
-	
 
-	
-	
-/*	$("#reply").click(function(){
-		$.ajax({
-			url:"/gaenari/reply.do",
-			dataType: "text",
-			data: $("#replyForm").serialize(),
-			success: function (data){
-				if(data>0){
-					alert("전달되었습니다.");
-				}else{
-					alert("전달에 실패했습니다.");
-				}
-			},
-			error: function (data){alert(data+'=>에러발생');}
-		});
-	})
-	*/
-	
 	
 	//////////////////////////////////////////////////////////////////////////////////14-05-31 하던중
 	$("#dogbtn").click(function(){

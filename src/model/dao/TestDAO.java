@@ -615,4 +615,18 @@ public class TestDAO {
 		}
 		return list;
 	}	
+	
+	
+	// 14-05-30 성훈추가: 내 친구목록불러오기(selfJoin + Union)
+	public static List<BoardDTO> getCommentList(int brdno) throws SQLException {
+		SqlSession session = null;
+		List<BoardDTO> list = null;
+		try {
+			session = DBUtil.getSqlSession();
+			list = session.selectList("test.getCommentList", brdno);
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return list;
+	}
 }

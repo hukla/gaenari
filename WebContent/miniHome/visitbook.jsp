@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="model.dto.BoardDTO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ include file="/frame.jsp" %>
 <%@ include file="menu.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -37,6 +41,8 @@ div#write{
 작성내용: 메인페이지 이동할 때 url패턴으로 action 통해서 가도록 수정
 		  상단의 방명록 작성란을 통해 방명록을 등록한다.
 		  방명록이 등록되면 작성란 아래로 추가된다.
+		  
+수정: 2014-06-03, 최성훈	내용: 내가 방문객들에게 쓰는 포스트, 방문객이 남기는 방명록 포스트, 댓글기능 추가(진행중)
  -->
 	<table border="0" width="35%" height="100%" id="visitbook">
 		<c:if test="${requestScope.user.userid eq sessionScope.userid}">
@@ -48,7 +54,7 @@ div#write{
 						<div class="col-lg-12">
 							<div class="input-group">
 								<small>방문객들에게 인사말 한 마디 해주세요</small>
-								<textarea rows="2" cols="53" class="form-control" placeholder="글을 작성해주세요" name="content" id="content"></textarea>
+								<textarea rows="2" cols="53" class="form-control" placeholder="글을 작성해주세요" name="content"></textarea>
 							</div><p>
 							<div align="right">
 							<span class="input-group-btn">
@@ -63,7 +69,8 @@ div#write{
 		</c:if>
 		<c:choose>
 			<c:when test="${not empty requestScope.myList}">
-				<c:forEach items="${requestScope.myList}" var="visitList">
+				<c:forEach items="${requestScope.myList}" var="visitList" varStatus="i">
+				<c:set scope="request" var="mycount" value="${i.index}"/>
 				<tr>
 					<td>
 						<div class="panel panel-default">
@@ -71,24 +78,48 @@ div#write{
 								<h3 class="panel-title">
 									<a href="/gaenari/miniHome.do?userid=${visitList.userid}">
 										<img width="30" src="${visitList.title}" class="img-rounded"> ${visitList.userid}
-									</a>님의 글
+									</a>님의 글&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.${visitList.brdno}
 								</h3>
 							</div>
 							<div class="panel-body">${visitList.brdcontent}</div>
 							<div class="panel-footer">
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="input-group" align="right">
-											<input type="hidden" id="getid" name="userid" value="${sessionScope.userid}"> 
-											<input type="hidden" id="brdno" name="brdno" value="${visitList.brdno}">
-											<input type="text" class="form-control" name="reply">
-											<span class="input-group-btn">
-												<button class="btn btn-default" type="button">입력</button>
-											</span> 
-										</div>
-									</div>
-								</div>
+								<form method="post" action="/gaenari/reply.do">
+									<input type="hidden" name="userid" value="${sessionScope.userid}"> 
+									<input type="hidden" name="brdno" value="${visitList.brdno}">
+									<input type="hidden" name="userno" value="${requestScope.user.userno}">
+									<table width="100%">
+										<tr>
+											<td width="80%">
+												<input type="text" class="form-control" name="brdcontent">
+											</td>
+											<td width="20%">
+												<input class="btn btn-default" type="submit" value="입력">
+											</td>
+										</tr>
+									</table>
+								</form>
 							</div>
+							<!-- 댓글 forEach문 돌릴 곳 -->
+							<c:choose>
+							<c:when test="${i.count <= fn:length(myComments)}">
+							<%-- <c:when test="${i.count <= fn:length(myComments)}"> --%>
+							<%
+								String count = request.getAttribute("mycount").toString();
+								System.out.println(count);
+								request.setAttribute("mine", ((List<ArrayList<BoardDTO>>)request.getAttribute("myComments")).get((Integer.parseInt(count))));
+							%>
+							<c:if test="${requestScope.mine[0].brdno eq visitList.brdno}">
+								<div class="panel-footer">
+									<c:forEach items="${requestScope.mine}" var="mcomment">
+										<small>${mcomment.userid}: ${mcomment.brdcontent} - ${mcomment.wrdate} ${mcomment.title}</small><p>
+									</c:forEach>
+								</div>
+							</c:if>
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+							</c:choose>
+							<%-- </c:if> --%>
 						</div>
 					</td>
 				</tr>
@@ -121,7 +152,7 @@ div#write{
 						<div class="col-lg-12">
 							<div class="input-group">
 								<small>${requstScope.user.userid}님에게 방명록을 남겨보세요</small>
-								<textarea rows="2" cols="53" class="form-control" placeholder="방명록을 작성해주세요" name="content" id="content"></textarea>
+								<textarea rows="2" cols="53" class="form-control" placeholder="방명록을 작성해주세요" name="content"></textarea>
 							</div><p>
 							<div align="right">
 							<span class="input-group-btn">
@@ -137,39 +168,58 @@ div#write{
 		<c:choose>
 			<c:when test="${not empty requestScope.yourList}">
 			<c:forEach items="${requestScope.yourList}" var="visitList" varStatus="i">	
+				<c:set scope="request" var="count" value="${i.index}"/>
 				<tr>
 					<td>
-						<form id="replyForm" method="post" action="/gaenari/reply.do">
 						<div class="panel panel-success">
 							<div class="panel-heading">
 								<h3 class="panel-title">
 									<a href="/gaenari/miniHome.do?userid=${visitList.userid}">
 										<img width="30" src="${visitList.title}" class="img-rounded"> ${visitList.userid}
-									</a>님의 글
+									</a>님의 글&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.${visitList.brdno}
 								</h3>
 							</div>
 							<div class="panel-body">${visitList.brdcontent}</div>
 							<div class="panel-footer">
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="input-group" align="right">
-											<input type="hidden" id="getid" name="userid" value="${sessionScope.userid}"> 
-											<input type="hidden" id="brdno" name="brdno" value="${visitList.brdno}">
-											<input type="text" class="form-control" name="content">
-											<input class="btn btn-default" type="submit" value="입력">
-											<%-- <span class="input-group-btn">
-												<button class="btn btn-default" type="button" onclick="doSubmit(${i.count})">입력</button>
-											</span>  --%>
-										</div>
-									</div>
-								</div>
-								<c:if test="">
-								
-								
-								</c:if>
+								<form method="post" action="/gaenari/reply.do">
+									<input type="hidden" name="userid" value="${sessionScope.userid}"> 
+									<input type="hidden" name="brdno" value="${visitList.brdno}">
+									<input type="hidden" name="userno" value="${requestScope.user.userno}">
+									<table width="100%">
+										<tr>
+											<td width="80%">
+												<input type="text" class="form-control" name="brdcontent">
+											</td>
+											<td width="20%">
+												<input class="btn btn-default" type="submit" value="입력">
+											</td>
+										</tr>
+									</table>
+								</form>
 							</div>
+							<!-- 댓글 forEach문 돌릴 곳 -->
+							<%-- <c:if test="${i.count <= fn:length(yourComments)}"> --%>
+							<c:choose>
+							<%-- <c:when test="${not empty requestScope.yourComments}"> --%>
+							<c:when test="${i.count <= fn:length(yourComments)}">
+							<%
+								String count = request.getAttribute("count").toString();
+								System.out.println(count);
+								request.setAttribute("yours", ((List<ArrayList<BoardDTO>>)request.getAttribute("yourComments")).get((Integer.parseInt(count))));
+							%>
+							<%-- <c:if test="${requestScope.yours[0].brdno eq visitList.brdno}"> --%>
+								<div class="panel-footer">
+									<c:forEach items="${requestScope.yours}" var="ycomment">
+										<small>${ycomment.userid}: ${ycomment.brdcontent} - ${ycomment.wrdate} ${ycomment.title}</small><p>
+									</c:forEach>
+								</div>
+							<%-- </c:if> --%>
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+							</c:choose>
+							<%-- </c:if> --%>
 						</div>
-						</form>
 					</td>
 				</tr>
 			</c:forEach>
@@ -187,72 +237,14 @@ div#write{
 			</c:otherwise>
 		</c:choose>
 	</table>
-	<!-- <form action="/gaenari/reply.do" id="replyForm" method="post"> -->
-	<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h4 class="modal-title">Modal title</h4>
-				</div>
-				<div class="modal-body"><textarea rows="2" class="form-control" name="content" id="reply"></textarea></div>
-				<div class="modal-footer">
-					<input type="hidden" name="" value="">
-					<button type="button" class="btn btn-success" id="modalclick">등록</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-				</div>
-			</div>/.modal-content
-		</div>/.modal-dialog
-	</div>/.modal -->
-	<!-- </form> -->
 </body>
 <script type="text/javascript">
 function yourSubmit(){
 	$("#visitForm").submit();
-
 }
 function mySubmit(){
 	$("#myForm").submit();
-
 }
-/* function doSubmit(){
-	$("#replyForm").submit();
-	$("#replyForm").submit();
-	
-} */
-/* function sendingUpdate() {
-	document.secondForm.command.value = "updateFormDiary";
-	document.secondForm.brdno = brdno;
-	document.secondForm.submit();
-}
-
-$("#reply").click(function(){
-	$("#replyForm").submit();
-}) */
-/* 
-$("#reply").each(function(){
-	$(this).click(function(){
-		$.ajax({
-			url:"/gaenari/reply.do",
-			dataType: "text",
-			data: $("#replyForm").serialize(),
-			success: function (data){
-				if(data>0){
-					alert("전달되었습니다.");
-				}else{
-					alert("전달에 실패했습니다.");
-				}
-			},
-			error: function (data){alert(data+'=>에러발생');}
-		});
-	})
-}) */
-/* 
-function modalSubmit(){
-	$('#myModal').modal('hide');
-	$("#replyForm").submit();
-
-} */
 </script>
 </html>
 <%@ include file="/bottom.jsp"%>

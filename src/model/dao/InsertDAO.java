@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.dto.BoardDTO;
+import model.dto.CommentDTO;
 import model.dto.DiaryDTO;
 import model.dto.DogDTO;
 import model.dto.PlanDTO;
@@ -52,6 +53,29 @@ public class InsertDAO {
 		return brdno;
 	}
 	
+	//댓글 보드내용 입력 후 입력된 brdno를 반환하기(insert 후 select)
+	public static int insertCmtBoard(BoardDTO boardDTO) throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		int brdno = 0;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==commentBoard insert 진입==");
+			result = session.insert("insert.insertCmtBoard", boardDTO) > 0 ? true : false;
+			System.out.println("==commentBoard insert 완료==");
+			System.out.println("==commentBoard select 진입==");
+			brdno = session.selectOne("test.selectBoard", boardDTO);
+			System.out.println("==commentBoard select 완료==");
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if (!result || brdno == 0) {
+			throw new SQLException("댓글보드 입력실패!");
+		}
+		return brdno;
+	}
+
 	//플랜 보드내용 입력 후 입력된 brdno를 반환하기(insert 후 select)
 	public static int insertPlanBoard(BoardDTO boardDTO) throws SQLException{
 		
@@ -115,7 +139,23 @@ public class InsertDAO {
 		}
 		if(!result)	throw new SQLException("일기 등록에 실패했습니다.");
 	}
-	
+
+	// 댓글 내용 입력하기
+	public static void insertComment(CommentDTO commentDTO) throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		try {
+			session = DBUtil.getSqlSession();
+			System.out.println("==comment insert 진입==");
+			result = session.insert("insert.insertComment", commentDTO) > 0 ? true : false;
+			System.out.println("==comment insert 완료==");
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if (!result)
+			throw new SQLException("일기 등록에 실패했습니다.");
+	}
 	//일정 내용 입력하기
 	public static void insertPlan(PlanDTO planDTO) throws SQLException{
 		

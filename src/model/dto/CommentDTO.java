@@ -1,47 +1,34 @@
 package model.dto;
-
-public class CommentDTO {
+/**
+ * 작성: 프로젝트시작 당시
+ * 작성자: 최성훈
+ * 내용: 댓글 DTO
+ * 
+ * 수정: 2014-06-03, 최성훈
+ * 내용: BoardDTO를 상속하고 댓글의 게시판번호 컬럼을 추가
+ *
+ */
+public class CommentDTO extends BoardDTO {
+	
 	private int cmtno;
-	private String content;
-	private String wrtdate;
-	private String userid;
-	private UserDTO userno;
-	private UserDTO brdno;
+	private int prmno;
+	
+	public CommentDTO(){}
+	public CommentDTO(int brdno, int prmno){
+		super.setBrdno(brdno);
+		this.prmno = prmno;
+	}
+	public int getPrmno() {
+		return prmno;
+	}
+	public void setPrmno(int prmno) {
+		this.prmno = prmno;
+	}
 	public int getCmtno() {
 		return cmtno;
 	}
 	public void setCmtno(int cmtno) {
 		this.cmtno = cmtno;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getWrtdate() {
-		return wrtdate;
-	}
-	public void setWrtdate(String wrtdate) {
-		this.wrtdate = wrtdate;
-	}
-	public String getUserid() {
-		return userid;
-	}
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
-	public UserDTO getUserno() {
-		return userno;
-	}
-	public void setUserno(UserDTO userno) {
-		this.userno = userno;
-	}
-	public UserDTO getBrdno() {
-		return brdno;
-	}
-	public void setBrdno(UserDTO brdno) {
-		this.brdno = brdno;
 	}
 	
 }

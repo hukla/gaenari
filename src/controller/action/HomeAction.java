@@ -63,6 +63,7 @@ public class HomeAction implements Action {
 		if(day<10)	date = "0"+Integer.toString(day);
 		else	date = Integer.toString(day);
 		String today = year+"-"+month+"-"+date;	
+		
 		session.setAttribute("toYear", year); //2014-04-25 13:21 추가!
 		session.setAttribute("today", today);
 		session.setAttribute("toMonth", mth);

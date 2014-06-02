@@ -58,6 +58,13 @@ public class BoardDTO {
 		this.wrdate = wrdate;
 		this.userno = userno;
 	}
+	//14-06-02 성훈추가: 방명록 댓글
+	public BoardDTO(String brdcontent, String wrdate, String userid, int userno) {
+		this.brdcontent = brdcontent;
+		this.userid = userid;
+		this.wrdate = wrdate;
+		this.userno = userno;
+	}
 	
 	//14-05-21 성훈추가: 다이어리 수정 위한 생성자
 	public BoardDTO(int brdno, String brdcontent, String title) {

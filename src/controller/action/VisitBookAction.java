@@ -14,7 +14,14 @@ import model.dao.TestDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.UserDTO;
-
+/**
+ * 작성: 프로젝트시작당시
+ * 작성자: 최성훈
+ * 내용: 방명록 보여주기
+ * 
+ * 수정: 2014-06-03, 최성훈
+ * 내용: 방명록 내포스트, 방문객포스트나누고 포스트 별 댓글 보여주기
+ */
 public class VisitBookAction implements Action {
 
 	@Override
@@ -27,7 +34,11 @@ public class VisitBookAction implements Action {
 		String userid = null;
 		List<BoardDTO> visitList = null;
 		List<BoardDTO> myList = null;
+		List<BoardDTO> myOneCmtList = null;
+		List<List<BoardDTO>> myWholeCmtList = null;
 		List<BoardDTO> yourList = null;
+		List<BoardDTO> yourOneCmtList = null;
+		List<List<BoardDTO>> yourWholeCmtList = null;
 		try {
 			user = (UserDTO) session.getAttribute("user");
 			userid = user.getUserid();
@@ -41,19 +52,34 @@ public class VisitBookAction implements Action {
 			
 			visitList = TestDAO.selectVisit(user);				//페이지 주인인 user의 방명록을 가져옴 거기엔 작성자인 userid도 있음.
 			myList = new ArrayList<BoardDTO>();
+			myOneCmtList = new ArrayList<BoardDTO>();
+			myWholeCmtList = new ArrayList<List<BoardDTO>>();	//내가 올린 게시글 별 댓글리스트를 담은 리스트
 			yourList = new ArrayList<BoardDTO>();
+			yourOneCmtList = new ArrayList<BoardDTO>();
+			yourWholeCmtList = new ArrayList<List<BoardDTO>>();	//방문객이 쓴 게시글 별 댓글리스트를 담은 리스트
+			
 			for(BoardDTO dto:visitList){
-				System.out.println("??"+dto.getUserid().trim()+"=="+UserDAO.selectOne(dto.getUserno()).getUserid().trim());
-				System.out.println(dto.getUserid().length()+"=="+UserDAO.selectOne(dto.getUserno()).getUserid().length());
 				if((dto.getUserid()).trim().equals(((UserDAO.selectOne(dto.getUserno())).getUserid()).trim())){	//내가쓴글이면
-					System.out.println("여기로온다.");
 					myList.add(dto);
+					myOneCmtList = TestDAO.getCommentList(dto.getBrdno());	//방명록하나에 해당하는 댓글리스트
+					if(!myOneCmtList.isEmpty())	myWholeCmtList.add(myOneCmtList);
 				}else{
 					yourList.add(dto);
+					yourOneCmtList = TestDAO.getCommentList(dto.getBrdno());
+					if(!yourOneCmtList.isEmpty())	yourWholeCmtList.add(yourOneCmtList);
 				}
 			}
+			for(List<BoardDTO> lbd:yourWholeCmtList){
+				for(BoardDTO dto:lbd){
+					System.out.println(dto.getBrdno()+"번째 댓글 "+dto.getBrdcontent());
+				}
+				System.out.println("==================다음게시물=====================");
+			}
+			request.setAttribute("user", user);
 			request.setAttribute("myList", myList);
 			request.setAttribute("yourList", yourList);
+			request.setAttribute("myComments", myWholeCmtList);
+			request.setAttribute("yourComments", yourWholeCmtList);
 			request.setAttribute("visitAllList",visitList);
 			request.setAttribute("user", user);
 			url = "miniHome/visitbook.jsp";
