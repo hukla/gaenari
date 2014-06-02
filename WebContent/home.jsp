@@ -81,11 +81,7 @@ div#thumb2{
 				</div>
 			</div>
 			<div class="item">
-<<<<<<< HEAD
-				<img src="image/dogonroad.jpg" width="980">
-=======
 				<img src="/gaenari/image/dogonroad.jpg" width="980">
->>>>>>> branch 'master' of https://github.com/hukla/gaenari/
 				<div class="carousel-caption">
 					<div align="left"><h1>기부몰에 방문하셔서 유기견들에게 사랑을 나눠주세요</h1></div>
 					<p>...</p>
