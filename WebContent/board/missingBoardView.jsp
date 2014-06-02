@@ -13,7 +13,7 @@
 	<table width=950 cellpadding=0 cellspacing=0 align=center valign='top' border=0>
 		<tr>
 			<td>
-				<img src='${picPath}' width='350' height='350' border='0' align='absmiddle'></a>
+				<img src='image/board/${requestScope.resultContent.brdno}.jpg' width='350' height='350' border='0' align='absmiddle'></a>
 			</td>
 			<td valign="top" width=520 align=center cellpadding=0 cellspacing=0>
 			<table width=500 valign="top" cellpadding=0 cellspacing=0>

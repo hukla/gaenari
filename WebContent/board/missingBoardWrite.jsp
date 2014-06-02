@@ -19,6 +19,10 @@
 <SCRIPT language=javascript>
 	function checkValid() {
 		var func = window.document.boardWriteForm; // 제목과 글 내용이 비면 넘어가지 않도록 하는 함수
+		if (func.userid.value == "") {
+			alert("세션이 종료되었습니다. 다시 로그인해주세요.");
+			location.href="/gaenari/login.do";
+		}
 		if (func.title.value == "") {
 			alert("제목을 입력해 주세요.");
 			return false;
