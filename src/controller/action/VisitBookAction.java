@@ -22,6 +22,9 @@ import model.dto.UserDTO;
  * 
  * 수정: 2014-06-03, 최성훈
  * 내용: 방명록 내포스트, 방문객포스트나누고 포스트 별 댓글 보여주기
+ * 
+ * 수정: 2014-06-03, 최성훈
+ * 내용: 방명록 댓글 뿌려줄 때 indexException 오류 해결
  */
 public class VisitBookAction implements Action {
 
@@ -53,10 +56,11 @@ public class VisitBookAction implements Action {
 			visitList = TestDAO.selectVisit(user);				//페이지 주인인 user의 방명록을 가져옴 거기엔 작성자인 userid도 있음.
 			myList = new ArrayList<BoardDTO>();
 			myOneCmtList = new ArrayList<CommentDTO>();
-			myWholeCmtList = new ArrayList<List<CommentDTO>>();	//내가 올린 게시글 별 댓글리스트를 담은 리스트
+			myWholeCmtList = new ArrayList<List<CommentDTO>>();	//내가 올린 게시글별 댓글리스트를 담은 리스트
+			
 			yourList = new ArrayList<BoardDTO>();
 			yourOneCmtList = new ArrayList<CommentDTO>();
-			yourWholeCmtList = new ArrayList<List<CommentDTO>>();	//방문객이 쓴 게시글 별 댓글리스트를 담은 리스트
+			yourWholeCmtList = new ArrayList<List<CommentDTO>>();	//방문객이 쓴 게시글별 댓글리스트를 담은 리스트
 			
 			for(BoardDTO dto:visitList){
 				if((dto.getUserid()).trim().equals(((UserDAO.selectOne(dto.getUserno())).getUserid()).trim())){	//내가쓴글이면
@@ -68,12 +72,6 @@ public class VisitBookAction implements Action {
 					yourOneCmtList = TestDAO.getCommentList(dto.getBrdno());
 					if(!yourOneCmtList.isEmpty())	yourWholeCmtList.add(yourOneCmtList);
 				}
-			}
-			for(List<CommentDTO> lbd:yourWholeCmtList){
-				for(CommentDTO dto:lbd){
-					System.out.println(dto.getPrmno()+"번 게시글의 댓글 "+dto.getBrdcontent());
-				}
-				System.out.println("==================다음게시물=====================");
 			}
 			request.setAttribute("user", user);
 			request.setAttribute("myList", myList);
