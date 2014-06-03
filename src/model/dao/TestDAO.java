@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.Map;
 
 import model.dto.BoardDTO;
+import model.dto.CommentDTO;
 import model.dto.DiaryDTO;
 import model.dto.DogDTO;
 import model.dto.PlanDTO;
@@ -617,10 +618,10 @@ public class TestDAO {
 	}	
 	
 	
-	// 14-05-30 성훈추가: 내 친구목록불러오기(selfJoin + Union)
-	public static List<BoardDTO> getCommentList(int brdno) throws SQLException {
+	// 14-05-30 성훈추가: 
+	public static List<CommentDTO> getCommentList(int brdno) throws SQLException {
 		SqlSession session = null;
-		List<BoardDTO> list = null;
+		List<CommentDTO> list = null;
 		try {
 			session = DBUtil.getSqlSession();
 			list = session.selectList("test.getCommentList", brdno);

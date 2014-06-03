@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="model.dto.BoardDTO" %>
+<%@ page import="model.dto.CommentDTO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ include file="/frame.jsp" %>
@@ -69,6 +70,13 @@ div#write{
 		</c:if>
 		<c:choose>
 			<c:when test="${not empty requestScope.myList}">
+			<%
+			int midx=0;
+			int mcnt=0;
+			String mcount = null;
+			List<ArrayList<CommentDTO>> mlist = ((List<ArrayList<CommentDTO>>)request.getAttribute("myComments"));
+			ArrayList<BoardDTO> mclist = (ArrayList<BoardDTO>)request.getAttribute("myList");
+			%>
 				<c:forEach items="${requestScope.myList}" var="visitList" varStatus="i">
 				<c:set scope="request" var="mycount" value="${i.index}"/>
 				<tr>
@@ -100,26 +108,35 @@ div#write{
 								</form>
 							</div>
 							<!-- 댓글 forEach문 돌릴 곳 -->
-							<c:choose>
-							<c:when test="${i.count <= fn:length(myComments)}">
-							<%-- <c:when test="${i.count <= fn:length(myComments)}"> --%>
+							<%-- <c:choose>
+							<c:when test="${i.count <= fn:length(myComments)+1}">
+							
 							<%
-								String count = request.getAttribute("mycount").toString();
-								System.out.println(count);
-								request.setAttribute("mine", ((List<ArrayList<BoardDTO>>)request.getAttribute("myComments")).get((Integer.parseInt(count))));
+								mcount = request.getAttribute("count").toString();
+								mcnt = Integer.parseInt(mcount);
+								System.out.println("게시글 카운트수:"+mcnt);
+								
+								request.setAttribute("mine", mlist.get(midx));
+								if(mlist.get(midx).get(0).getPrmno()==mclist.get(mcnt).getBrdno()){
+									
+									request.setAttribute("mine", mlist.get(midx));
+									for(CommentDTO dto:mlist.get(midx)){
+										System.out.println("idx:"+(midx)+" 게시글번호:"+dto.getPrmno()+" 글내용:"+dto.getBrdcontent());
+									}
+									midx++;
+								}
 							%>
-							<c:if test="${requestScope.mine[0].brdno eq visitList.brdno}">
+							<c:if test="${requestScope.mine[0].prmno == visitList.brdno}">
 								<div class="panel-footer">
 									<c:forEach items="${requestScope.mine}" var="mcomment">
-										<small>${mcomment.userid}: ${mcomment.brdcontent} - ${mcomment.wrdate} ${mcomment.title}</small><p>
+										<small>${mcomment.userid} : ${mcomment.brdcontent} - ${mcomment.wrdate} ${mcomment.title}</small><p>
 									</c:forEach>
 								</div>
 							</c:if>
 							</c:when>
 							<c:otherwise>
 							</c:otherwise>
-							</c:choose>
-							<%-- </c:if> --%>
+							</c:choose> --%>
 						</div>
 					</td>
 				</tr>
@@ -167,6 +184,13 @@ div#write{
 		</c:if>
 		<c:choose>
 			<c:when test="${not empty requestScope.yourList}">
+			<%
+			int idx=0;
+			int cnt=0;
+			String count = null;
+			List<ArrayList<CommentDTO>> list = ((List<ArrayList<CommentDTO>>)request.getAttribute("yourComments"));
+			ArrayList<BoardDTO> clist = (ArrayList<BoardDTO>)request.getAttribute("yourList");
+			%>
 			<c:forEach items="${requestScope.yourList}" var="visitList" varStatus="i">	
 				<c:set scope="request" var="count" value="${i.index}"/>
 				<tr>
@@ -198,27 +222,36 @@ div#write{
 								</form>
 							</div>
 							<!-- 댓글 forEach문 돌릴 곳 -->
-							<%-- <c:if test="${i.count <= fn:length(yourComments)}"> --%>
 							<c:choose>
-							<%-- <c:when test="${not empty requestScope.yourComments}"> --%>
-							<c:when test="${i.count <= fn:length(yourComments)}">
+							<c:when test="${i.count <= fn:length(yourComments)+1}">
+							
 							<%
-								String count = request.getAttribute("count").toString();
-								System.out.println(count);
-								request.setAttribute("yours", ((List<ArrayList<BoardDTO>>)request.getAttribute("yourComments")).get((Integer.parseInt(count))));
+								count = request.getAttribute("count").toString();
+								cnt = Integer.parseInt(count);
+								System.out.println("게시글 카운트수:"+cnt);
+								
+								request.setAttribute("yours", list.get(idx));
+								if(list.get(idx).get(0).getPrmno()==clist.get(cnt).getBrdno()){
+									
+									request.setAttribute("yours", list.get(idx));
+									for(CommentDTO dto:list.get(idx)){
+										System.out.println("idx:"+(idx)+" 게시글번호:"+dto.getPrmno()+" 글내용:"+dto.getBrdcontent());
+									}
+									idx++;
+								}
 							%>
-							<%-- <c:if test="${requestScope.yours[0].brdno eq visitList.brdno}"> --%>
+							<c:if test="${requestScope.yours[0].prmno == visitList.brdno}">
 								<div class="panel-footer">
 									<c:forEach items="${requestScope.yours}" var="ycomment">
-										<small>${ycomment.userid}: ${ycomment.brdcontent} - ${ycomment.wrdate} ${ycomment.title}</small><p>
+										<%-- <small>[${ycomment.prmno}]${ycomment.userid}: ${ycomment.brdcontent} - ${ycomment.wrdate} ${ycomment.title}</small><p> --%>
+										<small>${ycomment.userid} : ${ycomment.brdcontent} - ${ycomment.wrdate} ${ycomment.title}</small><p>
 									</c:forEach>
 								</div>
-							<%-- </c:if> --%>
+							</c:if>
 							</c:when>
 							<c:otherwise>
 							</c:otherwise>
 							</c:choose>
-							<%-- </c:if> --%>
 						</div>
 					</td>
 				</tr>
