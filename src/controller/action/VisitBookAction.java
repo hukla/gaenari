@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import model.dao.TestDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
+import model.dto.CommentDTO;
 import model.dto.UserDTO;
 /**
  * 작성: 프로젝트시작당시
@@ -30,15 +31,14 @@ public class VisitBookAction implements Action {
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		UserDTO user = null;
-		UserDTO visitor = null;
 		String userid = null;
 		List<BoardDTO> visitList = null;
 		List<BoardDTO> myList = null;
-		List<BoardDTO> myOneCmtList = null;
-		List<List<BoardDTO>> myWholeCmtList = null;
+		List<CommentDTO> myOneCmtList = null;
+		List<List<CommentDTO>> myWholeCmtList = null;
 		List<BoardDTO> yourList = null;
-		List<BoardDTO> yourOneCmtList = null;
-		List<List<BoardDTO>> yourWholeCmtList = null;
+		List<CommentDTO> yourOneCmtList = null;
+		List<List<CommentDTO>> yourWholeCmtList = null;
 		try {
 			user = (UserDTO) session.getAttribute("user");
 			userid = user.getUserid();
@@ -52,11 +52,11 @@ public class VisitBookAction implements Action {
 			
 			visitList = TestDAO.selectVisit(user);				//페이지 주인인 user의 방명록을 가져옴 거기엔 작성자인 userid도 있음.
 			myList = new ArrayList<BoardDTO>();
-			myOneCmtList = new ArrayList<BoardDTO>();
-			myWholeCmtList = new ArrayList<List<BoardDTO>>();	//내가 올린 게시글 별 댓글리스트를 담은 리스트
+			myOneCmtList = new ArrayList<CommentDTO>();
+			myWholeCmtList = new ArrayList<List<CommentDTO>>();	//내가 올린 게시글 별 댓글리스트를 담은 리스트
 			yourList = new ArrayList<BoardDTO>();
-			yourOneCmtList = new ArrayList<BoardDTO>();
-			yourWholeCmtList = new ArrayList<List<BoardDTO>>();	//방문객이 쓴 게시글 별 댓글리스트를 담은 리스트
+			yourOneCmtList = new ArrayList<CommentDTO>();
+			yourWholeCmtList = new ArrayList<List<CommentDTO>>();	//방문객이 쓴 게시글 별 댓글리스트를 담은 리스트
 			
 			for(BoardDTO dto:visitList){
 				if((dto.getUserid()).trim().equals(((UserDAO.selectOne(dto.getUserno())).getUserid()).trim())){	//내가쓴글이면
@@ -69,9 +69,9 @@ public class VisitBookAction implements Action {
 					if(!yourOneCmtList.isEmpty())	yourWholeCmtList.add(yourOneCmtList);
 				}
 			}
-			for(List<BoardDTO> lbd:yourWholeCmtList){
-				for(BoardDTO dto:lbd){
-					System.out.println(dto.getBrdno()+"번째 댓글 "+dto.getBrdcontent());
+			for(List<CommentDTO> lbd:yourWholeCmtList){
+				for(CommentDTO dto:lbd){
+					System.out.println(dto.getPrmno()+"번 게시글의 댓글 "+dto.getBrdcontent());
 				}
 				System.out.println("==================다음게시물=====================");
 			}
