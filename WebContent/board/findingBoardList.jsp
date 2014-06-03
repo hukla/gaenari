@@ -20,6 +20,68 @@
 			</tr>
 		</table>
 	</center>
+	<table align="center">
+	  <c:choose>
+		<c:when test="${not empty requestScope.tenF}">
+	  		<c:if test="${fn:length(tenF) < 10}">
+				<c:forEach begin="1" end="${10-fn:length(tenF)}">
+					<tr height="30">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</c:forEach>
+			</c:if>
+		</c:when>
+	<c:otherwise>
+	  	<tr>
+		<td colspan="3" align="center">등록된 제보가 없습니다.</td>
+	</tr>
+	</c:otherwise>
+	</c:choose>
+	<tr height="30">
+		<td colspan="4" align="center">
+			<c:choose>
+		<c:when test="${not empty requestScope.pageCount}">
+			<ul class="pagination">
+				<c:choose>
+					<c:when test="${requestScope.pageNumber-1 > 0}">
+						<li><a href="control?command=findingBoardList&pageNumber=${requestScope.pageNumber-1}">«</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="#">«</a></li>
+					</c:otherwise>
+				</c:choose>
+				<c:forEach begin="1" end="${requestScope.pageCount}" var="cnt">
+					<c:choose>
+						<c:when test="${cnt eq requestScope.pageNumber}">
+							<li class="active">
+								<a href="control?command=findingBoardList&pageNumber=${cnt}">
+									${cnt}<span class="sr-only">(current)</span>
+								</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="control?command=findingBoardList&pageNumber=${cnt}">${cnt}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+					<c:choose>
+						<c:when test="${requestScope.pageNumber+1 < requestScope.pageCount+1}">
+							<li><a href="control?command=findingBoardList&pageNumber=${requestScope.pageNumber+1}">»</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="#">»</a></li>
+						</c:otherwise>
+					</c:choose>
+				</ul>
+			</c:when>
+			<c:otherwise>
+				<div align="center">등록된 목록이 없습니다.</div>
+			</c:otherwise>
+		</c:choose>
+	</table>
 	<div align=right>
 		<span style="font-size:9pt;"><a href="/gaenari/board/findingBoardWrite.jsp">
 		<input type="hidden" value=${id} name="id">
@@ -43,7 +105,7 @@
 		
 		#fdog_list ul li {
 			width: 20%;
-			height: 300px;
+			height: 200px;
 			vertical-align: baseline;
 			overflow: hidden;
 			display: inline;
@@ -88,7 +150,7 @@ $(function(){
 				
 					table += "</tr></table></form></li></ul></div>";
 				});	
-				
+							
 				table+="</td></tr></table>";
 				//alert(table);
 				$('#fdog_table').html(table);
@@ -103,3 +165,27 @@ $(function(){
 
 </html>
 <%@ include file="../bottom.jsp"%>
+
+<%-- 				table += "<c:if test='${fn:length(fdog_list) < 10}'>";
+				table += "<c:forEach begin='1' end='${10-fn:length(fdog_list)}'><tr height='30'>";
+				table += "<td></td><td></td><td></td><td></td></tr></c:forEach></c:if></c:when>";
+				table += "<c:otherwise><tr><td colspan='3' align='center'>등록된 제보가 없습니다.</td></tr>";
+				table += "</c:otherwise></c:choose>";
+				table += "<tr height='30'><td colspan='4' align='center'><c:choose>";
+				table += "<c:when test='${not empty requestScope.pageCount}'>";
+				table += "<ul class='pagination'><c:choose>";				
+				table += "<c:when test='${requestScope.pageNumber-1 > 0}'>";
+				table += "<li><a href='control?command=findingBoardList&pageNumber=${requestScope.pageNumber-1}'>«</a></li>";
+				table += "</c:when><c:otherwise><li><a href='#'>«</a></li></c:otherwise></c:choose>";
+				table += "<c:forEach begin='1' end='${requestScope.pageCount}' var='cnt'>";
+				table += "<c:choose><c:when test='${cnt eq requestScope.pageNumber}'>";
+				table += "<li class='active'><a href='control?command=findingtBoardList&pageNumber=${cnt}'>";
+				table += "${cnt}<span class='sr-only'>(current)</span></a></li></c:when><c:otherwise>";
+				table += "<li><a href='control?command=findingBoardList&pageNumber=${cnt}'>${cnt}</a></li>";
+				table += "</c:otherwise></c:choose></c:forEach><c:choose>";
+				table += "<c:when test='${requestScope.pageNumber+1 < requestScope.pageCount+1}'>";
+				table += "<li><a href='control?command=findingBoardList&pageNumber=${requestScope.pageNumber+1}'>»</a></li>";
+				table += "</c:when><c:otherwise><li><a href='#'>»</a></li></c:otherwise></c:choose></ul>";
+				table += "</c:when><c:otherwise><div align='center'>등록된 목록이 없습니다.</div></c:otherwise>	</c:choose>";
+
+				 --%>

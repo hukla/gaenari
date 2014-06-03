@@ -10,6 +10,14 @@
 		</discriminator>
 	</resultMap>
 	
+	<select id="selectTenF" parameterType="int" resultType="FindingBoardDTO">
+		SELECT * FROM board b JOIN fboardinfo f ON b.brdno = f.brdno WHERE b.brdtype='fb' order by b.brdno desc limit #{value}, 10
+	</select>
+	
+	<select id="selectCountF" resultType="int">
+		select count(*) from board where board.brdtype='fb'
+	</select>
+	
 	<insert id="Finsert" parameterType="BoardDTO">
 		insert into board(brdcontent,wrdate,userid,title,brdtype,userno)
 		values(#{brdcontent},#{wrdate},#{userid},#{title},#{brdtype},#{userno})

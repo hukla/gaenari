@@ -17,7 +17,6 @@
 		select count(*) from board where board.brdtype='pt'
 	</select>
 	
-	
 	<select id="selectAll" resultType="PtBoardDTO">
 		select b.brdno, b.brdcontent, b.wrdate, b.userid, b.title, b.brdtype, b.userno, p.ptbrdno
 		from board b join ptboardinfo p on b.brdno=p.brdno where brdtype='pt' order by p.ptbrdno desc

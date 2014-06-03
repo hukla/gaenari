@@ -6,12 +6,41 @@ import java.util.List;
 import model.dto.BoardDTO;
 import model.dto.FindingBoardDTO;
 import model.dto.MissingBoardDTO;
+import model.dto.PtBoardDTO;
 
 import org.apache.ibatis.session.SqlSession;
 
 import util.DBUtil;
 
 public class MFBoardDAO {
+	
+	public static int getFCount() throws SQLException{
+		SqlSession session = null;
+		int fCount = 0;
+		int pageCount = 0;
+		try {
+			session = DBUtil.getSqlSession();
+			fCount = session.selectOne("mfboard.selectCountF");
+			pageCount = fCount/10;
+			if(fCount%10 > 0) pageCount++;
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return pageCount;
+	}
+
+	public static List<FindingBoardDTO> getTenF(int pageCount) throws SQLException{
+		SqlSession session = null;
+		List<FindingBoardDTO> list = null;
+
+		try {
+			session = DBUtil.getSqlSession();
+			list = session.selectList("mfboard.selectTenF",pageCount);
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return list;
+	}
 	
 	//유기견 신고 보드내용 입력 후 입력된 brdno를 반환하기(insert 후 select)
 	public static int insertMissingBoard(BoardDTO boardDTO) throws SQLException{

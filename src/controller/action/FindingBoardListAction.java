@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import model.dao.MFBoardDAO;
+import model.dao.PtBoardDAO;
 import model.dto.FindingBoardDTO;
 import model.dto.MissingBoardDTO;
 
@@ -20,21 +21,37 @@ public class FindingBoardListAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<FindingBoardDTO> fList = null;
+		String pageNumber = null;
+		/*List<FindingBoardDTO> fList = null;*/
+		List<FindingBoardDTO> tenF = null; // 페이지 당 10개
+		int pageCount = 0;
 		String xmlData = "";
 		String picPath = null;
 		
 		int pagecount=0;
 		
 		try {
-			fList = MFBoardDAO.FselectAll();
+			pageNumber = request.getParameter("pageNumber");
 			
-			if(fList == null) {
-				throw new Exception("fList가 null입니다.");
+			if(pageNumber==null){
+				pageNumber="1";
 			}
 			
+			pageCount = MFBoardDAO.getFCount();// 게시판에 'vo'가 총 몇 개 있는지
+			tenF = MFBoardDAO.getTenF((Integer.parseInt(pageNumber)-1)*10);// voluBoard 10개 받아옴
+			
+			request.setAttribute("pageCount", pageCount);
+			request.setAttribute("tenF", tenF);
+			
+			System.out.println(request.getAttribute(pageNumber));
+			/*fList = MFBoardDAO.FselectAll();*/
+			
+			/*if(fList == null) {
+				throw new Exception("fList가 null입니다.");
+			}*/
+			
 			xmlData += "<fList>";
-			for(FindingBoardDTO f : fList) {
+			for(FindingBoardDTO f : tenF) {
 				xmlData += "<item>";
 				xmlData += "<brdno>"+f.getBrdno()+"</brdno>";
 				xmlData += "<fbrdno>"+f.getFbrdno()+"</fbrdno>";
@@ -54,7 +71,6 @@ public class FindingBoardListAction implements Action {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 			request.getRequestDispatcher("/error.jsp").forward(request, response);
-
 		}
 	}
 
