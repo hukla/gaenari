@@ -20,7 +20,7 @@
 </SCRIPT>
 </head>
 <body>
-<form id="questionaire" method="post" action="/questionWrite.do" onSubmit='return checkValid()'>
+<form name="questionaire" method="post" action="/questionWrite.do" onSubmit='return checkValid()'>
 <p>다음의 질문에 간단하게 대답해 주세요.<br><br><br>
 1. 애완동물을 키운 경험이 있습니까?<br>
 <input type="radio" name="no1" value="Y">&nbsp; 예
@@ -40,7 +40,7 @@
 <input type="radio" name="no5" value="N">&nbsp; 아니오<br>
 <br><br><br>응답해 주신 자료는 암호화되어 관리되며 입양 신청 시 분양자에게 전달됩니다.<br>
 개인정보를 소중히 하는 개나리가 되겠습니다.<br><br><br></p>
-<center><input type="submit" value="제출하기"></center>
+<center><input type="submit" value="제출하기"><input type="button" value="닫기" onclick='window.close()'></center>
 </form>
 </body>
 </html>

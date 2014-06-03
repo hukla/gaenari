@@ -60,7 +60,7 @@ function voluDelete(){
 							<p align="center"><font color="black"><b><span style="font-size:9pt;">작 성 시 간</span></b></font></p>
 						</td>
 						<td>
-							<span style="font-size:9pt;"><b>${requestScope.resultContent.wrdate }</b></span>
+							<span style="font-size:9pt;"><b>${requestScope.resultContent.wrdate}</b></span>
 						</td>
 					</tr>
 					<tr>
@@ -85,13 +85,13 @@ function voluDelete(){
 						<form name="requestForm" method=post action="control" onsubmit="return send()">
 							<input type=hidden name="vbrdno" value="${requestScope.resultContent.vbrdno}">
 							<input type=hidden name="command" value="voluBoardUpdateForm">
-							<input type=hidden name="writer" value="<%=session.getAttribute("userid")%>">
+							<input type=hidden name="user" value="<%=session.getAttribute("userid")%>">
+							<input type=hidden name="writer" value="${requesstScope.resultContent.userid}">
 							<input type=submit value="수정하기">
 							<%
 							VoluBoardDTO vdto = null;
 							vdto=(VoluBoardDTO)request.getAttribute("resultContent");
 							String id=vdto.getUserid();
-							
 							System.out.println("requestScopeid="+id);
 							System.out.println("sessionScopeid="+session.getAttribute("userid").toString());
 							%>
