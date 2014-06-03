@@ -96,7 +96,8 @@ function ptDelete(){
 						<form name="requestForm" method=post action="control" onsubmit="return send()">
 							<input type=hidden name=ptbrdno value="${requestScope.resultContent.ptbrdno}">
 							<input type=hidden name="command" value="ptBoardUpdateForm">
-							<input type=hidden name="writer" value="<%=session.getAttribute("userid")%>">
+							<input type=hidden name="user" value="<%=session.getAttribute("userid")%>">
+							<input type=hidden name="writer" value="${requestScope.resultContent.userid}">
 							<input type=submit value="수정하기"">
 							<input type=button value="삭제하기" onClick="ptDelete()">
 					</form>

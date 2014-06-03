@@ -16,23 +16,17 @@ function send(){
 	else return false;
 }
 function voluDelete(){
-	/* var sessionId="${sessionScope.userid}";
-	var boardWriter=$('#boardWriter').val();
-	alert(sessionId);
-	alert(boardWriter);
-	alert(sessionId!=boardWriter);
-	if((sessionId!=boardWriter)==true){
-		alert("작성자만 삭제가 가능합니다.");
-	}else{ */
-		if(confirm("삭제하시겠습니까?")){
-			alert("삭제되었습니다.");
-			document.requestForm.vbrdno=vbrdno;
-			document.form.submit();
-		}else{
-			alert("뀨?");
-			return;
-		}
-	/* } */
+	if(confirm("삭제하시겠습니까?")){
+		alert("삭제되었습니다.");
+		/* document.requestForm.command.value="voluBoardDelete";
+		var no = document.requestForm.vbrdno;
+		alert(no); */
+		
+		window.location.href("/gaenari/control?command=voluBoardDelete");
+	}else{
+		alert("뀨?");
+		return;
+	}
 }
  </script>
 </head>
@@ -86,19 +80,9 @@ function voluDelete(){
 							<input type=hidden name="vbrdno" value="${requestScope.resultContent.vbrdno}">
 							<input type=hidden name="command" value="voluBoardUpdateForm">
 							<input type=hidden name="user" value="<%=session.getAttribute("userid")%>">
-							<input type=hidden name="writer" value="${requesstScope.resultContent.userid}">
+							<input type=hidden name="writer" value="${requestScope.resultContent.userid}">
 							<input type=submit value="수정하기">
-							<%
-							VoluBoardDTO vdto = null;
-							vdto=(VoluBoardDTO)request.getAttribute("resultContent");
-							String id=vdto.getUserid();
-							System.out.println("requestScopeid="+id);
-							System.out.println("sessionScopeid="+session.getAttribute("userid").toString());
-							%>
-							<c:if test="${requestScope.id eq sessionScope.userid }">
-								<input type=button value="삭제하기" onClick="voluDelete()">
-							</c:if>
-							<!-- <input type=button value="삭제하기" onClick="voluDelete()"> -->
+							<input type=button value="삭제하기" onClick="voluDelete()">
 					</form>
 				</table>
 				<div align=center><span style="font-size:9pt;"><a href="/gaenari/control?command=voluBoardList"><input type="submit" value="목록으로"></a></span></div>
