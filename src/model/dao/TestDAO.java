@@ -535,8 +535,8 @@ public class TestDAO {
 		}
 		return list;
 	}
-	//14-05-30 성훈추가: 나와 친구 간의 친구요청상태 확인
-	public static boolean checkFrndReq(int sender, int receiver) throws SQLException{
+	//14-05-30 성훈추가: 나와 친구 간의 친구요청상태 확인 (14-06-05 성훈수정)
+	public static int amIsender(int sender, int receiver) throws SQLException{
 		SqlSession session = null;
 		Map<String,Integer> map = null;
 		try {
@@ -545,19 +545,21 @@ public class TestDAO {
 			map = new HashMap<String,Integer>();
 			map.put("sender", sender);
 			map.put("receiver", receiver);
-			if(session.selectOne("test.checkFrndReq",map)==null){
+			if(session.selectOne("test.checkFrndReq",map)!=null){
+				return 1;		//sender가 요청한 사실이 맞다.
+			}else{
 				map = new HashMap<String,Integer>();
 				map.put("sender", receiver);
 				map.put("receiver", sender);
-				if(session.selectOne("test.checkFrndReq",map)==null){
-					return true;
+				if(session.selectOne("test.checkFrndReq",map)!=null){
+					return 2;	//sender가 요청을 받은 것이다.
 				}
 			}
 			System.out.println("==checkFrndReq종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
-		return false;
+		return 3;	//둘은 서로에게 친구요청을 한 적이 없다.
 	}	
 	//14-05-30 성훈추가: 나와 친구간의 친구상태 확인
 	public static boolean areWeFriends(int sender, int receiver) throws SQLException{

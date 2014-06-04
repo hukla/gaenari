@@ -24,7 +24,7 @@
 	(이)의 정보가 개나리 사이트에 등록되었습니다.<br>
 	 미니홈피에서 ${fn:length(dog)}마리 강아지의 일정과 일상을 공유해보세요!
 </div>
-<div align="center"><button id="close">창 닫기</button></div>
+<div align="center"><button id="close" class="btn btn-default" data-toggle="button">닫기</button></div>
 </body>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>

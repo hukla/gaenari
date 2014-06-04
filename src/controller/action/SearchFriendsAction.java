@@ -30,6 +30,8 @@ public class SearchFriendsAction implements Action {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		String searchType = null;
+		String dognames="";
+		String dogkinds="";
 		String word = null;
 		String result = "";
 		List<DogDTO> dog = null;
@@ -39,14 +41,28 @@ public class SearchFriendsAction implements Action {
 			searchType = request.getParameter("searchType");		// 주소,아이디,이름 중에 조건선택
 			word = request.getParameter("word");					// 검색어
 			System.out.println("검색구분:"+searchType+", 검색단어:"+word);
-			
+			if(searchType.equals("unchosen") || word.equals(null)){
+				throw new Exception("입력 정보가 불충분합니다.");
+			}
 			if(searchType!=null || word!=null){
 				if(searchType.equals("userid")){
 					dog = UserDAO.logIdCheck(word);		//id검색시
+					if(dog.size()>1){
+						for(DogDTO dto:dog){
+							dognames+=dto.getDogname()+",";
+							dogkinds+=dto.getDogkind()+",";
+						}
+						dog.get(0).setDogname(dognames);
+						dog.get(0).setDogkind(dogkinds);
+					}
 					if(dog.isEmpty()){	//강아지 정보가 한 마리도 없을 때
 						user = UserDAO.logCheck(word);
 						dog = new ArrayList<DogDTO>();
-						dog.add(new DogDTO(user.getUsername(),user.getUserid(),null,null,user.getAddress()));
+						dog.add(new DogDTO(user.getUsername(),user.getUserid(),"없음","없음",user.getAddress()));
+					}
+					System.out.println("======");
+					for(DogDTO dto:dog){
+						System.out.println(dto.getDogname());
 					}
 				}
 				else if(searchType.equals("username")){
@@ -76,7 +92,7 @@ public class SearchFriendsAction implements Action {
 					result += "</user>";
 				}
 				result+="</users>";
-			}else{
+			}/*else{
 				result+="<users>";
 				result+="<user>";
 				result+="<userid>"+"없다"+"</userid>";
@@ -84,7 +100,7 @@ public class SearchFriendsAction implements Action {
 				result+="<address>"+"없다"+"</address>";
 				result+="</user>";
 				result+="</users>";
-			}
+			}*/
 			
 			out.print(result);
 		} catch (SQLException e) {

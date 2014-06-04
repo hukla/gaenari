@@ -103,17 +103,11 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-							<input type="file" class="form-control" name="uploadFile">
+  								<input type="file" name="uploadFile">
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<%-- <div align="center">
-									<input type="hidden" name="userid" value="${requestScope.user.userid}">
-									<input type="submit" value="등록하기">
-									&nbsp;&nbsp;&nbsp; 
-									<input type="reset" value="취소하기">
-								</div> --%>
 								<div align="center">
 									<input type="hidden" name="userid" value="${requestScope.user.userid}">
 									<button type="button" onclick="submit()" class="btn btn-success" data-toggle="button">등록하기</button>

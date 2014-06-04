@@ -30,13 +30,13 @@ $(document).ready(function() {
 					table+="<td>"+$(this).find("dogname").text()+"</td>"
 					table+="<td>"+$(this).find("dogkind").text()+"</td>"
 					table+="<td>"+$(this).find("address").text()+"</td>"
-					table+="<td id='sendReq'><input type='button' value='정보보기' id='getinfo'" +
+					table+="<td id='sendReq'><input type='button' class='btn btn-default' value='정보보기' id='getinfo'" +
 							" name='"+$(this).find("userid").text()+"'></td>"
 					table+="</tr>"
 				})
 				$("#listTable tr:eq(0)").after(table);
 			},
-			error: function (data){alert(data+'=>에러발생');}
+			error: function (data){alert('입력정보가 없습니다.');}
 		});
 	})
 
@@ -72,6 +72,20 @@ $(document).ready(function() {
 			}
 		});
 	})
+	$("#here").click(function(){
+		$.ajax({
+			url : "/gaenari/getfriendInfo.do",
+			dataType : "text",
+			data : "userid="+$(this).attr("name"),
+			success : function(data) {
+				$("#display").load("/gaenari/userinfo.do","userid="+data);
+			},
+			error : function(data) {
+				alert(data + '=> 에러발생');
+			}
+		});
+	})
+
 	
 	$("table").on("click",'#btn2',function(){
 		$.ajax({

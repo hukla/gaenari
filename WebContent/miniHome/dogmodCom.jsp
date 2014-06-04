@@ -19,7 +19,7 @@
 	${requestScope.dog.dogname}(이)의 정보가 수정되었습니다.<br>
 	(이)의 정보가 수정되었습니다.<br>
 </div>
-<div align="center"><button id="close">창 닫기</button></div>
+<div align="center"><button id="close" class="btn btn-default" data-toggle="button">닫기</button></div>
 </body>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>

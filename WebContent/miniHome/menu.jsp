@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
-	h1,h2,h3,h4,h5 {   font-family:'서울한강체' } 
+	h1,h2,h3,h4,h5,td {   font-family:'맑은 고딕' } 
 </style>
 </head>
 <body>

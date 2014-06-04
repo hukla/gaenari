@@ -31,7 +31,7 @@
 	<table width="90%" align="center">
 		<tr>
 			<td>
-				<form action="dogmodify.do" method="post" enctype="multipart/form-data">
+				<form action="dogmodify.do" method="post" enctype="multipart/form-data" id="modDogForm">
 				<table class="table" align="center">
 					<colgroup>
 					<col width="20%"><col width="20%"><col width="60%">
@@ -51,9 +51,9 @@
 					<tr>
 						<td colspan="3">
 							<input type="hidden" name="dogno" value="${requestScope.dog.dogno}">
-							<input type="submit" value="등록하기">
+							<button type="button" onclick="submit()" class="btn btn-success" data-toggle="button">등록하기</button>
 							&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="button" value="취소하기" id="close">
+							<button id="close" class="btn btn-default" data-toggle="button">닫기</button>
 						</td>
 					</tr>
 				</table>
@@ -69,5 +69,8 @@
 			self.close();
 		});
 	});
+	function submit(){
+		$("#modDogForm").submit();
+	}
 </script>
 </html>

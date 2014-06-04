@@ -14,7 +14,11 @@ div#dogs {
 	text-align: inherit;
 }
 div#scroll{
-	height: 200px;
+	overflow-y: scroll;
+	height: 270px;
+}
+div#doginfo{
+	height: 80px;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -74,20 +78,28 @@ div#scroll{
 							</div>
 						</td>
 						<td width="24%" height="80%">
-							<h4 align="center">${requestScope.user.userid}님의 강아지(${fn:length(dog)})</h4> 
-							
 							<c:choose>
 								<c:when test="${not empty requestScope.dog}">
-								<div id="scroll">
-									<c:forEach items="${requestScope.dog}" var="dog">
-											<div class="alert alert-success" id="dogs">
-												<img src="${dog.dogimg}" width="35" class="img-rounded"> ${dog.dogname}<br>(${dog.dogkind} ${dog.dogage}살)
-											</div>
-									</c:forEach>
-									<c:if test="${requestScope.user.userid == sessionScope.userid}">
-										<a class="btn btn-success btn-xs" onclick="addDog()">새 강아지 등록</a>
-									</c:if>
-								</div>
+									<div class="panel panel-success" id="scroll">
+										<div class="panel-heading">
+											<h5>${requestScope.user.userid}님 강아지 목록</h5>
+										</div>
+										<div class="panel-body">
+											<c:forEach items="${requestScope.dog}" var="dog">
+												<div class="alert alert-success" id="doginfo">
+													<a href="#">
+														<img src="${dog.dogimg}" width="35" class="img-rounded">
+													</a>
+													<a href="#">
+														${dog.dogname}
+													</a><p>(${dog.dogkind} ${dog.dogage}살)
+												</div>
+											</c:forEach>
+											<c:if test="${requestScope.user.userid == sessionScope.userid}">
+												<a class="btn btn-success btn-xs" onclick="addDog()">새 강아지 등록</a>
+											</c:if>
+										</div>
+									</div>
 								</c:when>
 								<c:otherwise>
 									등록된 강아지가 없습니다.
@@ -97,7 +109,6 @@ div#scroll{
 									</c:if>
 								</c:otherwise>
 							</c:choose>
-							
 						</td>
 						<td width="24%">
 							<h4 align="center">일정(${fn:length(planList)})</h4> <c:choose>
@@ -175,7 +186,7 @@ function sendReq() {
 var result = "${fn:length(dog)}";
 var scroll = document.getElementById("scroll");
 
-if(result>2){
+if(result>1){
 	scroll.style.overflowY="scroll";
 }else{
 	scroll.style.overflowY="hidden";

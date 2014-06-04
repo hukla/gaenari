@@ -224,8 +224,8 @@ div#write{
 							<c:if test="${not empty requestScope.yours}">
 								<div class="panel-footer">
 									<c:forEach items="${requestScope.yours}" var="ycomment">
-										<small>[${ycomment.prmno}]${ycomment.userid}: ${ycomment.brdcontent} - ${ycomment.wrdate} ${ycomment.title}</small><p>
-										<%-- <small>${ycomment.userid} : ${ycomment.brdcontent} - ${ycomment.wrdate} ${ycomment.title}</small><p> --%>
+										<%-- <small>[${ycomment.prmno}]${ycomment.userid}: ${ycomment.brdcontent} - ${ycomment.wrdate} ${ycomment.title}</small><p> --%>
+										<small>${ycomment.userid} : ${ycomment.brdcontent} - ${ycomment.wrdate} ${ycomment.title}</small><p>
 									</c:forEach>
 								</div>
 							</c:if>

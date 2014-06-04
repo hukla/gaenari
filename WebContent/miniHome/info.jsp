@@ -60,24 +60,40 @@
 							<c:otherwise>
 								<form action="/gaenari/frndReq.do" id="form">
 									<c:choose>
-										<c:when test="${requestScope.flag eq true}"><!-- 내가 요청 안 했으면 -->
+										<c:when test="${requestScope.result == 3}"><!-- 내가 요청 안 했으면 -->
 											<c:choose>
 												<c:when test="${requestScope.friend eq true}">
 												친구입니다.
 												</c:when>
 												<c:otherwise>
 												<div class="btn-group btn-group-xs">
-													<button onclick="sendReq()"  class="btn btn-success" data-toggle="button">친구신청하기</button>
+													<button onclick="sendReq()" class="btn btn-success" data-toggle="button">친구신청하기</button>
 												</div>
 												</c:otherwise>
 											</c:choose>
 										</c:when>
 										<c:otherwise><!-- 내가 요청 했으면 -->
 											친구요청된 상태입니다.
+											<div class="btn-group btn-group-xs">
+												<input type="hidden" name="cancel" value="cancel">
+												<c:choose>
+													<c:when test="${requestScope.result == 1}">
+														<button onclick="cancelReq()" class="btn btn-default" data-toggle="button">요청 취소하기</button>
+													</c:when>
+													<c:otherwise>
+														<button class="btn btn-success" onclick="acceptReq()">요청 수락하기</button>
+														<button onclick="cancelReq()" class="btn btn-default" data-toggle="button">요청 거부하기</button>	
+													</c:otherwise>
+												</c:choose>
+											</div>
 										</c:otherwise>
 									</c:choose>
 									<input type="hidden" name="sender" value="${sessionScope.userid}">
 									<input type="hidden" name="receiver" value="${requestScope.user.userid}">
+								</form>
+								<form id="acform" action="/gaenari/acptRequest.do">
+									<input type="hidden" name="sender" value="${requestScope.sender.userno}">
+									<input type="hidden" name="receiver" value="${requestScope.user.userno}">
 								</form>
 							</c:otherwise>
 						</c:choose>
@@ -181,6 +197,25 @@
 			alert("친구요청이 완료됐습니다!");
 		}else{
 			alert("친구요청이 취소됐습니다");
+			return;
+		}
+	}
+	function cancelReq() {
+		var result = confirm("요청을 취소하시겠습니까?");
+		if(result){
+			$("#form").submit();
+			alert("친구요청이 취소됐습니다!");
+		}else{
+			return;
+		}
+	}
+	function acceptReq() {
+		var result = confirm("요청을 수락하시겠습니까?");
+		if(result){
+			$("#acform").submit();
+			alert("요청승인이 완료됐습니다!");
+		}else{
+			alert("요청승인이 취소됐습니다");
 			return;
 		}
 	}

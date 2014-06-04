@@ -17,5 +17,4 @@ public class GetFriendInfoAction implements Action {
 		System.out.println(userid);
 		out.print(userid);
 	}
-
 }

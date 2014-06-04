@@ -53,7 +53,7 @@
 					</tr>
 					<tr>
 						<th>강아지 사진</th>
-						<td><input class="form-control" type="file" size="29" id="dogimg" name="dogimg"></td>
+						<td><input type="file" size="29" id="dogimg" name="dogimg"></td>
 					</tr>
 					<tr>
 						<th>특징</th>
