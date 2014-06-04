@@ -3,10 +3,12 @@
 
 <mapper namespace="insert">
 	
+	<!-- 성훈추가: 댓글Board추가 -->
 	<insert id="insertCmtBoard" parameterType="BoardDTO">
 		insert into board(brdcontent,wrdate,userid,title,brdtype,userno) values(#{brdcontent},#{wrdate},#{userid},#{title},#{brdtype},#{userno})
 	</insert>
 	
+	<!-- 성훈추가: 댓글추가 -->
 	<insert id="insertComment" parameterType="CommentDTO">
 		insert into comment(brdno, prmno) values(#{brdno}, #{prmno})
 	</insert>
@@ -45,14 +47,18 @@
 		values(#{userid},#{passwd},#{email},#{username},#{address},#{usertype})
 	</insert>
 	
+	<!-- 성훈추가: 강아지 정보추가 -->
 	<insert id="insertDoginfo" parameterType="DogDTO">
-		insert into dog(dogname,dogage,dogkind,userno) values(#{dogname},#{dogage},#{dogkind},#{userno})
+		insert into dog(dogname,dogage,dogkind,userno,dogimg,doginfo)
+		values(#{dogname},#{dogage},#{dogkind},#{userno},#{dogimg},#{doginfo})
 	</insert>
 	
+	<!-- 성훈추가: 친구요청추가 -->
 	<insert id="insertFrndReq" parameterType="map">
 		insert into reqfrnd(sender,receiver) values(#{sender},#{receiver})
 	</insert>
 	
+	<!-- 성훈추가: 친구추가 -->
 	<insert id="insertFriends" parameterType="map">
 		insert into friendinfo(prmuser,subuser) values(#{prmuser},#{subuser})
 	</insert>

@@ -34,23 +34,14 @@
 			    if (response.status === 'connected') {
 			    	FB.api('/me', function(user) {
                         if (user) {
-                            /* var image = document.getElementById('image');
-                            image.src = 'http://graph.facebook.com/' + user.id + '/picture?type=large';
-                            var name = document.getElementById('name');
-                            name.innerHTML = user.name;
-                            var email = document.getElementById('email');
-                            email.innerHTML = user.email;  */
-                            
+                        	
                             var image = 'http://graph.facebook.com/' + user.id + '/picture?type=large';
                             var name = user.name;
                             var email = user.email; 
                            
-                           	//location.assign("/gaenari/fbLogCheck.do","email="+email+"&username="+name+"&image="+image);
-                            location.href="fbLogCheck.do?email="+email+"&username="+name+"&image="+image;
+                           	location.href="fbLogCheck.do?email="+email+"&username="+name+"&image="+image;
                             //이메일이랑 이름 넘기기
                         }
-                        
-                        
                     });   
 			    } else if (response.status === 'not_authorized') {
 			    } else {

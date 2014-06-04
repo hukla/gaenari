@@ -87,7 +87,7 @@ div#write{
 								<h3 class="panel-title">
 									<a href="/gaenari/miniHome.do?userid=${visitList.userid}">
 										<img width="30" src="${visitList.title}" class="img-rounded"> ${visitList.userid}
-									</a>님의 글&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.${visitList.brdno}
+									</a>님의 글 (${visitList.wrdate})
 								</h3>
 							</div>
 							<div class="panel-body">${visitList.brdcontent}</div>
@@ -189,7 +189,7 @@ div#write{
 								<h3 class="panel-title">
 									<a href="/gaenari/miniHome.do?userid=${visitList.userid}">
 										<img width="30" src="${visitList.title}" class="img-rounded"> ${visitList.userid}
-									</a>님의 글&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.${visitList.brdno}
+									</a>님의 글 (${visitList.wrdate})
 								</h3>
 							</div>
 							<div class="panel-body">${visitList.brdcontent}</div>

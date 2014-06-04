@@ -22,6 +22,9 @@ import model.dto.UserDTO;
  * 수정: 2014-05-30, 최성훈
  * 내용: 친구정보 볼 때 나와 1.친구관계인지, 2.나와 친구사이에 친구요청정보가 있는지 확인
  * 		 내 친구 몇명인지 보이기
+ * 
+ * 수정: 2014-06-04, 최성훈
+ * 내용: 친구 요청을 수락한 사람의 친구목록에 요청자가 없는 오류수정중..
  */
 public class UserInfoAction implements Action {
 
@@ -79,8 +82,7 @@ public class UserInfoAction implements Action {
 			}
 			request.setAttribute("user", user);
 			request.setAttribute("imageList", imageList);
-			
-			request.setAttribute("friendList", friendList);
+			request.setAttribute("friendList", friendList);		//수락한 사람도 친구목록에 친구가 떠야되는데 안됨.
 			request.setAttribute("dog", list);
 			request.setAttribute("user", user);
 			request.setAttribute("flag", flag);		//요청했으면 false

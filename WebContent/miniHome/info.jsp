@@ -6,7 +6,7 @@
 <html>
 <head>
 <style type="text/css">
-	td,th {	font-family: '서울한강체'	}
+	td,th {	font-family: '맑은 고딕'	}
 	#bigimg > img{
 		width: 400px;
 		height: 330px;
@@ -21,6 +21,8 @@
 작성자: 최성훈
 작성: 2014-05-29
 내용: 회원정보 보기-> 개인정보수정하도록, 다른 유저의 회원정보 보기-> 친구신청하기 로 경우 나눔.
+
+수정: 최성훈, 2014-06-04	내용: UI수정, 친구맺기 기능 오류수정중..
  -->
 </head>
 <body>
@@ -44,11 +46,16 @@
 					<td rowspan="4" colspan="2">
 						<img src="${requestScope.user.img}"> 
 					</td>
-					<td colspan="4">
-						<font size="4">이름: ${requestScope.user.username}</font> 
+					<th align="center">
+						이름
+					</th>
+					<td colspan="3">
+						${requestScope.user.username}
 						<c:choose>
 							<c:when test="${sessionScope.userid == requestScope.user.userid}">
-								<button onclick="goModify('${requestScope.user.userid}')">정보수정하기</button>
+								<div class="btn-group btn-group-xs">
+									<button onclick="goModify('${requestScope.user.userid}')"  class="btn btn-success" data-toggle="button">정보수정</button>
+								</div>
 							</c:when>
 							<c:otherwise>
 								<form action="/gaenari/frndReq.do" id="form">
@@ -59,7 +66,9 @@
 												친구입니다.
 												</c:when>
 												<c:otherwise>
-												<button onclick="sendReq()">친구신청하기</button>
+												<div class="btn-group btn-group-xs">
+													<button onclick="sendReq()"  class="btn btn-success" data-toggle="button">친구신청하기</button>
+												</div>
 												</c:otherwise>
 											</c:choose>
 										</c:when>
@@ -75,26 +84,35 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="4">
-						<font size="4">주소: ${requestScope.user.address}</font>
+					<th align="center">
+						주소
+					</th>
+					<td colspan="3">
+						${requestScope.user.address}
 					</td>
 				</tr>
 				<tr>
-					<td colspan="4">
-						<font size="4">Facebook 계정(E-mail): ${requestScope.user.email}</font>
+					<th align="center">
+						E-mail
+					</th>
+					<td colspan="3">
+						${requestScope.user.email}
 					</td>
 				</tr>
 				<tr>
-					<td colspan="4">
-						<font size="4">${requestScope.user.userid}님의 친구: ${fn:length(friendList)}명</font>
-					</td>
+					<th colspan="4" align="center">
+						${requestScope.user.userid}님의 친구: ${fn:length(friendList)}명
+					</th>
 				</tr>
 				<tr>
-					<td colspan="6" align="center">
+					<th colspan="2">
+						${requestScope.user.userid}님의 강아지
+					</th>
+					<td colspan="4" align="left">
 						<c:choose>
 							<c:when test="${not empty requestScope.dog}">
-							기르는 강아지: <c:forEach items="${requestScope.dog}" var="doggy">
-									${doggy.dogname}(${doggy.dogkind})&nbsp;
+								<c:forEach items="${requestScope.dog}" var="doggy">
+									<a href="#"><img src="${doggy.dogimg}" width="35" class="img-rounded"> ${doggy.dogname}(${doggy.dogkind})</a><br/><br/>
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
@@ -120,10 +138,16 @@
 						</c:otherwise>
 					</c:choose>
 				</tr>
-				<tr>
-					<td colspan="3" align="center"><button onclick="goQuest('${requestScope.user.userid}')">애견입양적합도테스트</button></td>
-					<td colspan="2" align="center"><button id="close">닫기</button></td>
-				</tr>
+				<c:if test="${sessionScope.userid == requestScope.user.userid}">
+					<tr>
+						<td colspan="3" align="center">
+							<button onclick="goQuest('${requestScope.user.userid}')"  class="btn btn-success" data-toggle="button">애견입양적합도테스트</button>
+						</td>
+						<td colspan="2" align="center">
+							<button id="close" class="btn btn-default" data-toggle="button">닫기</button>
+						</td>
+					</tr>
+				</c:if>
 				</table>
 			</td>
 		</tr>

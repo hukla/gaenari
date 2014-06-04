@@ -24,9 +24,7 @@
 수정: 2014-05-25, 최성훈	내용: 내비게이션 바 추가함에 따라 기부몰 들어가기를 미니홈피 메뉴에서 제거한 후
 전 페이지 공통으로 include되는 내비게이션 바에 추가함.
 			
-수정: 2014-05-27, 최성훈	내용: 내 홈피, 친구홈피 방문의 경우를 나누기 위해 a태그 접근시 꼭
-requestScope의 userid를 지니고 가게함.
-			
+수정: 2014-05-27, 최성훈	내용: 내 홈피, 친구홈피 방문을 구분하기 위해 a태그 접근시 꼭 requestScope의 userid를 지니고 가게함.		
 수정: 2014-05-29, 최성훈	내용: 페이스북 메인사진 받아서 뿌리기
 수정: 2014-05-30, 최성훈	내용: 친구요청란 지우고 테이블 bootstrap class추가
  -->
@@ -113,7 +111,7 @@ requestScope의 userid를 지니고 가게함.
 						<td height="20%">
 							<div align="center">안녕하세요 ${requestScope.user.username}입니다.</div>
 							<div align="center">견종: ${sessionScope.dog[0].dogkind}</div>
-							<div align="center">강아지 이름: ${sessionScope.dog[0].dogname}</div>
+							<div align="center"><img src="${sessionScope.dog[0].dogimg}" width="70">${sessionScope.dog[0].dogname}</div>
 						</td>
 						<td colspan="3">
 							<table>

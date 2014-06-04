@@ -12,40 +12,24 @@
 <!-- 
 작성자: 최성훈
 작성목적: 일기 작성, 검색, 수정, 삭제 등의 관리
-작성내용: 화면상에 세가지 일기 테이블을 구현한다.
-		  일기를 작성하는 테이블이 가장 왼쪽에 위치하고,
-		  지난 일기는 가장 최신 순서로 가운데와 오른편에 위치한다.
-		  페이지 우상단에 일정게시판으로 이동하는 버튼이 있다.
-추가할 사항: 페이지 번호 링크를 추가하여 지난 일기를 찾아보기 용이하도록한다.
+작성내용: 화면상에 세가지 일기 테이블을 구현한다. 일기를 작성하는 테이블이 가장 왼쪽에 위치하고,
+		  지난 일기는 가장 최신 순서로 가운데와 오른편에 위치한다. 페이지 우상단에 일정게시판으로 이동하는 버튼이 있다.
+		  추가할 사항: 페이지 번호 링크를 추가하여 지난 일기를 찾아보기 용이하도록한다.
 
-수정: 최성훈
-수정일: 2014-04-23
-수정내용: 메인페이지 이동할 때 url패턴으로 action 통해서 가도록 수정
-
-수정: 최성훈
-수정날짜: 2014-05-20
-수정내용: 일기 정보가 없을 때 페이지에 접근 못 하던 오류 해결
-
-수정: 최성훈
-수정날짜: 2014-05-22
-수정내용: 다이어리 전체 페이지에서 수정, 삭제기능 javascript추가
-
-수정: 최성훈
-수정날짜: 2014-05-23
-수정내용: 다이어리열람을 '미리보기', '목록보기' 두가지 탭으로 나눔
-		미리보기 탭에선 2개씩 미리보고 좌우버튼으로 이전일기 다음일기 이동
-		목록보기 탭에선 10개 묶음씩의 게시판 출력
+수정: 최성훈, 2014-04-23	내용: 메인페이지 이동할 때 url패턴으로 action 통해서 가도록 수정
+수정: 최성훈, 2014-05-20	내용: 일기 정보가 없을 때 페이지에 접근 못 하던 오류 해결
+수정: 최성훈, 2014-05-22	내용: 다이어리 전체 페이지에서 수정, 삭제기능 javascript추가
+수정: 최성훈, 2014-05-23	내용: 다이어리열람을 '미리보기', '목록보기' 두가지 탭으로 나눔
+	미리보기 탭에선 2개씩 미리보고 좌우버튼으로 이전일기 다음일기 이동
+	목록보기 탭에선 10개 묶음씩의 게시판 출력
 		
-수정: 최성훈
-수정날짜: 2014-05-27
-수정내용:1.request스코프에 userid를 받아와서 session user와 상관없이
-		   request의 user 일기를 확인, 상세보기 접근하기 
-
-		 2.session의 user와 request의 user를 구분하여  
-		   내 홈피 일기에 접근하는 경우(작성,수정,삭제 가능)와
+수정: 최성훈, 2014-05-27
+수정내용:1.request스코프에 userid를 받아와서 session user와 상관없이 request의 user 일기를 확인, 상세보기 접근하기 
+		 2.session의 user와 request의 user를 구분하여 내 홈피 일기에 접근하는 경우(작성,수정,삭제 가능)와
 		   친구의 홈피 일기에 접근하는 경우(작성,수정,삭제 불가능)를 나눔. 
-		 
 		 3.미리보기, 목록보기 탭기능이 새로고침시에 재기능하지 못하는 오류 수정
+		 
+수정: 최성훈, 2014-06-03	내용: 테이블 틀 수정
  -->
 </head>
 
@@ -89,7 +73,7 @@
 			<c:if test="${requestScope.user.userid eq sessionScope.userid }">
 			<td width="33%">
 				<form action="/gaenari/writeDiary.do" method="post" enctype="multipart/form-data" id="diaryForm">
-					<table border="0" class="table" width="100%" height="380" style="outline-style: double; table-layout: fixed;">
+					<table border="0" class="table" width="100%" height="380" style="outline-style: ridge; table-layout: fixed;">
 						<colgroup>
 							<col width="20%"><col width="80%">
 						</colgroup>
@@ -114,7 +98,7 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-							<textarea rows="10" cols="35" name="content" class="form-control"></textarea>
+							<textarea rows="6" cols="35" name="content" class="form-control"></textarea>
 							</td>
 						</tr>
 						<tr>
@@ -170,7 +154,7 @@
 							<tr>
 								<td>
 									<form action="control" method="post" name="firstForm">
-										<table border="0" width="95%" height="370" style="outline-style: double; table-layout: fixed;">
+										<table border="0" width="95%" height="370" style="outline-style: ridge; table-layout: fixed;">
 											<c:choose>
 												<c:when test="${not empty requestScope.diaryFirst}">
 													<tr height="15%">
@@ -228,8 +212,7 @@
 								</td>
 								<td>
 									<form action="control" method="post" name="secondForm">
-										<table border="0" width="95%" height="370"
-											style="outline-style: double; table-layout: fixed;">
+										<table border="0" width="95%" height="370" style="outline-style: ridge; table-layout: fixed;">
 											<c:choose>
 												<c:when test="${not empty requestScope.diarySecond}">
 													<tr height="15%">
