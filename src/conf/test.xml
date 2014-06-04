@@ -196,13 +196,10 @@
 		SELECT frndno FROM friendinfo where prmuser=#{prmuser} and subuser=#{subuser}
 	</select>
 	
-	<!-- 14-05-30 성훈추가: 내 userno로 내 친구 목록 가져오기
-		(내가 prmuser일수도, subuser일수도 있기 때문에 union,selfjoin 기능 사용) -->
-	<select id="getMyFriends" parameterType="map" resultType="int">
-		SELECT DISTINCT f1.prmuser FROM friendinfo f1 JOIN friendinfo f2 
-		ON f1.subuser=f2.prmuser WHERE f1.subuser=#{subuser} AND f2.prmuser=#{prmuser}
-		UNION SELECT DISTINCT f2.subuser FROM friendinfo f1 JOIN friendinfo f2 
-		ON f1.subuser=f2.prmuser WHERE f1.subuser=#{subuser} AND f2.prmuser=#{prmuser}
+	<!-- 14-05-30 성훈추가: 내 userno로 내 친구 목록 가져오기 -->
+	<select id="getMyFriends" parameterType="int" resultType="int">
+		SELECT subuser AS friend FROM friendinfo WHERE prmuser=#{value}
+		UNION SELECT prmuser AS friend FROM friendinfo WHERE subuser=#{value}
 	</select>
 	
 	<select id="getCommentList" parameterType="int" resultType="CommentDTO">

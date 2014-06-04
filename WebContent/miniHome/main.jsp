@@ -7,6 +7,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style type="text/css">
+div#dogs {
+	width: 230px;
+	height: 70px;
+	text-align: inherit;
+}
+div#scroll{
+	height: 200px;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>미니홈피 메인</title>
 <!-- 
@@ -57,9 +67,34 @@
 							<div align="center">
 								<img src="${requestScope.user.img}">
 							</div> <br>
-							<div align="center">${requestScope.user.username}</div>
+							<div align="center">
+								<h4>
+									${requestScope.user.username}<br>${requestScope.user.email}
+								</h4>
+							</div>
 						</td>
 						<td width="24%" height="80%">
+							<h4 align="center">${requestScope.user.userid}님의 강아지(${fn:length(dog)})</h4> 
+							
+							<c:choose>
+								<c:when test="${not empty sessionScope.dog}">
+								<div id="scroll">
+									<c:forEach items="${sessionScope.dog}" var="dog">
+											<div class="alert alert-success" id="dogs">
+												<img src="${dog.dogimg}" width="35" class="img-rounded"> ${dog.dogname}<br>(${dog.dogkind} ${dog.dogage}살)
+											</div>
+									</c:forEach>
+									<a class="btn btn-success btn-xs" onclick="addDog()">새 강아지 등록</a>
+								</div>
+								</c:when>
+								<c:otherwise>
+									등록된 강아지가 없습니다.<br>기르시는 강아지를 등록해주세요
+									<a class="btn btn-success btn-xs" onclick="addDog()">강아지 등록</a>
+								</c:otherwise>
+							</c:choose>
+							
+						</td>
+						<td width="24%">
 							<h4 align="center">일정(${fn:length(planList)})</h4> <c:choose>
 								<c:when test="${not empty requestScope.planList}">
 									<c:forEach items="${requestScope.planList}" var="plan">
@@ -90,28 +125,10 @@
 								</c:when>
 							</c:choose>
 						</td>
-						<td width="24%">
-							<h4 align="center">방명록(${fn:length(visit)})</h4> 
-							<c:choose>
-								<c:when test="${not empty requestScope.visit}">
-									<c:forEach items="${requestScope.visit}" var="visit">
-										<ul>
-											<li>
-											<a href="/gaenari/visitDetail.do?brdno=${visit.brdno}&userid=${requestScope.user.userid}">
-											${visit.userid} - ${visit.wrdate}
-											</a>
-											</li>
-										</ul>
-									</c:forEach>
-								</c:when>
-							</c:choose>
-						</td>
 					</tr>
 					<tr>
 						<td height="20%">
-							<div align="center">안녕하세요 ${requestScope.user.username}입니다.</div>
-							<div align="center">견종: ${sessionScope.dog[0].dogkind}</div>
-							<div align="center"><img src="${sessionScope.dog[0].dogimg}" width="70">${sessionScope.dog[0].dogname}</div>
+							<div><h3>안녕하세요 ${requestScope.user.username}입니다.</h3></div>
 						</td>
 						<td colspan="3">
 							<table>
@@ -130,5 +147,36 @@
 		</tr>
 	</table>
 </body>
+<script type="text/javascript">
+function addDog() {
+	var newwindow;
+	var url = "/gaenari/addDog.do?userid=${sessionScope.user.userid}";
+
+	newwindow = window.open(url, '강아지등록 페이지', 'height=600,width=660,scrollbars=yes');
+	if (window.focus) {
+		newwindow.focus;
+	}
+}
+function sendReq() {
+	var result = confirm("친구 요청을 보내시겠습니까?");
+	if(result){
+		$("#form").submit();
+		alert("친구요청이 완료됐습니다!");
+	}else{
+		alert("친구요청이 취소됐습니다");
+		return;
+	}
+}
+var result = "${fn:length(dog)}";
+var scroll = document.getElementById("scroll");
+
+if(result>2){
+	scroll.style.overflowY="scroll";
+}else{
+	scroll.style.overflowY="hidden";
+}
+
+
+</script>
 </html>
 <%@ include file="/bottom.jsp"%>

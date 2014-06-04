@@ -609,7 +609,7 @@ public class TestDAO {
 			map = new HashMap<String,Integer>();
 			map.put("subuser", userno);
 			map.put("prmuser", userno);
-			list = session.selectList("test.getMyFriends",map);
+			list = session.selectList("test.getMyFriends",userno);
 			System.out.println("==getMyFriends종료==");
 		} finally {
 			DBUtil.closeSession(session);
