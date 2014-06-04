@@ -52,7 +52,6 @@ public class HomeAction implements Action {
 		String userid = null;
 		String pwd = null;
 		UserDTO loginUser = null;
-		List<DogDTO> dog = null;
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		List<Integer> senderNo =null;
@@ -84,7 +83,6 @@ public class HomeAction implements Action {
 					if(loginUser.getImg()==null){
 						UpdateDAO.updateImg(loginUser.getUserid(),"/gaenari/image/usericon.jpg");
 					}
-					dog = DogDAO.getInfo(new DogDTO(loginUser));
 					senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno());
 					if(!senderNo.isEmpty()){
 						senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno());	//나한테 친구요청한 사람의 리스트를 받음
@@ -97,7 +95,6 @@ public class HomeAction implements Action {
 					session.setAttribute("sender", list);
 					session.setAttribute("user", loginUser);
 					log.info("logined user : "+loginUser);
-					session.setAttribute("dog", dog);
 					
 					url = "/home.jsp";
 				}

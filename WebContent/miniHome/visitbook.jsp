@@ -156,7 +156,7 @@ div#write{
 					<div class="jumbotron" id="writer">
 						<div class="col-lg-12">
 							<div class="input-group">
-								<small>${requstScope.user.userid}님에게 방명록을 남겨보세요</small>
+								<small>${requestScope.user.userid}님에게 방명록을 남겨보세요</small>
 								<textarea rows="2" cols="53" class="form-control" placeholder="방명록을 작성해주세요" name="content"></textarea>
 							</div><p/>
 							<div align="right">

@@ -77,19 +77,24 @@ div#scroll{
 							<h4 align="center">${requestScope.user.userid}님의 강아지(${fn:length(dog)})</h4> 
 							
 							<c:choose>
-								<c:when test="${not empty sessionScope.dog}">
+								<c:when test="${not empty requestScope.dog}">
 								<div id="scroll">
-									<c:forEach items="${sessionScope.dog}" var="dog">
+									<c:forEach items="${requestScope.dog}" var="dog">
 											<div class="alert alert-success" id="dogs">
 												<img src="${dog.dogimg}" width="35" class="img-rounded"> ${dog.dogname}<br>(${dog.dogkind} ${dog.dogage}살)
 											</div>
 									</c:forEach>
-									<a class="btn btn-success btn-xs" onclick="addDog()">새 강아지 등록</a>
+									<c:if test="${requestScope.user.userid == sessionScope.userid}">
+										<a class="btn btn-success btn-xs" onclick="addDog()">새 강아지 등록</a>
+									</c:if>
 								</div>
 								</c:when>
 								<c:otherwise>
-									등록된 강아지가 없습니다.<br>기르시는 강아지를 등록해주세요
-									<a class="btn btn-success btn-xs" onclick="addDog()">강아지 등록</a>
+									등록된 강아지가 없습니다.
+									<c:if test="${requestScope.user.userid == sessionScope.userid}">
+										<br>기르시는 강아지를 등록해주세요
+										<a class="btn btn-success btn-xs" onclick="addDog()">강아지 등록</a>
+									</c:if>
 								</c:otherwise>
 							</c:choose>
 							

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import model.dao.TestDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
+import model.dto.DogDTO;
 import model.dto.UserDTO;
 /**
  * 수정: 최성훈
@@ -78,6 +79,7 @@ public class MinihomeMainAction implements Action {
 		String savePath = null;
 		String fullpath = null;
 		UserDTO loginUser = null;
+		List<DogDTO> dog = null;
 		List<BoardDTO> allPlanList = null;
 		List<BoardDTO> planList = null;
 		List<BoardDTO> diaryList = null;
@@ -101,9 +103,10 @@ public class MinihomeMainAction implements Action {
 			planList = TestDAO.selectThreePlans(loginUser);
 			visitList = TestDAO.selectThreeVisits(loginUser);
 			allPlanList = TestDAO.selectPlan(loginUser);
-			
+			dog = TestDAO.getMyDogInfo(loginUser.getUserno());
 			
 			request.setAttribute("user", loginUser);				// 이 페이지 user를 request에 setAttribute
+			request.setAttribute("dog", dog);
 			request.setAttribute("diary", diaryList);
 			request.setAttribute("planList", planList);
 			request.setAttribute("visit", visitList);

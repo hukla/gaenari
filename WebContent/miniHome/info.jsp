@@ -186,4 +186,6 @@
 	}
 </script>
 </html>
-<%@ include file="/bottom.jsp"%>
+<c:if test="${requestScope.user.userid == sessionScope.userid}">
+	<%@ include file="/bottom.jsp"%>
+</c:if>
