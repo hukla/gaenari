@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.DogDAO;
 import model.dao.TestDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
+import model.dto.DogDTO;
 import model.dto.PlanDTO;
 import model.dto.UserDTO;
 import exception.LoginException;
@@ -49,7 +51,9 @@ public class OnePlanAction implements Action {
 		List<PlanDTO> plist = null;
 		BoardDTO onePlan = null;
 		PlanDTO planDTO = null;
+		DogDTO dog = null;
 		String userid = null;
+		String planType = null;
 		UserDTO user=null;
 		String index=null;
 		int indexInt=0;
@@ -99,10 +103,15 @@ public class OnePlanAction implements Action {
 				//전체 일정중 현재 보여지는 일정에 해당하는 index를 구함
 			
 			onePlan = TestDAO.selectOnePlan(planDTO.getBrdno());
+			planType = onePlan.getBrdcontent().split("!split!")[0];
+			onePlan.setBrdcontent(onePlan.getBrdcontent().split("!split!")[1]);
+			dog = DogDAO.getDogInfo(user.getUserno(), planDTO.getPlandogno());
 			
 			request.setAttribute("index", indexInt);	//현재 보여지는 일정의 index 번호 setAttribute
 			request.setAttribute("onePlan", onePlan);	//선택된 일정의 전체정보 setAttribute
+			request.setAttribute("type", planType);
 			request.setAttribute("user", user);
+			request.setAttribute("dog", dog);
 			url = "miniHome/onePlan.jsp";
 
 		} catch (SQLException e) {

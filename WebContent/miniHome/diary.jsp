@@ -7,6 +7,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style type="text/css">
+div#imgPosition{
+width:200px;
+height:60px;
+
+}
+div#scroll{
+	overflow-y: scroll;
+	height: 140px;
+}
+
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>미니홈피 일기</title>
 <!-- 
@@ -148,36 +160,49 @@
 							<tr>
 								<td>
 									<form action="control" method="post" name="firstForm">
-										<table border="0" width="95%" height="370" style="outline-style: ridge; table-layout: fixed;">
+										<table border="0" width="95%" height="400" style="outline-style: ridge; table-layout: fixed;">
 											<c:choose>
 												<c:when test="${not empty requestScope.diaryFirst}">
-													<tr height="15%">
+													<tr height="13%">
 														<td><h2>${requestScope.diaryFirst.wrdate}</h2></td>
 													</tr>
-													<tr height="7%">
-														<td>&nbsp;&nbsp;제목 : ${requestScope.diaryFirst.title}</td>
+													<tr height="5%">
+														<td>&nbsp;&nbsp;제목 : 
+															${requestScope.diaryFirst.title}
+															<div class="btn-group btn-group-xs">
+																<a class="btn btn-info" href="/gaenari/diaryDetail.do?brdno=${requestScope.diaryFirst.brdno}&userid=${requestScope.user.userid}">상세보기</a>
+															</div>
+														</td>
 													</tr>
-													<tr height="7%">
-														<td>&nbsp;&nbsp;기분 : ${requestScope.diaryFirst.mood}</td>
+													<tr height="12%">
+														<td>&nbsp;&nbsp;기분 : 
+															${requestScope.diaryFirst.mood}
+															<c:if test="${requestScope.diaryFirstImg != null}">
+																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																&nbsp;&nbsp;
+																첨부된 이미지 <img src="${requestScope.diaryFirstImg}" height="30" class="img-rounded">
+															</c:if>
+														</td>
 													</tr>
 
 													<!-- 14-05-13 성훈수정: 경우에 따라 사진 넣고 말고 하기 -->
 													<tr height="43%">
 														<td style="text-align: left;vertical-align: top;">
-															<c:if test="${requestScope.diaryFirstImg != null}">
-																<img src="${requestScope.diaryFirstImg}" width="180" class="img-rounded">
-															</c:if> ${requestScope.diaryFirst.brdcontent}
+														<div id="scroll">
+															${requestScope.diaryFirst.brdcontent}
+														</div>
 														</td>
 													</tr>
 													<c:if test="${requestScope.user.userid eq sessionScope.userid }">
-													<tr height="7%">
+													<tr height="5%">
 														<td>
 															<div align="center">
 																<input type="hidden" name="command" value=""> 
 																<input type="hidden" name="brdno" value="${requestScope.diaryFirst.brdno}"> 
-																<input type="submit" value="수정하기" onclick="sendUpdate()">
+																<input type="submit" class="btn btn-success" value="수정하기" onclick="sendUpdate()">
 																&nbsp;&nbsp;&nbsp; 
-																<input type="submit" value="삭제하기" onclick="deleteCheck()">
+																<input type="submit" class="btn btn-danger" value="삭제하기" onclick="deleteCheck()">
 															</div>
 														</td>
 													</tr>
@@ -206,40 +231,48 @@
 								</td>
 								<td>
 									<form action="control" method="post" name="secondForm">
-										<table border="0" width="95%" height="370" style="outline-style: ridge; table-layout: fixed;">
+										<table border="0" width="95%" height="400" style="outline-style: ridge; table-layout: fixed;">
 											<c:choose>
 												<c:when test="${not empty requestScope.diarySecond}">
-													<tr height="15%">
+													<tr height="13%">
 														<td><h2>${requestScope.diarySecond.wrdate}</h2></td>
 													</tr>
-													<tr height="7%">
+													<tr height="5%">
 														<td>&nbsp;&nbsp;제목 :
 															${requestScope.diarySecond.title}
+															<div class="btn-group btn-group-xs">
+																<a class="btn btn-info" href="/gaenari/diaryDetail.do?brdno=${requestScope.diarySecond.brdno}&userid=${requestScope.user.userid}">상세보기</a>
+															</div>
 														</td>
 													</tr>
-													<tr height="7%">
+													<tr height="12%">
 														<td>&nbsp;&nbsp;기분 : 
 															${requestScope.diarySecond.mood}
+															<c:if test="${requestScope.diarySecondImg != null}">
+																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																첨부된 이미지 <img src="${requestScope.diarySecondImg}" height="30" class="img-rounded">
+															</c:if>
 														</td>
 													</tr>
 
 													<!-- 14-05-13 성훈 수정 경우에 따라 사진 넣고 말고 하기 -->
 													<tr height="43%">
 														<td style="text-align: left;vertical-align: top;">
-															<c:if test="${requestScope.diarySecondImg != null}">
-																<img src="${requestScope.diarySecondImg}" width="180" class="img-rounded">
-															</c:if> ${requestScope.diarySecond.brdcontent}
+														<div id="scroll">
+															${requestScope.diarySecond.brdcontent}
+														</div>
 														</td>
 													</tr>
 													<c:if test="${requestScope.user.userid eq sessionScope.userid }">
-													<tr height="7%">
+													<tr height="5%">
 														<td>
 															<div align="center">
 																<input type="hidden" name="command" value=""> 
 																<input type="hidden" name="brdno" value="${requestScope.diarySecond.brdno}"> 
-																<input type="submit" value="수정하기" onclick="sendingUpdate()">
+																<input type="submit" class="btn btn-success" value="수정하기" onclick="sendingUpdate()">
 																&nbsp;&nbsp;&nbsp; 
-																<input type="submit" value="삭제하기" onclick="deleteChecking()">
+																<input type="submit" class="btn btn-danger" value="삭제하기" onclick="deleteChecking()">
 															</div>
 														</td>
 													</tr>

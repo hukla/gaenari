@@ -6,6 +6,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style type="text/css">
+div#panel {
+float: left;
+margin-left:20px;
+width: 930px;	
+}
+div#alert{
+width:460px;
+height:50px;
+}
+
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>미니홈피 일정 상세보기</title>
 <!-- 
@@ -39,91 +51,72 @@
  -->
 </head>
 <script type="text/javascript">
-	function deleteCheck(){
+	function deletePlan(brdno){
 		if(confirm("삭제하시겠습니까?")){
-			document.requestForm.command.value="deletePlan";
-			document.requestForm.brdno=brdno;
-			document.requestForm.submit();
+			alert("삭제되었습니다.");
+			location.href="/gaenari/deletePlan.do?brdno="+brdno;
 		}else{
-			document.requestForm.command.value="planDetail";
-			document.requestForm.brdno=brdno;
-			document.requestForm.submit();
+			return;
 		}
 	}
 </script>
 <body>
-	<table border="0" width="80%" height="480">
-		<tr>
-			<td>
-				<table border="1" align="center" width="50%" height="80%">
-					<tr>
-						<td width="15%" align="center" height="10%">오늘날짜</td>
-						<td width="85%" align="center">
-							<div align="center">${sessionScope.today}</div>
+	<div class="panel panel-default" id="panel">
+		<div class="panel-heading">
+			<table width="100%">
+				<tr>
+					<td width="80%"><h3 class="panel-title">제목:
+							${requestScope.onePlan.title} <font color="blue" size="2">[${requestScope.dog.dogname} - ${requestScope.type}]</font></h3></td>
+					<td width="20%" align="right">${requestScope.onePlan.wrdate}
+						<c:if test="${requestScope.onePlan.wrdate eq sessionScope.today}">
+							<font color="blue">[오늘입니다]</font>
+						</c:if>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="panel-body">
+			<table width="100%">
+				<tr>
+					<td width="55%" height="50">
+						<div class="alert alert-warning" id="alert">
+							<font size="3">${requestScope.onePlan.wrdate}&nbsp;&nbsp;&nbsp;${requestScope.onePlan.ploc}에서의 일정</font> 
+						</div>
+					</td>
+					<c:if test="${requestScope.dog != null}">
+						<td rowspan="2" width="45%" height="400">
+							<img src="${requestScope.dog.dogimg}" width="400"><br>
+							<h3 align="center">${requestScope.dog.dogname}(이)의 일정입니다.</h3> 
 						</td>
-					</tr>
-					<tr>
-						<td align="center" height="10%">제목</td>
-						<td>
-							<div align="center">${requestScope.onePlan.title}</div>
-						</td>
-					</tr>
-					<tr>
-						<td align="center" height="10%">수행날짜</td>
-						<td>
-							<div align="center">
-								${requestScope.onePlan.wrdate}
-								<c:if test="${requestScope.onePlan.wrdate eq sessionScope.today}">
-									<font color="blue">[오늘입니다]</font>
-								</c:if>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td align="center" height="10%">장소</td>
-						<td>
-							<div align="center">${requestScope.onePlan.ploc}</div>
-						</td>
-					</tr>
-					<tr>
-						<td align="center" height="40%">내용</td>
-						<td style="text-align: left; vertical-align: top;">
-							${requestScope.onePlan.brdcontent}
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">
-				<form action="control" method="post" name="requestForm">
-
+					</c:if>
+				</tr>
+				<tr>
+					<td style="text-align: left; vertical-align: top;">
+						${requestScope.onePlan.brdcontent}
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="panel-footer">
+			<table width="100%">
+				<tr>
+					<td align="center" height="20">
 					<!-- 14-05-14 성훈 추가: 이전 글, 다음 글 보기 -->
 					<!-- 14-05-16 01:03 성훈추가 이전글,다음글 해결하고싶다 -->
 					<!-- 14-05-21 성훈 수정: 이전 글, 다음 글 index로 이동, 수정, 삭제추가 -->
-					<input type="button" onclick="location.href='/gaenari/planDetail.do?index=${requestScope.index -1}&userid=${requestScope.user.userid}'" value="이전 글">
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<c:if test="${requestScope.user.userid eq sessionScope.userid }">
-						<input type="button" onclick="location.href='/gaenari/updateFormPlan.do?brdno=${requestScope.onePlan.brdno}&userid=${requestScope.user.userid}'" value="수정하기"> 
-						&nbsp;&nbsp;&nbsp;&nbsp; 
-						<input type="hidden" name="command" value="">
-						<input type="hidden" name="brdno" value="${requestScope.onePlan.brdno}">
-						<input type="submit" onclick="javascript:deleteCheck();" value="삭제하기">
-						&nbsp;&nbsp;&nbsp;&nbsp; 
-					</c:if>
-					<input type="button" onclick="location.href='/gaenari/planDetail.do?index=${requestScope.index +1}&userid=${requestScope.user.userid}'" value="다음 글">
 					<ul class="pager">
 						<li><a href="/gaenari/planDetail.do?index=${requestScope.index +1}&userid=${requestScope.user.userid}">Previous</a></li>
 						<c:if test="${requestScope.user.userid eq sessionScope.userid }">
 							<li><a href="/gaenari/updateFormPlan.do?brdno=${requestScope.onePlan.brdno}&userid=${requestScope.user.userid}">수정하기</a></li>
-							<li><a href="javascript:deleteCheck();">삭제하기</a></li>
+							<li><a href="#" onclick="deletePlan('${requestScope.onePlan.brdno}')">삭제하기</a></li>
 						</c:if>
 						<li><a href="/gaenari/planDetail.do?index=${requestScope.index -1}&userid=${requestScope.user.userid}">Next</a></li>
 					</ul>
-				</form>
-			</td>
-		</tr>
-	</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
 <%@ include file="/bottom.jsp"%>

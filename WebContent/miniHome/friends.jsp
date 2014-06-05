@@ -159,7 +159,7 @@ div#container{
 					</tr>
 					<tr>
 						<td colspan="3">
-							<div id="display">여기에출력</div>
+							<div id="display"></div>
 						</td>
 					</tr>
 				</table>

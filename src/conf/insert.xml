@@ -29,7 +29,7 @@
 	</insert>
 	
 	<insert id="insertPlan" parameterType="PlanDTO">
-		insert into planboardinfo(brdno, ploc, pdate) values(#{brdno}, #{ploc}, #{pdate})
+		insert into planboardinfo(brdno, ploc, pdate, plandogno) values(#{brdno}, #{ploc}, #{pdate},#{plandogno})
 	</insert>
 	
 	<insert id="insertVisitBoard" parameterType="BoardDTO">

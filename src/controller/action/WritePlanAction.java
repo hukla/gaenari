@@ -38,7 +38,7 @@ public class WritePlanAction implements Action {
 		
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
-		String title,loc,tmpDate,content,date = null;
+		String title,loc,tmpDate,content,date,plantype,plandogno = null;
 		BoardDTO boardDTO = null;
 		int brdno=0;
 		
@@ -47,24 +47,22 @@ public class WritePlanAction implements Action {
 			loc = request.getParameter("loc");
 			tmpDate = request.getParameter("date"); // "05/11/2014"
 			content = request.getParameter("content").replaceAll("\r\n", "<br/>");
-			
-			/*title = new String(title.getBytes("8859_1"),"utf-8");
-			loc = new String(loc.getBytes("8859_1"),"utf-8");
-			tmpDate = new String(tmpDate.getBytes("8859_1"),"utf-8");
-			content = new String(content.getBytes("8859_1"),"utf-8");*/
+			plantype = request.getParameter("plantype");
+			plandogno = request.getParameter("plandogno");
 			
 			System.out.println(title+loc+tmpDate+content);
-			if (title.equals(null) || title.trim().length() == 0 || loc.equals(null) || loc.trim().length() == 0
+			if (title.equals(null) || title.trim().length() == 0 || loc.equals("unchosen")
 					|| tmpDate.equals(null) || tmpDate.trim().length() == 0
-					|| content.equals(null) || content.trim().length() == 0) {
+					|| content.equals(null) || content.trim().length() == 0
+					|| plandogno.equals("unchosen") || plantype.equals("unchosen")) {
 				throw new Exception("내용을 모두 입력해주세요.");
 			} else {
 				date = tmpDate.substring(6, 10)+"-"+tmpDate.substring(0, 2)+"-"+tmpDate.substring(3, 5);
-
+				content = plantype+"!split!"+content;
 				boardDTO = new BoardDTO(content, date,(String) session.getAttribute("userid"), title, "pl",
 						(int)((UserDTO) session.getAttribute("user")).getUserno());
 				brdno = InsertDAO.insertPlanBoard(boardDTO);
-				InsertDAO.insertPlan(new PlanDTO(brdno, loc, date));
+				InsertDAO.insertPlan(new PlanDTO(brdno, loc, date,Integer.parseInt(plandogno)));
 				// 입력값들을 보드DTO와 플랜DTO에 insert해준다.
 			}
 			url = "/planList.do";
