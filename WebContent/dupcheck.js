@@ -22,24 +22,48 @@ $(document).ready(function() {
 				
 				$("#listTable tr:gt(0)").remove();
 				var table="";
-				
 				$(data).find('user').each(function (index){
 					table+="<tr>"
 					table+="<td>"+$(this).find("username").text()+"</td>"
 					table+="<td>"+$(this).find("userid").text()+"</td>"
-					table+="<td>"+$(this).find("dogname").text()+"</td>"
-					table+="<td>"+$(this).find("dogkind").text()+"</td>"
+					table+="<td>"+$(this).find("email").text()+"</td>"
 					table+="<td>"+$(this).find("address").text()+"</td>"
+					table+="<td>"+$(this).find("dogage").text()+"마리 </td>"
 					table+="<td id='sendReq'><input type='button' class='btn btn-default' value='정보보기' id='getinfo'" +
 							" name='"+$(this).find("userid").text()+"'></td>"
 					table+="</tr>"
+					//<input type='button' class='btn btn-default' id='removeinfo' value='취소'>
 				})
 				$("#listTable tr:eq(0)").after(table);
 			},
 			error: function (data){alert('입력정보가 없습니다.');}
 		});
 	})
-
+	$("#btn2").click(function(){
+		$.ajax({
+			url:"/gaenari/searchFriends.do",
+			dataType: "xml",
+			data: $("#inForm").serialize(),
+			success: function (data){
+				
+				$("#listTable tr:gt(0)").remove();
+				var table="";
+				$(data).find('user').each(function (index){
+					table+="<tr>"
+					table+="<td></td>"
+					table+="<td></td>"
+					table+="<td></td>"
+					table+="<td></td>"
+					table+="<td></td>"
+					table+="<td id='sendReq'></td>"
+					table+="</tr>"
+				})
+				$("#listTable tr:eq(0)").after(table);
+				
+			},
+			error: function (data){alert('입력정보가 없습니다.');}
+		});
+	})
 	
 	//////////////////////////////////////////////////////////////////////////////////14-05-31 하던중
 	$("#dogbtn").click(function(){
@@ -72,6 +96,19 @@ $(document).ready(function() {
 			}
 		});
 	})
+/*	$("table").on("click",'#removeinfo',function(){
+		$.ajax({
+			url : "/gaenari/getfriendInfo.do",
+			dataType : "text",
+			data : "userid="+$(this).attr("name"),
+			success : function(data) {
+				$("#display").toggle();
+			},
+			error : function(data) {
+				alert(data + '=> 에러발생');
+			}
+		});
+	})*/
 	$("#here").click(function(){
 		$.ajax({
 			url : "/gaenari/getfriendInfo.do",

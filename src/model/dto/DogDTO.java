@@ -44,6 +44,13 @@ public class DogDTO extends UserDTO{
 		this.dogkind = dogkind;
 		super.setAddress(address);
 	}
+	public DogDTO(String username,String userid, String email, String address,int dogage){
+		super.setUsername(username);
+		super.setUserid(userid);
+		super.setEmail(email);
+		super.setAddress(address);
+		this.dogage = dogage;
+	}
 	//14-05-27 성훈추가 (밑에꺼 추가로 인해 삭제예정)
 	public DogDTO(String dogname, int dogage, String dogkind, int userno){
 		this.dogage = dogage;
@@ -132,5 +139,4 @@ public class DogDTO extends UserDTO{
 				.append(userdto).append(", userno=").append(userno).append("]");
 		return builder.toString();
 	}
-	
 }

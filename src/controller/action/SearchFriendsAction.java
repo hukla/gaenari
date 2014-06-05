@@ -30,8 +30,6 @@ public class SearchFriendsAction implements Action {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		String searchType = null;
-		String dognames="";
-		String dogkinds="";
 		String word = null;
 		String result = "";
 		List<DogDTO> dog = null;
@@ -47,48 +45,26 @@ public class SearchFriendsAction implements Action {
 			if(searchType!=null || word!=null){
 				if(searchType.equals("userid")){
 					dog = UserDAO.logIdCheck(word);		//id검색시
-					if(dog.size()>1){
-						for(DogDTO dto:dog){
-							dognames+=dto.getDogname()+",";
-							dogkinds+=dto.getDogkind()+",";
-						}
-						dog.get(0).setDogname(dognames);
-						dog.get(0).setDogkind(dogkinds);
-					}
 					if(dog.isEmpty()){	//강아지 정보가 한 마리도 없을 때
 						user = UserDAO.logCheck(word);
 						dog = new ArrayList<DogDTO>();
-						dog.add(new DogDTO(user.getUsername(),user.getUserid(),"없음","없음",user.getAddress()));
-					}
-					System.out.println("======");
-					for(DogDTO dto:dog){
-						System.out.println(dto.getDogname());
+						dog.add(new DogDTO(user.getUsername(),user.getUserid(),user.getEmail(),user.getAddress(),0));
 					}
 				}
 				else if(searchType.equals("username")){
 					dog = UserDAO.logNameCheck(word);	//이름검색시
-					if(dog.isEmpty()){	//강아지 정보가 한 마리도 없을 때
-						user = UserDAO.checkByName(word);
-						dog = new ArrayList<DogDTO>();
-						dog.add(new DogDTO(user.getUsername(),user.getUserid(),null,null,user.getAddress()));
-					}
 				}
 				else if(searchType.equals("address")){
 					dog = UserDAO.logAddrCheck(word);	//주소검색시
-					if(dog.isEmpty()){	//강아지 정보가 한 마리도 없을 때
-						user = UserDAO.checkByAddr(word);
-						dog = new ArrayList<DogDTO>();
-						dog.add(new DogDTO(user.getUsername(),user.getUserid(),null,null,user.getAddress()));
-					}
 				}
 				result+="<users>";
 				for (DogDTO dto : dog) {
 					result += "<user>";
 					result += "<username>" + dto.getUsername() + "</username>";
 					result += "<userid>" + dto.getUserid() + "</userid>";
-					result += "<dogname>" + dto.getDogname() + "</dogname>";
-					result += "<dogkind>" + dto.getDogkind() + "</dogkind>";
+					result += "<email>" + dto.getEmail() + "</email>";
 					result += "<address>" + dto.getAddress() + "</address>";
+					result += "<dogage>" + dto.getDogage() + "</dogage>";
 					result += "</user>";
 				}
 				result+="</users>";

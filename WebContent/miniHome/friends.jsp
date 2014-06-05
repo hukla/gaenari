@@ -149,9 +149,9 @@ div#container{
 								<tr bgcolor="#F0F092">
 									<td align="center">이름</td>
 									<td align="center">아이디</td>
-									<td align="center">강아지이름</td>
-									<td align="center">강아지 종</td>
+									<td align="center">Email</td>
 									<td align="center">주소</td>
+									<td align="center">강아지</td>
 									<td> </td>
 								</tr>
 							</table>
