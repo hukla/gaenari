@@ -9,6 +9,12 @@ public class CenterDTO {
 	private char cntrsize;
 	
 	public CenterDTO(){}
+	public CenterDTO(String cntrname, String cntrloc, String cntrcontact, char cntrsize){
+		this.cntrname = cntrname;
+		this.cntrloc = cntrloc;
+		this.cntrcontact = cntrcontact;
+		this.cntrsize = cntrsize;
+	}
 
 	public int getCntrno() {
 		return cntrno;

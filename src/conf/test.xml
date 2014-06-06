@@ -206,4 +206,9 @@
 		SELECT * FROM comment c JOIN board b ON c.brdno = b.brdno AND c.prmno=#{prmno};
 	</select>
 	
+	<select id="getCntrNo" parameterType="CenterDTO" resultType="int">
+		select cntrno from centerinfo where cntrname=#{cntrname} and 
+		cntrcontact=#{cntrcontact} and cntrloc=#{cntrloc} and cntrsize=#{cntrsize}
+	</select>
+	
 </mapper>
