@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ include file="/frame.jsp" %>
+<%-- <%@ include file="/frame.jsp" %> --%>
 <%@ include file="menu.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -79,11 +79,11 @@ div#scroll{
 </script>
 
 <body>
-<table><tr><td width="80%">
-	<table border="0" align="center" width="80%" height="100%" cellpadding="20" class="table">
+<table><tr><td width="800">
+	<table border="0" align="center" width="100%" height="100%" cellpadding="20" class="table">
 		<tr>
 			<c:if test="${requestScope.user.userid eq sessionScope.userid }">
-			<td width="33%">
+			<td width="45%">
 				<form action="/gaenari/writeDiary.do" method="post" enctype="multipart/form-data" id="diaryForm">
 					<table border="0" class="table" width="100%" height="380" style="outline-style: ridge; table-layout: fixed;">
 						<colgroup>
@@ -132,7 +132,7 @@ div#scroll{
 				</form>
 			</td>
 			</c:if>
-			<td width="67%">
+			<td width="55%">
 				<ul class="nav nav-tabs" id="myTab">
 					<c:choose>
 						<c:when test="${requestScope.flag eq false}">
@@ -230,6 +230,7 @@ div#scroll{
 									</form>
 								</td>
 								<td>
+								<c:if test="${requestScope.user.userid != sessionScope.userid}">
 									<form action="control" method="post" name="secondForm">
 										<table border="0" width="95%" height="400" style="outline-style: ridge; table-layout: fixed;">
 											<c:choose>
@@ -298,10 +299,20 @@ div#scroll{
 											</c:choose>
 										</table>
 									</form>
+									</c:if>
 								</td>
 							</tr>
 							<tr height="25">
-								<td colspan="2" align="center"><font size="6"> <c:choose>
+							<c:choose>
+								<c:when test="${requestScope.user.userid != sessionScope.userid }">
+									<td colspan="2" align="center">
+								</c:when>
+								<c:otherwise>
+									<td align="center">
+								</c:otherwise>
+							</c:choose>
+								<font size="6">
+										<c:choose>
 											<c:when test="${requestScope.diaryNumber < fn:length(diaryList)-1}">
 												<a href="/gaenari/diaryList.do?diaryNumber=${requestScope.diaryNumber+1}&userid=${requestScope.user.userid}" class="glyphicon glyphicon-chevron-left"></a>
 											</c:when>
@@ -310,8 +321,11 @@ div#scroll{
 											</c:otherwise>
 										</c:choose> 
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:choose>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<c:if test="${requestScope.user.userid != sessionScope.userid}">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										</c:if>
+										<c:choose>
 											<c:when test="${requestScope.diaryNumber > 1}">
 												<a href="/gaenari/diaryList.do?diaryNumber=${requestScope.diaryNumber-1}&userid=${requestScope.user.userid}" class="glyphicon glyphicon-chevron-right"></a>
 											</c:when>
@@ -431,4 +445,4 @@ function reset(){
 }
 </script>
 </html>
-<%@ include file="/bottom.jsp"%>
+<%-- <%@ include file="/bottom.jsp"%> --%>

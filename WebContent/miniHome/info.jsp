@@ -32,7 +32,7 @@
 	<hr color="blue">
 	<table align="center">
 		<tr>
-			<td width="480">
+			<td width="450">
 				<table align="center" border="0" class="table">
 				<colgroup>
 					<col width="16%">

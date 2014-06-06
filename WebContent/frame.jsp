@@ -55,7 +55,7 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle glyphicon glyphicon-home" data-toggle="dropdown"></a>
         <ul class="dropdown-menu">
-          <li><a href="/gaenari/miniHome.do">메인페이지</a></li>
+          <li><a href="#" onclick="miniHome()">메인페이지</a></li>
           <li><a href="/gaenari/calendar.do">달력보기</a></li>
           <li><a href="/gaenari/visitList.do">방명록</a></li>
           <li><a href="/gaenari/friends.do">친구관리</a></li>
@@ -162,5 +162,15 @@
 			}
 		}
 	</script>
+	<script type="text/javascript">
+	function miniHome() {
+		var newwindow;
+		var url = "/gaenari/miniHome.do";
+		newwindow = window.open(url, '미니홈페이지', 'height=570,width=1000,scrollbars=yes');
+		if (window.focus) {
+			newwindow.focus;
+		}
+	}
+</script>
 </body>
 </html>

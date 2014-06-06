@@ -4,12 +4,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="//code.jquery.com/jquery.js"></script>
+<!--<link href="/gaenari/bootstrap/css/bootstrap-ko.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.9.1.min.js"></script> -->
+<script src="/gaenari/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
-	h1,h2,h3,h4,h5,td {   font-family:'맑은 고딕' } 
+	body { padding-top: 45px; }
+</style>
+<style type="text/css">
+	h1,h2,h3,h4,h5,td,small,a,button,p {   font-family:'맑은 고딕' } 
+	table#menu{
+		margin-top: 50px;
+	}
 </style>
 </head>
 <body>
-	<table border="0" align="left" width="14%" >
+	<table border="0" align="left" width="14%" id="menu">
 		<tr>
 			<td width="10%">
 			</td>
@@ -17,7 +30,6 @@
 				<ul class="nav nav-pills nav-stacked">
 					<li><a href="/gaenari/miniHome.do?userid=${requestScope.user.userid}">메인페이지</a></li>
 					<li><a href="/gaenari/calendar.do?userid=${requestScope.user.userid}">달력</a></li>
-					<li><a href="/gaenari/myImage.do?userid=${requestScope.user.userid}">사진첩</a></li>
 					<li><a href="/gaenari/diaryList.do?userid=${requestScope.user.userid}">일기</a></li>
 					<li><a href="/gaenari/planList.do?userid=${requestScope.user.userid}">일정</a></li>
 					<li><a href="/gaenari/visitList.do?userid=${requestScope.user.userid}">방명록</a></li>
