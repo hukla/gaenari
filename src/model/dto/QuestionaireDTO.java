@@ -11,7 +11,14 @@ public class QuestionaireDTO {
 	private String q5;
 	
 	public QuestionaireDTO(){}
-	public QuestionaireDTO(int userno, String q1, String q2, String q3, String q4, String q5){}
+	public QuestionaireDTO(int userno, String q1, String q2, String q3, String q4, String q5){
+		this.userno = userno;
+		this.q1 = q1;
+		this.q2 = q2;
+		this.q3 = q3;
+		this.q4 = q4;
+		this.q5 = q5;
+	}
 
 	public int getQno() {
 		return qno;

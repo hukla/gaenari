@@ -22,13 +22,12 @@ public class QuestionWriteAction implements Action {
 		QuestionaireDTO qdto = null;
 		String url="/error.jsp";
 		String userid = session.getAttribute("userid").toString();
-		
+		System.out.println("userid="+userid);
 		String q1 = request.getParameter("no1");
 		String q2 = request.getParameter("no2");
 		String q3 = request.getParameter("no3");
 		String q4 = request.getParameter("no4");
 		String q5 = request.getParameter("no5");
-	
 		try{
 			int userno = UserDAO.logCheck(userid).getUserno();
 			qdto = new QuestionaireDTO(userno,q1,q2,q3,q4,q5);

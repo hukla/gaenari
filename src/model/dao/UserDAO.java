@@ -192,7 +192,7 @@ public class UserDAO {
 		
 		try {
 			session = DBUtil.getSqlSession();
-			res = (session.insert("user.insertQuest", qdto) > 0)? true : false;
+			res = (session.insert("u.insertQuest", qdto) > 0)? true : false;
 		} finally {
 			DBUtil.closeSession(session, res);
 		}
