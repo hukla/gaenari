@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="../css/style0606.css">
+	<link rel="stylesheet" type="text/css" href="/gaenari/static/css/style0606.css">
 	<script src="http://code.jquery.com/jquery.min.js"></script>
 	<link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -13,7 +13,7 @@
 	<link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
 	
-	<script src="../../scripts/login.js"></script>
+	<script src="/gaenari/scripts/login.js"></script>
 	
 	<meta charset="utf-8">
 	<title>GAENARI PROJECT</title>
