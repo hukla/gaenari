@@ -198,7 +198,6 @@ body {
 #footer {
 	background-color: #403030;
 	clear: both; /*float 상속받지 않음*/
-	height: 50px;
 }
 
 #footer .footer-company-info {
