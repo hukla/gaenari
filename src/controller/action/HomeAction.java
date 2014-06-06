@@ -43,6 +43,7 @@ public class HomeAction implements Action {
 		
 		//System.out.println(request.getAttribute("user.name"));
 		//System.out.println(request.getAttribute("user.email"));
+		// 현재 시간
 		cal = Calendar.getInstance();
 		int year = cal.get(cal.YEAR);
 		int mth = cal.get(cal.MONTH)+1;
@@ -68,37 +69,51 @@ public class HomeAction implements Action {
 		session.setAttribute("toMonth", mth);
 		session.setAttribute("toDate", day);
 		
+		// 현재 시간 끝
+		
 		userid = (String)session.getAttribute("userid");
 		pwd = (String)session.getAttribute("pwd");
+		
+		// login.do에서 넘어온 로그인 정보 가져옴
 		if(request.getParameter("userid")!=null)	userid = request.getParameter("userid");
 		if(request.getParameter("pwd")!=null)	pwd = request.getParameter("pwd");
+		
 		try {
-			if (userid.equals(null) || userid.length() == 0 || pwd.equals(null) || pwd.length() == 0) {
-				throw new LoginException("아이디와 비밀번호를 모두 입력해주세요.");	// 14-05-20 성훈 추가: LoginException 추가
-			} else {
+			
+			if (userid != null || pwd != null) {
+				
 				loginUser = UserDAO.logCheck(userid);
+
 				if(!pwd.equals(loginUser.getPasswd())){
 					throw new LoginException("비밀번호를 확인해주세요.");			// 14-05-20 성훈 추가: LoginException 추가
 				}else{
 					if(loginUser.getImg()==null){
-						UpdateDAO.updateImg(loginUser.getUserid(),"/gaenari/image/usericon.jpg");
+						UpdateDAO.updateImg(loginUser.getUserid(),"/gaenari/image/usericon.jpg"); // user default image
 					}
-					senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno());
+					
+					senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno()); // 나한테 친구요청한 사람의 리스트를 받음
+					
 					if(!senderNo.isEmpty()){
-						senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno());	//나한테 친구요청한 사람의 리스트를 받음
+						//senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno());	//
 						list = new ArrayList<UserDTO>();
+						
 						for(int no: senderNo){
 							list.add(UserDAO.selectOne(no));
 						}
 					}
+					
+					// sender list를 session에 저장
 					session.removeAttribute("sender");
 					session.setAttribute("sender", list);
+					
+					// session에 login된 상태를 저장
 					session.setAttribute("user", loginUser);
 					log.info("logined user : "+loginUser);
-					
-					url = "/home.jsp";
 				}
+				
 			}
+			
+			url = "/home.jsp";
 		} catch (SQLException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

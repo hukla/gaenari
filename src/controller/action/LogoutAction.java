@@ -25,7 +25,7 @@ public class LogoutAction implements Action {
 		}
 		
 		try{
-			url = "/login.jsp";
+			url = "/index.jsp";
 		}catch(Exception e){
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
