@@ -91,11 +91,12 @@ function ptDelete(ptbrdno){
 							<input type=hidden name="writer" value="${requestScope.resultContent.userid}">
 							<input type=submit value="수정하기">
 						</form>
-						<form name="requestDelete" method=post action="control" onsubmit="ptDelete(${requestScope.resultContent.ptbrdno})">
+						<form name="requestDelete" method=post action="control" onsubmit="return send()">
 							<input type=hidden name="ptbrdno" value="${requestScope.resultContent.ptbrdno}">
+							<input type=hidden name="command" value="ptBoardDelete">
 							<input type=hidden name="user" value="<%=session.getAttribute("userid")%>">
 							<input type=hidden name="writer" value="${requestScope.resultContent.userid}">
-							<input type=submit value="삭제하기")">
+							<input type=submit value="삭제하기" onclick="ptDelete(${requestScope.resultContent.ptbrdno})">
 						</form></td>
 				</table>
 				<div align=center><span style="font-size:9pt;"><a href="/gaenari/control?command=ptBoardList"><input type="submit" value="목록으로"></a></span></div>

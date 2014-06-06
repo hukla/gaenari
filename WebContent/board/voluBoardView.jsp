@@ -17,7 +17,7 @@ function send(){
 }
 function voluDelete(vbrdno){
 	if(confirm("삭제하시겠습니까?")){
-		location.href="/gaenari/voluBoardDelete.do?vbrdno="+vbrdno;
+		location.href="/voluBoardDelete.dovbrdno="+vbrdno;
 	}else{
 		alert("삭제가 취소되었습니다.");
 		return;
@@ -77,14 +77,15 @@ function voluDelete(vbrdno){
 							<input type=hidden name="user" value="<%=session.getAttribute("userid")%>">
 							<input type=hidden name="writer" value="${requestScope.resultContent.userid}">
 							<input type=submit value="수정하기">
-							<input type=button value="삭제하기" onclick="voluDelete(${requestScope.resultContent.vbrdno})">
 						</form>
-						<%-- <form name="requestDelete" method=post action="control" onsubmit="voluDelete(${requestScope.resultContent.vbrdno})">
+						<%-- <input type=button value="삭제하기" onclick="voluDelete(${requestScope.resultContent.vbrdno})"> --%>
+						<form name="requestDelete" method=post action="control" onsubmit="return send()">
 							<input type=hidden name="vbrdno" value="${requestScope.resultContent.vbrdno}">
+							<input type=hidden name="command" value="voluBoardDelete">
 							<input type=hidden name="user" value="<%=session.getAttribute("userid")%>">
 							<input type=hidden name="writer" value="${requestScope.resultContent.userid}">
-							<input type=submit value="삭제하기")">
-						</form></td> --%>
+							<input type=submit value="삭제하기" onClick="voluDelete(${requestScope.resultContent.vbrdno})">
+						</form></td>
 				</table>
 				<div align=center><span style="font-size:9pt;"><a href="/gaenari/control?command=voluBoardList"><input type="submit" value="목록으로"></a></span></div>
 			</td>

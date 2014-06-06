@@ -15,6 +15,8 @@ public class VoluBoardDeleteAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		System.out.println("voluBoardDelete입니다");
 		HttpSession session = request.getSession();
 		
 		String sessionUser = request.getParameter("user").toString();
