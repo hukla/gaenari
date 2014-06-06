@@ -44,14 +44,19 @@
 		ON u.userno = d.userno AND u.userid=#{userid} GROUP BY userid
 	</select>
 	
-	<!-- 2014-06-06 수진추가: 설문조사 결과 넣기 -->
-	<select id="insertQuest" parameterType="QuestionaireDTO">
+	<!-- 2014-06-06 수진추가: 테스트 결과 넣기 -->
+	<insert id="insertQuest" parameterType="QuestionaireDTO">
 		INSERT INTO questionaire VALUES(null,#{userno},#{q1},#{q2},#{q3},#{q4},#{q5}) 
+	</insert>
+	
+	<!-- 2014-06-06 수진추가: 사용자의 테스트여부 확인 & 사용자의 테스트 결과값 가져오기 -->
+	<select id="checkQuest" parameterType="int" resultType="QuestionaireDTO">
+		SELECT * from questionaire where userno=#{int}
 	</select>
 	
-	<!-- 2014-06-06 수진추가: 사용자의 설문조사여부 확인 -->
-	<select id="checkQuest" parameterType="int" resultType="Integer">
-		SELECT qno from questionaire where userno=#{int}
-	</select>
+	<!-- 2014-06-07 수진추가: 테스트 선택 -->
+	<update id="updateQuest" parameterType="QuestionaireDTO">
+		UPDATE questionaire set q1=#{q1},q2=#{q2},q3=#{q3},q4=#{q4},q5=#{q5} where userno=#{userno};
+	</update>
 	
 </mapper>					

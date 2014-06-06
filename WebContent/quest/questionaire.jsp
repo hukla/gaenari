@@ -8,9 +8,7 @@
 <title>Questionaire check!</title>
 <script language=javascript>
 function checkQuest(){
-	alert('checkQuest 실행');
 	if(<%=request.getAttribute("result").toString().equals("t")%>){
-		alert('if문 실행');
 		if(confirm('입양 신청 시 애견 입양 적합도 테스트의 결과가\n분양자에게 전송됩니다.\n신청을 진행할까요?')){
 			alert('신청이 완료되었습니다.');
 		}else{
@@ -25,6 +23,5 @@ checkQuest();
 </script>
 </head>
 <body>
-[<%=request.getAttribute("result").toString().equals("t")%>]
 </body>
 </html>

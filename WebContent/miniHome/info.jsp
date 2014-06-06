@@ -26,9 +26,6 @@
 
 수정: 이수진, 2014-06-06	내용: 애견 입양 적합도 테스트 버튼 클릭 시 결과 여부 뜨게 하기
  -->
-<script language="javascript">
-function 
-</script>
 </head>
 <body>
 	<h1 align="center">
@@ -193,7 +190,6 @@ function
 		location.href = "/gaenari/modifyform.do?userid="+userid;
 	}
 	function goQuest(userid){
-		
 		location.href = "/gaenari/questionform.do?userid="+userid;
 	}
 	function sendReq() {
