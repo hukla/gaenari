@@ -62,4 +62,8 @@
 	<insert id="insertFriends" parameterType="map">
 		insert into friendinfo(prmuser,subuser) values(#{prmuser},#{subuser})
 	</insert>
+	
+	<insert id="insertCntrUser" parameterType="CenterDTO">
+		insert into centerinfo(cntrname,cntrloc,cntrcontact,cntrsize) values(#{cntrname},#{cntrloc},#{cntrcontact},#{cntrsize})
+	</insert>
 </mapper>

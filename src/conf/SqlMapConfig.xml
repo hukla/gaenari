@@ -23,6 +23,7 @@
      <typeAlias type="model.dto.AdpBoardDTO" alias="AdpBoardDTO"/>
      <typeAlias type="model.dto.CommentDTO" alias="CommentDTO"/>
      <typeAlias type="model.dto.QuestionaireDTO" alias="QuestionaireDTO"/>
+     <typeAlias type="model.dto.CenterDTO" alias="CenterDTO"/>
      <!-- <typeAlias type="model.dto.BoardPlanDTO" alias="BoardPlanDTO"/> -->
      
      <!-- <typeAlias type="model.test.dto.BoardVo" alias="boardVo"/>
