@@ -28,7 +28,8 @@
 										<label class="checkbox"> 
 											<input type="checkbox" value="remember-me">기억하겠습니다.</label>
 										<button class="btn btn-lg btn-yellow btn-block" type="submit">로그인</button>
-										<button class="btn-yellow fb-login-button btn btn-lg btn-block" type="button">FACEBOOK 계정으로 로그인</button>
+										<button type="button" class="btn-yellow fb-login-button btn btn-lg btn-block">FACEBOOK 계정으로 로그인</button>
+										<div id="login" align="center" class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" scope="email"></div>
 									</form>
 	                            </div>
 	                        </div>
@@ -98,4 +99,36 @@
 			</c:choose>
 		</div>
 	</div>
+	<script src="//connect.facebook.net/en_US/all.js"></script>
+	<script>
+		$(window).load(function() {
+			// init the FB JS SDK
+			FB.init({
+				appId : '846213518728713', // App ID from the App Dashboard
+				// check the login status upon init?
+				cookie : true, // set sessions cookies to allow your server to access the session?
+				xfbml : false, // parse XFBML tags on this page?
+				version : 'v2.0'
+			});
+
+			FB.getLoginStatus(function(response) {
+				$("#fbLogoutBtn").show();
+			});
+
+			$("#fbLogoutBtn").click(function() {
+				FB.logout(function(response) {
+				});
+			});
+		});
+		
+		function getUserinfo() {
+			var newwindow;
+			var url = "/gaenari/userinfo.do";
+			
+			newwindow = window.open(url, '회원정보', 'height=700,width=660,scrollbars=yes');
+			if(window.focus) {
+				newwindow.focus;
+			}
+		}
+	</script>
 </html>

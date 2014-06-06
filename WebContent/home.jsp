@@ -68,7 +68,8 @@
 <body>
 	<div id="wrapper">
 		<%@ include file="/static/pages/header.jsp"%>
-		<div id="content"><%@ include file="/static/pages/menubar.jsp"%>
+		<div id="content">
+		<%@ include file="/static/pages/menubar.jsp"%>
 			<div class="container">
 				<div id="myCarousel" class="carousel slide" align="left">
 					<ol class="carousel-indicators">
