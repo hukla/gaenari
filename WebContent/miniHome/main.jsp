@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/frame.jsp"%>
+<%-- <%@ include file="/frame.jsp"%> --%>
 <%@ include file="menu.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -18,9 +18,21 @@ div#scroll{
 	height: 270px;
 }
 div#doginfo{
-	height: 80px;
+	height: 70px;
+}
+div#panel-heading{
+padding: 1px;
+height: 50px;
+text-align: center;
+}
+div#doginfo {
+    height: 50px;
+    font-size: 11px;
+    text-align: center;
+    padding: 5px;
 }
 </style>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>미니홈피 메인</title>
 <!-- 
@@ -44,7 +56,7 @@ div#doginfo{
  -->
 </head>
 <body>
-	<table align="center" width="80%">
+	<table align="left" width="800">
 		<tr>
 			<td width="100%" align="center">
 				<table border="0" align="center" width="80%" class="table">
@@ -53,15 +65,15 @@ div#doginfo{
 							<h2 align="center">${requestScope.user.userid}님의<br>미니홈페이지</h2>
 						</td>
 						<td width="75%" colspan="3" height="15%">
-							<h2 align="center">${sessionScope.today} 오늘의 일정
+							<h2 align="center">${sessionScope.today} 오늘의 일정<br>
 								<c:choose>
 									<c:when test="${requestScope.plans eq 1}">
-									[ ${requestScope.plan.title} ] 입니다.
+									<small>[ ${requestScope.plan.title} ] 입니다.</small>
 									</c:when>
 									<c:when test="${requestScope.plans > 1}">
-									[ ${requestScope.plans}개의 일정이 있습니다. ]
+									<small>[ ${requestScope.plans}개의 일정이 있습니다. ]</small>
 									</c:when>
-									<c:otherwise>: 등록된 일정이 없습니다.</c:otherwise>
+									<c:otherwise><small>등록된 일정이 없습니다.</small></c:otherwise>
 								</c:choose>
 							</h2>
 						</td>
@@ -81,14 +93,14 @@ div#doginfo{
 							<c:choose>
 								<c:when test="${not empty requestScope.dog}">
 									<div class="panel panel-success" id="scroll">
-										<div class="panel-heading">
-											<h5>${requestScope.user.userid}님 강아지 목록</h5>
+										<div class="panel-heading" id="panel-heading">
+											<h5>${requestScope.user.userid}님<br>강아지 목록</h5>
 										</div>
 										<div class="panel-body">
 											<c:forEach items="${requestScope.dog}" var="dog">
 												<div class="alert alert-success" id="doginfo">
 													<a href="#">
-														<img src="${dog.dogimg}" width="35" class="img-rounded">
+														<img src="${dog.dogimg}" height="23px" class="img-rounded">
 													</a>
 													<a href="#">
 														${dog.dogname}
@@ -144,7 +156,7 @@ div#doginfo{
 					</tr>
 					<tr>
 						<td height="20%">
-							<div><h3>안녕하세요 ${requestScope.user.username}입니다.</h3></div>
+							<div><h3 align="center">안녕하세요<br>${requestScope.user.username}입니다.</h3></div>
 						</td>
 						<td colspan="3">
 							<table>
@@ -195,4 +207,3 @@ if(result>1){
 
 </script>
 </html>
-<%@ include file="/bottom.jsp"%>

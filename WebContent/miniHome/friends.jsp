@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/frame.jsp" %>
+<%-- <%@ include file="/frame.jsp" %> --%>
 <%@ include file="menu.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,14 +8,14 @@
 <style type="text/css">
 
 table#searching{
-	width:700px;
-	float: right;
-	margin-right: 80px;
+	width:540px;
+	float: left;
+	margin-left: 20px;
 }
 table#friendsList{
 	float: left;
 	left:;
-	width:300px;
+	width:280px;
 }
 table#requestList{
 	float: left;
@@ -118,7 +118,7 @@ div#container{
 				<div class="jumbotron" id="writer">
 					<div class="container">
 						<h2>
-							${requestScope.user.userid}님, 친구를 검색해보세요
+							${requestScope.user.userid}님,<br>친구를 검색해보세요
 						</h2>
 					</div>
 				</div>
@@ -127,7 +127,7 @@ div#container{
 		<tr>
 			<td align="center"><form method="post" id="inForm" name="inForm">
 				<table border="0" class="table">
-					<colgroup><col width="20%"><col width="55%"><col width="25%"></colgroup>
+					<colgroup><col width="20%"><col width="55%"><col width="12%"><col width="13%"></colgroup>
 						<tr>
 							<td>
 								<select name="searchType" id="searchType"  class="btn btn-default">
@@ -138,13 +138,19 @@ div#container{
 								</select>
 							</td>
 							<td><input type="text" name="word" class="form-control"></td>
-							<td>
-								<input type="button" id="btn" class="btn btn-success" value="검색"> 
-								<input type="button" id="btn2" class="btn btn-default" value="취소">
+							<td style="vertical-align: middle;">
+								<div class="btn-group btn-group-sm">
+									<input type="button" id="btn" class="btn btn-success" value="검색"> 
+								</div>
+							</td>
+							<td style="vertical-align: middle;">
+								<div class="btn-group btn-group-sm">
+									<input type="button" id="btn2" class="btn btn-default" value="취소">
+								</div>
 							</td>
 						</tr>
 						<tr>
-						<td colspan="3">
+						<td colspan="4">
 							<table id="listTable" width="100%" class="table">
 								<tr bgcolor="#F0F092">
 									<td align="center">이름</td>
@@ -158,7 +164,7 @@ div#container{
 						</td>
 					</tr>
 					<tr>
-						<td colspan="3">
+						<td colspan="4">
 							<div id="display"></div>
 						</td>
 					</tr>
@@ -203,4 +209,4 @@ div#container{
 	}
 </script>
 </html>
-<%@ include file="/bottom.jsp"%>
+<%-- <%@ include file="/bottom.jsp"%> --%>

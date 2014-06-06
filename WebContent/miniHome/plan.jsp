@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ include file="/frame.jsp" %>
+<%-- <%@ include file="/frame.jsp" %> --%>
 <%@ include file="menu.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -54,11 +54,11 @@
 </head>
 
 <body>
-<table><tr><td width="100%">
+<table><tr><td width="800">
 	<table border="0" align="center" width="100%" height="100%" cellpadding="20" class="table">
 		<tr>
 			<c:if test="${requestScope.user.userid eq sessionScope.userid}">
-			<td width="33%">
+			<td width="45%">
 				<form action="/gaenari/writePlan.do" method="post" id="planForm">
 					<table class="table" border="0" width="100%" height="380" style="outline-style: ridge; table-layout: fixed;">
 						<colgroup>
@@ -158,7 +158,7 @@
 				</form>
 			</td>
 			</c:if>
-			<td width="67%">
+			<td width="55%">
 				<table class="table table-condensed" width="100%" height="395" style="table-layout: fixed;">
 					<colgroup>
 						<col width="20%">
@@ -252,4 +252,4 @@
 	}
 </script>
 </html>
-<%@ include file="/bottom.jsp"%>
+<%-- <%@ include file="/bottom.jsp"%> --%>

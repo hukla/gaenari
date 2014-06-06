@@ -37,13 +37,13 @@ import exception.LoginException;
 public class HomeAction implements Action {
 	
 	private static final Logger log = Logger.getLogger(HomeAction.class);
-	Calendar cal = Calendar.getInstance();
+	Calendar cal = null;
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{  
 		
 		//System.out.println(request.getAttribute("user.name"));
 		//System.out.println(request.getAttribute("user.email"));
-		
+		cal = Calendar.getInstance();
 		int year = cal.get(cal.YEAR);
 		int mth = cal.get(cal.MONTH)+1;
 		int day = cal.get(cal.DATE);
