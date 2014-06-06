@@ -54,7 +54,7 @@ public class FindingBoardWriteAction implements Action {
 			}
 			
 			title = multi.getParameter("title");
-			brdcontent = multi.getParameter("brdcontent");
+			brdcontent = multi.getParameter("brdcontent").replaceAll("\r\n", "<br/>");
 			userid = session.getAttribute("userid").toString();
 			brdtype = "fb";
 			floc = multi.getParameter("floc");

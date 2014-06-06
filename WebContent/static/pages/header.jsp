@@ -63,19 +63,17 @@
 					<div class="header-user-menu-container">
 						<!--드롭다운!!!!-->
 						<div class="dropdown">
-							<span class="btn btn-yellow header-user-menu dropdown-toggle"
-								data-toggle="dropdown"> <span class="header-user-info">
-									<img src="${sessionScope.user.img}" width="46px" height="46px"/>
-							</span> <span class="header-user-fullname">Jaehee Jang</span> <span
-								class="pull-right header-user-menu-caret"> <i
-									class="icon-carret-bottom"></i> <!--TODO-->
-							</span>
+							<span class="btn btn-yellow header-user-menu dropdown-toggle" data-toggle="dropdown"> 
+								<span class="header-user-info">
+									<div class="header-user-menu-image profile-image" style=" background-image: url(http://localhost:8080/gaenari/image/usericon.jpg); "></div>
+								</span>
+								<span class="header-user-fullname">Jaehee Jang</span> 
 							</span>
 							<div class="dropdown-menu" style="top: 73px; right: 0px;">
 								<div class="header-user-menu-tip"></div>
 								<div class="header-user-menu-list">
 									<ul class="header-user-menu-list-info">
-										<li><div class="info-value">0</div>
+										<li><div class="info-value">${sessionScope.user.point}</div>
 											<div class="info-title">포인트</div></li>
 										<li>
 											<div class="info-value">0 초</div>
@@ -87,8 +85,8 @@
 										</li>
 									</ul>
 									<ul class="header-user-menu-tools">
-										<li><a href="#" onclick="getUserinfo()"> <i	class="icon-setting"></i> 개인정보수정	</a></li>
-										<li class="header-logout pointer" onclick="location.href='/gaenari/login.do'"><i class="icon-unlock"></i>로그아웃</li>
+										<li><a href="#" onclick="getUserinfo()">개인정보수정</a></li>
+										<li><a href="/gaenari/login.do" class="header-logout pointer">로그아웃</a></li>
 									</ul>
 								</div>
 							</div>
@@ -99,36 +97,4 @@
 			</c:choose>
 		</div>
 	</div>
-	<script src="//connect.facebook.net/en_US/all.js"></script>
-	<script>
-		$(window).load(function() {
-			// init the FB JS SDK
-			FB.init({
-				appId : '846213518728713', // App ID from the App Dashboard
-				// check the login status upon init?
-				cookie : true, // set sessions cookies to allow your server to access the session?
-				xfbml : false, // parse XFBML tags on this page?
-				version : 'v2.0'
-			});
-
-			FB.getLoginStatus(function(response) {
-				$("#fbLogoutBtn").show();
-			});
-
-			$("#fbLogoutBtn").click(function() {
-				FB.logout(function(response) {
-				});
-			});
-		});
-		
-		function getUserinfo() {
-			var newwindow;
-			var url = "/gaenari/userinfo.do";
-			
-			newwindow = window.open(url, '회원정보', 'height=700,width=660,scrollbars=yes');
-			if(window.focus) {
-				newwindow.focus;
-			}
-		}
-	</script>
 </html>

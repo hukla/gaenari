@@ -1,6 +1,7 @@
 package controller.action;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -24,6 +25,9 @@ public class FindingBoardListAction implements Action {
 		String pageNumber = null;
 		/*List<FindingBoardDTO> fList = null;*/
 		List<FindingBoardDTO> tenF = null; // 페이지 당 10개
+		
+		String tenAry[] = null;
+		tenAry = new String [10];
 		int pageCount = 0;
 		String xmlData = "";
 		String picPath = null;
@@ -76,5 +80,4 @@ public class FindingBoardListAction implements Action {
 			request.getRequestDispatcher("/error.jsp").forward(request, response);
 		}
 	}
-
 }

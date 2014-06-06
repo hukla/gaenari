@@ -50,13 +50,7 @@
 		width: 280px;
 	}
 </style>
-
-<meta charset="utf-8">
-<title>header</title>
-</head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>GAENARI 홈페이지</title>
 <!-- 
 작성: 2014-05-25
 작성자: 최성훈
