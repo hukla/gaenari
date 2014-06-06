@@ -9,40 +9,32 @@
 				src="https://www.google.co.kr/images/srpr/logo11w.png" />
 			<c:choose>
 				<c:when test="${sessionScope.userid == null}">
-					<div class="header-user-menu-container not-login">
-						<div class="btn-group header-user-menu not-login">
-							<button type='button' class='btn btn-yellow header-user-menu'>로그인</button>
-							<button type='button' class='btn btn-yellow header-user-menu'>회원가입</button>
-						</div>
-						<div class="modal fade hide" id="login-modal">
-							<div class="modal-dialog modal-dialog-small">
-								<div class="modal-content">
-									<div class="modal-header">
-										<div class="modal-title">로그인</div>
-										<div class="modal-header-menu">
-											<span class="modal-close modal-close-by-cancel"> × </span>
-										</div>
-									</div>
-									<div class="modal-body">
-										<form class="login-form auth-form form-container"
-											method="post" action="/account/login/">
-											<input type="hidden" name="csrfmiddlewaretoken"
-												value="slAgQVF14E8Pc9v4jMgcOMcmxZ0dZO3l"> <input
-												type="hidden" name="redirect_to" value="/"> <input
-												type="email" name="email" class="input-block input-larger"
-												placeholder="이메일"> <input type="password"
-												name="password" class="input-block input-larger"
-												placeholder="비밀번호"> <input type="submit"
-												class="btn input-block" value="로그인"> <a
-												class="btn btn-dark-blue input-block"
-												href="/account/social/login/facebook/?next=/"
-												data-no-instant=""> 페이스북 계정으로 로그인</a>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
+				<div class="header-user-menu-container not-login">
+					<div class="btn-group header-user-menu not-login"> 
+	                        <a href="#" class="btn btn-yellow" data-toggle="modal" data-target="#login-modal">로그인</a>
+	                        <a href="#" class="btn btn-yellow" data-toggle="modal" data-target="#signup-modal">가입하기</a>
+	                </div>
+	                <div class="modal fade modal-sm" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	                    <div class="modal-dialog">
+	                    	<div class="modal-content">
+	                        	<div class="modal-header">
+	                            	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                            	<div class="modal-title">로그인</div>
+	                           	</div>
+	                            <div class="modal-body">
+	                            	<form class="form-signin" action="home.do" method="post">
+										<input name="userid" type="text" class="form-control" placeholder="아이디" autofocus> <br>
+										<input name="pwd" type="password" class="form-control" placeholder="비밀번호">
+										<label class="checkbox"> 
+											<input type="checkbox" value="remember-me">기억하겠습니다.</label>
+										<button class="btn btn-lg btn-yellow btn-block" type="submit">로그인</button>
+										<button class="btn-yellow fb-login-button btn btn-lg btn-block" type="button">FACEBOOK 계정으로 로그인</button>
+									</form>
+	                            </div>
+	                        </div>
+	                    </div>
 					</div>
+				</div>
 				</c:when>
 				<c:otherwise>
 					<div class="header-user-menu-container">

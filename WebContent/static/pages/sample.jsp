@@ -3,11 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<head>
 <%@ include file="/static/pages/head.jsp"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>PROJECT GAENARI</title>
-</head>
 <body>
 	<div id="wrapper">
 		<%@ include file="/static/pages/header.jsp"%>
