@@ -65,7 +65,9 @@ function voluDelete(vbrdno){
 							<p align="center"><font color="black"><b><span style="font-size:9pt;">봉 사 시 간</span></b></font></p>
 						</td>
 						<td>
-							<span style="font-size:9pt;"><b>${requestScope.resultContent.vhour}</b></span>
+							<span style="font-size:9pt;"><b>날짜: ${requestScope.vhour[0]}</b></span><br>
+							<span style="font-size:9pt;"><b>시간: ${requestScope.vhour[1]}부터</b></span>
+							<span style="font-size:9pt;"><b>${requestScope.vhour[2]}</b></span>
 						</td>
 					</tr>
 					<tr>
