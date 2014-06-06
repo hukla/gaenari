@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.Calendar"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/frame.jsp" %>
+<%-- <%@ include file="/frame.jsp" %> --%>
 <%@ include file="menu.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -27,9 +27,15 @@
 
 <style>
 td {text-decoration:none; }
+h5{ font-family: "맑은 고딕"}
 font {text-decoration:none; line-height:130%;}
 A:link,A:active,A:visited{text-decoration:none;color:'#333333';}
 A:hover {text-decoration:none; color:'ff9900'}
+div#panelhead {
+    height: 35px;
+    padding: 1px;
+    text-align: center;
+}
 </style>
 <link rel="STYLESHEET" type="text/css" href="board_style.css">
 <SCRIPT LANGUAGE="JavaScript">
@@ -52,22 +58,22 @@ A:hover {text-decoration:none; color:'ff9900'}
 
   calStr+="<tr bgcolor=white><td colspan=7>"
 
-  calStr+="<table border=0 cellpadding=0 cellspacing=0 align=center width=800  height=100><tr>"
-  calStr+="<td><font size='6'><a href='javascript:;' onClick='nowm--; if (nowm<0) { nowy--; nowm=11; } showCalendar(nowd,nowm,nowy)' title='이전 월'> <<</a></font></td>"
-  calStr+="<td align=center><font size='6'>"+monthName[month].toUpperCase()+" "+year+"년</font></td>"
-  calStr+="<td align=right><font size='6'><a href='javascript:;'  onClick='nowm++; if (nowm>11) { nowy++; nowm=0; } showCalendar(nowd,nowm,nowy)' title='다음 월'> >></a></font></td>"
+  calStr+="<table border=0 cellpadding=0 cellspacing=0 align=center width='100%'><tr>"
+  calStr+="<td><font size='5'><a href='javascript:;' onClick='nowm--; if (nowm<0) { nowy--; nowm=11; } showCalendar(nowd,nowm,nowy)' title='이전 월'> <<</a></font></td>"
+  calStr+="<td align=center><font size='5'>"+monthName[month].toUpperCase()+" "+year+"년</font></td>"
+  calStr+="<td align=right><font size='5'><a href='javascript:;'  onClick='nowm++; if (nowm>11) { nowy++; nowm=0; } showCalendar(nowd,nowm,nowy)' title='다음 월'> >></a></font></td>"
   calStr+="</tr></table>"
 
   calStr+="</td></tr>"  
 
   calStr+="<tr align=center bgcolor='#336666'>"
-  calStr+="<th><font color='red' size='6'>일</font></th>"
-  calStr+="<th><font color='white' size='6'>월</font></th>"
-  calStr+="<th><font color='white' size='6'>화</font></th>"
-  calStr+="<th><font color='white' size='6'>수</font></th>"
-  calStr+="<th><font color='white' size='6'>목</font></th>"
-  calStr+="<th><font color='white' size='6'>금</font></th>"
-  calStr+="<th><font color='#66CCFF' size='6'>토</font></th>" 
+  calStr+="<th><font color='red' size='5'>일</font></th>"
+  calStr+="<th><font color='white' size='5'>월</font></th>"
+  calStr+="<th><font color='white' size='5'>화</font></th>"
+  calStr+="<th><font color='white' size='5'>수</font></th>"
+  calStr+="<th><font color='white' size='5'>목</font></th>"
+  calStr+="<th><font color='white' size='5'>금</font></th>"
+  calStr+="<th><font color='#66CCFF' size='5'>토</font></th>" 
   calStr+="</tr>"  
 
   var dayCount=1
@@ -81,11 +87,11 @@ A:hover {text-decoration:none; color:'ff9900'}
 
 	 // "${requestScope.date}"
   if(dayCount==day) {
-  calStr+="<td align=center bgcolor='#DFE7DE'><font size='6'><b>" // 오늘 날짜일때 배경색 지정,글자 진하게
+  calStr+="<td align=center bgcolor='#DFE7DE'><font size='5'><b>" // 오늘 날짜일때 배경색 지정,글자 진하게
 
   } else {
 	  
-  calStr+="<td align=center><font size='6'>"  // 오늘 날짜가 아닐때 배경색 지정
+  calStr+="<td align=center><font size='5'>"  // 오늘 날짜가 아닐때 배경색 지정
 	/* calStr+="<td style='text-align: left;vertical-align: top;'><font size='4'>" */
   }
 	
@@ -142,48 +148,62 @@ A:hover {text-decoration:none; color:'ff9900'}
  -->
 </head>
 <body>
-	<table align="center"><tr><td width="80%" align="center">
-	<table border="0" align="center" width="80%" height="100%" class="table">
+	<table align="left"><tr><td width="800" align="center">
+	<table border="0" align="center" width="100%" height="100%">
 		<tr>
-			<td rowspan="3" width="70%">
+			<td rowspan="2" width="60%">
 				<SPAN ID=calendar STYLE="position: relative;"></SPAN> 
 				<script language="JavaScript" type="text/JavaScript">
 					//showCalendar(nowd,nowm,nowy);
 					showCalendar("${requestScope.date}","${requestScope.month-1}","${requestScope.year}");
 				</script></td>
-			<td width="30%">
-				<h3>일정</h3> <c:choose>
-					<c:when test="${not empty requestScope.plist}">
-						<c:forEach items="${requestScope.plist}" var="plan">
-							<a href="/gaenari/planDetail.do?brdno=${plan.brdno}&userid=${requestScope.user.userid}">
-								<h4>${plan.title}- ${plan.wrdate}</h4>
-							</a>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<h4>등록된 일정이 없습니다.</h4>
-					</c:otherwise>
-				</c:choose>
+			<td width="40%" style="vertical-align: top;">
+				<div class="panel panel-info">
+					<div class="panel-heading" id="panelhead">
+						<h5>일정</h5>
+					</div>
+					<div class="panel-body">
+					<c:choose>
+						<c:when test="${not empty requestScope.plist}">
+							<c:forEach items="${requestScope.plist}" var="plan">
+								<a href="/gaenari/planDetail.do?brdno=${plan.brdno}&userid=${requestScope.user.userid}">
+									${plan.title}-${plan.wrdate}
+								</a>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							등록된 일정이 없습니다.
+						</c:otherwise>
+					</c:choose>
+					</div>
+				</div>
 			</td>
 		</tr>
 		<tr>
-			<td>
-				<h3>일기</h3> <c:choose>
-					<c:when test="${not empty requestScope.dlist}">
-						<c:forEach items="${requestScope.dlist}" var="diary">
-							<a href="/gaenari/diaryDetail.do?brdno=${diary.brdno}&userid=${requestScope.user.userid}">
-								<h4>${diary.title}- ${diary.wrdate}</h4>
-							</a>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<h4>등록된 일기가 없습니다.</h4>
-					</c:otherwise>
-				</c:choose>
+			<td style="vertical-align: top;">
+				<div class="panel panel-info">
+					<div class="panel-heading" id="panelhead">
+						<h5>일기</h5> 
+					</div>
+					<div class="panel-body">
+					<c:choose>
+						<c:when test="${not empty requestScope.dlist}">
+							<c:forEach items="${requestScope.dlist}" var="diary">
+								<a href="/gaenari/diaryDetail.do?brdno=${diary.brdno}&userid=${requestScope.user.userid}">
+									${diary.title}-${diary.wrdate}
+								</a>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							등록된 일정이 없습니다.
+						</c:otherwise>
+					</c:choose>
+					</div>
+				</div>
 			</td>
 		</tr>
 	</table>
 	</td></tr></table>
 </body>
 </html>
-<%@ include file="/bottom.jsp"%>
+<%-- <%@ include file="/bottom.jsp"%> --%>

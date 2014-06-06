@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/frame.jsp" %>
+<%-- <%@ include file="/frame.jsp" %> --%>
 <%@ include file="menu.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,13 +10,12 @@
 div#panel {
 float: left;
 margin-left:20px;
-width: 930px;	
+width: 800px;	
 }
 div#alert{
 width:460px;
 height:50px;
 }
-
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>미니홈피 일정 상세보기</title>
@@ -78,14 +77,14 @@ height:50px;
 		<div class="panel-body">
 			<table width="100%">
 				<tr>
-					<td width="55%" height="50">
+					<td width="60%" height="50">
 						<div class="alert alert-warning" id="alert">
 							<font size="3">${requestScope.onePlan.wrdate}&nbsp;&nbsp;&nbsp;${requestScope.onePlan.ploc}에서의 일정</font> 
 						</div>
 					</td>
 					<c:if test="${requestScope.dog != null}">
-						<td rowspan="2" width="45%" height="400">
-							<img src="${requestScope.dog.dogimg}" width="400"><br>
+						<td rowspan="2" width="40%">
+							<img src="${requestScope.dog.dogimg}" width="300"><br>
 							<h3 align="center">${requestScope.dog.dogname}(이)의 일정입니다.</h3> 
 						</td>
 					</c:if>
@@ -97,7 +96,7 @@ height:50px;
 				</tr>
 			</table>
 		</div>
-		<div class="panel-footer">
+		<div class="panel-footer" id="panel-footer">
 			<table width="100%">
 				<tr>
 					<td align="center" height="20">
@@ -119,4 +118,4 @@ height:50px;
 	</div>
 </body>
 </html>
-<%@ include file="/bottom.jsp"%>
+<%-- <%@ include file="/bottom.jsp"%> --%>

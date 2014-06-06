@@ -5,7 +5,7 @@
 <%@ page import="model.dto.CommentDTO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ include file="/frame.jsp" %>
+<%-- <%@ include file="/frame.jsp" %> --%>
 <%@ include file="menu.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,15 +15,18 @@
 table#visitbook {
 	float:left;
 	left:;
+	width: 400px;
 }
 table#visitbook2 {
 	margin-left:20px;
 	float:left;
 	left:;
+	width: 400px;
 }
-div#writer{
-	background-color: #E9E9F7;
-	
+div#writer {
+    background-color: #E9E9F7;
+    height: 200px;
+    padding: 24px;
 }
 div#write{
 	width:200px;
@@ -54,7 +57,7 @@ div#write{
 					<div class="jumbotron" id="writer">
 						<div class="col-lg-12">
 							<div class="input-group">
-								<small>방문객들에게 인사말 한 마디 해주세요</small>
+								<small>방문객들에게 인사말 한 마디</small>
 								<textarea rows="2" cols="53" class="form-control" placeholder="글을 작성해주세요" name="content"></textarea>
 							</div><p>
 							<div align="right">
@@ -256,4 +259,4 @@ function mySubmit(){
 }
 </script>
 </html>
-<%@ include file="/bottom.jsp"%>
+<%-- <%@ include file="/bottom.jsp"%> --%>

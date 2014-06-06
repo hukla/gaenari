@@ -14,7 +14,7 @@
 	                        <a href="#" class="btn btn-yellow" data-toggle="modal" data-target="#login-modal">로그인</a>
 	                        <a href="#" class="btn btn-yellow" data-toggle="modal" data-target="#signup-modal">가입하기</a>
 	                </div>
-	                <div class="modal fade modal-sm" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	                <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
 	                    <div class="modal-dialog">
 	                    	<div class="modal-content">
 	                        	<div class="modal-header">
@@ -34,6 +34,28 @@
 	                        </div>
 	                    </div>
 					</div>
+					<div class="modal fade" id="signup-modal"> 
+						<div class="modal-dialog"> 
+							<div class="modal-content"> 
+								<div class="modal-header"> 
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<div class="modal-title"> 가입하기 </div>
+								</div> 
+                                <div class="modal-body"> 
+								  <div class="signup-select"> 
+                                    <a class="left-part plain-a" href="/account/social/login/facebook/" data-no-instant=""> 
+											<div class="image"> <img src="http://localhost:9000/gaenari/static/images/facebook-icon.png"/> </div> 
+											<div class="title"> 페이스북 계정으로 가입하기 </div> 
+										</a> 
+										<a class="right-part plain-a" href="/account/signup/"> 
+											<div class="image"> <img src="http://localhost:9000/gaenari/static/images/user-icon.png"/> </div> 
+											<div class="title"> 그냥 가입하기 </div> 
+										</a> 
+									</div> 
+								</div> 
+							</div> 
+						</div> 
+					</div> 
 				</div>
 				</c:when>
 				<c:otherwise>
@@ -64,11 +86,8 @@
 										</li>
 									</ul>
 									<ul class="header-user-menu-tools">
-										<li><a href="/account/profile/"> <i
-												class="icon-setting"></i> 설정
-										</a></li>
-										<li class="header-logout pointer"><i class="icon-unlock"></i>
-											로그아웃</li>
+										<li><a href="/account/profile/"> <i	class="icon-setting"></i> 설정	</a></li>
+										<li class="header-logout pointer" onclick="location.href='/gaenari/login.do'"><i class="icon-unlock"></i>로그아웃</li>
 									</ul>
 								</div>
 							</div>

@@ -24,13 +24,12 @@ $(document).ready(function() {
 				var table="";
 				$(data).find('user').each(function (index){
 					table+="<tr>"
-					table+="<td>"+$(this).find("username").text()+"</td>"
+					table+="<td id='sendReq' align='center'>"+$(this).find("username").text()+"<br><div class='btn-group btn-group-xs'><input type='button' class='btn btn-default' value='정보보기' id='getinfo'" +
+						" name='"+$(this).find("userid").text()+"'></div></td>"
 					table+="<td>"+$(this).find("userid").text()+"</td>"
 					table+="<td>"+$(this).find("email").text()+"</td>"
 					table+="<td>"+$(this).find("address").text()+"</td>"
 					table+="<td>"+$(this).find("dogage").text()+"마리 </td>"
-					table+="<td id='sendReq'><input type='button' class='btn btn-default' value='정보보기' id='getinfo'" +
-							" name='"+$(this).find("userid").text()+"'></td>"
 					table+="</tr>"
 					//<input type='button' class='btn btn-default' id='removeinfo' value='취소'>
 				})

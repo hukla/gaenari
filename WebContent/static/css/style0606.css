@@ -327,8 +327,17 @@ color: inherit;
 
 #login-modal
 {
-  width:320px;
   position: fixed;
+  top:20%;
+  z-index:1050;
+  overflow-y:hidden;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+#signup-modal
+{
+  position:fixed;
   top:20%;
   z-index:1050;
   overflow-y:hidden;
@@ -341,14 +350,19 @@ color: inherit;
   width:320px;
 }
 
-#login-modal .modal-dialog .modal-header
+#signup-modal .modal-dialog
+{
+  width:600px;
+}
+
+#login-modal .modal-dialog .modal-header, #signup-modal .modal-dialog .modal-header
 {
   padding: 10 10px;
   border-bottom: 1px solid #eee;
   height: 45px;
 }
 
-#login-modal .modal-dialog .modal-header .modal-title
+#login-modal .modal-dialog .modal-header .modal-title, #signup-modal .modal-dialog .modal-header .modal-title
 {
   float: left;
   vertical-align: middle;
@@ -356,7 +370,7 @@ color: inherit;
   color: #756c64;
 }
 
-#login-modal .modal-dialog .modal-header .close
+#login-modal .modal-dialog .modal-header .close, #signup-modal .modal-dialog .modal-header .close
 {
   margin-top:auto;
 }
@@ -368,10 +382,56 @@ color: inherit;
 
 #login-modal .modal-dialog .modal-body label
 {
-  float:right;
+  float:right;7
 }
 
 #login-modal .modal-dialog .modal-body input[type="text"], #login-modal .modal-dialog .modal-body input[type="password"]
 {
   width:280px;
+}
+
+#signup-modal .modal-content .modal-body {
+  position: relative;
+  color: #756c64;
+  border-top: 1px solid #dcdcdc;
+  line-height: 22px;
+  padding: 15px 20px;
+  height:240px;
+}
+
+#signup-modal .signup-select .left-part, #signup-modal .signup-select .right-part 
+{
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  display: block;
+  padding-top: 15px;
+  width: 50%;
+  float: left;
+  cursor: pointer;
+  text-decoration:none;
+  vertical-align:middle;
+}
+
+#signup-modal .signup-select .image 
+{
+  margin-top: 15px;
+  font-size: 100px;
+  text-align: center;
+}
+
+#signup-modal .signup-select img
+{
+  width:100px;
+  height:100px;
+}
+
+#signup-modal .signup-select .title {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  font-size: 20px;
+  color: #1c3a58;
+  text-align: center;
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/frame.jsp" %>
+<%-- <%@ include file="/frame.jsp" %> --%>
 <%@ include file="menu.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,7 +10,7 @@
 div#panel {
 float: left;
 margin-left:20px;
-width: 930px;	
+width: 800px;	
 }
 div#alert{
 width:460px;
@@ -78,14 +78,14 @@ height:50px;
 		<div class="panel-body">
 			<table width="100%">
 				<tr>
-					<td width="55%" height="50">
+					<td width="60%" height="50">
 						<div class="alert alert-success" id="alert">
 							<font size="3">${requestScope.oneDiary.wrdate}&nbsp;&nbsp;&nbsp;${requestScope.user.userid}님의 기분 :  ${requestScope.oneDiary.mood}</font> 
 						</div>
 					</td>
 					<c:if test="${requestScope.oneDiaryImg != null}">
-						<td rowspan="2" width="45%" height="400">
-							<img src="${requestScope.oneDiaryImg}" width="400">
+						<td rowspan="2" width="40%" style="vertical-align: top;">
+							<img src="${requestScope.oneDiaryImg}" width="300">
 						</td>
 					</c:if>
 				</tr>
@@ -115,4 +115,4 @@ height:50px;
 	</div>
 </body>
 </html>
-<%@ include file="/bottom.jsp"%>
+<%-- <%@ include file="/bottom.jsp"%> --%>
