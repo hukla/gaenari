@@ -18,7 +18,7 @@ public class AdpBoardDTO extends BoardDTO {
 
 	public AdpBoardDTO() {}
 	public AdpBoardDTO(int brdno) {
-		super(brdno);
+		super.setBrdno(brdno);
 	}
 	
 	public int getAbrdno() {
