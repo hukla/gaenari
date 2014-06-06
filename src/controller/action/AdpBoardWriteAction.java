@@ -82,7 +82,7 @@ public class AdpBoardWriteAction implements Action {
 
 			}
 			MFABoardDAO.insertAdp(new AdpBoardDTO(brdno));
-			url = "adpBoardMain.do";
+			url = "/adpBoardMain.do";
 					
 		} catch(SQLException e){
 			e.printStackTrace();
