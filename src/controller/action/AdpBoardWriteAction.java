@@ -81,8 +81,9 @@ public class AdpBoardWriteAction implements Action {
 				oldFile.renameTo(newFile);			
 
 			}
+			System.out.println("brdno="+brdno);
 			MFABoardDAO.insertAdp(new AdpBoardDTO(brdno));
-			url = "adpBoardMain.do";
+			url = "/adpBoardMain.do";
 					
 		} catch(SQLException e){
 			e.printStackTrace();
