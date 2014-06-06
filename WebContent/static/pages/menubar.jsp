@@ -24,7 +24,7 @@
 				<li><a href="/gaenari/voluBoardList.do">자원봉사</a></li>
 				<li><a href="/gaenari/ptBoardList.do">펫 도우미</a></li>
 				<li><a href="/gaenari/mallMain.do">기부몰</a></li>
-				<li class="pull-right"><a href="/gaenari/miniHome.do">미니홈피</a></li>
+				<li class="pull-right"><a href="#" onclick="miniHome()">미니홈피</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
@@ -32,4 +32,15 @@
 	<!-- /.container-fluid -->
 	<!-- 메뉴바 끝 -->
 </nav>
+<script type="text/javascript">
+function miniHome() {
+	var newwindow;
+	var url = "/gaenari/miniHome.do";
+	newwindow = window.open(url, '미니홈페이지',
+			'height=570,width=1000,scrollbars=yes');
+	if (window.focus) {
+		newwindow.focus;
+	}
+}
+</script>
 </html>

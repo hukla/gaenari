@@ -25,7 +25,8 @@ public class LogoutAction implements Action {
 		}
 		
 		try{
-			url = "/login.jsp";
+			//14-06-06 성훈수정: /login.jsp -> /home.jsp로
+			url = "/home.jsp";
 		}catch(Exception e){
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
