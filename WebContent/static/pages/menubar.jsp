@@ -25,14 +25,14 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">유기견 신고/제보<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">유기견 신고</a></li>
-						<li><a href="#">유기견 제보</a></li>
+						<li><a href="/gaenari/missingBoardMain.do">유기견 신고</a></li>
+						<li><a href="/gaenari/findingBoardMain.do">유기견 제보</a></li>
 					</ul></li>
-				<li><a href="#">애견 입양</a></li>
-				<li><a href="#">자원봉사</a></li>
-				<li><a href="#">펫 도우미</a></li>
-				<li><a href="#">기부몰</a></li>
-				<li class="pull-right"><a href="#">미니홈피</a></li>
+				<li><a href="/gaenari/adpBoardList.do">애견 입양</a></li>
+				<li><a href="/gaenari/voluBoardList.do">자원봉사</a></li>
+				<li><a href="/gaenari/ptBoardList.do">펫 도우미</a></li>
+				<li><a href="/gaenari/mallMain.do">기부몰</a></li>
+				<li class="pull-right"><a href="/gaenari/miniHome.do">미니홈피</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
