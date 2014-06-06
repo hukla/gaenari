@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
-	h1,h2,h3,h4,h5 {   font-family:'서울한강체' } 
+	h1,h2,h3,h4,h5,td {   font-family:'맑은 고딕' } 
 </style>
 </head>
 <body>
@@ -14,17 +14,15 @@
 			<td width="10%">
 			</td>
 			<td width="90%">
-				<font face="서울한강체">
-					<ul class="nav nav-pills nav-stacked">
-						<li><a href="/gaenari/miniHome.do?userid=${requestScope.user.userid}">메인페이지</a></li>
-						<li><a href="/gaenari/calendar.do?userid=${requestScope.user.userid}">달력</a></li>
-						<li><a href="/gaenari/myImage.do?userid=${requestScope.user.userid}">사진첩</a></li>
-						<li><a href="/gaenari/diaryList.do?userid=${requestScope.user.userid}">일기</a></li>
-						<li><a href="/gaenari/planList.do?userid=${requestScope.user.userid}">일정</a></li>
-						<li><a href="/gaenari/visitList.do?userid=${requestScope.user.userid}">방명록</a></li>
-						<li><a href="/gaenari/friends.do?userid=${requestScope.user.userid}">친구목록</a></li>
-					</ul>
-				</font>
+				<ul class="nav nav-pills nav-stacked">
+					<li><a href="/gaenari/miniHome.do?userid=${requestScope.user.userid}">메인페이지</a></li>
+					<li><a href="/gaenari/calendar.do?userid=${requestScope.user.userid}">달력</a></li>
+					<li><a href="/gaenari/myImage.do?userid=${requestScope.user.userid}">사진첩</a></li>
+					<li><a href="/gaenari/diaryList.do?userid=${requestScope.user.userid}">일기</a></li>
+					<li><a href="/gaenari/planList.do?userid=${requestScope.user.userid}">일정</a></li>
+					<li><a href="/gaenari/visitList.do?userid=${requestScope.user.userid}">방명록</a></li>
+					<li><a href="/gaenari/friends.do?userid=${requestScope.user.userid}">친구관리</a></li>
+				</ul>
 			</td>
 		</tr>
 		<tr>

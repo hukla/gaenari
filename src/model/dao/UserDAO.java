@@ -83,6 +83,19 @@ public class UserDAO {
 		if(user==null)	throw new LoginException("정보 없음");
 		return user;
 	}
+	public static List<UserDTO> Check(String userid) throws SQLException, LoginException {
+		SqlSession session =null;
+		List<UserDTO> user =null;
+		try{
+			System.out.println("==UserDAO 진입==");
+			session = DBUtil.getSqlSession();
+			user = session.selectList("u.userById",userid);
+		}finally{
+			DBUtil.closeSession(session);
+		}
+		if(user==null)	throw new LoginException("정보 없음");
+		return user;
+	}
 	//14-05-29 성훈추가: username으로 User정보가져가기(DogDTO 타입반환)
 	public static List<DogDTO> logNameCheck(String username) throws SQLException, LoginException {
 		SqlSession session =null;
@@ -157,5 +170,18 @@ public class UserDAO {
 		
 		return user;
 	}
-
+	
+	public static DogDTO searchId(String userid) {
+		DogDTO dog = null;
+		SqlSession session = null;
+		
+		try {
+			session = DBUtil.getSqlSession();
+			dog = session.selectOne("u.searchId", userid);
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		
+		return dog;
+	}
 }

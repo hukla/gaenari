@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="model.dto.BoardDTO" %>
@@ -44,6 +43,7 @@ div#write{
 		  방명록이 등록되면 작성란 아래로 추가된다.
 		  
 수정: 2014-06-03, 최성훈	내용: 내가 방문객들에게 쓰는 포스트, 방문객이 남기는 방명록 포스트, 댓글기능 추가(진행중)
+수정: 2014-06-03, 최성훈	내용: 출력오류수정, 댓글기능 구현완료
  -->
 	<table border="0" width="35%" height="100%" id="visitbook">
 		<c:if test="${requestScope.user.userid eq sessionScope.userid}">
@@ -68,15 +68,16 @@ div#write{
 			</td>
 		</tr>
 		</c:if>
-		<c:choose>
-			<c:when test="${not empty requestScope.myList}">
-			<%
+		<%
 			int midx=0;
 			int mcnt=0;
 			String mcount = null;
 			List<ArrayList<CommentDTO>> mlist = ((List<ArrayList<CommentDTO>>)request.getAttribute("myComments"));
 			ArrayList<BoardDTO> mclist = (ArrayList<BoardDTO>)request.getAttribute("myList");
-			%>
+		%>
+		<c:choose>
+			<c:when test="${not empty requestScope.myList}">
+			
 				<c:forEach items="${requestScope.myList}" var="visitList" varStatus="i">
 				<c:set scope="request" var="mycount" value="${i.index}"/>
 				<tr>
@@ -86,7 +87,7 @@ div#write{
 								<h3 class="panel-title">
 									<a href="/gaenari/miniHome.do?userid=${visitList.userid}">
 										<img width="30" src="${visitList.title}" class="img-rounded"> ${visitList.userid}
-									</a>님의 글&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.${visitList.brdno}
+									</a>님의 글 (${visitList.wrdate})
 								</h3>
 							</div>
 							<div class="panel-body">${visitList.brdcontent}</div>
@@ -108,35 +109,23 @@ div#write{
 								</form>
 							</div>
 							<!-- 댓글 forEach문 돌릴 곳 -->
-							<%-- <c:choose>
-							<c:when test="${i.count <= fn:length(myComments)+1}">
-							
 							<%
-								mcount = request.getAttribute("count").toString();
+								mcount = request.getAttribute("mycount").toString();
 								mcnt = Integer.parseInt(mcount);
-								System.out.println("게시글 카운트수:"+mcnt);
-								
-								request.setAttribute("mine", mlist.get(midx));
-								if(mlist.get(midx).get(0).getPrmno()==mclist.get(mcnt).getBrdno()){
-									
-									request.setAttribute("mine", mlist.get(midx));
-									for(CommentDTO dto:mlist.get(midx)){
-										System.out.println("idx:"+(midx)+" 게시글번호:"+dto.getPrmno()+" 글내용:"+dto.getBrdcontent());
+								request.setAttribute("mine", null);
+								for(int i=0;i<mlist.size();i++){
+									if(mclist.get(mcnt).getBrdno()==mlist.get(i).get(0).getPrmno()){
+										request.setAttribute("mine", mlist.get(i));
 									}
-									midx++;
 								}
 							%>
-							<c:if test="${requestScope.mine[0].prmno == visitList.brdno}">
+							<c:if test="${not empty requestScope.mine}">
 								<div class="panel-footer">
 									<c:forEach items="${requestScope.mine}" var="mcomment">
 										<small>${mcomment.userid} : ${mcomment.brdcontent} - ${mcomment.wrdate} ${mcomment.title}</small><p>
 									</c:forEach>
 								</div>
 							</c:if>
-							</c:when>
-							<c:otherwise>
-							</c:otherwise>
-							</c:choose> --%>
 						</div>
 					</td>
 				</tr>
@@ -155,10 +144,9 @@ div#write{
 			</c:otherwise>
 		</c:choose>
 	</table>
-	<!-- 내가 쓰는 곳 -->
+	<!-- 여기까진 내가 쓰는 곳 -->
 	
-	
-	<!-- 방문객이 쓰는 곳 -->
+	<!-- 방문객이 쓰는 곳 시작 -->
 	<table border="0" width="35%" height="100%" id="visitbook2">
 		<c:if test="${requestScope.user.userid ne sessionScope.userid}">
 		<tr>
@@ -168,9 +156,9 @@ div#write{
 					<div class="jumbotron" id="writer">
 						<div class="col-lg-12">
 							<div class="input-group">
-								<small>${requstScope.user.userid}님에게 방명록을 남겨보세요</small>
+								<small>${requestScope.user.userid}님에게 방명록을 남겨보세요</small>
 								<textarea rows="2" cols="53" class="form-control" placeholder="방명록을 작성해주세요" name="content"></textarea>
-							</div><p>
+							</div><p/>
 							<div align="right">
 							<span class="input-group-btn">
 								<button class="btn btn-default" type="button" onclick="yourSubmit()">입력하기</button>
@@ -182,8 +170,6 @@ div#write{
 			</td>
 		</tr>
 		</c:if>
-		<c:choose>
-			<c:when test="${not empty requestScope.yourList}">
 			<%
 			int idx=0;
 			int cnt=0;
@@ -191,6 +177,9 @@ div#write{
 			List<ArrayList<CommentDTO>> list = ((List<ArrayList<CommentDTO>>)request.getAttribute("yourComments"));
 			ArrayList<BoardDTO> clist = (ArrayList<BoardDTO>)request.getAttribute("yourList");
 			%>
+		<c:choose>
+			<c:when test="${not empty requestScope.yourList}">	
+		
 			<c:forEach items="${requestScope.yourList}" var="visitList" varStatus="i">	
 				<c:set scope="request" var="count" value="${i.index}"/>
 				<tr>
@@ -200,7 +189,7 @@ div#write{
 								<h3 class="panel-title">
 									<a href="/gaenari/miniHome.do?userid=${visitList.userid}">
 										<img width="30" src="${visitList.title}" class="img-rounded"> ${visitList.userid}
-									</a>님의 글&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.${visitList.brdno}
+									</a>님의 글 (${visitList.wrdate})
 								</h3>
 							</div>
 							<div class="panel-body">${visitList.brdcontent}</div>
@@ -222,25 +211,17 @@ div#write{
 								</form>
 							</div>
 							<!-- 댓글 forEach문 돌릴 곳 -->
-							<c:choose>
-							<c:when test="${i.count <= fn:length(yourComments)+1}">
-							
 							<%
 								count = request.getAttribute("count").toString();
 								cnt = Integer.parseInt(count);
-								System.out.println("게시글 카운트수:"+cnt);
-								
-								request.setAttribute("yours", list.get(idx));
-								if(list.get(idx).get(0).getPrmno()==clist.get(cnt).getBrdno()){
-									
-									request.setAttribute("yours", list.get(idx));
-									for(CommentDTO dto:list.get(idx)){
-										System.out.println("idx:"+(idx)+" 게시글번호:"+dto.getPrmno()+" 글내용:"+dto.getBrdcontent());
+								request.setAttribute("yours", null);
+								for(int i=0;i<list.size();i++){
+									if(clist.get(cnt).getBrdno()==list.get(i).get(0).getPrmno()){
+										request.setAttribute("yours", list.get(i));
 									}
-									idx++;
 								}
 							%>
-							<c:if test="${requestScope.yours[0].prmno == visitList.brdno}">
+							<c:if test="${not empty requestScope.yours}">
 								<div class="panel-footer">
 									<c:forEach items="${requestScope.yours}" var="ycomment">
 										<%-- <small>[${ycomment.prmno}]${ycomment.userid}: ${ycomment.brdcontent} - ${ycomment.wrdate} ${ycomment.title}</small><p> --%>
@@ -248,21 +229,16 @@ div#write{
 									</c:forEach>
 								</div>
 							</c:if>
-							</c:when>
-							<c:otherwise>
-							</c:otherwise>
-							</c:choose>
 						</div>
 					</td>
 				</tr>
 			</c:forEach>
 			</c:when>
-			<c:otherwise>
+			<c:otherwise> <!-- 게시글이 아예 없을 때 -->
 				<tr>
 					<td>
 						<div class="panel panel-success">
-							<div class="panel-heading">
-							</div>
+							<div class="panel-heading"></div>
 							<div class="panel-body">작성된 글이 없습니다.</div>
 						</div>
 					</td>

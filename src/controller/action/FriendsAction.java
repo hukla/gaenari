@@ -17,7 +17,8 @@ import model.dto.UserDTO;
  * 작성자: 최성훈
  * 내용: 친구 관리 페이지
  * 
- * 수정: 친구 요청정보 보이기, 내 친구 목록 가져오기
+ * 수정: 최성훈, 2014-06	내용: 친구 요청정보 보이기, 내 친구 목록 가져오기
+ * 수정: 최성훈, 2014-06-04	내용: 친구 테이블에 요청자정보만 있는 사람은 친구목록 안뜨는 오류 수정
  */
 public class FriendsAction implements Action {
 
@@ -45,10 +46,10 @@ public class FriendsAction implements Action {
 			}
 			senderNo = TestDAO.checkMyReqinfo(user.getUserno());
 			if(!senderNo.isEmpty()){
-				senderNo = TestDAO.checkMyReqinfo(user.getUserno());	//나한테 친구요청한 사람의 리스트를 받음
+				senderNo = TestDAO.checkMyReqinfo(user.getUserno());	//나한테 친구요청한 사람번호의 리스트를 받음
 				list = new ArrayList<UserDTO>();
 				for(int no: senderNo){
-					list.add(UserDAO.selectOne(no));
+					list.add(UserDAO.selectOne(no));					//번호리스트를 사람리스트로 만듦.
 				}
 			}
 			session.removeAttribute("sender");

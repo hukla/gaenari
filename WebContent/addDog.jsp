@@ -5,8 +5,7 @@
 <html>
 <head>
 <style type="text/css">
-	td { text-align: center; vertical-align: center; }
-	th { text-align: center; vertical-align: center;font-family: 서울한강체 }
+	td,th { text-align: center; vertical-align: center; font-family: "맑은 고딕";}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
@@ -24,24 +23,27 @@
 </script>
 </head>
 <body>
-	<table width="60%" align="center">
+	<table width="62%" align="center">
 		<tr>
 			<td>
-				<form action="dogInsert.do" method="post">
+				<form action="dogInsert.do" method="post" enctype="multipart/form-data" id="addDogForm">
 				<table class="table" align="center">
+					<colgroup>
+					<col width="30%"><col width="70%">
+					</colgroup>
 					<tr>
 						<th>강아지 이름</th>
-						<td><input type="text" size="29" name="dogname"></td>
+						<td><input class="form-control" type="text" size="29" name="dogname"></td>
 					</tr>
 					<tr>
 						<th>강아지 생일</th>
-						<td><input type="text" size="29" id="datepicker" name="dogbirth"></td>
+						<td><input class="form-control" type="text" size="29" id="datepicker" name="dogbirth"></td>
 					</tr>
 					<tr>
 						<th>강아지 종류</th>
 						<td>
 							<select name="dogtype" class="btn btn-default">
-								<option selected="selected">강아지 종을 선택하세요</option>
+								<option selected="selected" value="unchosen">강아지 종을 선택하세요</option>
 								<option>진돗개</option>
 								<option>풍산개</option>
 								<option>삽살개</option>
@@ -50,10 +52,18 @@
 						</td>
 					</tr>
 					<tr>
+						<th>강아지 사진</th>
+						<td><input type="file" size="29" id="dogimg" name="dogimg"></td>
+					</tr>
+					<tr>
+						<th>특징</th>
+						<td><textarea class="form-control" rows="2" name="doginfo"></textarea></td>
+					</tr>
+					<tr>
 						<td colspan="2">
-							<input type="submit" value="등록하기">
+							<button type="button" onclick="submit()" class="btn btn-success" data-toggle="button">등록하기</button>
 							&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="button" value="취소하기" id="close">
+							<button id="close" class="btn btn-default" data-toggle="button">닫기</button>
 						</td>
 					</tr>
 				</table>
@@ -69,6 +79,9 @@
 			self.close();
 		});
 	});
+	function submit(){
+		$("#addDogForm").submit();
+	}
 </script>
 </html>
 <%@ include file="bottom.jsp"%>

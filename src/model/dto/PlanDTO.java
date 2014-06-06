@@ -13,6 +13,7 @@ public class PlanDTO extends BoardDTO {
 	private int pbrdno;
 	private String pdate;
 	private String ploc;
+	private int plandogno;
 
 	public PlanDTO() {}
 
@@ -20,6 +21,13 @@ public class PlanDTO extends BoardDTO {
 		super.setBrdno(brdno);
 		this.ploc = ploc;
 		this.pdate = pdate;
+	}
+	//14-06-06 성훈추가
+	public PlanDTO(int brdno, String ploc, String pdate, int plandogno) {
+		super.setBrdno(brdno);
+		this.ploc = ploc;
+		this.pdate = pdate;
+		this.plandogno = plandogno;
 	}
 
 	public int getPbrdno() {
@@ -46,9 +54,34 @@ public class PlanDTO extends BoardDTO {
 		this.ploc = ploc;
 	}
 
+	public int getPlandogno() {
+		return plandogno;
+	}
+
+	public void setPlandogno(int plandogno) {
+		this.plandogno = plandogno;
+	}
+
 	@Override
 	public String toString() {
-		return super.toString()+"\nPlanDTO [pbrdno=" + pbrdno + ", pdate=" + pdate + ", ploc="
-				+ ploc + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("PlanDTO [pbrdno=").append(pbrdno).append(", pdate=")
+				.append(pdate).append(", ploc=").append(ploc)
+				.append(", plandogno=").append(plandogno)
+				.append(", getBrdno()=").append(getBrdno())
+				.append(", getBrdcontent()=").append(getBrdcontent())
+				.append(", getWrdate()=").append(getWrdate())
+				.append(", getUserid()=").append(getUserid())
+				.append(", getTitle()=").append(getTitle())
+				.append(", getBrdtype()=").append(getBrdtype())
+				.append(", getUserno()=").append(getUserno())
+				.append(", toString()=").append(super.toString())
+				.append(", getClass()=").append(getClass())
+				.append(", hashCode()=").append(hashCode()).append("]");
+		return builder.toString();
 	}
+
+	
+
+	
 }

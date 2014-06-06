@@ -25,30 +25,23 @@
 	
 	<!-- 2014-05-29 성훈추가: 이름으로 user정보얻어 dogDTO로 담아보내기 -->
 	<select id="getUserByname" parameterType="String" resultType="DogDTO" >
-		SELECT username,userid,dogname,dogkind,address FROM userinfo u JOIN dog d 
-		ON u.userno = d.userno AND username LIKE '%'||#{username}||'%'
+		SELECT userid,username,email,address,0 AS dogage FROM userinfo WHERE username LIKE '%'||#{username}||'%' EXCEPT
+		SELECT userid,username,email,address,0 AS dogage FROM userinfo u JOIN dog d ON u.userno = d.userno AND username LIKE '%'||#{username}||'%' GROUP BY u.userno
+		UNION SELECT userid,username,email,address,COUNT(dogname) AS dogage FROM userinfo u JOIN dog d ON u.userno = d.userno AND username LIKE '%'||#{username}||'%' GROUP BY u.userno
 	</select>
 	
 	<!-- 2014-05-29 성훈추가: 주소로 user정보얻어 dogDTO로 담아보내기 -->
 	<select id="getUserByAddr" parameterType="String" resultType="DogDTO" >
-		SELECT username,userid,dogname,dogkind,address FROM userinfo u JOIN dog d 
-		ON u.userno = d.userno AND address LIKE '%'||#{address}||'%'
+		SELECT userid,username,email,address,0 AS dogage FROM userinfo WHERE address LIKE '%'||#{address}||'%' EXCEPT
+		SELECT userid,username,email,address,0 AS dogage FROM userinfo u JOIN dog d ON u.userno = d.userno AND address LIKE '%'||#{address}||'%' GROUP BY u.userno
+		UNION SELECT userid,username,email,address,COUNT(dogname) AS dogage FROM userinfo u JOIN dog d ON u.userno = d.userno AND address LIKE '%'||#{address}||'%' GROUP BY u.userno
 	</select>
 	
 	<!-- 2014-05-29 성훈추가: ID로 user정보얻어 dogDTO로 담아보내기 -->
 	<select id="getUserById" parameterType="String" resultType="DogDTO" >
-		SELECT u.username,u.userid,d.dogname,d.dogkind,u.address FROM userinfo u JOIN dog d 
-		ON u.userno = d.userno AND u.userid=#{userid}
-	</select>
-	
-	<!-- 2014-05-30 성훈추가: 이름으로 user검색하기(강아지 정보 없을 때) -->
-	<select id="checkByName" parameterType="String" resultType="UserDTO" >
-		select * from userinfo where username = #{username}
-	</select>
-	
-	<!-- 2014-05-30 성훈추가: 주소로 user검색하기(강아지 정보 없을 때) -->
-	<select id="checkByAddr" parameterType="String" resultType="UserDTO" >
-		select * from userinfo where address = #{address}
+		SELECT u.username,u.userid,u.email,u.address,(select count(dogname) FROM
+		userinfo u JOIN dog d ON u.userno = d.userno AND userid=#{userid}) AS dogage FROM userinfo u JOIN dog d
+		ON u.userno = d.userno AND u.userid=#{userid} GROUP BY userid
 	</select>
 	
 </mapper>					

@@ -6,6 +6,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style type="text/css">
+div#panel {
+float: left;
+margin-left:20px;
+width: 930px;	
+}
+div#alert{
+width:460px;
+height:50px;
+}
+
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>미니홈피 일기 상세보기</title>
 <!-- 
@@ -39,83 +51,68 @@
  -->
 </head>
 <script type="text/javascript">
-	function deleteCheck(){
+	function deleteDiary(brdno){
 		if(confirm("삭제하시겠습니까?")){
-			document.requestForm.command.value="deleteDiary";
-			document.requestForm.brdno=brdno;
-			document.requestForm.submit();
+			alert("삭제되었습니다.");
+			location.href="/gaenari/deleteDiary.do?brdno="+brdno;
 		}else{
-			document.requestForm.command.value="diaryDetail";
-			document.requestForm.brdno=brdno;
-			document.requestForm.submit();
+			return;
 		}
 	}
 </script>
 <body>
-	<table border="0" width="80%" height="480">
-		<tr>
-			<td>
-				<table border="1" align="center" height="100%">
-					<tr>
-						<td align="center" height="7%" width="110">작성날짜</td>
-						<td width="450" align="center">
-							<div align="center">
-								${requestScope.oneDiary.wrdate}
-								<c:if
-									test="${requestScope.oneDiary.wrdate eq sessionScope.today}">
-									<font color="blue">[오늘입니다]</font>
-								</c:if>
-							</div>
-						</td>
-						<c:if test="${requestScope.oneDiaryImg != null}">
-							<td rowspan="5" width="450">
-								<div align="center">
-									<img src="${requestScope.oneDiaryImg}" width="400">
-								</div>
-							</td>
+	<div class="panel panel-default" id="panel">
+		<div class="panel-heading">
+			<table width="100%">
+				<tr>
+					<td width="80%"><h3 class="panel-title">제목:
+							${requestScope.oneDiary.title}</h3></td>
+					<td width="20%" align="right">${requestScope.oneDiary.wrdate}
+						<c:if test="${requestScope.oneDiary.wrdate eq sessionScope.today}">
+							<font color="blue">[오늘입니다]</font>
 						</c:if>
-					</tr>
-					<tr>
-						<td align="center" height="7%">제목</td>
-						<td>
-							<div align="center">${requestScope.oneDiary.title}</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="panel-body">
+			<table width="100%">
+				<tr>
+					<td width="55%" height="50">
+						<div class="alert alert-success" id="alert">
+							<font size="3">${requestScope.oneDiary.wrdate}&nbsp;&nbsp;&nbsp;${requestScope.user.userid}님의 기분 :  ${requestScope.oneDiary.mood}</font> 
+						</div>
+					</td>
+					<c:if test="${requestScope.oneDiaryImg != null}">
+						<td rowspan="2" width="45%" height="400">
+							<img src="${requestScope.oneDiaryImg}" width="400">
 						</td>
-					</tr>
-					<tr>
-						<td align="center" height="7%">기분</td>
-						<td>
-							<div align="center">${requestScope.oneDiary.mood}</div>
-						</td>
-					</tr>
-					<tr>
-						<!-- 14-05-13 성훈 수정 경우에 따라 사진 넣고 말고 하기 -->
-						<td align="center" height="20%">내용</td>
-						<td style="text-align: left; vertical-align: top;">
-							${requestScope.oneDiary.brdcontent}</td>
-					</tr>
-					<tr>
-						<!-- 14-05-14 성훈 추가: 이전 글, 다음 글 보기 -->
-						<!-- 14-05-21 성훈 수정: 이전 글, 다음 글 index로 이동, 수정, 삭제하기 기능 -->
-						<td align="center" colspan="2" height="7%">
-							<form action="/gaenari/control" method="post" name="requestForm">
-								<input type="button" onclick="location.href='/gaenari/diaryDetail.do?index=${requestScope.index - 1}&userid=${requestScope.user.userid}'" value="이전 글"> 
-								&nbsp;&nbsp;&nbsp;&nbsp; 
-								<c:if test="${requestScope.user.userid eq sessionScope.userid }">
-									<input type="button" onclick="location.href='/gaenari/updateFormDiary.do?brdno=${requestScope.oneDiary.brdno}&userid=${requestScope.user.userid}'" value="수정하기">
-									&nbsp;&nbsp;&nbsp;&nbsp; 
-									<input type="hidden" name="command" value="">
-									<input type="hidden" name="brdno" value="${requestScope.oneDiary.brdno}"> 
-									<input type="submit" onclick="javascript:deleteCheck();" value="삭제하기">
-									&nbsp;&nbsp;&nbsp;&nbsp; 
-								</c:if>
-								<input type="button" onclick="location.href='/gaenari/diaryDetail.do?index=${requestScope.index + 1}&userid=${requestScope.user.userid}'" value="다음 글">
-							</form>
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
+					</c:if>
+				</tr>
+				<tr>
+					<td style="text-align: left; vertical-align: top;">
+						${requestScope.oneDiary.brdcontent}
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="panel-footer">
+			<table width="100%">
+				<tr>
+					<td align="center" height="40">
+						<ul class="pager">
+							<li><a href="/gaenari/diaryDetail.do?index=${requestScope.index +1}&userid=${requestScope.user.userid}">Previous</a></li>
+							<c:if test="${requestScope.user.userid eq sessionScope.userid }">
+								<li><a href="/gaenari/updateFormDiary.do?brdno=${requestScope.oneDiary.brdno}&userid=${requestScope.user.userid}">수정하기</a></li>
+								<li><a href="#" onclick="deleteDiary('${requestScope.oneDiary.brdno}')">삭제하기</a></li>
+							</c:if>
+							<li><a href="/gaenari/diaryDetail.do?index=${requestScope.index -1}&userid=${requestScope.user.userid}">Next</a></li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
 <%@ include file="/bottom.jsp"%>

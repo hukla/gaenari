@@ -60,24 +60,24 @@
 			<c:if test="${requestScope.user.userid eq sessionScope.userid}">
 			<td width="33%">
 				<form action="/gaenari/writePlan.do" method="post" id="planForm">
-					<table class="table" border="0" width="100%" height="380" style="outline-style: double; table-layout: fixed;">
+					<table class="table" border="0" width="100%" height="380" style="outline-style: ridge; table-layout: fixed;">
 						<colgroup>
-							<col width="20%"><col width="80%">
+							<col width="20%"><col width="40%"><col width="40%">
 						</colgroup>
 						<tr>
-							<td colspan="2"><h2>일정 등록하기</h2></td>
+							<td colspan="3"><h2>일정 등록하기</h2></td>
 						</tr>
 						<tr>
 							<td>&nbsp;&nbsp;제목 : </td>
-							<td>
+							<td colspan="2">
 								<input class="form-control" type="text" size="33" name="title">
 							</td>
 						</tr>
 						<tr>
-							<td>&nbsp;&nbsp;지역 : </td>
-							<td>
+							<td>&nbsp;&nbsp;선택 : </td>
+							<td align="left">
 							<select name="loc" class="btn btn-default">
-									<option selected="selected">지역 선택</option>
+									<option selected="selected" value="unchosen">지역</option>
 									<option value="광진구">광진구</option>
 									<option value="동대문구">동대문구</option>
 									<option value="중랑구">중랑구</option>
@@ -104,17 +104,48 @@
 									<option value="중구">중구</option>
 									<option value="성북구">성북구</option>
 							</select></td>
+							<td align="left">
+							<select name="plandogno" class="btn btn-default">
+									<c:choose>
+										<c:when test="${not empty requestScope.dog}">
+											<option value="unchosen" selected="selected">강아지</option>
+											<c:forEach items="${requestScope.dog}" var="dogs">
+												<option value="${dogs.dogno}">${dogs.dogname}</option>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											기르시는 강아지가 없습니다.
+										</c:otherwise>
+									</c:choose>
+									</select>
+							</td>
 							</tr>
 							<tr><td> &nbsp;&nbsp;날짜 : </td>
-							<td><input class="form-control" type="text" id="datepicker" name="date"></td>
+							<td colspan="2"><input class="form-control" type="text" id="datepicker" name="date"></td>
 							</tr>
-							<tr><td colspan="2">
-								<textarea rows="5" cols="35" name="content" class="form-control"></textarea>
+							<tr><td> &nbsp;&nbsp;내용: </td>
+								<td colspan="2">
+									<select name="plantype" class="btn btn-default">
+										<option value="unchosen" selected="selected">일정 주제 선택</option>
+										<option value="예방접종하기">예방접종하기</option>
+										<option value="산책시키기">산책시키기</option>
+										<option value="목욕시키기">목욕시키기</option>
+										<option value="털깎기">털깎기</option>
+										<option value="검진받기">검진받기</option>
+										<option value="미용해주기">미용해주기</option>
+										<option value="강아지학교보내기">강아지학교보내기</option>
+										<option value="훈련시키기">훈련시키기</option>
+										<option value="기타">기타</option>
+									</select>
+								</td>
+							</tr>
+							<tr><td colspan="3">
+								<textarea rows="2" cols="35" name="content" class="form-control"></textarea>
 											<p/>
 										</td>
 						</tr>
 						<tr>
-							<td colspan="2">
+							<td colspan="3">
 								<div align="center">
 									<input type="hidden" name="userid" value="${requestScope.user.userid}">
 									<button type="button" onclick="submit()" class="btn btn-success" data-toggle="button">등록하기</button>

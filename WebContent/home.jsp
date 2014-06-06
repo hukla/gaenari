@@ -49,11 +49,9 @@ div#thumb2{
 작성: 2014-05-25
 작성자: 최성훈
 내용: 개나리 웹페이지 메인페이지
+
+수정: 최성훈, 2014-06-04	내용: 안쓰는 주석 지우고 강아지 등록 팝업 크기조절
  -->
-<!-- <style type="text/css">
-	.menu-about { width: 50px; height: 0px; position: relative; top: -220px; left: 0px; }
-	.menu-about img { position: absolute; clip: rect(200px 1300px 450px 0px); }
-</style> -->
 </head>
 <body>
 <div id="myCarousel" class="carousel slide" align="left">
@@ -150,7 +148,7 @@ div#thumb2{
 		var newwindow;
 		var url = "/gaenari/addDog.do?userid=${sessionScope.user.userid}";
 
-		newwindow = window.open(url, '강아지등록 페이지', 'height=550,width=660');
+		newwindow = window.open(url, '강아지등록 페이지', 'height=600,width=660,scrollbars=yes');
 		if (window.focus) {
 			newwindow.focus;
 		}
