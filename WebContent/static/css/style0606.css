@@ -38,7 +38,7 @@ body {
 	top: 50%;
 	left: 50%;
 	margin-left: -90px;
-	margin-top: -20px;
+	margin-top: 20px;
 	width: 180px;
 	height: 40px;
 }
@@ -338,9 +338,10 @@ body {
 
 .btn-yellow
 {
-  background-color: #ffcc00;
+  background-color: #ffcc00 !important;
   color: #302424 !important;
-  border-color:#ffcc00;
+  border-color:#ffcc00 !important;
+  vertical-align: middle;
 }
 
 .header-user-menu-container .dropdown .dropdown-toggle {
@@ -571,8 +572,7 @@ color: #8c8c8c;
 	content: " ";
 }
 
-/*todo*/
-.mboard-info-header {
+#mboard-write-form .mboard-info-header {
 margin-top:19px;
 line-height:30px;
 display:table;
@@ -590,13 +590,13 @@ box-shadow:0 1px 2px 0 #646464;
 padding:10px 33px;
 }
 
-.mboard-dog-name {
+#mboard-write-form .mboard-dog-name {
 font-size:20px;
 min-width:80%;
 color:#1c3a58;
 }
 
-.mboard-info-main {
+#mboard-write-form .mboard-info-main {
 height:249px;
 width:100%;
 margin-top:11px;
@@ -612,7 +612,7 @@ box-shadow:0 1px 2px 0 #646464;
 display:table;
 }
 
-.mboard-info-main .left-part {
+#mboard-write-form .mboard-info-main .left-part {
 position:relative;
 width:70%;
 background-position:center;
@@ -624,22 +624,22 @@ background-size:cover;
   border-radius:5px;
 }
 
-.mboard-info-main .right-part {
+#mboard-write-form .mboard-info-main .right-part {
 overflow:hidden;
 border-bottom-right-radius:5px;
 height:249px;
 }
 
-.mboard-info-main>div {
+#mboard-write-form .mboard-info-main>div {
 vertical-align:top;
 display:table-cell;
 height:100%;
 }
 
-.mboard-info-main .right-part .part-header {
+#mboard-write-form .mboard-info-main .right-part .part-header {
 height:50%;
 }
-.mboard-info-main .right-part .part-header .part-header-title
+#mboard-write-form .mboard-info-main .right-part .part-header .part-header-title
 {
 
 text-align: center;
@@ -648,7 +648,7 @@ font-size: 20px;
   padding: 40px;
 }
 
-.mboard-info-main .right-part .part-line-gray {
+#mboard-write-form .mboard-info-main .right-part .part-line-gray {
 background-color:#f5f2f0;
 font-weight:bold;
 font-size:12px;
@@ -659,7 +659,7 @@ padding:0 20px;
   width:20%
 }
 
-.mboard-info-main .right-part .part-line {
+#mboard-write-form .mboard-info-main .right-part .part-line {
 color:#9dabb8;
 font-size:12px;
 height:42px;
@@ -669,15 +669,15 @@ padding:0 20px;
   width:30%;
 }
 
-.mboard-info-bottom {
+#mboard-write-form .mboard-info-bottom {
 margin-top: 11px;
 }
 
-.mboard-info-bottom .content-container {
+#mboard-write-form .mboard-info-bottom .content-container {
   width: 100%;
 }
 
-.mboard-info-bottom .content-container .mboard-info-content {
+#mboard-write-form .mboard-info-bottom .content-container .mboard-info-content {
   margin-bottom: 15px;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
@@ -690,6 +690,55 @@ background-color: white;
 box-shadow: 0px 1px 2px 0px #646464;
 }
 
-.mboard-info-bottom .content-container .mboard-info-content .mboard-info-content-text {
+#mboard-write-form .mboard-info-bottom .content-container .mboard-info-content .mboard-info-content-text {
   padding: 30px;
+}
+
+#mboard-write-form .mboard-write-table
+{
+  width:600px;
+  margin:auto;
+}
+
+#mboard-write-form .mboard-write-table .mboard-write-table-title
+{
+  text-align:center;
+  font-weight:bold;
+  font-size:20px;
+}
+
+#mboard-write-form .mboard-write-table .mboard-write-table-head .mboard-write-table-head-title
+{
+  text-align:right;
+  font-weight:bold;
+  font-size:15px;
+}
+
+#mboard-write-form .mboard-write-table .mboard-write-table-head
+{
+  width:18%;
+  vertical-align:middle;
+}
+
+.form-control.contact
+{
+  width:80px;
+  float:left;
+}
+
+.contact-bar
+{
+  float:left;
+  line-height:34px;
+  font-size:15px;
+}
+
+#mboard-write-form .mboard-write-form-btn-group .mboard-write-form-btn
+{
+  margin-bottom: 10px;
+}
+
+#mboard-write-form .mboard-write-form-btn-group
+{
+  left:100px;
 }
