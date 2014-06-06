@@ -17,7 +17,7 @@ function send(){
 }
 function voluDelete(vbrdno){
 	if(confirm("삭제하시겠습니까?")){
-		location.href="/voluBoardDelete.dovbrdno="+vbrdno;
+		location.href="/voluBoardDelete.do?vbrdno="+vbrdno;
 	}else{
 		alert("삭제가 취소되었습니다.");
 		return;

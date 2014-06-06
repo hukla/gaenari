@@ -49,4 +49,9 @@
 		INSERT INTO questionaire VALUES(null,#{userno},#{q1},#{q2},#{q3},#{q4},#{q5}) 
 	</select>
 	
+	<!-- 2014-06-06 수진추가: 사용자의 설문조사여부 확인 -->
+	<select id="checkQuest" parameterType="int" resultType="Integer">
+		SELECT qno from questionaire where userno=#{int}
+	</select>
+	
 </mapper>					
