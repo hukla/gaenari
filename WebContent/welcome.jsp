@@ -85,7 +85,7 @@
 			</tr>
 		</table>
 		<div align="center">
-			<button type="button" class="btn btn-primary" onclick="login()">가입하기</button>
+			<button type="button" class="btn btn-primary" onclick="login()">로그인하기</button>
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<button type="button" class="btn btn-default" id="fbLogoutBtn" onclick="location.href='/gaenari/login.do'">첫 페이지로</button>
 		</div>

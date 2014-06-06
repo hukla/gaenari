@@ -30,7 +30,6 @@ public class VoluBoardWriteAction implements Action {
 				System.out.println("vhour==null");
 				throw new Exception("입력값이 충분하지 않습니다.");
 			}
-			System.out.println("result가 뜰까요???");
 			boolean result = VoluBoardDAO.writeContent(vbdto);
 			if(result){
 				url = "/voluBoardList.do";
