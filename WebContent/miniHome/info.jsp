@@ -23,7 +23,12 @@
 내용: 회원정보 보기-> 개인정보수정하도록, 다른 유저의 회원정보 보기-> 친구신청하기 로 경우 나눔.
 
 수정: 최성훈, 2014-06-04	내용: UI수정, 친구맺기 기능 오류수정중..
+
+수정: 이수진, 2014-06-06	내용: 애견 입양 적합도 테스트 버튼 클릭 시 결과 여부 뜨게 하기
  -->
+<script language="javascript">
+function 
+</script>
 </head>
 <body>
 	<h1 align="center">
@@ -188,6 +193,7 @@
 		location.href = "/gaenari/modifyform.do?userid="+userid;
 	}
 	function goQuest(userid){
+		
 		location.href = "/gaenari/questionform.do?userid="+userid;
 	}
 	function sendReq() {

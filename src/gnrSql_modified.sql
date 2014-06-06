@@ -150,11 +150,11 @@ CREATE TABLE visitinfo(
 	vbrdno INT PRIMARY KEY AUTO_INCREMENT,
 	brdno INT CONSTRAINT brd_no_fk REFERENCES board(brdno) NOT NULL 
 );
---2014.06.06 설문조사 테이블 추가
+--2014.06.06 설문조사 테이블 추가 & userno를 primary key로 수정
 DROP TABLE questionaire;
 CREATE TABLE questionaire(
-	qno INT PRIMARY KEY AUTO_INCREMENT,
-	userno INT CONSTRAINT user_no_fk REFERENCES userinfo(userno),
+	qno INT AUTO_INCREMENT,
+	userno INT PRIMARY KEY CONSTRAINT user_no_fk REFERENCES userinfo(userno),
 	q1 VARCHAR(10) NOT NULL,
 	q2 VARCHAR(10) NOT NULL,
 	q3 VARCHAR(10) NOT NULL,

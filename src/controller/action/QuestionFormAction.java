@@ -25,6 +25,7 @@ public class QuestionFormAction implements Action {
 		// TODO Auto-generated method stub
 		System.out.println("==QuestionFormAction 진입==");
 		HttpSession session = request.getSession();
+		//Sqlsession sqlSession = null;
 		String url="/error.jsp";
 		String userid = null;
 		
