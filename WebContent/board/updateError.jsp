@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Update Error!</title>
 <script language=javascript>
-alert('작성자만 수정이 가능합니다!');
+alert('작성자만 수정/삭제가 가능합니다!');
 history.back();
 </script>
 </head>

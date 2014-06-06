@@ -18,12 +18,14 @@ public class VoluBoardUpdateFormAction implements Action {
 			throws ServletException, IOException {
 		
 		String sessionUser = request.getParameter("user").toString();
-		String boardWriter = request.getParameter("writer").toString();
-		int flag=0;
+		String boardWriter = request.getParameter("writer").toString().trim();
+		System.out.println("[user="+sessionUser+"]==[writer="+boardWriter+"]");
+		
+		int flag=0;//user와 글쓴이가 같으면 0, 다르면 1
 		String url = "/error.jsp";
 		if(!sessionUser.equals(boardWriter)){
 			url="board/updateError.jsp";
-			flag=1;
+			flag=1;//user와 글쓴이가 다르면 flag를 1로 설정
 		}
 		String vbrdno=request.getParameter("vbrdno");
 		
@@ -31,7 +33,7 @@ public class VoluBoardUpdateFormAction implements Action {
 			if(vbrdno == null || vbrdno.trim().length() == 0){
 				throw new Exception("입력값이 충분하지 않습니다.");
 			}
-			if(flag==0){
+			if(flag==0){//user와 글쓴이가 같을 경우 update 
 				int num = Integer.parseInt(vbrdno);
 				VoluBoardDTO vdto = VoluBoardDAO.getContent(num, false);
 				
