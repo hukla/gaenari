@@ -185,7 +185,7 @@ public class UserDAO {
 		
 		return dog;
 	}
-	
+	//테스트 결과 삽입
 	public static boolean QueWrite(QuestionaireDTO qdto){
 		SqlSession session = null;
 		boolean res = false;
@@ -193,6 +193,19 @@ public class UserDAO {
 		try {
 			session = DBUtil.getSqlSession();
 			res = (session.insert("u.insertQuest", qdto) > 0)? true : false;
+		} finally {
+			DBUtil.closeSession(session, res);
+		}
+		return res;
+	}
+	//테스트 결과 업데이트
+	public static boolean QueUpdate(QuestionaireDTO qdto){
+		SqlSession session = null;
+		boolean res = false;
+		
+		try {
+			session = DBUtil.getSqlSession();
+			res = (session.update("u.updateQuest", qdto) > 0)? true : false;
 		} finally {
 			DBUtil.closeSession(session, res);
 		}

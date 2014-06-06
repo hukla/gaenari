@@ -20,6 +20,7 @@ public class PtBoardViewAction implements Action {
 		// TODO Auto-generated method stub
 		String url = "/error.jsp";
 		String ptbrdno = request.getParameter("ptbrdno");
+		String workhour [] = null;
 		boolean result=true;
 		if(request.getParameter("result")!=null){
 			result=false;
@@ -34,7 +35,12 @@ public class PtBoardViewAction implements Action {
 			if(ptbdto==null){
 				throw new Exception("게시물이 존재하지 않습니다.");
 			}else{
-				System.out.println(ptbdto.toString());
+				if(ptbdto.getWorkhour().contains("split")){
+					workhour = ptbdto.getWorkhour().split("!split!");
+				}else{
+					workhour[0] = ptbdto.getWorkhour();
+				}
+				request.setAttribute("workhour", workhour);
 				request.setAttribute("resultContent",ptbdto);
 				url = "board/ptBoardView.jsp";
 			}

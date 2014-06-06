@@ -8,7 +8,7 @@
 <html>
 <head>
 <title>자원봉사 모집</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
@@ -16,7 +16,7 @@
   $(function() {
     $( "#datepicker" ).datepicker();
   });
-  </script>
+</script>
 <SCRIPT language=javascript>
 	function checkValid() {
 		var func = window.document.boardWriteForm; // 제목과 글 내용이 비면 넘어가지 않도록 하는 함수
@@ -87,11 +87,12 @@
 			<tr>
 				<td width="150" height="20">
 					<p align="right">
-						<b><span style="font-size:9pt;">시 간</span></b>
+						<b><span style="font-size:9pt;">진 행 시 간</span></b>
 					</p>
 				</td>
-				<td width="450" height="20"><b><span
-				style="font-size: 9pt;"><input type="text" name="vhour" id="datepicker" size="50">
+				<td width="200" height="20"><b><span
+				style="font-size: 9pt;"><input type="text" name="vhour" id="datepicker" size="10">
+				<input type="time" name="vhour2">ㅡ<input type="time" name="vhour3">
 				</span></b>
 			</tr>
 			<tr>

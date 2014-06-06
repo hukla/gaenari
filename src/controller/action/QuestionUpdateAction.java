@@ -8,20 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import exception.LoginException;
+import model.dao.PtBoardDAO;
 import model.dao.UserDAO;
+import model.dto.PtBoardDTO;
 import model.dto.QuestionaireDTO;
 
-public class QuestionWriteAction implements Action {
+public class QuestionUpdateAction implements Action {
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		QuestionaireDTO qdto = null;
 		String url="/error.jsp";
 		String userid = session.getAttribute("userid").toString();
-		System.out.println("userid="+userid);
 		String q1 = request.getParameter("no1");
 		String q2 = request.getParameter("no2");
 		String q3 = request.getParameter("no3");
@@ -31,7 +31,7 @@ public class QuestionWriteAction implements Action {
 			int userno = UserDAO.logCheck(userid).getUserno();
 			qdto = new QuestionaireDTO(userno,q1,q2,q3,q4,q5);
 			System.out.println(qdto.toString());
-			boolean result = UserDAO.QueWrite(qdto);
+			boolean result = UserDAO.QueUpdate(qdto);
 			if(result){
 				url = "/quest/questionFinish.jsp";
 			}else{
@@ -43,5 +43,4 @@ public class QuestionWriteAction implements Action {
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-
 }

@@ -1,54 +1,52 @@
 /**
- * 애견입양적합도테스트 페이지로 이동
+ * 작성자: 이수진
+ * 작성일: 2014-06-07
+ * 내용: 애견 입양 적합 테스트를 업데이트할 경우 업데이트 폼 불러온다
  */
-
 package controller.action;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.UserDAO;
-import model.dto.QuestionaireDTO;
-
 import org.apache.ibatis.session.SqlSession;
 
 import util.DBUtil;
+import model.dao.PtBoardDAO;
+import model.dao.UserDAO;
+import model.dto.PtBoardDTO;
+import model.dto.QuestionaireDTO;
 
-public class QuestionFormAction implements Action {
+public class QuestionUpdateFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("==QuestionFormAction 진입==");
 		HttpSession session = request.getSession();
 		SqlSession sqlSession = null;
-		String url="/error.jsp";
+		String userid = session.getAttribute("userid").toString();
 		QuestionaireDTO qdto = null;
-		int qno=0;
-		String userid = (String) session.getAttribute("userid");
-		System.out.println("userid="+userid);
+		String url = "/error.jsp";
 		
 		try{
 			sqlSession = DBUtil.getSqlSession();
 			int userno = UserDAO.logCheck(userid).getUserno();
-			System.out.println("userno="+userno);
 			qdto = sqlSession.selectOne("u.checkQuest",userno);
-			url="/quest/questionForm.jsp";
-			System.out.println(qdto.toString());
-			
-			if(qdto.getQno()>0) url="/quest/questionUpdateCheck.jsp"; //테스트결과가있으면 업데이트 여부 확인
-			else url="/quest/questionForm.jsp"; //테스트결과가 없으면 테스트 화면
-			
-		}catch(Exception e){
-			e.printStackTrace();
+			url="/quest/questionUpdate.jsp";
+			request.setAttribute("resultContent", qdto);
+		
+		}catch (SQLException e) {
+			request.setAttribute("errorMsg", e.getMessage());
+		}catch (Exception e) {
 			request.setAttribute("errorMsg", e.getMessage());
 		}
 		request.getRequestDispatcher(url).forward(request, response);
+
+
 	}
 
 }

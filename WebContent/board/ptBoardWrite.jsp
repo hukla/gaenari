@@ -7,7 +7,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title></title>
+<title>펫 도우미 모집</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+</script>
 <SCRIPT language=javascript>
 	function checkValid() {
 		var func = window.document.boardWriteForm; // 제목과 글 내용이 비면 넘어가지 않도록 하는 함수
@@ -139,8 +148,8 @@
 					</p>
 				</td>
 				<td width="450" height="20"><b><span
-				style="font-size: 9pt;"><input type="datetime" name="workhour">
-				<input type="time" name="workhour2">
+				style="font-size: 9pt;"><input type="text" name="workhour" id="datepicker" size="10">
+				<input type="time" name="workhour2"><input type="time" name="workhour3">
 				</span></b>
 			</tr>
 			<tr>
