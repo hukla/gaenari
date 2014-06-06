@@ -43,10 +43,17 @@
 		update board set title=#{title}, brdcontent=#{brdcontent}, wrdate=SYS_DATETIME where brdno=#{brdno};
 		update voluboardinfo set vhour=#{vhour} where vbrdno=#{vbrdno};
 	</update>
-	<!-- 
-	<delete id="delete"  parameterType="int">
-		DELETE FROM mfboardinfo WHERE brdno=#{brdno};
-		DELETE FROM board WHERE brdno=#{brdno};
+	 
+	<delete id="deleteVolu"  parameterType="int">
+		DELETE FROM voluboardinfo WHERE vbrdno=#{int};
 	</delete>
-	-->
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board WHERE brdno=#{int};
+	</delete>
+	
+	<select id="selectBoard" parameterType="int" resultType="int">
+		select brdno from voluboardinfo where vbrdno=#{int}
+	</select>
+	
 </mapper>

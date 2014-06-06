@@ -32,7 +32,6 @@ public class PtBoardListAction implements Action {
 				
 		try{
 			pageNumber = request.getParameter("pageNumber");
-			System.out.println("pageNumber="+pageNumber);
 				
 			if(pageNumber==null){
 				pageNumber="1";

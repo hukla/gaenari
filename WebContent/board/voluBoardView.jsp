@@ -15,16 +15,11 @@ function send(){
 	if(document.requestForm.command.value!="") return true;
 	else return false;
 }
-function voluDelete(){
+function voluDelete(vbrdno){
 	if(confirm("삭제하시겠습니까?")){
-		alert("삭제되었습니다.");
-		/* document.requestForm.command.value="voluBoardDelete";
-		var no = document.requestForm.vbrdno;
-		alert(no); */
-		
-		window.location.href("/gaenari/control?command=voluBoardDelete");
+		location.href="/voluBoardDelete.dovbrdno="+vbrdno;
 	}else{
-		alert("뀨?");
+		alert("삭제가 취소되었습니다.");
 		return;
 	}
 }
@@ -74,7 +69,7 @@ function voluDelete(){
 						</td>
 					</tr>
 					<tr>
-						<td height="20" colspan="4" align="center" valign="middle">
+						<td height="20" colspan="2" align="center" valign="middle">
 				<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
 						<form name="requestForm" method=post action="control" onsubmit="return send()">
 							<input type=hidden name="vbrdno" value="${requestScope.resultContent.vbrdno}">
@@ -82,8 +77,15 @@ function voluDelete(){
 							<input type=hidden name="user" value="<%=session.getAttribute("userid")%>">
 							<input type=hidden name="writer" value="${requestScope.resultContent.userid}">
 							<input type=submit value="수정하기">
-							<input type=button value="삭제하기" onClick="voluDelete()">
-					</form>
+						</form>
+						<%-- <input type=button value="삭제하기" onclick="voluDelete(${requestScope.resultContent.vbrdno})"> --%>
+						<form name="requestDelete" method=post action="control" onsubmit="return send()">
+							<input type=hidden name="vbrdno" value="${requestScope.resultContent.vbrdno}">
+							<input type=hidden name="command" value="voluBoardDelete">
+							<input type=hidden name="user" value="<%=session.getAttribute("userid")%>">
+							<input type=hidden name="writer" value="${requestScope.resultContent.userid}">
+							<input type=submit value="삭제하기" onClick="voluDelete(${requestScope.resultContent.vbrdno})">
+						</form></td>
 				</table>
 				<div align=center><span style="font-size:9pt;"><a href="/gaenari/control?command=voluBoardList"><input type="submit" value="목록으로"></a></span></div>
 			</td>

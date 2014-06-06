@@ -12,6 +12,22 @@ import org.apache.ibatis.session.SqlSession;
 import util.DBUtil;
 
 public class VoluBoardDAO {
+	
+	public static boolean deleteContent(int vbrdno) throws SQLException{
+		SqlSession session = DBUtil.getSqlSession();
+		session.commit();
+	
+		boolean result = false;
+		boolean result2 = false;
+		try{
+			int brdno=session.selectOne("voluboard.selectBoard",vbrdno);
+			result = session.delete("voluboard.deleteVolu",vbrdno)>0?true:false;
+			result2 = session.delete("voluboard.deleteBoard",brdno)>0?true:false;
+		}finally{
+			DBUtil.closeSession(session, result);
+		}
+		return result;		
+	}
 
 	public static int getVoluCount() throws SQLException{
 		SqlSession session = null;

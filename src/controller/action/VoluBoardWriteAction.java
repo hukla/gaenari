@@ -43,5 +43,4 @@ public class VoluBoardWriteAction implements Action {
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-
 }
