@@ -23,7 +23,8 @@ public class PtBoardWriteAction implements Action {
 		String brdtype = "pt";
 		String worktype = request.getParameter("worktype");
 		String workloc = request.getParameter("workloc");
-		String workhour  = request.getParameter("workhour");
+		String workhour  = request.getParameter("workhour")+"!split!"+request.getParameter("workhour2")
+				+"!split!"+request.getParameter("workhour3");
 		String url = "/error.jsp";
 		System.out.println("PtBoardWriteAction입니다!");
 		PtBoardDTO pbdto = new PtBoardDTO(title, brdcontent, userid, brdtype, worktype, workloc, workhour);

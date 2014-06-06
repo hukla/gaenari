@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.dto.BoardDTO;
+import model.dto.CenterDTO;
 import model.dto.CommentDTO;
 import model.dto.DiaryDTO;
 import model.dto.DogDTO;
@@ -259,4 +260,20 @@ public class InsertDAO {
 		if (!result)
 			throw new SQLException("친구요청수락에 실패했습니다.");
 	}
+	public static int insertCntrUser(CenterDTO cntr) throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		int cntrno = 0;
+		try {
+			session = DBUtil.getSqlSession();
+			result = session.insert("insert.insertCntrUser", cntr) > 0 ? true : false;
+			if(!result)	throw new SQLException("센터정보 입력에 실패했습니다.");
+			cntrno = session.selectOne("test.getCntrNo",cntr);
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		return cntrno;
+	}
+	
 }

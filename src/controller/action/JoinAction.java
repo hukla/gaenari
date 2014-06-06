@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import model.dao.InsertDAO;
 import model.dao.UpdateDAO;
+import model.dto.CenterDTO;
 import model.dto.UserDTO;
 /**
  * 작성: 2014-05-24
@@ -33,6 +34,9 @@ public class JoinAction implements Action {
 		HttpSession session = request.getSession();
 		String url="/error.jsp";
 		String userid,pwd,pwd1,addr,username,type,email,fbImage=null;
+		String cntrname,cntrcontact,cntrloc=null;
+		char cntrsize=0;
+		int cntrno,dogs=0;
 		
 		try{
 			userid = request.getParameter("userid");
@@ -44,11 +48,23 @@ public class JoinAction implements Action {
 			addr = request.getParameter("addr");
 			fbImage = request.getParameter("image");
 			
+			cntrname = request.getParameter("cntrname");
+			cntrcontact = request.getParameter("cntrcontact");
+			cntrloc = request.getParameter("cntrloc");
+			if(request.getParameter("dogs")!=null && request.getParameter("dogs").trim().length()!=0){
+				dogs = Integer.parseInt(request.getParameter("dogs"));
+			}
 			//입력 정보 불충분시
 			if(userid==null || userid.trim().length()==0 || email==null || email.trim().length()==0
 					|| pwd==null || pwd.trim().length()==0 || pwd1==null || pwd1.trim().length()==0
 					|| username==null || username.trim().length()==0
 					|| type==null || type.trim().length()==0 || addr==null || addr.trim().length()==0){
+				if(type=="1"){
+					if(cntrname==null || cntrname.trim().length()==0 || cntrcontact==null || cntrcontact.trim().length()==0
+							|| cntrloc==null || cntrloc.trim().length()==0){
+						throw new Exception("정보를 모두 입력해주세요.");
+					}
+				}
 				throw new Exception("정보를 모두 입력해주세요.");
 			}
 			
@@ -56,7 +72,17 @@ public class JoinAction implements Action {
 			if(!pwd.equals(pwd1)){
 				throw new Exception("비밀번호가 일치하지 않습니다.");
 			}
-			InsertDAO.insertUser(new UserDTO(userid,pwd,email,username,addr,Integer.parseInt(type)));
+			
+			if(type=="1"){
+				if(dogs<20)	cntrsize='s';
+				else if(dogs<50)	cntrsize='m';
+				else cntrsize='l';
+				cntrno = InsertDAO.insertCntrUser(new CenterDTO(cntrname, cntrloc, cntrcontact, cntrsize));
+				InsertDAO.insertUser(new UserDTO(userid,pwd,email,username,addr,cntrno));
+			}else{
+				InsertDAO.insertUser(new UserDTO(userid,pwd,email,username,addr,Integer.parseInt(type)));
+			}
+			
 			session.setAttribute("userid", userid);
 			session.setAttribute("pwd", pwd);
 			request.setAttribute("email", email);

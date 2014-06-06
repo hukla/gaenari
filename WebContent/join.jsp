@@ -11,6 +11,7 @@
 	td{ text-align:left; font-family: '서울한강체';font-size: medium;}
 	span{ font-size: small; font-weight: lighter; }
 	button,h1,h4{	font-family: '맑은 고딕';	}
+	.hidden{display: none;}
 </style>
 <title>회원가입 페이지</title>
 <!-- 
@@ -71,10 +72,11 @@
 				<tr>
 					<th>타입</th>
 					<td align="center">
-						유기견센터운영자<input type="radio" name="type" value="1">
-						일반사용자<input type="radio" name="type" value="0">
+						유기견센터운영자<input type="radio" name="type" value="1" id="center" onclick="moreinfo(this.value,'con')">
+						일반사용자<input type="radio" name="type" value="0" checked="checked" id="center" onclick="moreinfo(this.value,'con')">
 					</td>
 				</tr>
+				
 				<tr>
 					<td colspan="2" align="center">
 						<c:if test="${requestScope.image != null}">
@@ -89,7 +91,65 @@
 					</td>
 				</tr>
 			</table>
+			
 	</td></tr></table>
+	<div id="con" style="display: none">
+			<table align="center" width="500">
+				<colgroup>
+					<col width="40%"><col width="60%">
+				</colgroup>
+				<tr>
+					<th>센터명</th>
+					<td align="center">
+						<input class="form-control" type="text" name="cntrname" placeholder="센터명을 입력하세요">
+					</td>
+				</tr>
+				<tr>
+					<th>센터 연락처</th>
+					<td align="center">
+						<input class="form-control" type="text" name="cntrcontact" placeholder="센터 연락처를 입력하세요">
+					</td>
+				</tr>
+				<tr>
+					<th>지역 / 강아지 수</th><td>
+					<div class="row"><div class="col-lg-4">
+						<select name="cntrloc" class="btn btn-default">
+									<option selected="selected" value="unchosen">지역 선택</option>
+									<option value="광진구">광진구</option>
+									<option value="동대문구">동대문구</option>
+									<option value="중랑구">중랑구</option>
+									<option value="용산구">용산구</option>
+									<option value="성동구">성동구</option>
+									<option value="강북구">강북구</option>
+									<option value="도봉구">도봉구</option>
+									<option value="노원구">노원구</option>
+									<option value="은평구">은평구</option>
+									<option value="서대문구">서대문구</option>
+									<option value="마포구">마포구</option>
+									<option value="양천구">양천구</option>
+									<option value="강서구">강서구</option>
+									<option value="구로구">구로구</option>
+									<option value="금천구">금천구</option>
+									<option value="영등포구">영등포구</option>
+									<option value="동작구">동작구</option>
+									<option value="관악구">관악구</option>
+									<option value="서초구">서초구</option>
+									<option value="강남구">강남구</option>
+									<option value="송파구">송파구</option>
+									<option value="강동구">강동구</option>
+									<option value="종로구">종로구</option>
+									<option value="중구">중구</option>
+									<option value="성북구">성북구</option>
+							</select>
+							</div>
+  							<div class="col-lg-4 pull-right">
+								<input class="form-control" type="text" name="dogs" placeholder="강아지 수">
+							</div><div align="right">강아지수</div>
+						</div>
+					</td>
+				</tr>
+				</table><br>
+				</div>
 	<div align="center">
 	<button type="button" class="btn btn-primary" onclick="login()">가입하기</button>
 		&nbsp;&nbsp;&nbsp;&nbsp;
@@ -129,6 +189,13 @@
 		var email = document.getElementById("email");
 		if(emailResult.length != 0){
 			email.disabled=true;
+		}
+		function moreinfo(v,id){
+			if(v == "1"){
+				document.getElementById(id).style.display = ""; // 보여줌
+			}else{
+				document.getElementById(id).style.display = "none"; // 숨김
+			}
 		}
 	</script>
 </body>

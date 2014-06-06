@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/frame.jsp"%>
-<%@ include file="menu.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,7 +8,6 @@
 <style type="text/css">
 	img {
 	float: left;
-	width: 200;
 	height: 200;
 }
 </style>
@@ -18,11 +15,18 @@
 <title>사진첩</title>
 </head>
 <body>
-	<table align="center">
+<h2>${requestScope.user.userid}님의 사진</h2>
+<hr>
+	<table align="left" id="images">
 		<tr>
 			<c:if test="${requestScope.imageList != null}">
 				<c:forEach items="${requestScope.imageList}" var="list" varStatus="status">
-					<td align="center"><img src="${list}" width="200" height="200"></td>
+					<td align="center">
+						<form action="/gaenari/miniHome.do?userid=${requestScope.user.userid}&updateimg=${list}">
+							<input type="image" src="${list}" height="80" onclick="selectPsa('${list}')"><%-- <br>
+							<input type="radio" name="image" value="${list}"> --%>
+						</form>
+					</td>
 					<c:if test="${status.count % 3 ==0}">
 						</tr>
 						<tr>
@@ -32,5 +36,10 @@
 		</tr>
 	</table>
 </body>
+<script type="text/javascript">
+	function selectPsa(image){
+		window.opener.location.href="/gaenari/miniHome.do?updateimg="+image+"&userid=${requestScope.user.userid}";
+		window.self.close();
+	}
+</script>
 </html>
-<%@ include file="/bottom.jsp"%>

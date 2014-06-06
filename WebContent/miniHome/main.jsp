@@ -81,7 +81,14 @@ div#doginfo {
 					<tr>
 						<td height="80%">
 							<div align="center">
-								<img src="${requestScope.user.img}">
+								<c:choose>
+								<c:when test="${requestScope.user.userid == sessionScope.userid}">
+									<input type="image" src="${requestScope.user.img}" onclick="image()" width="220">
+								</c:when>
+								<c:otherwise>
+									<img src="${requestScope.user.img}">
+								</c:otherwise>
+								</c:choose>
 							</div> <br>
 							<div align="center">
 								<h4>
@@ -203,7 +210,15 @@ if(result>1){
 }else{
 	scroll.style.overflowY="hidden";
 }
+function image(){
+	var newwindow;
+	var url = "/gaenari/myImage.do?userid=${sessionScope.user.userid}";
 
+	newwindow = window.open(url, '강아지등록 페이지', 'height=600,width=660,scrollbars=yes');
+	if (window.focus) {
+		newwindow.focus;
+	}
+}
 
 </script>
 </html>

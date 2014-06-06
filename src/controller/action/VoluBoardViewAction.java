@@ -19,6 +19,7 @@ public class VoluBoardViewAction implements Action {
 		
 		String url = "/error.jsp";
 		String vbrdno = request.getParameter("vbrdno");
+		String vhour [] = null;
 		boolean result=true;
 		if(request.getParameter("result")!=null){
 			result=false;
@@ -33,7 +34,14 @@ public class VoluBoardViewAction implements Action {
 			if(vbdto==null){
 				throw new Exception("게시물이 존재하지 않습니다.");
 			}else{
+				if(vbdto.getVhour().contains("split")){
+					vhour = vbdto.getVhour().split("!split!");
+				}else{
+					vhour[0] = vbdto.getVhour();
+				}
+				
 				request.setAttribute("resultContent",vbdto);
+				request.setAttribute("vhour", vhour);
 				url = "board/voluBoardView.jsp";
 			}
 		}catch(SQLException e){

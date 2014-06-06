@@ -27,7 +27,7 @@ public class Qualification implements Action {
 		HttpSession session = request.getSession();
 		SqlSession sqlSession = null;
 		String userid = (String)session.getAttribute("userid");
-		String url = "/board/questionaire.jsp";
+		String url = "/quest/questionaire.jsp";
 		char result = 't';
 		int qno = 0;
 		try{
