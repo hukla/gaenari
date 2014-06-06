@@ -20,7 +20,7 @@ public class VoluBoardWriteAction implements Action {
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		String title = request.getParameter("title");
-		String brdcontent = request.getParameter("brdcontent");
+		String brdcontent = request.getParameter("brdcontent").replaceAll("\r\n", "<br/>");
 		String userid = session.getAttribute("userid").toString();
 		String brdtype = "vo";
 		String vhour = request.getParameter("vhour");

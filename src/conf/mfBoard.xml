@@ -7,8 +7,26 @@
 		<discriminator column="brdtype" javaType="string">
 			<case value="mb" resultType="model.dto.MissingBoardDTO"/>
 			<case value="fb" resultType="model.dto.FindingBoardDTO"/>
+			<case value="ab" resultType="model.dto.AdpBoardDTO"/>
 		</discriminator>
 	</resultMap>
+	
+	<insert id="Ainsert" parameterType="BoardDTO">
+		insert into board(brdcontent,wrdate,userid,title,brdtype,userno)
+		values(#{brdcontent},#{wrdate},#{userid},#{title},#{brdtype},#{userno})
+	</insert>
+	
+	<select id="AselectAll" resultMap="brdMap">
+		select b.brdno, b.brdcontent, b.wrdate, b.userid, b.title, b.brdtype, b.userno,
+		a.abrdno from board b join adpboardinfo a on b.brdno=a.brdno
+		where b.brdtype='ab' order by a.abrdno desc
+	</select>
+	
+	<select id="AselectOne" resultMap="brdMap" parameterType="int">
+		select b.brdno, b.brdcontent, b.wrdate, b.userid, b.title, b.brdtype, b.userno,
+		a.abrdno from board b join adpboardinfo a on b.brdno=a.brdno
+		where a.abrdno=#{num}
+	</select>
 	
 	<select id="selectTenF" parameterType="int" resultType="FindingBoardDTO">
 		SELECT * FROM board b JOIN fboardinfo f ON b.brdno = f.brdno WHERE b.brdtype='fb' order by b.brdno desc limit #{value}, 10

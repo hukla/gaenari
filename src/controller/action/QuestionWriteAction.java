@@ -34,8 +34,7 @@ public class QuestionWriteAction implements Action {
 			System.out.println(qdto.toString());
 			boolean result = UserDAO.QueWrite(qdto);
 			if(result){
-				System.out.println("==설문조사 입력완료!==");
-				url = "/questionForm.jsp";
+				url = "/questionFinish.jsp";
 			}else{
 				throw new Exception("입력값이 충분하지 않습니다.");
 			}

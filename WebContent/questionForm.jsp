@@ -13,7 +13,6 @@
 			alert("문항에 빠짐없이 응답해 주세요.");
 			return false;
 		}else{
-			alert("설문에 응답해 주셔서 감사합니다.");
 			return true;
 		}
 	}

@@ -93,13 +93,12 @@ CREATE TABLE planboardinfo(
 	ploc VARCHAR(50) NOT NULL,
 	brdno INT CONSTRAINT brd_no_fk REFERENCES board(brdno) NOT NULL
 ); 
-
+-- 2014.06.06 adpdoginfo 필드 삭제 - 수진
 DROP TABLE adpboardinfo;
 CREATE TABLE adpboardinfo( 
 	abrdno INT PRIMARY KEY AUTO_INCREMENT,
-	adpdoginfo CHAR(18) NOT NULL,
 	brdno INT CONSTRAINT brd_no_fk REFERENCES board(brdno) NOT NULL 
-); 
+);
 -- 2014.05.27 mboardinfo와 fboardinfo로 수정! - 수진
 DROP TABLE mfboardinfo;
 DROP TABLE mboardinfo;

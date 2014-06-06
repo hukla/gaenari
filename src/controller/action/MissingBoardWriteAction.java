@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import model.dao.MFBoardDAO;
+import model.dao.MFABoardDAO;
 import model.dto.BoardDTO;
 import model.dto.MissingBoardDTO;
 import model.dto.UserDTO;
@@ -86,7 +86,7 @@ public class MissingBoardWriteAction implements Action {
 						(String)session.getAttribute("today"),
 						(String)session.getAttribute("userid"),title,"mb",
 						(int) ((UserDTO) session.getAttribute("user")).getUserno());
-				brdno = MFBoardDAO.insertMissingBoard(boardDTO);
+				brdno = MFABoardDAO.insertMissingBoard(boardDTO);
 			} else {
 				System.out.println("File Name : "+fileName);			
 				boardDTO = new BoardDTO(brdcontent, (String) session.getAttribute("today"),
@@ -95,7 +95,7 @@ public class MissingBoardWriteAction implements Action {
 				
 				int index = -1;
 				index = fileName.lastIndexOf(".");
-				brdno = MFBoardDAO.insertMissingBoard(boardDTO);
+				brdno = MFABoardDAO.insertMissingBoard(boardDTO);
 				
 				String realFileName = boardDTO.toStringBrdno(brdno)+fileName.substring(index, fileName.length());
 				log.info("realFileName : "+realFileName);
@@ -105,7 +105,7 @@ public class MissingBoardWriteAction implements Action {
 				
 			}
 			
-			MFBoardDAO.insertMissing(new MissingBoardDTO(brdno,mloc,mdate,mcontact,mkind,mgender,
+			MFABoardDAO.insertMissing(new MissingBoardDTO(brdno,mloc,mdate,mcontact,mkind,mgender,
 					mage, mname));
 			url = "/missingBoardMain.do";
 					
