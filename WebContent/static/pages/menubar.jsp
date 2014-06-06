@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
 <!--메뉴바 시작-->
 <nav class="navbar navbar-menu" id="menu-navbar" role="navigation">
 	<div class="container-fluid">
@@ -32,4 +30,3 @@
 	<!-- /.container-fluid -->
 	<!-- 메뉴바 끝 -->
 </nav>
-</html>
