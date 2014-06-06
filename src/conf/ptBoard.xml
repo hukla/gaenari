@@ -42,10 +42,16 @@
 		update ptboardinfo set worktype=#{worktype}, workloc=#{workloc}, workhour=#{workhour} where ptbrdno=#{ptbrdno};
 	</update>
 	
-	<!-- 	
-	<delete id="delete"  parameterType="int">
-		DELETE FROM mfboardinfo WHERE brdno=#{brdno};
-		DELETE FROM board WHERE brdno=#{brdno};
+	<delete id="deletePt"  parameterType="int">
+		DELETE FROM ptboardinfo WHERE ptbrdno=#{int}
 	</delete>
-	-->
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board WHERE brdno=#{int}
+	</delete>
+	
+	<select id="selectBoard" parameterType="int" resultType="int">
+		select brdno from ptboardinfo where ptbrdno=#{int}
+	</select>
+	
 </mapper>

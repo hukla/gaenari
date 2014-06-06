@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.MFBoardDAO;
+import model.dao.MFABoardDAO;
 import model.dto.FindingBoardDTO;
 
 public class FindingBoardViewAction implements Action {
@@ -18,7 +18,7 @@ public class FindingBoardViewAction implements Action {
 		String no = request.getParameter("fbrdno");
 		int fbrdno = Integer.parseInt(no);
 		System.out.println("fbrdno="+fbrdno);
-		FindingBoardDTO fdto = MFBoardDAO.FselectOne(fbrdno);
+		FindingBoardDTO fdto = MFABoardDAO.FselectOne(fbrdno);
 		if(fdto.getBrdcontent().contains("split")){
 			String picPath = fdto.getBrdcontent().split("!split!")[0];
 			request.setAttribute("picPath", picPath);

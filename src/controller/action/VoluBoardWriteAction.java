@@ -20,7 +20,7 @@ public class VoluBoardWriteAction implements Action {
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		String title = request.getParameter("title");
-		String brdcontent = request.getParameter("brdcontent");
+		String brdcontent = request.getParameter("brdcontent").replaceAll("\r\n", "<br/>");
 		String userid = session.getAttribute("userid").toString();
 		String brdtype = "vo";
 		String vhour = request.getParameter("vhour");
@@ -30,7 +30,6 @@ public class VoluBoardWriteAction implements Action {
 				System.out.println("vhour==null");
 				throw new Exception("입력값이 충분하지 않습니다.");
 			}
-			System.out.println("result가 뜰까요???");
 			boolean result = VoluBoardDAO.writeContent(vbdto);
 			if(result){
 				url = "/voluBoardList.do";
@@ -43,5 +42,4 @@ public class VoluBoardWriteAction implements Action {
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-
 }

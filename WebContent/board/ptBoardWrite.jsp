@@ -36,7 +36,7 @@
 </SCRIPT>
 </head>
 <body>
-			<form name="boardWriteForm" method="post" action="../control?command=ptBoardWrite"
+			<form name="boardWriteForm" method="post" action="/gaenari/control?command=ptBoardWrite"
 		onSubmit='return checkValid()'>
 
 		<input type="hidden" name="command" value="ptBoardWrite">

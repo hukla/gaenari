@@ -11,6 +11,23 @@ import org.apache.ibatis.session.SqlSession;
 import util.DBUtil;
 
 public class PtBoardDAO {
+	
+	public static boolean deleteContent(int ptbrdno) throws SQLException{
+		SqlSession session = DBUtil.getSqlSession();
+		session.commit();
+	
+		boolean result = false;
+		boolean result2 = false;
+		try{
+			int brdno=session.selectOne("ptboard.selectBoard",ptbrdno);
+			result = session.delete("ptboard.deletePt",ptbrdno)>0?true:false;
+			result2 = session.delete("ptboard.deleteBoard",brdno)>0?true:false;
+		}finally{
+			DBUtil.closeSession(session, result);
+		}
+		return result;		
+	}
+	
 	public static int getPtCount() throws SQLException{
 		SqlSession session = null;
 		int ptCount = 0;
@@ -19,7 +36,7 @@ public class PtBoardDAO {
 			session = DBUtil.getSqlSession();
 			System.out.println("==getPtCount진입==");
 			ptCount = session.selectOne("ptboard.selectCountPt");
-			System.out.println("==getVoluCount종료==");
+			System.out.println("==getPtCount종료==");
 			pageCount = ptCount/10;
 			if(ptCount%10 > 0) pageCount++;
 		} finally {

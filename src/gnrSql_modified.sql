@@ -93,13 +93,12 @@ CREATE TABLE planboardinfo(
 	ploc VARCHAR(50) NOT NULL,
 	brdno INT CONSTRAINT brd_no_fk REFERENCES board(brdno) NOT NULL
 ); 
-
+-- 2014.06.06 adpdoginfo 필드 삭제 - 수진
 DROP TABLE adpboardinfo;
 CREATE TABLE adpboardinfo( 
 	abrdno INT PRIMARY KEY AUTO_INCREMENT,
-	adpdoginfo CHAR(18) NOT NULL,
 	brdno INT CONSTRAINT brd_no_fk REFERENCES board(brdno) NOT NULL 
-); 
+);
 -- 2014.05.27 mboardinfo와 fboardinfo로 수정! - 수진
 DROP TABLE mfboardinfo;
 DROP TABLE mboardinfo;
@@ -150,6 +149,17 @@ DROP TABLE visitinfo;
 CREATE TABLE visitinfo( 
 	vbrdno INT PRIMARY KEY AUTO_INCREMENT,
 	brdno INT CONSTRAINT brd_no_fk REFERENCES board(brdno) NOT NULL 
+);
+--2014.06.06 설문조사 테이블 추가
+DROP TABLE questionaire;
+CREATE TABLE questionaire(
+	qno INT PRIMARY KEY AUTO_INCREMENT,
+	userno INT CONSTRAINT user_no_fk REFERENCES userinfo(userno),
+	q1 VARCHAR(10) NOT NULL,
+	q2 VARCHAR(10) NOT NULL,
+	q3 VARCHAR(10) NOT NULL,
+	q4 VARCHAR(10) NOT NULL,
+	q5 VARCHAR(10) NOT NULL
 );
 -------2014-04-23 검색, 컬럼확인, 테이블별 INSERT 쿼리----------------------------------------------------------------------------
 

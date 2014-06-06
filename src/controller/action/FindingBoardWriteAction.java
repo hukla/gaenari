@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.MFBoardDAO;
+import model.dao.MFABoardDAO;
 import model.dto.BoardDTO;
 import model.dto.FindingBoardDTO;
 import model.dto.UserDTO;
@@ -69,13 +69,13 @@ public class FindingBoardWriteAction implements Action {
 						(String)session.getAttribute("today"),
 						(String)session.getAttribute("userid"),title,brdtype,
 						(int) ((UserDTO) session.getAttribute("user")).getUserno());
-				brdno = MFBoardDAO.insertFindingBoard(boardDTO);
+				brdno = MFABoardDAO.insertFindingBoard(boardDTO);
 			} else {
 			
 				boardDTO = new BoardDTO(brdcontent, (String) session.getAttribute("today"),
 							(String) session.getAttribute("userid"), title,brdtype,
 							(int) ((UserDTO) session.getAttribute("user")).getUserno());
-				brdno = MFBoardDAO.insertFindingBoard(boardDTO);
+				brdno = MFABoardDAO.insertFindingBoard(boardDTO);
 				
 				int index = -1;
 				index = fileName.lastIndexOf(".");
@@ -86,7 +86,7 @@ public class FindingBoardWriteAction implements Action {
 				oldFile.renameTo(newFile);			
 
 			}
-			MFBoardDAO.insertFinding(new FindingBoardDTO(brdno,floc));
+			MFABoardDAO.insertFinding(new FindingBoardDTO(brdno,floc));
 			url = "findingBoardMain.do";
 					
 		} catch(SQLException e){

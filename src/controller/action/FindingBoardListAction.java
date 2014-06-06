@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import model.dao.MFBoardDAO;
+import model.dao.MFABoardDAO;
 import model.dao.PtBoardDAO;
 import model.dto.FindingBoardDTO;
 import model.dto.MissingBoardDTO;
@@ -37,8 +37,11 @@ public class FindingBoardListAction implements Action {
 				pageNumber="1";
 			}
 			
-			pageCount = MFBoardDAO.getFCount();// 게시판에 'vo'가 총 몇 개 있는지
-			tenF = MFBoardDAO.getTenF((Integer.parseInt(pageNumber)-1)*10);// voluBoard 10개 받아옴
+			pageCount = MFABoardDAO.getFCount();// 게시판에 'fb'가 총 몇 개 있는지
+			tenF = MFABoardDAO.getTenF((Integer.parseInt(pageNumber)-1)*10);// findingBoard 10개 받아옴
+			
+			System.out.println("pageCount="+pageCount);
+			System.out.println("tenF="+tenF.toString());
 			
 			request.setAttribute("pageCount", pageCount);
 			request.setAttribute("tenF", tenF);
@@ -65,7 +68,7 @@ public class FindingBoardListAction implements Action {
 				xmlData += "</item>"; 
 			}
 			xmlData += "</fList>";			
-			log.info(xmlData);
+			/*log.info(xmlData);*/
 			response.getWriter().print(xmlData);
 		} catch (Exception e) {
 			e.printStackTrace();

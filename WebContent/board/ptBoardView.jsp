@@ -12,21 +12,12 @@ function send(){
 	if(document.requestForm.command.value!="") return true;
 	else return false;
 }
-function ptDelete(){
-	var sessionId="${sessionScope.userid}";
-	var boardWriter=$('#boardWriter').val();
-	alert(sesssionId!=boardWriter);
-	if((sessionId!=boardWriter)==true){
-		alert("작성자만 삭제가 가능합니다.");
+function ptDelete(ptbrdno){
+	if(confirm("삭제하시겠습니까?")){
+		location.href="/gaenari/ptBoardDelete.do?ptbrdno="+ptbrdno;
 	}else{
-		if(confirm("삭제하시겠습니까?")){
-			alert("삭제되었습니다.");
-			document.requestForm.vbrdno=vbrdno;
-			document.form.submit();
-		}else{
-			alert("뀨?");
-			return;
-		}
+		alert("삭제가 취소되었습니다.");
+		return;
 	}
 }
 </script>
@@ -94,13 +85,19 @@ function ptDelete(){
 						<td height="20" colspan="4" align="center" valign="middle">
 				<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
 						<form name="requestForm" method=post action="control" onsubmit="return send()">
-							<input type=hidden name=ptbrdno value="${requestScope.resultContent.ptbrdno}">
+							<input type=hidden name="ptbrdno" value="${requestScope.resultContent.ptbrdno}">
 							<input type=hidden name="command" value="ptBoardUpdateForm">
 							<input type=hidden name="user" value="<%=session.getAttribute("userid")%>">
 							<input type=hidden name="writer" value="${requestScope.resultContent.userid}">
-							<input type=submit value="수정하기"">
-							<input type=button value="삭제하기" onClick="ptDelete()">
-					</form>
+							<input type=submit value="수정하기">
+						</form>
+						<form name="requestDelete" method=post action="control" onsubmit="return send()">
+							<input type=hidden name="ptbrdno" value="${requestScope.resultContent.ptbrdno}">
+							<input type=hidden name="command" value="ptBoardDelete">
+							<input type=hidden name="user" value="<%=session.getAttribute("userid")%>">
+							<input type=hidden name="writer" value="${requestScope.resultContent.userid}">
+							<input type=submit value="삭제하기" onclick="ptDelete(${requestScope.resultContent.ptbrdno})">
+						</form></td>
 				</table>
 				<div align=center><span style="font-size:9pt;"><a href="/gaenari/control?command=ptBoardList"><input type="submit" value="목록으로"></a></span></div>
 			</td>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.dao.CenterDAO;
 import model.dao.ItemDAO;
-import model.dao.MFBoardDAO;
+import model.dao.MFABoardDAO;
 import model.dao.VoluBoardDAO;
 import model.dto.CenterDTO;
 import model.dto.ItemDTO;
@@ -26,7 +26,7 @@ public class MissingBoardViewAction implements Action {
 		String no = request.getParameter("mbrdno");
 		int mbrdno = Integer.parseInt(no);
 		System.out.println("mbrdno="+mbrdno);
-		MissingBoardDTO mdto = MFBoardDAO.MselectOne(mbrdno);
+		MissingBoardDTO mdto = MFABoardDAO.MselectOne(mbrdno);
 		if(mdto.getBrdcontent().contains("split")){
 			String picPath = mdto.getBrdcontent().split("!split!")[0];
 			request.setAttribute("picPath", picPath);

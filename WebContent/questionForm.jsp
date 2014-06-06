@@ -13,14 +13,13 @@
 			alert("문항에 빠짐없이 응답해 주세요.");
 			return false;
 		}else{
-			alert("설문에 응답해 주셔서 감사합니다.");
 			return true;
 		}
 	}
 </SCRIPT>
 </head>
 <body>
-<form name="questionaire" method="post" action="/questionWrite.do" onSubmit='return checkValid()'>
+<form name="questionaire" method="post" action="/gaenari/control?command=questionWrite" onSubmit='return checkValid()'>
 <p>다음의 질문에 간단하게 대답해 주세요.<br><br><br>
 1. 애완동물을 키운 경험이 있습니까?<br>
 <input type="radio" name="no1" value="Y">&nbsp; 예
