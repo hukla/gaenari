@@ -18,7 +18,7 @@ public class PtBoardWriteAction implements Action {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		String title = request.getParameter("title");
-		String brdcontent = request.getParameter("brdcontent");
+		String brdcontent = request.getParameter("brdcontent").replaceAll("\r\n", "<br/>");
 		String userid = session.getAttribute("userid").toString();
 		String brdtype = "pt";
 		String worktype = request.getParameter("worktype");

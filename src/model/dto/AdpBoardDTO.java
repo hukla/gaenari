@@ -6,29 +6,31 @@
  * 2014-04-22 21:32 장재희
  * -> BoardDTO 상속하는 걸로 변경
  * -> toString() 추가
+ * 
+ * 수정:
+ * 2014-06-06 12:17 이수진
+ * -> adpdoginfo 삭제
  */
 package model.dto;
 
 public class AdpBoardDTO extends BoardDTO {
-	private String abrdno;
-	private String adpdoginfo;
-	
-	public String getAbrdno() {
-		return abrdno;
-	}
-	public void setAbrdno(String abrdno) {
+	private int abrdno;
+
+	public AdpBoardDTO() {}
+	public AdpBoardDTO(int abrdno) {
+		super();
 		this.abrdno = abrdno;
 	}
-	public String getAdpdoginfo() {
-		return adpdoginfo;
+	
+	public int getAbrdno() {
+		return abrdno;
 	}
-	public void setAdpdoginfo(String adpdoginfo) {
-		this.adpdoginfo = adpdoginfo;
+	public void setAbrdno(int abrdno) {
+		this.abrdno = abrdno;
 	}
 	@Override
 	public String toString() {
-		return super.toString()+"\nAdpBoardDTO [abrdno=" + abrdno + ", adpdoginfo=" + adpdoginfo
-				+ "]";
+		return super.toString()+"\nAdpBoardDTO [abrdno=" + abrdno + "]";
 	}
 	
 }

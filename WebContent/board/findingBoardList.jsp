@@ -10,7 +10,9 @@
 <title>유기견 제보 페이지</title>
 </head>
 <body>
-
+requestScope.tenF = ${requestScope.tenF}<br>
+requestScope.pageCount = ${requestScope.pageCount}<br>
+sessionScope.userid = ${sessionScope.userid}<br>
 	<center>
 		<table border='0' cellspacing=3 cellpadding=20 width='600' id="fdog_table">
 		    <tr>
@@ -35,7 +37,7 @@
 			</c:if>
 		</c:when>
 	<c:otherwise>
-	  	<tr>
+  	<tr>
 		<td colspan="3" align="center">등록된 제보가 없습니다.</td>
 	</tr>
 	</c:otherwise>

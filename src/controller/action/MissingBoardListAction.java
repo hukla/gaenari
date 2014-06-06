@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import model.dao.ItemDAO;
-import model.dao.MFBoardDAO;
+import model.dao.MFABoardDAO;
 import model.dto.ItemDTO;
 import model.dto.MissingBoardDTO;
 
@@ -32,7 +32,7 @@ public class MissingBoardListAction implements Action  {
 		int pagecount=0;
 		
 		try {
-			mList = MFBoardDAO.MselectAll();
+			mList = MFABoardDAO.MselectAll();
 			
 			if(mList == null) {
 				throw new Exception("mList가 null입니다.");

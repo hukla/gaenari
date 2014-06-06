@@ -1,3 +1,9 @@
+/**
+ * 작성자 : 이수진
+ * 2014-06-06 12:16
+ * 내용 : questionaire 테이블에 해당하는 DTO
+ * 
+ */
 package model.dto;
 
 public class QuestionaireDTO {
