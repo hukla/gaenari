@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.TestDAO;
+import model.dao.UpdateDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.DogDTO;
@@ -78,6 +79,7 @@ public class MinihomeMainAction implements Action {
 		String userid = null;
 		String savePath = null;
 		String fullpath = null;
+		String updateimg = null;
 		UserDTO loginUser = null;
 		List<DogDTO> dog = null;
 		List<BoardDTO> allPlanList = null;
@@ -98,7 +100,10 @@ public class MinihomeMainAction implements Action {
 			}				
 			loginUser = UserDAO.logCheck(userid);				// userid로 user정보 가져온다
 			// 14-05-13 성훈 수정 세개씩 미리보기
-			
+			updateimg = request.getParameter("updateimg");
+			if(updateimg!=null){
+				UpdateDAO.updateImg(loginUser.getUserid(),updateimg);
+			}
 			diaryList = TestDAO.selectThreeDiaries(loginUser);	// 이 페이지 user의 일기, 일정, 방명록 3개씩 가져오기
 			planList = TestDAO.selectThreePlans(loginUser);
 			visitList = TestDAO.selectThreeVisits(loginUser);

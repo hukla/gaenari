@@ -51,8 +51,9 @@ public class JoinAction implements Action {
 			cntrname = request.getParameter("cntrname");
 			cntrcontact = request.getParameter("cntrcontact");
 			cntrloc = request.getParameter("cntrloc");
-			dogs = Integer.parseInt(request.getParameter("dogs"));
-			
+			if(request.getParameter("dogs")!=null && request.getParameter("dogs").trim().length()!=0){
+				dogs = Integer.parseInt(request.getParameter("dogs"));
+			}
 			//입력 정보 불충분시
 			if(userid==null || userid.trim().length()==0 || email==null || email.trim().length()==0
 					|| pwd==null || pwd.trim().length()==0 || pwd1==null || pwd1.trim().length()==0
