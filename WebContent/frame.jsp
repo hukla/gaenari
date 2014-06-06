@@ -66,7 +66,7 @@
         <ul class="dropdown-menu">
           <li><a href="/gaenari/missingBoardMain.do">유기견 신고</a></li>
           <li><a href="/gaenari/findingBoardMain.do">유기견 제보</a></li>
-          <li><a href="/gaenari/adpBoardList.do">애견입양</a></li>
+          <li><a href="/gaenari/adpBoardMain.do">애견입양</a></li>
         </ul>
       </li>
       <li class="dropdown">

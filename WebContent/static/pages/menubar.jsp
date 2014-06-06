@@ -20,7 +20,7 @@
 						<li><a href="/gaenari/missingBoardMain.do">유기견 신고</a></li>
 						<li><a href="/gaenari/findingBoardMain.do">유기견 제보</a></li>
 					</ul></li>
-				<li><a href="/gaenari/adpBoardList.do">애견 입양</a></li>
+				<li><a href="/gaenari/adpBoardMain.do">애견 입양</a></li>
 				<li><a href="/gaenari/voluBoardList.do">자원봉사</a></li>
 				<li><a href="/gaenari/ptBoardList.do">펫 도우미</a></li>
 				<li><a href="/gaenari/mallMain.do">기부몰</a></li>
@@ -32,15 +32,4 @@
 	<!-- /.container-fluid -->
 	<!-- 메뉴바 끝 -->
 </nav>
-<script type="text/javascript">
-function miniHome() {
-	var newwindow;
-	var url = "/gaenari/miniHome.do";
-	newwindow = window.open(url, '미니홈페이지',
-			'height=570,width=1000,scrollbars=yes');
-	if (window.focus) {
-		newwindow.focus;
-	}
-}
-</script>
 </html>

@@ -16,6 +16,10 @@
 		values(#{brdcontent},#{wrdate},#{userid},#{title},#{brdtype},#{userno})
 	</insert>
 	
+	<insert id="insertAdp" parameterType="AdpBoardDTO">
+		insert into adpboardinfo values(null,#{brdno})
+	</insert>
+	
 	<select id="AselectAll" resultMap="brdMap">
 		select b.brdno, b.brdcontent, b.wrdate, b.userid, b.title, b.brdtype, b.userno,
 		a.abrdno from board b join adpboardinfo a on b.brdno=a.brdno

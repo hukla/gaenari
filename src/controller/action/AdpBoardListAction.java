@@ -1,71 +1,60 @@
 package controller.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
+import model.dao.ItemDAO;
 import model.dao.MFABoardDAO;
-import model.dao.PtBoardDAO;
-import model.dto.FindingBoardDTO;
+import model.dto.AdpBoardDTO;
+import model.dto.ItemDTO;
 import model.dto.MissingBoardDTO;
 
-public class AdpBoardListAction implements Action {
-	
-	private Logger log = Logger.getLogger(this.getClass());
+public class AdpBoardListAction implements Action  {
 
+	private static final Logger log = Logger.getLogger(AdpBoardListAction.class);
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String pageNumber = null;
-		/*List<FindingBoardDTO> fList = null;*/
-		List<FindingBoardDTO> tenF = null; // 페이지 당 10개
-		int pageCount = 0;
+		// TODO Auto-generated method stub
+		
+		List<AdpBoardDTO> aList = null;
 		String xmlData = "";
 		String picPath = null;
 		
 		int pagecount=0;
 		
 		try {
-			pageNumber = request.getParameter("pageNumber");
+			aList = MFABoardDAO.AselectAll();
 			
-			if(pageNumber==null){
-				pageNumber="1";
+			if(aList == null) {
+				throw new Exception("aList가 null입니다.");
 			}
 			
-			//pageCount = MFABoardDAO.getACount();// 게시판에 'vo'가 총 몇 개 있는지
-			tenF = MFABoardDAO.getTenF((Integer.parseInt(pageNumber)-1)*10);// voluBoard 10개 받아옴
-			
-			request.setAttribute("pageCount", pageCount);
-			request.setAttribute("tenF", tenF);
-			
-			System.out.println(request.getAttribute(pageNumber));
-			/*fList = MFBoardDAO.FselectAll();*/
-			
-			/*if(fList == null) {
-				throw new Exception("fList가 null입니다.");
-			}*/
-			
-			xmlData += "<fList>";
-			for(FindingBoardDTO f : tenF) {
+			xmlData += "<aList>";
+			for(AdpBoardDTO a : aList) {
 				xmlData += "<item>";
-				xmlData += "<brdno>"+f.getBrdno()+"</brdno>";
-				xmlData += "<fbrdno>"+f.getFbrdno()+"</fbrdno>";
-				xmlData += "<floc>"+f.getFloc()+"</floc>";
-				if(f.getBrdcontent().contains("split")){
-					picPath = f.getBrdcontent().split("!split!")[0];
+				xmlData += "<brdno>"+a.getBrdno()+"</brdno>";
+				xmlData += "<abrdno>"+a.getAbrdno()+"</abrdno>";
+
+				if(a.getBrdcontent().contains("split")){
+					picPath = a.getBrdcontent().split("!split!")[0];
 				}else{
-					picPath = "/gaenari/image/board/"+f.getBrdno()+".jpg";
+					picPath = "/gaenari/image/board/"+a.getBrdno()+".jpg";
 				}
+				log.info("picPath="+picPath);
 				xmlData += "<picPath>"+picPath+"</picPath>";
 				xmlData += "</item>"; 
 			}
-			xmlData += "</fList>";			
-			log.info(xmlData);
+			xmlData += "</aList>";						
 			response.getWriter().print(xmlData);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,5 +62,4 @@ public class AdpBoardListAction implements Action {
 			request.getRequestDispatcher("/error.jsp").forward(request, response);
 		}
 	}
-
 }

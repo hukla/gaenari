@@ -20,6 +20,7 @@
      <typeAlias type="model.dto.PtBoardDTO" alias="PtBoardDTO"/>
      <typeAlias type="model.dto.MissingBoardDTO" alias="MissingBoardDTO"/>
      <typeAlias type="model.dto.FindingBoardDTO" alias="FindingBoardDTO"/>
+     <typeAlias type="model.dto.AdpBoardDTO" alias="AdpBoardDTO"/>
      <typeAlias type="model.dto.CommentDTO" alias="CommentDTO"/>
      <typeAlias type="model.dto.QuestionaireDTO" alias="QuestionaireDTO"/>
      <!-- <typeAlias type="model.dto.BoardPlanDTO" alias="BoardPlanDTO"/> -->

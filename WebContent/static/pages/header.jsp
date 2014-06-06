@@ -14,7 +14,7 @@
 	                        <a href="#" class="btn btn-yellow" data-toggle="modal" data-target="#login-modal">로그인</a>
 	                        <a href="#" class="btn btn-yellow" data-toggle="modal" data-target="#signup-modal">가입하기</a>
 	                </div>
-	                <div class="modal fade modal-sm" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	                <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
 	                    <div class="modal-dialog">
 	                    	<div class="modal-content">
 	                        	<div class="modal-header">
@@ -35,6 +35,28 @@
 	                        </div>
 	                    </div>
 					</div>
+					<div class="modal fade" id="signup-modal"> 
+						<div class="modal-dialog"> 
+							<div class="modal-content"> 
+								<div class="modal-header"> 
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<div class="modal-title"> 가입하기 </div>
+								</div> 
+                                <div class="modal-body"> 
+								  <div class="signup-select"> 
+                                    <a class="left-part plain-a" href="#" onclick="fbjoin()" data-no-instant=""> 
+											<div class="image"> <img src="/gaenari/static/images/facebook-icon.png"/> </div> 
+											<div class="title"> 페이스북 계정으로 가입하기 </div> 
+										</a> 
+										<a class="right-part plain-a" href="/gaenari/join.jsp"> 
+											<div class="image"> <img src="/gaenari/static/images/user-icon.png"/> </div> 
+											<div class="title"> 그냥 가입하기 </div> 
+										</a> 
+									</div> 
+								</div> 
+							</div> 
+						</div> 
+					</div> 
 				</div>
 				</c:when>
 				<c:otherwise>
@@ -43,7 +65,7 @@
 						<div class="dropdown">
 							<span class="btn btn-yellow header-user-menu dropdown-toggle"
 								data-toggle="dropdown"> <span class="header-user-info">
-									<span class="header-user-menu-image glyphicon glyphicon-user"></span>
+									<img src="${sessionScope.user.img}" width="46px" height="46px"/>
 							</span> <span class="header-user-fullname">Jaehee Jang</span> <span
 								class="pull-right header-user-menu-caret"> <i
 									class="icon-carret-bottom"></i> <!--TODO-->
@@ -65,12 +87,8 @@
 										</li>
 									</ul>
 									<ul class="header-user-menu-tools">
-										<li><a href="/account/profile/"> 
-											<i class="icon-setting"></i> 설정
-										</a></li>
-										<li class="header-logout pointer" id="fbLogoutBtn" onclick="location.href='/gaenari/login.do'">
-											<i class="icon-unlock"></i> 로그아웃
-										</li>
+										<li><a href="#" onclick="getUserinfo()"> <i	class="icon-setting"></i> 개인정보수정	</a></li>
+										<li class="header-logout pointer" onclick="location.href='/gaenari/login.do'"><i class="icon-unlock"></i>로그아웃</li>
 									</ul>
 								</div>
 							</div>

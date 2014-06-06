@@ -12,9 +12,10 @@
 	
 	<link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
-	<c:if test="${sessionScope.userid == null}">
-		<script src="/gaenari/scripts/login.js"></script>
-	</c:if>
+	<script src="/gaenari/scripts/home.js"></script>
+	<script src="/gaenari/scripts/fblogout.js"></script>
+	<script src="/gaenari/scripts/minihome.js"></script>
+	<script src="//connect.facebook.net/en_US/all.js"></script>
 	<meta charset="utf-8">
 	<title>GAENARI PROJECT</title>
 </head>

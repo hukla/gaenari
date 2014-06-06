@@ -25,7 +25,7 @@
 					<ul class="nav nav-pills nav-stacked">
 						<li><a href="/gaenari/missingBoardMain.do">유기견신고</a></li>
 						<li><a href="/gaenari/findingBoardMain.do">유기견제보</a></li>
-						<li><a href="/gaenari/adpBoardList.do">애견입양</a></li>
+						<li><a href="/gaenari/adpBoardMain.do">애견입양</a></li>
 					</ul>
 				</font>
 			</td>
