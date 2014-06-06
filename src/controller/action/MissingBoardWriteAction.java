@@ -64,7 +64,7 @@ public class MissingBoardWriteAction implements Action {
 					"utf-8", new DefaultFileRenamePolicy());
 			
 			title = multi.getParameter("title");
-			brdcontent = multi.getParameter("brdcontent");
+			brdcontent = multi.getParameter("brdcontent").replaceAll("\r\n", "<br/>");
 			userid = session.getAttribute("userid").toString();
 			brdtype = "mb";
 			mloc = multi.getParameter("mloc");
