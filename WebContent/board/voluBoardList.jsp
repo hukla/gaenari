@@ -11,7 +11,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>자원봉사 구해요/할래요!</title>
-
+<script language="javascript">
+/* function checkValid(){
+	
+	if(${sessionScope.userId})
+} */
+</script>
 </head>
 <body>
 
@@ -115,40 +120,10 @@
 											<div align="center">등록된 목록이 없습니다.</div>
 										</c:otherwise>
 									</c:choose>
-						<%-- <form action="control">
-						<input type="hidden" value="voluBoardList" name="command">
-						<c:choose>
-							<c:when test="${param.next== 0}">
-								<input type="hidden" value="${param.next}" name="next">
-							</c:when>
-							<c:otherwise>
-								<input type="hidden" value="${param.next-1}" name="next">
-							</c:otherwise>
-						</c:choose>
-						<input type="submit" value="이전페이지">
-					</form></td>
-			<td></td>
-			<td></td>
-			<td>
-					<form action="control">
-						<input type="hidden" value="voluBoardList" name="command">
-						<c:choose>
-							<c:when
-								test="${(param.next+1)*10>fn:length(list)?true:false}">
-								<input type="hidden" value="${param.next}" name="next">
-							</c:when>
-							<c:otherwise>
-								<input type="hidden" value="${param.next+1}" name="next">
-							</c:otherwise>
-						</c:choose>
-						<input type="submit" value="다음페이지">
-					</form>
-				</td>
-			</tr> --%>
 	</table>
 <hr>
 <div align=right>
-<span style="font-size:9pt;"><a href="/gaenari/board/voluBoardWrite.jsp"><input type="hidden" value=${id} name="id"><input type=submit value=글쓰기></a></span></div>
+<span style="font-size:9pt;"><a href="/gaenari/board/voluBoardWrite.jsp"><input type="hidden" value=${id} name="id"><input type=submit value=글쓰기 onclick="return checkValid()"></a></span></div>
 </body>
 </html>
 <%@ include file="../bottom.jsp"%>

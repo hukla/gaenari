@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.dto.DogDTO;
+import model.dto.QuestionaireDTO;
 import model.dto.UserDTO;
 
 import org.apache.ibatis.session.SqlSession;
@@ -183,5 +184,18 @@ public class UserDAO {
 		}
 		
 		return dog;
+	}
+	
+	public static boolean QueWrite(QuestionaireDTO qdto){
+		SqlSession session = null;
+		boolean res = false;
+		
+		try {
+			session = DBUtil.getSqlSession();
+			res = (session.insert("user.insertQuest", qdto) > 0)? true : false;
+		} finally {
+			DBUtil.closeSession(session, res);
+		}
+		return res;
 	}
 }

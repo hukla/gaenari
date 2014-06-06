@@ -44,4 +44,9 @@
 		ON u.userno = d.userno AND u.userid=#{userid} GROUP BY userid
 	</select>
 	
+	<!-- 2014-06-06 수진추가: 설문조사 결과 넣기 -->
+	<select id="insertQuest" parameterType="QuestionaireDTO">
+		INSERT INTO questionaire VALUES(null,#{userno},#{q1},#{q2},#{q3},#{q4},#{q5}) 
+	</select>
+	
 </mapper>					
