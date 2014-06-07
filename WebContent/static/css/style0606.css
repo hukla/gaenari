@@ -374,24 +374,24 @@ body {
 	box-shadow: none;
 }
 
-.nav .open>a .nav .open>a:hover,.nav .open>a:focus {
+#menu-navbar .nav .open>a .nav .open>a:hover,.nav .open>a:focus {
 	background-color: #302424;
 }
 
-.nav>li>a:hover,.nav>li>a:focus {
+#menu-navbar .nav>li>a:hover,.nav>li>a:focus {
 	text-decoration: none;
 	background-color: #302424;
 }
 
-.nav .dropdown-menu {
+#menu-navbar .nav .dropdown-menu {
 	background-color: #403030;
 }
 
-.nav .dropdown-menu a {
+#menu-navbar .nav .dropdown-menu a {
 	color: #FFE682;
 }
 
-.nav .dropdown-menu a:hover {
+#menu-navbar .nav .dropdown-menu a:hover {
 	background-color: #302424;
 	color: #FFE682;
 }
