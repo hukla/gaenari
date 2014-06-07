@@ -54,6 +54,7 @@ function checkValid() {
 	if (func.userid.value == "") {
 		alert("세션이 종료되었습니다. 다시 로그인해주세요.");
 		location.href = "/gaenari/login.do";
+		return false;
 	}
 	if (func.title.value == "") {
 		alert("제목을 입력해 주세요.");
