@@ -57,7 +57,17 @@
                                                 ${pt.title}</a>
                                             </td>
                                             <td class="ptboard-time">
-                                                <div class="ptboard-time-content">${pt.workhour}</div>
+                                                <div class="ptboard-time-content">
+                                                	<c:choose>
+	                                                	<c:when test="${fn:contains(pt.workhour, '!split!')}">
+		                                                	<c:set var="workdate" value="${fn:split(pt.workhour, '!split!')}" />
+		                                                	${workdate[0]}
+	                                                	</c:when>
+	                                                	<c:otherwise>
+	                                                	${pt.workhour}
+	                                                	</c:otherwise>
+	                                               	</c:choose>
+                                                </div>
                                             </td>
                                             <td class="ptboard-loc">
                                                 <div class="ptboard-loc-content">${pt.workloc}</div>
