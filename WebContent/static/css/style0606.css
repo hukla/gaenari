@@ -374,11 +374,11 @@ body {
 	box-shadow: none;
 }
 
-#menu-navbar .nav .open>a .nav .open>a:hover,.nav .open>a:focus {
+#menu-navbar .nav .open>a, #menu-navbar .nav .open>a:hover, #menu-navbar .nav .open>a:focus {
 	background-color: #302424;
 }
 
-#menu-navbar .nav>li>a:hover,.nav>li>a:focus {
+#menu-navbar .nav>li>a:hover, #menu-navbar  .nav>li>a:focus {
 	text-decoration: none;
 	background-color: #302424;
 }
@@ -851,36 +851,69 @@ box-shadow: 0px 1px 2px 0px #646464;
 }
 
 /*todo*/
-#ptboard-view-form .ptboard-info-main .right-part .part-header .ptboard-type-container .ptboard-type-icon>img {
-  width:inherit;
+#ptboard-write-form .ptboard-write-table
+{
+  width:600px;
+  margin:auto;
 }
 
-
-#ptboard-view-form .ptboard-info-main .right-part .part-header .ptboard-type-container
+#ptboard-write-form .ptboard-write-table .ptboard-write-table-title
 {
-  height:auto;
   text-align:center;
-}
-
-#ptboard-view-form .ptboard-info-main .right-part .part-header .ptboard-type-container .ptboard-type-content {
-  padding-bottom:20px;
-  font-size:20px;
-}
-
-#ptboard-view-form .ptboard-info-main
-{
-  padding-bottom:30px;
-  padding-top:30px;
-}
-
-#ptboard-view-form .ptboard-info-main .left-part .ptboard-info-content-title
-{
-  font-size:20px;
   font-weight:bold;
+  font-size:20px;
 }
 
-#ptboard-view-form .ptboard-info-main .left-part .ptboard-info-content-text
+#ptboard-write-form .ptboard-write-table .ptboard-write-table-head .ptboard-write-table-head-title
 {
-  padding-top:20px;
-  padding-left:20px;
+  text-align:right;
+  font-weight:bold;
+  font-size:15px;
+}
+
+#ptboard-write-form .ptboard-write-table .ptboard-write-table-head
+{
+  width:18%;
+  vertical-align:middle;
+}
+
+.form-control.contact
+{
+  width:80px;
+  float:left;
+}
+
+.contact-bar
+{
+  float:left;
+  line-height:34px;
+  font-size:15px;
+}
+
+#ptboard-write-form .ptboard-write-form-btn-group .ptboard-write-form-btn
+{
+  margin-bottom: 10px;
+}
+
+#ptboard-write-form .ptboard-write-form-btn-group
+{
+  left:100px;
+}
+
+#ptboard-write-form .ptboard-type-content
+{
+  text-align:center;
+  font-size:5px;
+}
+
+#ptboard-write-form .ptboard-type .ptboard-type-container, #ptboard-write-form .ptboard-type .ptboard-type-container>img
+{
+  width:30px;
+  vertical-align: middle;
+}
+
+#ptboard-write-form .ptboard-type .ptboard-type-container
+{
+	float:left;
+	margin-left:20px;
 }
