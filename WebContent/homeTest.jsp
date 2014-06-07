@@ -14,7 +14,7 @@
 		font-family: "맑은 고딕";
 	}
 	
-	div#myCarousel {
+	div#myCarousel{
 		float: left;
 		margin-left: 190px;
 		width: 980px;

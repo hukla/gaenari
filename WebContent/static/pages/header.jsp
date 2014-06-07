@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<div id="header">
 		<div class="container visible">
 			<img class="logo"
@@ -65,17 +66,57 @@
 								<span class="header-user-info">
 									<div class="header-user-menu-image profile-image" style=" background-image: url(${sessionScope.user.img}); "></div>
 								</span>
-								<span class="header-user-fullname">${sessionScope.userid}</span> 
+								<span class="header-user-fullname">${sessionScope.userid}님</span> 
 							</span>
 							<div class="dropdown-menu" style="top: 73px; right: 0px;">
 								<div class="header-user-menu-tip"></div>
 								<div class="header-user-menu-list">
 									<ul class="header-user-menu-list-info">
-										<li><div class="info-value">${sessionScope.user.point}</div>
-											<div class="info-title">포인트</div></li>
 										<li>
-											<div class="info-value">0 초</div>
-											<div class="info-title">총 학습시간</div>
+											<c:choose>
+          										<c:when test="${not empty sessionScope.sender}">
+          											<c:choose>	
+          												<c:when test="${fn:length(sender) > 1}">
+          													<div class="info-value"><a href="#" onclick="friendsNews()">${fn:length(sender)}명</a></div>
+															<div class="info-title">친구요청</div>
+          												</c:when>
+          												<c:when test="${fn:length(sender) == 1}">
+          													<c:forEach items="${sessionScope.sender}" var="snder">
+          														<div class="info-value"><a href="#" onclick="friendsNews()"><img src="${snder.img}" width="30px"></a></div>
+																<div class="info-title">${snder.userid}님<br>친구요청</div>
+          													</c:forEach>
+          												</c:when>
+          												<c:otherwise>
+          													<div class="info-value">0명</div>
+															<div class="info-title">친구요청</div>
+          												</c:otherwise>
+          											</c:choose>
+          										</c:when>
+          										<c:otherwise>
+          											<div class="info-value">0명</div>
+													<div class="info-title">친구요청</div>
+          										</c:otherwise>
+          									</c:choose>
+										</li>
+										<li>
+											<c:choose>
+												<c:when test="${sessionScope.todayPlan != null}">
+													<c:choose>
+														<c:when test="${fn:length(todayPlan) > 0}">
+															<div class="info-value"><a href="#" onclick="todayPlan()">${fn:length(todayPlan)}개</a></div>
+															<div class="info-title">오늘 일정</div>
+														</c:when>
+														<c:otherwise>
+															<div class="info-value">0개</div>
+															<div class="info-title">오늘 일정</div>
+														</c:otherwise>
+													</c:choose>
+												</c:when>
+												<c:otherwise>
+													<div class="info-value">0개</div>
+													<div class="info-title">오늘 일정</div>
+												</c:otherwise>
+											</c:choose>
 										</li>
 										<li>
 											<div class="info-value small">14.06.05</div>

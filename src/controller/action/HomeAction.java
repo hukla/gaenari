@@ -17,6 +17,7 @@ import model.dao.DogDAO;
 import model.dao.TestDAO;
 import model.dao.UpdateDAO;
 import model.dao.UserDAO;
+import model.dto.BoardDTO;
 import model.dto.DogDTO;
 import model.dto.UserDTO;
 import exception.LoginException;
@@ -57,6 +58,7 @@ public class HomeAction implements Action {
 		String url = "/error.jsp";
 		List<Integer> senderNo =null;
 		List<UserDTO> list = null;
+		List<BoardDTO> planList = null;
 		
 		if(mth<10)	month = "0"+Integer.toString(mth);
 		else	month = Integer.toString(mth);
@@ -101,6 +103,14 @@ public class HomeAction implements Action {
 							list.add(UserDAO.selectOne(no));
 						}
 					}
+					planList = new ArrayList<BoardDTO>();
+					for (BoardDTO plans : TestDAO.selectPlan(loginUser)) {
+						if (plans.getWrdate().equals(session.getAttribute("today"))) {
+							planList.add(plans);
+						}
+					}
+					
+					session.setAttribute("todayPlan", planList);
 					
 					// sender list를 session에 저장
 					session.removeAttribute("sender");
