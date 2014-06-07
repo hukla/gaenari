@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.List" %>
+<%@ page import="model.dto.UserDTO" %>
+<%@ page import="model.dao.UserDAO" %>
+<%@ page import="model.dao.TestDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +18,21 @@
 		font-family: "맑은 고딕";
 	}
 	
-	div#myCarousel {
+/* 	div#myCarousel {
 		float: left;
 		margin-left: 8%;
 		width: 980px;
 		heigth: 400px;
+	} */
+	div#myCarousel {
+		width: 100%;
+		heigth: 300px;
 	}
-	
-	div#container {
+ 	div#container {
 		width: 980px;
 		float: left;
 		margin-left: 8%;
+		margin-top: 20px;
 	}
 	
 	div#writer {
@@ -47,7 +55,7 @@
 	div#thumb2 {
 		float: left;
 		left:;
-		width: 280px;
+		width: 400px;
 	}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -75,7 +83,7 @@
 					<!-- 회전광고판 항목 -->
 					<div class="carousel-inner" align="left">
 						<div class="active item">
-							<img src="/gaenari/image/SplitShire_IMG_1177.jpg" width="980">
+							<img src="/gaenari/image/dog1.jpg" width="1500">
 							<div class="carousel-caption">
 								<div align="left">
 									<h1>개나리 홈페이지에 오신 것을 환영합니다.</h1>
@@ -86,7 +94,7 @@
 							</div>
 						</div>
 						<div class="item">
-							<img src="/gaenari/image/dogface.jpg" width="980">
+							<img src="/gaenari/image/dog9.jpg" width="1500">
 							<div class="carousel-caption">
 								<div align="left">
 									<h1>커뮤니티와 내 홈페이지를 이용해보세요!</h1>
@@ -95,7 +103,7 @@
 							</div>
 						</div>
 						<div class="item">
-							<img src="/gaenari/image/dogonroad.jpg" width="980">
+							<img src="/gaenari/image/dog6.jpg" width="1500">
 							<div class="carousel-caption">
 								<div align="left">
 									<h1>기부몰에 방문하셔서 유기견들에게 사랑을 나눠주세요</h1>
@@ -105,31 +113,28 @@
 						</div>
 					</div>
 					<!-- 회전광고판 탐색 -->
-					<a class="left carousel-control" href="#myCarousel"
-						data-slide="prev">&lsaquo;</a> <a class="right carousel-control"
-						href="#myCarousel" data-slide="next">&rsaquo;</a>
+					<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+					<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
 				</div>
-
 				<div class="jumbotron" id="container">
 					<div class="container">
-						<h1>
-							<font face="맑은 고딕">${sessionScope.userid}님, 안녕하세요</font>
-						</h1>
-						<small>사랑스런 강아지를 개나리에 등록해주세요!</small> &nbsp;&nbsp;&nbsp;<a
-							class="btn btn-primary btn-lg" onclick="addDog()">등록하기</a>
+						<c:choose>
+							<c:when test="${sessionScope.userid != null }">
+								<h1>${sessionScope.userid}님, 안녕하세요!</h1>
+								<small>사랑스런 강아지를 개나리에 등록해주세요!</small> &nbsp;&nbsp;&nbsp;
+							<a class="btn btn-primary btn-lg" onclick="addDog()">등록하기</a>
+							</c:when>
+							<c:otherwise>
+								<h1>안녕하세요.</h1>
+								<h3 align="center">
+									개나리 서비스를 이용해보세요!
+									<a href="#" class="btn btn-success btn-lg" data-toggle="modal" data-target="#signup-modal">가입하기</a>
+								</h3>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
-				<div class="jumbotron" id="writer">
-					<div class="col-lg-12" id="write">
-						<div class="input-group">
-							<input type="text" class="form-control"> <span
-								class="input-group-btn">
-								<button class="btn btn-default" type="button">Go!</button>
-							</span>
-						</div>
-						<small>검색? or 문구입력?</small>
-					</div>
-				</div>
+				
 				<div class="row">
 					<div class="col-sm-6 col-md-3" id="thumb">
 						<div class="thumbnail">
@@ -148,29 +153,72 @@
 							</div>
 						</div>
 					</div>
+					<%
+					String img = null;
+						if(session.getAttribute("userid")==null){
+							List<UserDTO> list = null;
+							list = UserDAO.allUsers();
+							int ran = (int)(Math.random()*list.size());
+							UserDTO user = UserDAO.selectOne(list.get(ran).getUserno());
+							/* img = TestDAO.selectLastDiary(user.getUserno()).getBrdcontent().split("!split!")[0];
+							if(img!=null){
+								request.setAttribute("image", img);
+							}else{
+								request.setAttribute("image", null);
+								request.setAttribute("content", TestDAO.selectLastDiary(user.getUserno()).getBrdcontent().split("!split!")[1]);
+							} */
+							request.setAttribute("randomUser", user);
+						}
+					%>
 					<div class="col-sm-6 col-md-3" id="thumb2">
-						<div class="thumbnail">
-							<div align="center">
-								<small>${sessionScope.userid}님께 친구로 이 분 추천해요!</small>
+						<div class="panel panel-default" style="border:hidden;">
+							<div class="panel-heading">
+								<img src="${requestScope.randomUser.img}" width="30" class="img-rounded">
+								 ${requestScope.randomUser.userid}님의 소식
 							</div>
-							<br> <img src="/gaenari/image/euriiiii.jpg" width="200"
-								class="img-rounded">
-							<div class="caption">
-								<h3>개나으리</h3>
-								<p>가슴이 부서지지 않으면 시가 나올 수 없다. 사면 내리고 팔면 오르네 개미들의 파수꾼이 되는 그날까지</p>
-								<p>
-									<a href="#" class="btn btn-primary">방문하기</a> <a href="#"
-										class="btn btn-default">다른사람보기</a>
-								</p>
+							<div class="panel-body">
+								<div class="caption">
+									<p>최근 포스트</p>
+									<p>
+									</p>
+								</div>
+							</div>
+							<div class="panel-body">
+								<div class="caption">
+									<p>최근 게시물</p>
+									<p>
+										<c:choose>
+											<c:when test="${requestScope.image != null}">
+												<img src="${requestScope.image}" width="100%">
+											</c:when>
+											<c:otherwise>
+												${requestScope.content}
+											</c:otherwise>
+										</c:choose>
+										<a href="#" class="btn btn-primary" onclick="visitUser('${requestScope.randomUser.userid}')">방문하기</a>
+										<a href="/gaenari/home.do" class="btn btn-default">다른사람보기</a>
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
-			</div>
 		</div>
 		<%@ include file="/static/pages/footer.jsp"%>
 	</div>
+
+	
+	<!-- <div class="jumbotron" id="writer">
+					<div class="col-lg-12" id="write">
+						<div class="input-group">
+							<input type="text" class="form-control"> <span
+								class="input-group-btn">
+								<button class="btn btn-default" type="button">Go!</button>
+							</span>
+						</div>
+						<small>검색? or 문구입력?</small>
+					</div>
+				</div> -->
 </body>
 <script type="text/javascript">
 	function addDog() {
@@ -179,6 +227,15 @@
 
 		newwindow = window.open(url, '강아지등록 페이지',
 				'height=600,width=660,scrollbars=yes');
+		if (window.focus) {
+			newwindow.focus;
+		}
+	}
+	function visitUser(userid) {
+		var newwindow;
+		var url = "/gaenari/miniHome.do?userid="+userid;
+
+		newwindow = window.open(url, '미니홈페이지','height=570,width=1000,scrollbars=yes');
 		if (window.focus) {
 			newwindow.focus;
 		}

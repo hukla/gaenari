@@ -59,4 +59,8 @@
 		UPDATE questionaire set q1=#{q1},q2=#{q2},q3=#{q3},q4=#{q4},q5=#{q5} where userno=#{userno};
 	</update>
 	
+	<select id="getAll" resultType="UserDTO">
+		select * from userinfo where usertype=0;
+	</select>
+	
 </mapper>					

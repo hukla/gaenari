@@ -75,7 +75,6 @@ public class HomeAction implements Action {
 		
 		userid = (String)session.getAttribute("userid");
 		pwd = (String)session.getAttribute("pwd");
-		
 		// login.do에서 넘어온 로그인 정보 가져옴
 		if(request.getParameter("userid")!=null)	userid = request.getParameter("userid");
 		if(request.getParameter("pwd")!=null)	pwd = request.getParameter("pwd");
