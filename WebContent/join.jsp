@@ -22,6 +22,7 @@
 수정: 2014-05-28, 최성훈	내용: 첫 방문시 가입하도록 하고 페북을 통해 받은 이메일, 아이디 뿌려주기
 수정: 2014-05-29, 최성훈	내용: ui수정 및 페이스북 메인사진받아서 뿌리기
 수정: 2014-05-30, 최성훈	내용: 일반회원가입시 email 파라미터 넘겨주기 오류 수정
+수정: 2014-06-07, 이수진	내용: 미니홈피에 인근에서 실종된 유기견 광고를 뿌리기 위해 주소를 select로 받기
  -->
 </head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -67,7 +68,36 @@
 				</tr>
 				<tr>
 					<th>주소</th>
-					<td><input class="form-control" type="text" name="addr" placeholder="주소를 입력하세요"></td>
+					<td>
+					<select name="addr" class="form-control">
+					<option value="광진구">광진구</option>
+					<option value="동대문구">동대문구</option>
+					<option value="중랑구">중랑구</option>
+					<option value="용산구">용산구</option>
+					<option value="성동구">성동구</option>
+					<option value="강북구">강북구</option>
+					<option value="도봉구">도봉구</option>
+					<option value="노원구">노원구</option>
+					<option value="은평구">은평구</option>
+					<option value="서대문구">서대문구</option>
+					<option value="마포구">마포구</option>
+					<option value="양천구">양천구</option>
+					<option value="강서구">강서구</option>
+					<option value="구로구">구로구</option>
+					<option value="금천구">금천구</option>
+					<option value="영등포구">영등포구</option>
+					<option value="동작구">동작구</option>
+					<option value="관악구">관악구</option>
+					<option value="서초구">서초구</option>
+					<option value="강남구">강남구</option>
+					<option value="송파구">송파구</option>
+					<option value="강동구">강동구</option>
+					<option value="종로구">종로구</option>
+					<option value="중구">중구</option>
+					<option value="성북구">성북구</option>				
+				</select>
+					
+					</td>
 				</tr>
 				<tr>
 					<th>타입</th>

@@ -31,9 +31,8 @@
                     </div>
                   </td>
                   <td><input type="text" class="form-control"
-                    name="userid" value=""
+                    name="userid" value="${sessionScope.user.userid}"
                     disabled="disabled">
-                    </span></b>
                   </td>
                 </tr>
                 <tr>

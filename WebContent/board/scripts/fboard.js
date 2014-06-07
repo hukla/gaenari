@@ -1,7 +1,7 @@
 /**
- * 작성자 : 장재희
+ * 작성자 : 이수진
  * 작성일 : 2014-06-07
- * 내용 : 유기견 신고 게시판 ajax
+ * 내용 : 유기견 제보 게시판 ajax
  */
 $(function(){
 	$.ajaxSetup({
@@ -11,7 +11,7 @@ $(function(){
 	
 	function getMdogList() {
 		$.ajax({
-			url: "/gaenari/missingBoardList.do",
+			url: "/gaenari/findingBoardList.do",
 			dataType: "xml",
 			success: function(data) {
 				$('.explore-search-results').empty();
@@ -22,17 +22,16 @@ $(function(){
 					bc += "<div class='mfboard-card'>";
 					bc += "<div class='mfboard-card-background'>";
 					bc += "<div class='mfboard-card-image-wrapper'>";
-					bc += "<a class='mfboard-card-image' href='/gaenari/missingBoardView.do?mbrdno="+$(this).find("mbrdno").text()+
+					bc += "<a class='mfboard-card-image' href='/gaenari/findingBoardView.do?fbrdno="+$(this).find("fbrdno").text()+
 							"' data-original='"+$(this).find("picPath").text()+
 							"' style='display: block; background-image: url("+$(this).find("picPath").text()+");'></a>";
 					bc += "</div>";
 					bc += "<div class='mfboard-card-content'>";
 					bc += "<div class='mfboard-card-title'>";
-					bc += "<a href='/gaenari/missingBoardView.do?mbrdno="+$(this).find("mbrdno").text()+"'>실종 장소 : "+$(this).find("mloc").text()+"<br>";
-					bc += "실종 날짜 : "+$(this).find("mdate").text()+"</a>";
+					bc += "<a href='/gaenari/findingBoardView.do?fbrdno="+$(this).find("fbrdno").text()+"'>발견 장소 : "+$(this).find("floc").text()+"</a>";
 					bc += "</div>";
 					bc += "<div class='mfboard-card-author'>";
-					bc += "ON "+$(this).find("mdate").text();
+					bc += "ON "+$(this).find("wrdate").text();
 					bc += "</div> </div> </div> </div> </div>";
 				});	
 				
@@ -63,12 +62,8 @@ function checkValid() {
 		alert("글 내용을 입력해 주세요.");
 		return false;
 	}
-	if (func.mloc.value == "") {
-		alert("분실장소를 입력해 주세요.");
-		return false;
-	}
-	if (func.mdate.value == "") {
-		alert("분실날짜를 입력해 주세요.");
+	if (func.floc.value == "") {
+		alert("목격장소를 입력해 주세요.");
 		return false;
 	}
 	return true;
