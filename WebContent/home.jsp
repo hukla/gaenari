@@ -16,7 +16,7 @@
 	
 	div#myCarousel {
 		float: left;
-		margin-left: 190px;
+		margin-left: 100px;
 		width: 980px;
 		heigth: 400px;
 	}
@@ -24,23 +24,23 @@
 	div#container {
 		width: 980px;
 		float: left;
-		margin-left: 190px;
+		margin-left: 100px;
 	}
 	
 	div#writer {
 		width: 400px;
-		margin-right: 180px;
+		margin-right: 60px;
 		float: right;
 	}
 	
 	div#bigimg {
 		float: left;
-		margin-left: 190px;
+		margin-left: 100px;
 	}
 	
 	div#thumb {
 		float: left;
-		margin-left: 190px;
+		margin-left: 100px;
 		width: 280px;
 	}
 	
@@ -183,48 +183,5 @@
 			newwindow.focus;
 		}
 	}
-</script>
-<script>
-$(function(){
-	$.ajaxSetup({
-		contentType:'application/x-www-form-urlencoded;charset=UTF-8',
-		type:"post"
-	});
-	
-	function getRandomList() {
-		$.ajax({
-			url: "/gaenari/getRandomMissing.do",
-			dataType: "xml",
-			success: function(data) {
-				//alert("success");
-				$("mlist tr:gt(0)").remove();
-				var table="";
-				
-				$(data).find('mlist').each(function (index){
-					table += "<tr>";
-					table += "<td>"+$(this).find("mname").text()+"</td>";
-					table += "<td>"+$(this).find("brdno").text()+"</td>";
-					table += "<td>"+$(this).find("mbrdno").text()+"</td>";
-					table += "<td>"+$(this).find("mkind").text()+"</td>";
-					table += "<td>"+$(this).find("mdate").text()+"</td>";
-					table += "<td>"+$(this).find("mloc").text()+"</td>";
-					
-					if($(this).find("sent").text() == 'Y') {
-						table += "<td><font color='red'><strong>마감됨</strong></font></td>";	
-					} else {
-						table += "<td><input type='button' name='"+$(this).find("drno").text()+"'id='term_req' value='요청 마감'></td>";	
-					}
-					table += "</tr>";
-				});
-				
-				$('#mlist tr:eq(0)').after(table);
-			},
-			error: function(data) { alert(data+' => 에러 발생');}
-			
-		});// ajax 끝
-	}// getMyDonList() 함수 끝
-	
-	getRandomList();
-});
 </script>
 </html>
