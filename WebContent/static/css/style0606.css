@@ -572,7 +572,7 @@ color: #8c8c8c;
 	content: " ";
 }
 
-#mboard-write-form .mboard-info-header {
+#mboard-view-form .mboard-info-header {
 margin-top:19px;
 line-height:30px;
 display:table;
@@ -590,13 +590,13 @@ box-shadow:0 1px 2px 0 #646464;
 padding:10px 33px;
 }
 
-#mboard-write-form .mboard-dog-name {
+#mboard-view-form .mboard-dog-name {
 font-size:20px;
 min-width:80%;
 color:#1c3a58;
 }
 
-#mboard-write-form .mboard-info-main {
+#mboard-view-form .mboard-info-main {
 height:249px;
 width:100%;
 margin-top:11px;
@@ -612,7 +612,7 @@ box-shadow:0 1px 2px 0 #646464;
 display:table;
 }
 
-#mboard-write-form .mboard-info-main .left-part {
+#mboard-view-form .mboard-info-main .left-part {
 position:relative;
 width:70%;
 background-position:center;
@@ -624,22 +624,22 @@ background-size:cover;
   border-radius:5px;
 }
 
-#mboard-write-form .mboard-info-main .right-part {
+#mboard-view-form .mboard-info-main .right-part {
 overflow:hidden;
 border-bottom-right-radius:5px;
 height:249px;
 }
 
-#mboard-write-form .mboard-info-main>div {
+#mboard-view-form .mboard-info-main>div {
 vertical-align:top;
 display:table-cell;
 height:100%;
 }
 
-#mboard-write-form .mboard-info-main .right-part .part-header {
+#mboard-view-form .mboard-info-main .right-part .part-header {
 height:50%;
 }
-#mboard-write-form .mboard-info-main .right-part .part-header .part-header-title
+#mboard-view-form .mboard-info-main .right-part .part-header .part-header-title
 {
 
 text-align: center;
@@ -648,7 +648,7 @@ font-size: 20px;
   padding: 40px;
 }
 
-#mboard-write-form .mboard-info-main .right-part .part-line-gray {
+#mboard-view-form .mboard-info-main .right-part .part-line-gray {
 background-color:#f5f2f0;
 font-weight:bold;
 font-size:12px;
@@ -659,7 +659,7 @@ padding:0 20px;
   width:20%
 }
 
-#mboard-write-form .mboard-info-main .right-part .part-line {
+#mboard-view-form .mboard-info-main .right-part .part-line {
 color:#9dabb8;
 font-size:12px;
 height:42px;
@@ -669,15 +669,15 @@ padding:0 20px;
   width:30%;
 }
 
-#mboard-write-form .mboard-info-bottom {
+#mboard-view-form .mboard-info-bottom {
 margin-top: 11px;
 }
 
-#mboard-write-form .mboard-info-bottom .content-container {
+#mboard-view-form .mboard-info-bottom .content-container {
   width: 100%;
 }
 
-#mboard-write-form .mboard-info-bottom .content-container .mboard-info-content {
+#mboard-view-form .mboard-info-bottom .content-container .mboard-info-content {
   margin-bottom: 15px;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
@@ -690,7 +690,7 @@ background-color: white;
 box-shadow: 0px 1px 2px 0px #646464;
 }
 
-#mboard-write-form .mboard-info-bottom .content-container .mboard-info-content .mboard-info-content-text {
+#mboard-view-form .mboard-info-bottom .content-container .mboard-info-content .mboard-info-content-text {
   padding: 30px;
 }
 
