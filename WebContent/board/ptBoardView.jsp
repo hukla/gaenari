@@ -35,17 +35,24 @@
                                     <c:choose>
                                         <c:when test="${requestScope.resultContent.worktype == '목욕'}">
                                             <img class="ptboard-type-icon" src="/gaenari/static/images/bath-icon.png"/>
+                                            <div class="ptboard-type-content">
+		                                        목욕
+		                                    </div>
                                         </c:when>
                                         <c:when test="${requestScope.resultContent.worktype == '산책'}">
                                             <img class="ptboard-type-icon" src="/gaenari/static/images/dog-walk-icon.png"/>
+                                            <div class="ptboard-type-content">
+		                                        산책
+		                                    </div>
                                         </c:when>
                                         <c:otherwise>
                                             <img class="ptboard-type-icon" src="/gaenari/static/images/pet-sitting-icon.png"/>
+                                            <div class="ptboard-type-content">
+		                                        위탁
+		                                    </div>
                                         </c:otherwise>
                                     </c:choose>
-                                    <div class="ptboard-type-content">
-                                        목욕
-                                    </div>
+                                    
                                 </div>
                                 <div class="part-line-gray">작성자</div>
                                 <div class="part-line">${requestScope.resultContent.userid}</div>

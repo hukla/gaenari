@@ -15,3 +15,31 @@ function ptDelete(ptbrdno) {
 		return;
 	}
 }
+function checkValid() {
+	var func = window.document.boardWriteForm; // 제목과 글 내용이 비면 넘어가지 않도록 하는 함수
+	if (func.title.value == "") {
+		alert("제목을 입력해 주세요.");
+		return false;
+	}
+	if (func.brdcontent.value == "") {
+		alert("글 내용을 입력해 주세요.");
+		return false;
+	}
+	if (func.worktype.value == "") {
+		alert("작업종류를 입력해 주세요.");
+		return false;
+	}
+	if (func.workloc.value == "") {
+		alert("작업장소를 입력해 주세요.");
+		return false;
+	}
+	if (func.workhour.value == "") {
+		alert("작업시간을 입력해 주세요.");
+		return false;
+	}
+	return true;
+}
+
+$(function() {
+    $( "#datepicker" ).datepicker();
+  });

@@ -22,7 +22,7 @@
                                 <div class="ptboard-info-description">도움이 필요한 애견인들이 여기있어요.</div>
                             </div>
                             <div class="ptboard-options-wrapper">
-                                <a class="btn btn-yellow write-btn" href="/gaenari/board/missingBoardWrite.jsp">글쓰기</a>
+                                <a class="btn btn-yellow write-btn" href="/gaenari/board/ptBoardWrite.jsp">글쓰기</a>
                             </div>
                         </div>
                         <table class="table ptboard-list">
