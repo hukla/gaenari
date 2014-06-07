@@ -33,7 +33,6 @@
                   <td><input type="text" class="form-control"
                     name="userid" value=""
                     disabled="disabled">
-                    </span></b>
                   </td>
                 </tr>
                 <tr>
