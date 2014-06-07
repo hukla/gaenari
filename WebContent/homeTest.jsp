@@ -140,7 +140,7 @@
 								class="img-rounded">
 							<div class="caption">
 								<h3>좀찾아주십시오</h3>
-								<p>말을잃어버려서기분이안좋스빈다.<br>mname<div id="mname"></div></p>
+								<p>말을잃어버려서기분이안좋스빈다.<br><div id="mname">mname</div></p>
 								<p>
 									<a href="#" class="btn btn-primary">봤어요</a> <a
 										href="/gaenari/missingBoardMain.do" class="btn btn-default">다른신고보기</a>
@@ -194,7 +194,7 @@ $(function(){
 	function getRandomList() {
 		$.ajax({
 			url: "/gaenari/getRandomMissing.do",
-			dataType: "xml",
+			dataType: "text",
 			success: function(data) {
 				$(data).find('mlist').each(function(){
 					var mname = $(this).find("mname").text();
@@ -203,6 +203,7 @@ $(function(){
 					var mkind = $(this).find("mkind").text();
 					var mdate = $(this).find("mdate").text();
 					var mloc = $(this).find("mloc").text();
+					alert(mname);
 				});
 				$("#mname").append(mname);
 				alert(mname);

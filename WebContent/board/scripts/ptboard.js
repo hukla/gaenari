@@ -1,5 +1,7 @@
 /**
- * 
+ * 작성자: 장재희
+ * 작성일: 2014-06-07
+ * 내용: 펫 도우미 게시판 js파일
  */
 function send() {
 	if (document.requestForm.command.value != "")
