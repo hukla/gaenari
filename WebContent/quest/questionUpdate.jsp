@@ -50,7 +50,7 @@
 <input type="radio" name="no5" value="N" <%=(q5.equals("N")?"checked":"") %>>&nbsp; 아니오<br>
 <br><br><br>응답해 주신 자료는 암호화되어 관리되며 입양 신청 시 분양자에게 전달됩니다.<br>
 개인정보를 소중히 하는 개나리가 되겠습니다.<br><br><br></p>
-<center><input type="submit" value="제출하기"><input type="button" value="닫기" onclick='window.close()'></center>
+<center><input type="submit" value="수정하기"><input type="button" value="닫기" onclick='window.close()'></center>
 </form>
 </body>
 <script type="text/javascript">

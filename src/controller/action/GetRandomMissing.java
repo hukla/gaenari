@@ -87,7 +87,7 @@ public class GetRandomMissing implements Action {
 				ranNum=(int)(Math.random()*mdto.size());
 				mdto3 = MFABoardDAO.MselectOne(ranNum); 
 			}
-			result += "<mdto>";
+			/*result += "<mdto>";
 			result += "<mname>"+mdto3.getMname()+"</mname>";
 			result += "<brdno>"+mdto3.getBrdno()+"</brdno>";
 			result += "<mbrdno>"+mdto3.getMbrdno()+"</mbrdno>";
@@ -95,7 +95,10 @@ public class GetRandomMissing implements Action {
 			result += "<mdate>"+mdto3.getMdate()+"</mdate>";
 			result += "<mloc>"+mdto3.getMloc()+"</mloc>";
 			result += "<picPath>"+mdto3.getBrdcontent().split("!split!")[0]+"</picPath>";
-			result += "</mdto>";
+			result += "</mdto>";*/
+			
+			
+			result += mdto3.getMname()+"/";
 
 			out.print(result);
 			System.out.println("mName="+mdto3.getMname());
