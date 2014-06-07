@@ -16,7 +16,7 @@
 	
 	div#myCarousel {
 		float: left;
-		margin-left: 100px;
+		margin-left: 190px;
 		width: 980px;
 		heigth: 400px;
 	}
@@ -24,23 +24,23 @@
 	div#container {
 		width: 980px;
 		float: left;
-		margin-left: 100px;
+		margin-left: 190px;
 	}
 	
 	div#writer {
 		width: 400px;
-		margin-right: 60px;
+		margin-right: 180px;
 		float: right;
 	}
 	
 	div#bigimg {
 		float: left;
-		margin-left: 100px;
+		margin-left: 190px;
 	}
 	
 	div#thumb {
 		float: left;
-		margin-left: 100px;
+		margin-left: 190px;
 		width: 280px;
 	}
 	

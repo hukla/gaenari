@@ -14,9 +14,9 @@
 		font-family: "맑은 고딕";
 	}
 	
-	div#myCarousel {
+	div#myCarousel{
 		float: left;
-		margin-left: 190px;
+		margin-left: 100px;
 		width: 980px;
 		heigth: 400px;
 	}
@@ -24,23 +24,23 @@
 	div#container {
 		width: 980px;
 		float: left;
-		margin-left: 190px;
+		margin-left: 100px;
 	}
 	
 	div#writer {
 		width: 400px;
-		margin-right: 180px;
+		margin-right: 60px;
 		float: right;
 	}
 	
 	div#bigimg {
 		float: left;
-		margin-left: 190px;
+		margin-left: 100px;
 	}
 	
 	div#thumb {
 		float: left;
-		margin-left: 190px;
+		margin-left: 100px;
 		width: 280px;
 	}
 	
@@ -140,7 +140,7 @@
 								class="img-rounded">
 							<div class="caption">
 								<h3>좀찾아주십시오</h3>
-								<p>말을잃어버려서기분이안좋스빈다.</p>
+								<p>말을잃어버려서기분이안좋스빈다.<br>mname<div id="mname"></div></p>
 								<p>
 									<a href="#" class="btn btn-primary">봤어요</a> <a
 										href="/gaenari/missingBoardMain.do" class="btn btn-default">다른신고보기</a>
@@ -196,33 +196,21 @@ $(function(){
 			url: "/gaenari/getRandomMissing.do",
 			dataType: "xml",
 			success: function(data) {
-				//alert("success");
-				$("mlist tr:gt(0)").remove();
-				var table="";
-				
-				$(data).find('mlist').each(function (index){
-					table += "<tr>";
-					table += "<td>"+$(this).find("mname").text()+"</td>";
-					table += "<td>"+$(this).find("brdno").text()+"</td>";
-					table += "<td>"+$(this).find("mbrdno").text()+"</td>";
-					table += "<td>"+$(this).find("mkind").text()+"</td>";
-					table += "<td>"+$(this).find("mdate").text()+"</td>";
-					table += "<td>"+$(this).find("mloc").text()+"</td>";
-					
-					if($(this).find("sent").text() == 'Y') {
-						table += "<td><font color='red'><strong>마감됨</strong></font></td>";	
-					} else {
-						table += "<td><input type='button' name='"+$(this).find("drno").text()+"'id='term_req' value='요청 마감'></td>";	
-					}
-					table += "</tr>";
+				$(data).find('mlist').each(function(){
+					var mname = $(this).find("mname").text();
+					var brdno = $(this).find("brdno").text();
+					var mbrdno = $(this).find("mbrdno").text();
+					var mkind = $(this).find("mkind").text();
+					var mdate = $(this).find("mdate").text();
+					var mloc = $(this).find("mloc").text();
 				});
-				
-				$('#mlist tr:eq(0)').after(table);
+				$("#mname").append(mname);
+				alert(mname);
 			},
 			error: function(data) { alert(data+' => 에러 발생');}
 			
 		});// ajax 끝
-	}// getMyDonList() 함수 끝
+	}// getRandomList() 함수 끝
 	
 	getRandomList();
 });
