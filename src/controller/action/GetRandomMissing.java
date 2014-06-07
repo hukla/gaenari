@@ -39,12 +39,15 @@ public class GetRandomMissing implements Action {
 			sqlSession = DBUtil.getSqlSession();
 			String address = UserDAO.logCheck(userid).getAddress();
 			mdto=MFABoardDAO.MselectAll();
+			System.out.println("mdto.get(5).getMloc().toString()="+mdto.get(5).getMloc().toString());
 			for(int i=0;i<mdto.size();i++){//분실 장소와 주소가 같은 글 목록을 추려냄
 				if(mdto.get(i).getMloc().toString().equals(address)){
 					mdto2.add(mdto.get(i));
 				}
 			}
+			System.out.println("mdto2.toString()="+mdto2.toString());
 			int ranNum = (int)(Math.random()*100) + (int)(Math.random()*10) + 1;
+			System.out.println("ranNum="+ranNum);
 			if(mdto2.isEmpty()){				//분실 장소와 주소가 같은 글이 없으면
 				MFABoardDAO.MselectOne(ranNum);	//난수로 목록 뽑음
 			}else{
