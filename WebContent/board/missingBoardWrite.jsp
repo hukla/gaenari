@@ -31,9 +31,8 @@
                     </div>
                   </td>
                   <td><input type="text" class="form-control"
-                    name="userid" value=""
+                    name="userid" value="${sessionScope.user.userid}"
                     disabled="disabled">
-                    </span></b>
                   </td>
                 </tr>
                 <tr>
@@ -171,6 +170,7 @@
                   </td>
                   <td> <input type="file"
                     name="uploadFile" class="form-control" value="사진 업로드"><br/>
+                    <small>* 첨부파일은 5MB이상 등록할 수 없습니다.</small>
                   </td>
                 </tr>
                 <tr>

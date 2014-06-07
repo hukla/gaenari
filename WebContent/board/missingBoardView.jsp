@@ -10,6 +10,7 @@
             <div id="content">
                 <%@ include file="/static/pages/menubar.jsp"%>
                 <div class="container">
+                <div id="mboard-view-form">
                     <div class="mboard-info-header">
                         <div class="mboard-dog-name">${requestScope.resultContent.mname}를 찾습니다!</div>
                     </div>
@@ -40,6 +41,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
             <%@ include file="/static/pages/footer.jsp"%>

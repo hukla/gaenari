@@ -1,38 +1,40 @@
-<%@page import="model.dto.BoardDTO"%>
-<%@ include file="/frame.jsp"%>
-<%@ include file="menu1.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>유기견 제보 게시판</title>
-</head>
-<body>
-	<table width=950 cellpadding=0 cellspacing=0 align=center valign='top' border=0>
-		<tr>
-			<td>
-				<img src='${requestScope.picPath}' width='350' height='350' border='0' align='absmiddle'></a>
-			</td>
-			<td valign="top" width=520 align=center cellpadding=0 cellspacing=0>
-			<table width=500 valign="top" cellpadding=0 cellspacing=0>
-				<tr>
-					<td><p align="center"><font color="black"><b><span style="font-size:10pt;">발 견 장 소</span></b></font></p></td>
-					<td><span style="font-size:9pt;"><b>${requestScope.resultContent.floc}</b></span></td>
-				</tr>
-				<tr>
-					<td><p align="center"><font color="black"><b><span style="font-size:10pt;">제 목</span></b></font></p></td>
-					<td><span style="font-size:9pt;"><b>${requestScope.resultContent.title}</b></span></td>
-				</tr>
-				<tr>
-					<td><p align="center"><font color="black"><b><span style="font-size:10pt;">내 용</span></b></font></p></td>
-					<td><span style="font-size:9pt;"><b>${requestScope.resultContent.brdcontent}</b></span></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>
-</body>
+    <%@ include file="/static/pages/head.jsp"%>
+    <body>
+        <div id="wrapper">
+            <%@ include file="/static/pages/header.jsp"%>
+            <div id="content">
+                <%@ include file="/static/pages/menubar.jsp"%>
+                <div class="container">
+                    <div class="mboard-info-header">
+                        <div class="mboard-dog-name">${requestScope.resultContent.title}</div>
+                    </div>
+                    <div class="mboard-info-main">
+                        <div class="left-part" style="background-image: url('${requestScope.picPath}');"></div>
+                        <div class="right-part">
+                            <div class="part-header">
+                                <div class="part-header-title">${requestScope.resultContent.title}</div>
+                            </div>
+                            <div class="part-line-gray">발견장소</div>
+                            <div class="part-line">${requestScope.resultContent.floc}</div>
+                        </div>
+                    </div>
+                    <div class="mboard-info-bottom">
+                        <div class="content-container">
+                            <div class="mboard-info-content">
+                                <div class="mboard-info-content-text">
+                                    ${requestScope.resultContent.brdcontent}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%@ include file="/static/pages/footer.jsp"%>
+        </div>
+    </body>
 </html>
-<%@ include file="../bottom.jsp"%>

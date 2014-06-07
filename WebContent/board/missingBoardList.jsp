@@ -18,7 +18,7 @@
                             <div class="explore-search-top">
                                 <div class="explore-info">
                                     <div class="explore-info-title">유기견 신고</div>
-                                    <div class="explore-info-description">애타게 찾고있는 가족들을 위해 유기견을 신고해주세요!</div>
+                                    <div class="explore-info-description">목격자를 찾을 수 있게 실종된 강아지를 신고하세요!</div>
                                 </div>
                                 <div class="explore-options-wrapper">
                                     <a class="btn btn-yellow write-btn" href="/gaenari/board/missingBoardWrite.jsp">글쓰기</a>
