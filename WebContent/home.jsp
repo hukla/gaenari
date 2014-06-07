@@ -140,7 +140,7 @@
 								class="img-rounded">
 							<div class="caption">
 								<h3>좀찾아주십시오</h3>
-								<p>말을잃어버려서기분이안좋스빈다.</p>
+								<p>말을잃어버려서기분이안좋스빈다.<br>${mlist.mname}</p>
 								<p>
 									<a href="#" class="btn btn-primary">봤어요</a> <a
 										href="/gaenari/missingBoardMain.do" class="btn btn-default">다른신고보기</a>
@@ -183,5 +183,41 @@
 			newwindow.focus;
 		}
 	}
+</script>
+<script>
+$(function(){
+	$.ajaxSetup({
+		contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+		type:"post"
+	});
+	
+	function getRandomList() {
+		$.ajax({
+			url: "/gaenari/getRandomMissing.do",
+			dataType: "xml",
+			success: function(data) {
+				var table="";
+				
+				$(data).find('mlist').each(function (index){
+					table += "<tr>";
+					table += "<td>"+$(this).find("mname").text()+"</td>";
+					table += "<td>"+$(this).find("brdno").text()+"</td>";
+					table += "<td>"+$(this).find("mbrdno").text()+"</td>";
+					table += "<td>"+$(this).find("mkind").text()+"</td>";
+					table += "<td>"+$(this).find("mdate").text()+"</td>";
+					table += "<td>"+$(this).find("mloc").text()+"</td>";
+					
+					table += "</tr>";
+				});
+				
+				$('#mlist tr:eq(0)').after(table);
+			},
+			error: function(data) { alert(data+' => 에러 발생');}
+			
+		});// ajax 끝
+	}// getRandomList() 함수 끝
+	
+	getRandomList();
+});
 </script>
 </html>

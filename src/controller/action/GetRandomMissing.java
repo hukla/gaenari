@@ -8,6 +8,7 @@ package controller.action;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -41,33 +42,51 @@ public class GetRandomMissing implements Action {
 		PrintWriter out = response.getWriter();
 		
 		String userid = (String)session.getAttribute("userid");
-		String url = "null";
+		System.out.println(userid);
+		String url = null;
 		String result = "";
+		String address = null;
+		int ranNum = 0;
+	
 		List<MissingBoardDTO> mdto = null;//신고 게시판의 모든 글 목록
 		List<MissingBoardDTO> mdto2 = null;//신고 게시판의 분실 장소와 주소가 같은 글 목록
 		MissingBoardDTO mdto3 = null;//글 목록 중 랜덤으로 선택된 DTO
 		
 		try{
+			mdto = new ArrayList<MissingBoardDTO>();
+			mdto2 = new ArrayList<MissingBoardDTO>();
 			sqlSession = DBUtil.getSqlSession();
-			String address = UserDAO.logCheck(userid).getAddress();
 			mdto=MFABoardDAO.MselectAll();
-			System.out.println("mdto.get(5).getMloc().toString()="+mdto.get(5).getMloc().toString());
-			System.out.println("["+address+"]");
-			for(int i=5;i<mdto.size();i++){//분실 장소와 주소가 같은 글 목록을 추려냄
-				if(mdto.get(i).getMloc().equals(address.trim())){
-					mdto2.add(mdto.get(i));
+		
+			if(userid!=null){
+				System.out.println("sessionID있음!");
+				address = UserDAO.logCheck(userid).getAddress();
+				
+				System.out.println("mdto.get(5).getMloc().toString()="+mdto.get(5).getMloc().toString());
+				System.out.println("["+address+"]");
+				System.out.println(mdto.get(0).getMloc());
+				System.out.println(mdto.get(0).getMloc().equals(address));
+				System.out.println(mdto.get(0).getMloc().equals("은평구"));
+				System.out.println(mdto.get(1).getMloc());
+				System.out.println(mdto.get(2).getMloc());
+				System.out.println(mdto.get(2).getMloc().equals("노원구"));
+				for(int i=0;i<mdto.size();i++){//분실 장소와 주소가 같은 글 목록을 추려냄
+					if(mdto.get(i).getMloc().equals(address)){
+						mdto2.add(mdto.get(i));
+					}
 				}
+				System.out.println("mdto2[]="+mdto2.size());
+				ranNum = (int)(Math.random()*mdto2.size());
+				System.out.println("ranNum="+ranNum);
+				if(mdto2.isEmpty()){						//분실 장소와 주소가 같은 글이 없으면
+					mdto3=MFABoardDAO.MselectOne(ranNum);	//난수로 목록 뽑음
+				}else{										//분실 장소와 주소가 같은 글의 목록이 있으면
+					mdto3=mdto2.get(ranNum);				//그 목록에서 랜덤으로 가져옴
+				}
+			}else{
+				ranNum=(int)(Math.random()*mdto.size());
+				mdto3 = MFABoardDAO.MselectOne(ranNum); 
 			}
-			System.out.println("mdto2.toString()="+mdto2.toString());
-			int ranNum = (int)(Math.random()*100) + (int)(Math.random()*10) + 1;
-			System.out.println("ranNum="+ranNum);
-			if(mdto2.isEmpty()){						//분실 장소와 주소가 같은 글이 없으면
-				mdto3=MFABoardDAO.MselectOne(ranNum);	//난수로 목록 뽑음
-			}else{										//분실 장소와 주소가 같은 글의 목록이 있으면
-				mdto3=mdto2.get(ranNum);				//그 목록에서 랜덤으로 가져옴
-			}
-			System.out.println("mdto3.toString()="+mdto3.toString());
-			
 			result += "<mdto>";
 			result += "<mname>"+mdto3.getMname()+"</mname>";
 			result += "<brdno>"+mdto3.getBrdno()+"</brdno>";
@@ -77,11 +96,9 @@ public class GetRandomMissing implements Action {
 			result += "<mloc>"+mdto3.getMloc()+"</mloc>";
 			result += "<picPath>"+mdto3.getBrdcontent().split("!split!")[0]+"</picPath>";
 			result += "</mdto>";
-			
-			log.debug(result);
-			
-			out.print(result);
 
+			out.print(result);
+			System.out.println("picPath="+mdto3.getBrdcontent().split("!split!")[0]);
 		} catch(Exception e){
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
