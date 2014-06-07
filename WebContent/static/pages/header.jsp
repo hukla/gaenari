@@ -63,7 +63,7 @@
 						<div class="dropdown">
 							<span class="btn btn-yellow header-user-menu dropdown-toggle" data-toggle="dropdown"> 
 								<span class="header-user-info">
-									<div class="header-user-menu-image profile-image" style=" background-image: url(http://localhost:8080/gaenari/image/usericon.jpg); "></div>
+									<div class="header-user-menu-image profile-image" style=" background-image: url(${sessionScope.user.img}); "></div>
 								</span>
 								<span class="header-user-fullname">Jaehee Jang</span> 
 							</span>
