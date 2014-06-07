@@ -1,5 +1,6 @@
 package controller.action;  
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -8,6 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import model.dao.TestDAO;
 import model.dao.UpdateDAO;
@@ -103,7 +107,12 @@ public class MinihomeMainAction implements Action {
 			updateimg = request.getParameter("updateimg");
 			if(updateimg!=null){
 				UpdateDAO.updateImg(loginUser.getUserid(),updateimg);
+				loginUser = UserDAO.logCheck(loginUser.getUserid());	
 			}
+			///////////////////////////////////////////////////////////////////
+			//14-05-26 성훈추가: 사용자별 사진첩 폴더생성
+			
+			///////////////////////////////////////////////
 			diaryList = TestDAO.selectThreeDiaries(loginUser);	// 이 페이지 user의 일기, 일정, 방명록 3개씩 가져오기
 			planList = TestDAO.selectThreePlans(loginUser);
 			visitList = TestDAO.selectThreeVisits(loginUser);

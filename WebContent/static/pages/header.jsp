@@ -65,7 +65,7 @@
 								<span class="header-user-info">
 									<div class="header-user-menu-image profile-image" style=" background-image: url(${sessionScope.user.img}); "></div>
 								</span>
-								<span class="header-user-fullname">Jaehee Jang</span> 
+								<span class="header-user-fullname">${sessionScope.userid}</span> 
 							</span>
 							<div class="dropdown-menu" style="top: 73px; right: 0px;">
 								<div class="header-user-menu-tip"></div>
