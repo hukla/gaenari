@@ -98,7 +98,7 @@ public class GetRandomMissing implements Action {
 			result += "</mdto>";
 
 			out.print(result);
-			System.out.println("picPath="+mdto3.getBrdcontent().split("!split!")[0]);
+			System.out.println("mName="+mdto3.getMname());
 		} catch(Exception e){
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
