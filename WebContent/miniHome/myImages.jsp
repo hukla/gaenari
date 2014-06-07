@@ -35,6 +35,9 @@
 			</c:if>
 		</tr>
 	</table>
+	<form action="/gaenari/miniHome.do" enctype="multipart/form-data" method="post">
+		<input type="file" name="myImage">
+	</form>
 </body>
 <script type="text/javascript">
 	function selectPsa(image){
