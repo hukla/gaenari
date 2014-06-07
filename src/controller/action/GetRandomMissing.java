@@ -97,7 +97,6 @@ public class GetRandomMissing implements Action {
 			result += "<picPath>"+mdto3.getBrdcontent().split("!split!")[0]+"</picPath>";
 			result += "</mdto>";*/
 			
-			
 			result += mdto3.getMname()+"/";
 
 			out.print(result);
@@ -110,5 +109,4 @@ public class GetRandomMissing implements Action {
 			DBUtil.closeSession(sqlSession);
 		}
 	}
-
 }

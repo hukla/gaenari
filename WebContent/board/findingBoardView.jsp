@@ -10,6 +10,7 @@
             <div id="content">
                 <%@ include file="/static/pages/menubar.jsp"%>
                 <div class="container">
+                <div id="mboard-view-form">
                     <div class="mboard-info-header">
                         <div class="mboard-dog-name">${requestScope.resultContent.title}</div>
                     </div>
