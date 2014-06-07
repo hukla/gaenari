@@ -10,8 +10,8 @@
             <div id="content">
                 <%@ include file="/static/pages/menubar.jsp"%>
                 <div class="container">
-                    <div class="fboard-info-header">
-                        <div class="fboard-dog-name">${requestScope.resultContent.title}</div>
+                    <div class="mboard-info-header">
+                        <div class="mboard-dog-name">${requestScope.resultContent.title}</div>
                     </div>
                     <div class="mboard-info-main">
                         <div class="left-part" style="background-image: url('${requestScope.picPath}');"></div>
@@ -23,10 +23,10 @@
                             <div class="part-line">${requestScope.resultContent.floc}</div>
                         </div>
                     </div>
-                    <div class="fboard-info-bottom">
+                    <div class="mboard-info-bottom">
                         <div class="content-container">
-                            <div class="fboard-info-content">
-                                <div class="fboard-info-content-text">
+                            <div class="mboard-info-content">
+                                <div class="mboard-info-content-text">
                                     ${requestScope.resultContent.brdcontent}
                                 </div>
                             </div>
