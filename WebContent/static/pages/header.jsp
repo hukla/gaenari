@@ -119,8 +119,8 @@
 											</c:choose>
 										</li>
 										<li>
-											<div class="info-value small">14.06.05</div>
-											<div class="info-title">마지막 접속일</div>
+											<div class="info-value small">${sessionScope.user.point }</div>
+											<div class="info-title">마일나리</div>
 										</li>
 									</ul>
 									<ul class="header-user-menu-tools">
