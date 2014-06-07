@@ -35,13 +35,19 @@
 			</c:if>
 		</tr>
 	</table>
-	<form action="/gaenari/miniHome.do" enctype="multipart/form-data" method="post">
+	<form action="/gaenari/miniHome.do" enctype="multipart/form-data" method="post" id="imgForm">
 		<input type="file" name="myImage">
+		<input type="hidden" name="userid" value="${requestScope.user.userid}">
+		<input type="button" onclick="submit()" value="등록">
 	</form>
 </body>
 <script type="text/javascript">
 	function selectPsa(image){
 		window.opener.location.href="/gaenari/miniHome.do?updateimg="+image+"&userid=${requestScope.user.userid}";
+		window.self.close();
+	}
+	function submit(){
+		$("#imgForm").submit();
 		window.self.close();
 	}
 </script>
