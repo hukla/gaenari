@@ -7,7 +7,7 @@
 		<li><a href="/gaenari/mallMyPage.do">나의 기부 내역</a></li>
 	</c:if>
 	<c:if test="${sessionScope.user.usertype > 0}">
-		<li><a href="/gaenari/mallMyPage.do">나의 기부 요청 내역</a></li>
+		<li><a href="/gaenari/mallMyPage.do">나의 요청 내역</a></li>
 	</c:if>
 	<c:if test="${sessionScope.user.usertype == -1}">
 		<li><a href="/gaenari/mallManage.do">기부몰 관리하기</a></li>

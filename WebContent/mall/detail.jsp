@@ -48,7 +48,7 @@
                                             </c:choose>
                                         </div>
                                     </div>
-                                    <div class="part-line-gray">기부수량</div>
+                                    <div class="part-line-gray">수량</div>
                                     <div class="part-line">
                                         <input type=text name='ct_qty' class="form-control qty" value='1'>
                                         <img src='mall/img/qty_control.gif' border=0 align=absmiddle usemap="#qty_control_map"> 개 

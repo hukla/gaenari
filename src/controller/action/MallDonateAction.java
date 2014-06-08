@@ -62,12 +62,9 @@ public class MallDonateAction implements Action {
 		// 성공 페이지에서 결과 출력하기 위해 attribute 설정
 		request.setAttribute("donnation", donnation);
 		request.setAttribute("itemname", request.getParameter("item_name"));
-		System.out.println(request.getParameter("item_name"));
 		request.setAttribute("cntrname", targetcntrname);
 		
 		response.getWriter().print("{\"isSuccess\":true}");
-		System.out.println("{\"isSuccess\":true}");
-		System.out.println("ok");
 		// forward
 		//request.getRequestDispatcher(url).forward(request, response);
 	}

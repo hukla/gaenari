@@ -40,7 +40,8 @@ $(function () {
             return false;
         } else if ($('input[name=usertype]').val() > 0) {
             $('#item_list').prop('action', '/gaenari/mallRequest.do');
-            return true;
+            donrequest();
+            return false;
         } else if ($('input[name=usertype]').val() < 0) {
             var newwindow;
             var url = "/gaenari/itemUpdateForm.do?itemno=" + $('input[name=selectedItemNo]').val();
@@ -82,5 +83,32 @@ $(function () {
         }); // ajax 끝
     }
     
+    function donrequest() {
+        $.ajax({
+            url: "/gaenari/mallRequest.do",
+            data: $('#item_list').serialize(),
+            dataType: "JSON",
+            success: function (data) {
+            	//alert(data.isSuccess);
+            	var alertmsg = "";
+            	$('.item-donate-state').empty();
+            	
+            	if(data.isSuccess) {
+            		
+            		alertmsg += "<div class='alert alert-warning alert-dismissable'>";
+            		alertmsg += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            		alertmsg += "<strong>요청 완료!</strong>";
+            		alertmsg += "</div>";
+            	}
+            	
+            	$('.item-donate-state').html(alertmsg);
+            	
+            },
+            error: function (data) {
+                alert(data + ' => 에러 발생');
+            }
+
+        }); // ajax 끝
+    }
     
 });
