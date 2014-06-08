@@ -37,6 +37,8 @@ private static final Logger log = Logger.getLogger(MallGetDonAction.class);
 			}
 			
 			result += "<donreqlist>";
+			result += "<listlength>"+donreqList.size()+"</listlength>";
+			log.debug(result);
 			for(DonReqDTO d : donreqList) {
 				ItemDTO item = ItemDAO.selectOne(d.getItemno());
 				result += "<donreq>";

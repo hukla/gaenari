@@ -34,7 +34,7 @@ public class MallDonateAction implements Action {
 		UserDTO user = (UserDTO)request.getSession().getAttribute("user");
 		int itemno = Integer.parseInt(request.getParameter("selectedItemNo"));
 		int userno = user.getUserno();
-		int qty = Integer.parseInt(request.getParameter("qty"));
+		int qty = (request.getParameter("qty") == null) ? 1:Integer.parseInt(request.getParameter("qty"));
 		log.info("itemno : "+itemno);
 		int targetcntrno = Integer.parseInt(request.getParameter("don_target"));
 		int price = Integer.parseInt(request.getParameter("price"));
@@ -56,15 +56,17 @@ public class MallDonateAction implements Action {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 			url = "/error.jsp";
+			response.getWriter().print("{\"isSuccess\":true}");
+			request.getRequestDispatcher(url).forward(request, response);
 		}
 		// 성공 페이지에서 결과 출력하기 위해 attribute 설정
 		request.setAttribute("donnation", donnation);
 		request.setAttribute("itemname", request.getParameter("item_name"));
-		System.out.println(request.getParameter("item_name"));
 		request.setAttribute("cntrname", targetcntrname);
 		
+		response.getWriter().print("{\"isSuccess\":true}");
 		// forward
-		request.getRequestDispatcher(url).forward(request, response);
+		//request.getRequestDispatcher(url).forward(request, response);
 	}
 
 }

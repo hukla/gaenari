@@ -1,108 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
-<head>
-<title>상품 상세 정보 수정 페이지</title>
-</head>
-<body>
-	<form name="itemModify" method="post" action="control?command=updateItem" enctype="multipart/form-data">
-
-		<table align="center" cellpadding="5" cellspacing="2" width="600"
-			border="1">
-
-			<tr>
-				<td width="1220" height="20" colspan="2">
-					<p align="center">
-						<font size="3"><b>상품 상세 정보 수정</b></font>
-					</p>
-				</td>
-			</tr>
-			<tr>
-				<td width="150" height="20">
-					<p align="right">
-						<b><span style="font-size: 9pt;">상품번호</span></b>
-					</p>
-				</td>
-				<td width="450" height="20"><b><span
-						style="font-size: 9pt;"> <input type="text"
-							size="30" value="${selectedItem.itemno}" disabled="disabled">
-							<input type="hidden" name="itemno" value="${selectedItem.itemno }">
-					</span></b></td>
-					
-			</tr>
-			<tr>
-				<td width="450" height="20">
-					<p align="right">
-						<b><span style="font-size: 9pt;">상품명</span></b>
-					</p>
-				</td>
-				<td width="450" height="20"><b><span
-						style="font-size: 9pt;"> <input type=text name="itemname"
-							size="50" value="${selectedItem.itemname }"></span></b></td>
-			</tr>
-			<tr>
-				<td width="450" height="20">
-					<p align="right">
-						<b><span style="font-size: 9pt;">상품 이미지 파일</span></b>
-					</p>
-				</td>
-				<td width="450" height="20"><b><span
-						style="font-size: 9pt;"> <input type="file" name="uploadFile" size="29" value="찾아보기"></span></b></td>
-			</tr>
-			<tr>
-				<td width="150" height="20">
-					<p align="right">
-						<b><span style="font-size: 9pt;">내 용</span></b>
-					</p>
-				</td>
-				<td width="200" height="20"><b><span
-						style="font-size: 9pt;"> <textarea name="itemdetail" cols="60"
-								rows="7" >${selectedItem.itemdetail}</textarea></span></b></td>
-			</tr>
-			<tr>
-				<td width="150" height="20">
-					<p align="right">
-						<b><span style="font-size:9pt;">소비자 가격</span></b>
-					</p>
-				</td>
-				<td width="450" height="20"><b><span
-				style="font-size: 9pt;"><input type=text name="price"
-							size="50" value="${selectedItem.price }">
-				</span></b>
-			</tr>
-			<tr>
-				<td width="150" height="20">
-					<p align="right">
-						<b><span style="font-size:9pt;">수량</span></b>
-					</p>
-				</td>
-				<td width="450" height="20"><b><span
-				style="font-size: 9pt;"><input type=text name="qty"
-							size="50" value="${selectedItem.qty }">
-				</span></b>
-			</tr>
-			<tr>
-				<td width="450" height="20" colspan="2" align="center"><b><span
-						style="font-size: 9pt;"> <input type=submit value="수정하기">
-							<input type=reset value=다시쓰기></span></b></td>
-			</tr>
-			<tr><td colspan='2'>
-				<div align=center>
-						<span style="font-size: 9pt;"><input type='button' id='close_btn' value='닫기'></span>
-				</div>
-			</td></tr>
-	</table>
-			</form>
-	
-</body>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script>
-	$(function(){
-		$("#close_btn").click(function(){
-			opener.location.reload();
-			self.close();
-		});
-	});
-</script>
+    <%@ include file="/static/pages/head.jsp"%>
+    <body>
+        <div id="wrapper">
+            <div id="content">
+                <div class="container">
+                    <form name="itemModify" method="post" action="control?command=insertItem" enctype="multipart/form-data">
+                        <input type="hidden" name="itemno" value="${selectedItem.itemno}">
+                        <table class="table" id="modify-table" style="margin-top:10px;">
+                            <tr>
+                                <th colspan="2" style="text-align:center;font-size:20px;background-color:#fc0;border-radius:5px;">상품 정보 수정</td>
+                            </tr>
+                            <tr>
+                                <th>상품번호</th>
+                                <td><input type="text" class="form-control" name="itemno" value="${selectedItem.itemno}" disabled="disabled"></td>
+                            </tr>
+                            <tr>
+                                <th>상품명</th>
+                                <td><input type=text class="form-control" name="itemname" value="${selectedItem.itemname}"></td>
+                            </tr>
+                            <tr>
+                                <th>상품 이미지 파일</th>
+                                <td><input type="file" class="form-control" name="uploadFile" size="29" value="찾아보기"></td>
+                            </tr>
+                            <tr>
+                                <th>내 용</th>
+                                <td> <textarea class="form-control" name="itemdetail" cols="60"rows="7" >${selectedItem.itemdetail}</textarea></td>
+                            </tr>
+                            <tr>
+                                <th>소비자 가격</th>
+                                <td><input type=text class="form-control" name="price" size="50" value="${selectedItem.price}"></td>
+                            </tr>
+                            <tr>
+                                <th>수량</th>
+                                <td><input type=text class="form-control" name="qty" size="50" value="${selectedItem.qty}"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align:center;">
+                                    <input type=submit class="btn btn-yellow" align='center' value="등록하기">
+                                    <input type=reset class="btn btn-yellow" align='center' value=다시쓰기>
+                                    <input type='button' class="btn btn-yellow" id='close_btn' value='닫기'>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="/gaenari/mall/scripts/insert.js"></script>
 </html>
