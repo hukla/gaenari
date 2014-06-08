@@ -21,6 +21,7 @@ $(function () {
             	
                 $("#don_mgt tr:gt(0)").remove();
                 var table = "";
+                
                 $(data).find('donreq').each(function (index) {
                 	
                     progressbar.css('width', progress * (index + 1) + '%');
@@ -99,7 +100,7 @@ $(function () {
                     table += "<td>" + $(this).find("itemname").text() + "</td>";
                     table += "<td>" + $(this).find("qty").text() + "</td>";
                     if ($(this).find("sent").text() == 'N') {
-                        table += "<td id='reqSend'>" + "<input type='button' class='btn btn-yellow' value='요청마감하기' id='send' name='" + $(this).find("drno").text() + "'>" +
+                        table += "<td id='reqSend'>" + "<input type='button' class='btn btn-yellow' value='요청마감하기' id='term_req' name='" + $(this).find("drno").text() + "'>" +
                             "</td>";
                     } else {
                         table += "<td>요청마감</td>";
@@ -113,6 +114,7 @@ $(function () {
             }
         }); // ajax 끝
     } // getDonReq() 함수 끝
+    
     // 배송하기 버튼 클릭시
     $(document).on('click', "#send", function () {
         $.ajax({
@@ -120,18 +122,63 @@ $(function () {
             dataType: "text",
             data: "drno=" + $(this).attr("name"),
             success: function (data) {
+                $('.manage-state').empty();
+                
+                var statemsg = "";
+                
                 if (data > 0) {
-                    alert('배송처리되었습니다.');
+                	statemsg += "<div class='alert alert-warning alert-dismissable'>";
+            		statemsg += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            		statemsg += "<strong>배송처리되었습니다.</strong>";
+            		statemsg += "</div>";
                     getDonList();
                 } else {
-                    alert('배송되지 않았습니다');
+                	statemsg += "<div class='alert alert-warning alert-dismissable'>";
+            		statemsg += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            		statemsg += "<strong>배송되지않았습니다.</strong>";
+            		statemsg += "</div>";
                 }
+                
+                $('.manage-state').html(statemsg);
             },
             error: function (data) {
                 alert(data + ' => 에러 발생');
             }
         }); // ajax 끝
     }); // 배송하기 버튼 처리 끝
+    
+ // 마감하기 버튼 클릭시
+    $(document).on('click', "#term_req", function () {
+        $.ajax({
+            url: "/gaenari/sendDonreq.do",
+            dataType: "text",
+            data: "drno=" + $(this).attr("name"),
+            success: function (data) {
+            	$('.manage-state').empty();
+                
+                var statemsg = "";
+                
+                if (data > 0) {
+                	statemsg += "<div class='alert alert-warning alert-dismissable'>";
+            		statemsg += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            		statemsg += "<strong>마감처리되었습니다.</strong>";
+            		statemsg += "</div>";
+                    getDonList();
+                } else {
+                	statemsg += "<div class='alert alert-warning alert-dismissable'>";
+            		statemsg += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            		statemsg += "<strong>마감되지않았습니다.</strong>";
+            		statemsg += "</div>";
+                }
+                
+                $('.manage-state').html(statemsg);
+            },
+            error: function (data) {
+                alert(data + ' => 에러 발생');
+            }
+        }); // ajax 끝
+    }); // 마감하기 버튼 처리 끝
+    
     // '수정하기', '삭제하기' mouseover event 
     $(document).on('mouseover', '.delmod', function () {
         $(this).css("text-decoration", "underline");
