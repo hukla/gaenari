@@ -1,6 +1,5 @@
 package controller.action;  
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -10,14 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
 import model.dao.TestDAO;
 import model.dao.UpdateDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
+import model.dto.DiaryDTO;
 import model.dto.DogDTO;
+import model.dto.PlanDTO;
 import model.dto.UserDTO;
 /**
  * 수정: 최성훈
@@ -88,7 +86,7 @@ public class MinihomeMainAction implements Action {
 		List<DogDTO> dog = null;
 		List<BoardDTO> allPlanList = null;
 		List<BoardDTO> planList = null;
-		List<BoardDTO> diaryList = null;
+//		List<BoardDTO> diaryList = null;
 		List<BoardDTO> visitList = null;
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
@@ -113,15 +111,23 @@ public class MinihomeMainAction implements Action {
 			//14-05-26 성훈추가: 사용자별 사진첩 폴더생성
 			
 			///////////////////////////////////////////////
-			diaryList = TestDAO.selectThreeDiaries(loginUser);	// 이 페이지 user의 일기, 일정, 방명록 3개씩 가져오기
+//			diaryList = TestDAO.selectThreeDiaries(loginUser);	// 이 페이지 user의 일기, 일정, 방명록 3개씩 가져오기
 			planList = TestDAO.selectThreePlans(loginUser);
 			visitList = TestDAO.selectThreeVisits(loginUser);
 			allPlanList = TestDAO.selectPlan(loginUser);
 			dog = TestDAO.getMyDogInfo(loginUser.getUserno());
-			
+			DiaryDTO di = null;
+			di = TestDAO.selectLastDiary(loginUser.getUserno());
+			if(di.getBrdcontent().split("!split!")[0]!=null){
+				request.setAttribute("diImage", di.getBrdcontent().split("!split!")[0]);
+			}else{
+				request.setAttribute("diImage",null);
+			}
+			request.setAttribute("diContent",  di.getBrdcontent().split("!split!")[1]);
+			request.setAttribute("di", di);
 			request.setAttribute("user", loginUser);				// 이 페이지 user를 request에 setAttribute
 			request.setAttribute("dog", dog);
-			request.setAttribute("diary", diaryList);
+//			request.setAttribute("diary", diaryList);
 			request.setAttribute("planList", planList);
 			request.setAttribute("visit", visitList);
 			// 14-05-13 성훈 추가 실제경로에서 이미지 가져오기
@@ -146,8 +152,10 @@ public class MinihomeMainAction implements Action {
 			url = "miniHome/main.jsp";
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 		} catch (Exception e) {
+			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 		}
 		

@@ -36,4 +36,8 @@
 		update userinfo set userid=#{userid},username=#{username},passwd=#{passwd},address=#{address}
 		where userno=#{userno}
 	</update>
+	
+	<update id="planCheck" parameterType="int">
+		update planboardinfo set flag=1 where brdno=#{brdno}
+	</update>
 </mapper>

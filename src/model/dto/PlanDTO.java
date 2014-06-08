@@ -14,6 +14,7 @@ public class PlanDTO extends BoardDTO {
 	private String pdate;
 	private String ploc;
 	private int plandogno;
+	private int flag;
 
 	public PlanDTO() {}
 
@@ -60,6 +61,14 @@ public class PlanDTO extends BoardDTO {
 
 	public void setPlandogno(int plandogno) {
 		this.plandogno = plandogno;
+	}
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
 
 	@Override

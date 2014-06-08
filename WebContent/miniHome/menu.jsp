@@ -29,6 +29,7 @@
 	}
 	body{
 		margin-left: 170px;
+		margin-top: 70px;
 	}
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script> 
@@ -87,4 +88,5 @@ jQuery(function() {
 	</div>
 	<%@ include file="/static/pages/miniHomebar.jsp"%>
 	</body>
+	
 </html>
