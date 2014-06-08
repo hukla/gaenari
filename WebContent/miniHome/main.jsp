@@ -55,8 +55,9 @@ div#doginfo {
 수정: 2014-05-30, 최성훈	내용: 친구요청란 지우고 테이블 bootstrap class추가
  -->
 </head>
-<body>
-	<table align="left" width="800">
+
+<body id="bd">
+	<table align="left" width="800" id="tb">
 		<tr>
 			<td width="100%" align="center">
 				<table border="0" align="center" width="80%" class="table">
@@ -182,6 +183,7 @@ div#doginfo {
 		</tr>
 	</table>
 </body>
+
 <script type="text/javascript">
 function addDog() {
 	var newwindow;
