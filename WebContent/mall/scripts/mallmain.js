@@ -7,14 +7,13 @@ $(function () {
         type: "post"
     });
 
-    var progressbar = $('.progress-bar');
+    var progressbar = $('#mgt-pgbar');
 
     function getItemList() {
         $.ajax({
             url: "/gaenari/itemList.do",
             dataType: "xml",
             success: function (data) {
-
                 var datalength = $(data).find('listlength').text();
                 //alert(datalength);
 
