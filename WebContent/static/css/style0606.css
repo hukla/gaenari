@@ -202,6 +202,7 @@ body {
 	margin-left:auto;
 	margin-right:auto;
 	padding-bottom: 20px;
+    margin-top:20px;
 }
 
 #footer .container{
@@ -420,7 +421,7 @@ box-shadow: 0 1px 2px 0 #646464;
 .mfboard-card .mfboard-card-image-wrapper {
 position: relative;
 width: 100%;
-  height:121px;
+  height:200px;
 }
 
 .mfboard-card .mfboard-card-image {
@@ -468,7 +469,7 @@ border-radius: 5px 5px 0 0;
 }
 
 .mfboard-card .mfboard-card-content {
-height: 121px;
+height: 60px;
 position: relative;
 }
 
@@ -970,3 +971,82 @@ color:#FFFFFF;
   margin-left:2%;
 }
 /* MENUBAR: Sun, 08 Jun 2014 00:02:15 -0700 */
+
+/* mall main: Sun, 08 Jun 2014 05:35:13 -0700 */
+#item-list-container.content-container {
+width:85%;
+float:left;
+padding-left:20px;
+}
+
+.aside-menu {
+width:15%;
+float:left;
+}
+
+#mall-menu.nav-pills {
+background-color:#CC3333;
+border-radius:4px;
+}
+
+#mall-menu.nav-pills > li > a {
+color:#fff;
+}
+
+#mall-menu.nav-pills > li > a:hover {
+background-color: #fc0;
+}
+
+#item-list-container .explore-search-results,#item-list-container .explore-search-results #item_list {
+float:left;
+width:100%;
+height:inherit;
+}
+
+.item-image {
+float:none;
+}
+
+#item_list>li {
+display:inline-block;
+text-align:center;
+float:left;
+width:25%;
+height:auto;
+padding-bottom:20px;
+}
+
+#item_list>li a:link, #item_list>li a:visited {
+color:black;
+text-decoration:none;
+}
+
+#item_list {
+padding:0;
+}
+
+#item_list div {
+margin-bottom:5px;
+}
+
+.gaenarige-label {
+background-color:#f90;
+color:white;
+font-weight:bold;
+font-size:8px;
+}
+
+#item_list .item-name {
+border-radius: 3px;
+margin: 4px;
+border-color: #FFF0B2;
+border-style: dashed;
+border-width: 1px;
+vertical-align:middle;
+}
+
+#item_list .item-name>a {
+font-size:15px;
+font-weight:500;
+}
+/* mall main: Sun, 08 Jun 2014 05:35:13 -0700 */

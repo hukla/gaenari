@@ -36,6 +36,7 @@ public class MallGetAllItemsAction implements Action {
 			}
 			
 			xmlData += "<itemlist>";
+			xmlData += "<listlength>"+itemList.size()+"</listlength>";
 			for(ItemDTO i : itemList) {
 				xmlData += "<item>";
 				xmlData += "<itemno>"+i.getItemno()+"</itemno>";
