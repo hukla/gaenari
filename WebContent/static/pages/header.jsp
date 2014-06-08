@@ -5,7 +5,7 @@
 	<div id="header">
 		<div class="container visible">
 			<img class="logo"
-				src="/gaenari/static/images/logo3rd.PNG" />
+				src="/gaenari/static/images/logo.jpg" />
 			<c:choose>
 				<c:when test="${sessionScope.userid == null}">
 				<div class="header-user-menu-container not-login">

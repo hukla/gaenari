@@ -23,8 +23,10 @@ public class VoluBoardWriteAction implements Action {
 		String brdcontent = request.getParameter("brdcontent").replaceAll("\r\n", "<br/>");
 		String userid = session.getAttribute("userid").toString();
 		String brdtype = "vo";
+		System.out.println("vhour2, vhour3 : "+request.getParameter("vhour2")+request.getParameter("vhour3"));
 		String vhour = request.getParameter("vhour")+"!split!"+request.getParameter("vhour2")
-				+"!split!"+request.getParameter("vhour3");
+				+"!split!"+request.getParameter("vhour3")+"!split!";
+		System.out.println(vhour.toString());
 		VoluBoardDTO vbdto = new VoluBoardDTO(title, brdcontent, userid, brdtype, vhour);
 		try{
 			if(vhour == null || vhour.trim().length() == 0) {

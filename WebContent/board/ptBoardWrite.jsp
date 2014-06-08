@@ -16,9 +16,9 @@
                     <!-- TODO -->
                     <div id="ptboard-write-form">
                         <form name="boardWriteForm" method="post"
-                            action="missingBoardWrite.do" enctype="multipart/form-data"
+                            action="ptBoardWrite.do"
                             onSubmit='return checkValid()'>
-                            <input type="hidden" name="command" value="missingBoardWrite">
+                            <input type="hidden" name="command" value="ptBoardWrite">
                             <table class="table ptboard-write-table">
                                 <tr>
                                     <td colspan="2">
@@ -52,7 +52,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <select name="mloc" class="form-control">
+                                        <select name="workloc" class="form-control">
                                             <option value="광진구">광진구</option>
                                             <option value="동대문구">동대문구</option>
                                             <option value="중랑구">중랑구</option>
@@ -136,7 +136,7 @@
                                     <td colspan='2' class="ptboard-write-form-btn-group">
                                         <input type=submit class="btn btn-yellow ptboard-write-form-btn form-control" value=글쓰기>
                                         <input type=reset class="btn btn-yellow ptboard-write-form-btn form-control" value=다시쓰기><br>
-                                        <a class="btn btn-yellow ptboard-write-form-btn form-control" href="/gaenari/missingBoardMain.do">리스트로 돌아가기
+                                        <a class="btn btn-yellow ptboard-write-form-btn form-control" href="/gaenari/ptBoardMain.do">리스트로 돌아가기
                                         </a>
                                     </td>
                                 </tr>

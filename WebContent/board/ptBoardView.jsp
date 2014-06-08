@@ -22,7 +22,6 @@
                         <div class="left-part">
                             <div class="ptboard-info-content">
                                 <div class="ptboard-info-content-title">
-                                    내용
                                 </div>
                                 <div class="ptboard-info-content-text">
                                     ${requestScope.resultContent.brdcontent}
@@ -78,12 +77,14 @@
                                 <input class="btn btn-yellow" type=submit value="수정하기">
                             </form>
                             <form name="requestDelete" method=post action="control" onsubmit="return send()">
-                                <input type=hidden name="ptbrdno" value="19">
+                                <input type=hidden name="ptbrdno" value="${requestScope.resultContent.ptbrdno}">
                                 <input type=hidden name="command" value="ptBoardDelete">
-                                <input type=hidden name="user" value="null">
-                                <input type=hidden name="writer" value="lyuel             ">
-                                <input class="btn btn-yellow" type=submit value="삭제하기" onclick="ptDelete(19)">
+                                <input type=hidden name="user" value="${sessionScope.userid}">
+                                <input type=hidden name="writer" value="${requestScope.resultContent.userid}">
+                                <input class="btn btn-yellow" type=submit value="삭제하기" onclick="ptDelete(${requestScope.resultContent.ptbrdno})">
                             </form>
+                            <a class="btn btn-yellow" href="/gaenari/ptBoardList.do">목록으로
+                            </a>
                         </div>
                     </div>
                     <!-- TODO -->
