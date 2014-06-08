@@ -201,7 +201,7 @@ body {
 	width: 96%;
 	margin-left:auto;
 	margin-right:auto;
-	padding-bottom:20px;
+	padding-bottom: 20px;
 }
 
 #footer .container{
@@ -209,10 +209,15 @@ body {
 }
 
 #footer .footer-company-info {
-	font-size: 11px;
+	font-size: 15px;
 	margin-top: 10px;
 	line-height: 15px;
 	color: #FFE682;
+}
+
+#footer .footer-site-description {
+	font-size: 11px;
+	float:right;
 }
 
 #footer .footer-company-info .footer-company-name {
