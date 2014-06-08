@@ -195,13 +195,17 @@ body {
 }
 
 #footer {
-	background-color: #403030;
+	background-color: #000;
 	clear: both; 
 	border-radius: 4px;
 	width: 96%;
 	margin-left:auto;
 	margin-right:auto;
 	padding-bottom:20px;
+}
+
+#footer .container{
+	width: inherit;
 }
 
 #footer .footer-company-info {
