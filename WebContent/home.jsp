@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="model.dto.UserDTO" %>
 <%@ page import="model.dao.UserDAO" %>
 <%@ page import="model.dao.TestDAO" %>
@@ -59,6 +60,7 @@
 	}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <!-- 
 작성: 2014-05-25
 작성자: 최성훈
@@ -74,7 +76,7 @@
 		<div id="content">
 		<%@ include file="/static/pages/menubar.jsp"%>
 			<div class="container">
-				<div id="myCarousel" class="carousel slide" align="left">
+				<div id="myCarousel" class="carousel slide" align="left" data-ride="carousel" data-interval="3000">
 					<ol class="carousel-indicators">
 						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 						<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -113,8 +115,8 @@
 						</div>
 					</div>
 					<!-- 회전광고판 탐색 -->
-					<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-					<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+					<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+					<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 				</div>
 				<div class="jumbotron" id="container">
 					<div class="container">
@@ -155,48 +157,61 @@
 					</div>
 					<%
 					String img = null;
+					List<UserDTO> list = null;
+					List<UserDTO> imgUser = null;
+					UserDTO user = null;
+					int ran = 0;
 						if(session.getAttribute("userid")==null){
-							List<UserDTO> list = null;
 							list = UserDAO.allUsers();
-							int ran = (int)(Math.random()*list.size());
-							UserDTO user = UserDAO.selectOne(list.get(ran).getUserno());
-							/* img = TestDAO.selectLastDiary(user.getUserno()).getBrdcontent().split("!split!")[0];
-							if(img!=null){
-								request.setAttribute("image", img);
-							}else{
-								request.setAttribute("image", null);
-								request.setAttribute("content", TestDAO.selectLastDiary(user.getUserno()).getBrdcontent().split("!split!")[1]);
-							} */
+							imgUser = new ArrayList<UserDTO>();
+							for(int i=0;i<list.size();i++){
+								if(TestDAO.selectLastDiary(list.get(i).getUserno())!=null){
+									if(TestDAO.selectLastDiary(list.get(i).getUserno()).getBrdcontent().split("!split!")[0]!=null){
+										imgUser.add(UserDAO.selectOne(list.get(i).getUserno()));
+									}
+								}
+							}
+							ran = (int)(Math.random()*imgUser.size());
+							user = UserDAO.selectOne(imgUser.get(ran).getUserno());
 							request.setAttribute("randomUser", user);
+							request.setAttribute("img", TestDAO.selectLastDiary(user.getUserno()).getBrdcontent().split("!split!")[0]);
 						}
 					%>
 					<div class="col-sm-6 col-md-3" id="thumb2">
 						<div class="panel panel-default" style="border:hidden;">
 							<div class="panel-heading">
-								<img src="${requestScope.randomUser.img}" width="30" class="img-rounded">
-								 ${requestScope.randomUser.userid}님의 소식
+								<c:choose>
+									<c:when test="${requestScope.randomUser !=null}">
+										<img src="${requestScope.randomUser.img}" width="30" class="img-rounded">
+								 		${requestScope.randomUser.userid}님의 최근 게시물
+								 	</c:when>
+								 	<c:otherwise>
+								 	
+								 	</c:otherwise>
+								</c:choose>
 							</div>
 							<div class="panel-body">
 								<div class="caption">
-									<p>최근 포스트</p>
-									<p>
-									</p>
-								</div>
-							</div>
-							<div class="panel-body">
-								<div class="caption">
-									<p>최근 게시물</p>
 									<p>
 										<c:choose>
-											<c:when test="${requestScope.image != null}">
-												<img src="${requestScope.image}" width="100%">
+											<c:when test="${sessionScope.userid != null}">
+												<c:choose>
+												<c:when test="${requestScope.randomUser != null}">
+													<img src="${requestScope.checkImg}" width="100%">
+													${requestScope.checkCont}<br>
+													<a href="#" class="btn btn-primary" onclick="visitUser('${requestScope.randomUser.userid}')">방문하기</a>
+													<a href="/gaenari/home.do" class="btn btn-default">다른사람보기</a>
+												</c:when>
+												<c:otherwise>
+													친구정보가 없습니다.
+												</c:otherwise>
+												</c:choose>
 											</c:when>
 											<c:otherwise>
-												${requestScope.content}
+												<img src="${requestScope.img}" width="100%"><br>
+												<a href="/gaenari/home.do" class="btn btn-default">다른게시물보기</a>
 											</c:otherwise>
 										</c:choose>
-										<a href="#" class="btn btn-primary" onclick="visitUser('${requestScope.randomUser.userid}')">방문하기</a>
-										<a href="/gaenari/home.do" class="btn btn-default">다른사람보기</a>
 									</p>
 								</div>
 							</div>
