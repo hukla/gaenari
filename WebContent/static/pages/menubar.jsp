@@ -4,15 +4,6 @@
 <!--메뉴바 시작-->
 <div class="navbar navbar-inverse" id="menubar">
     <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a href="./" class="navbar-brand"><img src="http://www.flaticon.com/png/256/17479.png" style="height:inherit;">GAENARI</a>
-        </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
                 <li>
@@ -34,7 +25,7 @@
                     </ul>
                 </li>
                 <c:if test="${sessionScope.userid != null}">
-                <li style="position:absolute;right:20px;">
+                <li style="position:absolute;right:30px;">
                     <a href="" onclick="miniHome()"><img src="http://www.flaticon.com/png/256/35141.png"> 미니홈피</a>
                 </li>
                 </c:if>
