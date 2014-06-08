@@ -194,7 +194,7 @@ $(function(){
 	function getRandomList() {
 		$.ajax({
 			url: "/gaenari/getRandomMissing.do",
-			dataType: "xml",
+			dataType: "text",
 			success: function(data) {
 				$(data).find('mlist').each(function(){
 					var mname = $(this).find("mname").text();

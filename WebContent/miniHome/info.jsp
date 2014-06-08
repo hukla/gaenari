@@ -8,7 +8,7 @@
 <style type="text/css">
 	td,th {	font-family: '맑은 고딕'	}
 	#bigimg > img{
-		width: 400px;
+		width: 270px;
 		height: 330px;
 	}
 </style>
@@ -34,7 +34,7 @@
 	<hr color="blue">
 	<table align="center">
 		<tr>
-			<td width="450">
+			<td width="300">
 				<table align="center" border="0" class="table">
 				<colgroup>
 					<col width="16%">
@@ -46,7 +46,7 @@
 				</colgroup>
 				<tr>
 					<td rowspan="4" colspan="2">
-						<img src="${requestScope.user.img}" width="300px"> 
+						<img src="${requestScope.user.img}" width="130"> 
 					</td>
 					<th align="center">
 						이름

@@ -1,98 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.dto.VoluBoardDTO" %>
-<%@ include file="/frame.jsp"%>
-<%@ include file="menu2.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>자원봉사 구해요!</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<SCRIPT language=javascript>
-function send(){
-	if(document.requestForm.command.value!="") return true;
-	else return false;
-}
-function voluDelete(vbrdno){
-	if(confirm("삭제하시겠습니까?")){
-		location.href="/voluBoardDelete.do?vbrdno="+vbrdno;
-	}else{
-		alert("삭제가 취소되었습니다.");
-		return;
-	}
-}
- </script>
-</head>
-<body>
-				<table align="center" border="1" cellpadding="5" cellspacing="2" width="80%">
-					<tr>
-						<td>
-							<p align="center"><font color="black"><b><span style="font-size:10pt;">제 목</span></b></font></p>
-						</td>
-						<td>
-							<span style="font-size:9pt;"><b>${requestScope.resultContent.title}</b></span>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<p align="center"><font color="black"><b><span style="font-size:9pt;">작 성 자</span></b></font></p>
-						</td>
-						<td>
-							<span style="font-size:9pt;"><b>${requestScope.resultContent.userid }</b></span>
-							<input type="hidden" id="boardWriter" value="${requestScope.resultContent.userid}"/>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<p align="center"><font color="black"><b><span style="font-size:9pt;">작 성 시 간</span></b></font></p>
-						</td>
-						<td>
-							<span style="font-size:9pt;"><b>${requestScope.resultContent.wrdate}</b></span>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<p align="center"><font color="black"><b><span style="font-size:9pt;">작 성 내 용</span></b></font></p>
-						</td>
-						<td>
-							<span style="font-size:9pt;"><b>${requestScope.resultContent.brdcontent}</b></span>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<p align="center"><font color="black"><b><span style="font-size:9pt;">봉 사 시 간</span></b></font></p>
-						</td>
-						<td>
-							<span style="font-size:9pt;"><b>날짜: ${requestScope.vhour[0]}</b></span><br>
-							<span style="font-size:9pt;"><b>시간: ${requestScope.vhour[1]}부터</b></span>
-							<span style="font-size:9pt;"><b>${requestScope.vhour[2]}</b></span>
-						</td>
-					</tr>
-					<tr>
-						<td height="20" colspan="2" align="center" valign="middle">
-				<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
-						<form name="requestForm" method=post action="control" onsubmit="return send()">
-							<input type=hidden name="vbrdno" value="${requestScope.resultContent.vbrdno}">
-							<input type=hidden name="command" value="voluBoardUpdateForm">
-							<input type=hidden name="user" value="<%=session.getAttribute("userid")%>">
-							<input type=hidden name="writer" value="${requestScope.resultContent.userid}">
-							<input type=submit value="수정하기">
-						</form>
-						<%-- <input type=button value="삭제하기" onclick="voluDelete(${requestScope.resultContent.vbrdno})"> --%>
-						<form name="requestDelete" method=post action="control" onsubmit="return send()">
-							<input type=hidden name="vbrdno" value="${requestScope.resultContent.vbrdno}">
-							<input type=hidden name="command" value="voluBoardDelete">
-							<input type=hidden name="user" value="<%=session.getAttribute("userid")%>">
-							<input type=hidden name="writer" value="${requestScope.resultContent.userid}">
-							<input type=submit value="삭제하기" onClick="voluDelete(${requestScope.resultContent.vbrdno})">
-						</form></td>
-				</table>
-				<div align=center><span style="font-size:9pt;"><a href="/gaenari/control?command=voluBoardList"><input type="submit" value="목록으로"></a></span></div>
-			</td>
-		</tr>
-	</table>
-</body>
+    <head>
+        <%@ include file="/static/pages/head.jsp"%>
+        <script src="/gaenari/board/scripts/ptboard.js"></script>
+    </head>
+    <body>
+    	<div id="wrapper">
+        <%@ include file="/static/pages/header.jsp"%>
+        <div id="content">
+            <%@ include file="/static/pages/menubar.jsp"%>
+            <div class="container">
+                <!-- TODO -->
+                <div id="ptboard-view-form">
+                    <div class="ptboard-info-header">
+                        <div class="ptboard-title">${requestScope.resultContent.title}</div>
+                    </div>
+					<div class="ptboard-info-main">
+                        <div class="left-part">
+                            <div class="ptboard-info-content">
+                                <div class="ptboard-info-content-title">
+                                </div>
+                                <div class="ptboard-info-content-text">
+                                    ${requestScope.resultContent.brdcontent}
+                                </div>
+                            </div>
+                        </div>
+                       			<div class="part-line-gray">작성자</div>
+                                <div class="part-line">${requestScope.resultContent.userid}</div>
+                                <div class="part-line-gray">작성시간</div>
+                                <div class="part-line">${requestScope.resultContent.wrdate}</div>
+                                <%-- <div class="part-line-gray">위치</div>
+                                <div class="part-line">${requestScope.resultContent.workloc}</div> --%>
+                                <div class="part-line-gray">봉사날짜</div>
+                                <div class="part-line">${requestScope.vhour[0]}</div>
+                                <div class="part-line-gray">봉사시간</div>
+                                <div class="part-line">${requestScope.vhour[1]} ~ ${requestScope.vhour[2]}</div>
+                       </div>
+                                          <div class="ptboard-info-bottom">
+                        <div class="content-container">
+                            <!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
+                            <form name="requestForm" method=post action="control" onsubmit="return send()">
+                                <input type=hidden name="vbrdno" value="${requestScope.resultContent.vbrdno}">
+                                <input type=hidden name="command" value="voluBoardUpdateForm">
+                                <input type=hidden name="user" value="${sessionScope.userid}">
+                                <input type=hidden name="writer" value="${requestScope.resultContent.userid}">
+                                <input class="btn btn-yellow" type=submit value="수정하기">
+                            </form>
+                            <form name="requestDelete" method=post action="control" onsubmit="return send()">
+                                <input type=hidden name="vbrdno" value="${requestScope.resultContent.vbrdno}">
+                                <input type=hidden name="command" value="voluBoardDelete">
+                                <input type=hidden name="user" value="${sessionScope.userid}">
+                                <input type=hidden name="writer" value="${requestScope.resultContent.userid}">
+                                <input class="btn btn-yellow" type=submit value="삭제하기" onclick="voluDelete(${requestScope.resultContent.vbrdno})">
+                            </form>
+                          	<a class="btn btn-yellow" href="/gaenari/voluBoardList.do">목록으로
+                            </a>
+                        </div>
+                    </div>
+                    <!-- TODO -->
+                </div>
+            </div>
+            <%@ include file="/static/pages/footer.jsp"%>
+        </div>
+    </body>
 </html>
-<%@ include file="../bottom.jsp"%>

@@ -44,6 +44,8 @@ public class AdpBoardListAction implements Action  {
 				xmlData += "<item>";
 				xmlData += "<brdno>"+a.getBrdno()+"</brdno>";
 				xmlData += "<abrdno>"+a.getAbrdno()+"</abrdno>";
+				xmlData += "<title>"+a.getTitle()+"</title>";
+				xmlData += "<wrdate>"+a.getWrdate()+"</wrdate>";
 
 				if(a.getBrdcontent().contains("split")){
 					picPath = a.getBrdcontent().split("!split!")[0];

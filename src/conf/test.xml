@@ -211,4 +211,8 @@
 		cntrcontact=#{cntrcontact} and cntrloc=#{cntrloc} and cntrsize=#{cntrsize}
 	</select>
 	
+	<select id="selectLastDiary" parameterType="int" resultMap="brdMap">
+		SELECT * from board b join diaryinfo d on b.brdno = d.brdno and b.userno =#{userno}
+		order by b.wrdate desc limit 1
+	</select>
 </mapper>

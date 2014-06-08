@@ -81,7 +81,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <tr>
-                                        <td colspan="5" style="text-align:center;font-size:15px;font-weight:bold;color:gray;">등록된 자원봉사가 없습니다.</td>
+                                        <td colspan="5" style="text-align:center;font-size:15px;font-weight:bold;color:gray;">등록된 펫 도우미가 없습니다.</td>
                                     </tr>
                                 </c:otherwise>
                             </c:choose>

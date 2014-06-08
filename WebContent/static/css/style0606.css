@@ -195,40 +195,33 @@ body {
 }
 
 #footer {
-	background-color: #403030;
-	clear: both; /*float �곸냽諛쏆� �딆쓬*/
+	background-color: #000;
+	clear: both; 
+	border-radius: 4px;
+	width: 96%;
+	margin-left:auto;
+	margin-right:auto;
+	padding-bottom: 20px;
+}
+
+#footer .container{
+	width: inherit;
 }
 
 #footer .footer-company-info {
-	font-size: 11px;
+	font-size: 15px;
 	margin-top: 10px;
 	line-height: 15px;
 	color: #FFE682;
 }
 
+#footer .footer-site-description {
+	font-size: 11px;
+	float:right;
+}
+
 #footer .footer-company-info .footer-company-name {
 	color: #FFCC00;
-}
-
-#menu-navbar {
-	background-color: #403030;
-	border-radius: 0;
-}
-
-#menu-navbar .navbar-brand {
-	color: #FFCC00;
-}
-
-#menu-navbar a {
-	color: #FFE682;
-}
-
-#menu-navbar .navbar-header {
-	width: 10%;
-}
-
-#menu-navbar .navbar-nav {
-	width: 90%;
 }
 
 #login-modal {
@@ -372,28 +365,6 @@ body {
 	border-radius: 4px;
 	-webkit-box-shadow: none;
 	box-shadow: none;
-}
-
-#menu-navbar .nav .open>a, #menu-navbar .nav .open>a:hover, #menu-navbar .nav .open>a:focus {
-	background-color: #302424;
-}
-
-#menu-navbar .nav>li>a:hover, #menu-navbar  .nav>li>a:focus {
-	text-decoration: none;
-	background-color: #302424;
-}
-
-#menu-navbar .nav .dropdown-menu {
-	background-color: #403030;
-}
-
-#menu-navbar .nav .dropdown-menu a {
-	color: #FFE682;
-}
-
-#menu-navbar .nav .dropdown-menu a:hover {
-	background-color: #302424;
-	color: #FFE682;
 }
 
 .profile-image {
@@ -917,3 +888,85 @@ box-shadow: 0px 1px 2px 0px #646464;
 	float:left;
 	margin-left:20px;
 }
+
+/* MENUBAR: Sun, 08 Jun 2014 00:02:15 -0700 */
+#menubar.navbar-inverse {
+  background-color:#FFCC00;
+  background-image:none;
+  border-color:#ffffff;
+  min-width: 600px;
+  border-radius: 4px;
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#menubar.navbar-inverse .navbar-nav>.active>a:hover,#menubar.navbar-inverse .navbar-nav>li>a:hover,#menubar.navbar-inverse .navbar-nav>li>a:focus {
+background-color:#FF9900;
+}
+
+#menubar.navbar-inverse .navbar-nav>.active>a,#menubar.navbar-inverse .navbar-nav>.open>a,#menubar.navbar-inverse .navbar-nav>.open>a,#menubar.navbar-inverse .navbar-nav>.open>a:hover,#menubar.navbar-inverse .navbar-nav>.open>a,#menubar.navbar-inverse .navbar-nav>.open>a:hover,#menubar.navbar-inverse .navbar-nav>.open>a:focus {
+background-color:#CC3333;
+}
+
+#menubar .dropdown-menu {
+background-color:#FFCC00;
+}
+
+#menubar .dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus {
+background-color:#FF9900;
+background-image:none;
+color:#FFFFFF;
+}
+
+#menubar.navbar-inverse .navbar-brand:hover {
+color:#000000;
+}
+
+#menubar .navbar-brand
+{
+  font-size:20px;
+  font-weight:bold;
+}
+#menubar.navbar-inverse .navbar-nav>.dropdown>a .caret {
+border-top-color:#3E403A;
+border-bottom-color:#3E403A;
+}
+
+#menubar.navbar-inverse .navbar-nav>.dropdown>a:hover .caret {
+border-top-color:#FFFFFF;
+border-bottom-color:#FFFFFF;
+}
+
+#menubar.navbar-inverse .navbar-brand,#menubar.navbar-inverse .navbar-nav>li>a,.dropdown-menu>li>a {
+color:#3E403A;
+}
+
+#menubar.navbar-inverse .navbar-nav>li>a:hover,#menubar.navbar-inverse .navbar-nav>li>a:focus,#menubar.navbar-inverse .navbar-nav>.active>a,#menubar.navbar-inverse .navbar-nav>.open>a,#menubar.navbar-inverse .navbar-nav>.open>a:hover,#menubar.navbar-inverse .navbar-nav>.open>a:focus,#menubar.navbar-inverse .navbar-nav>.active>a:hover,#menubar.navbar-inverse .navbar-nav>.active>a:focus {
+color:#FFFFFF;
+}
+
+/* navbar customizing */
+#menubar .navbar-brand
+{
+  padding:0;
+}
+
+#menubar .navbar-nav>li>a>img
+{
+  height:32px;
+}
+
+#menubar .navbar-nav>li>a
+{
+  padding-top:10px;
+  padding-bottom:10px;
+  margin-right:15px;
+}
+
+#menubar.navbar-inverse .container
+{
+  width:inherit;
+  margin-left:2%;
+}
+/* MENUBAR: Sun, 08 Jun 2014 00:02:15 -0700 */

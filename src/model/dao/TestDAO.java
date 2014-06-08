@@ -632,4 +632,15 @@ public class TestDAO {
 		}
 		return list;
 	}
+	public static DiaryDTO selectLastDiary(int userno) throws SQLException {
+		SqlSession session = null;
+		DiaryDTO dto = null;
+		try {
+			session = DBUtil.getSqlSession();
+			dto = session.selectOne("test.selectLastDiary", userno);
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return dto;
+	}
 }

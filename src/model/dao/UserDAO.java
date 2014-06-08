@@ -211,4 +211,16 @@ public class UserDAO {
 		}
 		return res;
 	}
+	
+	public static List<UserDTO> allUsers(){
+		SqlSession session = null;
+		List<UserDTO> list = null;
+		try {
+			session = DBUtil.getSqlSession();
+			list = session.selectList("u.getAll");
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return list;
+	}
 }

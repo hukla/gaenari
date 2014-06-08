@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
-
-import model.dao.DogDAO;
 import model.dao.TestDAO;
 import model.dao.UpdateDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
-import model.dto.DogDTO;
+import model.dto.DiaryDTO;
 import model.dto.UserDTO;
+
+import org.apache.log4j.Logger;
+
 import exception.LoginException;
 /**
  * 작성: 최성훈
@@ -57,6 +57,7 @@ public class HomeAction implements Action {
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		List<Integer> senderNo =null;
+		List<Integer> frndNoList = null;
 		List<UserDTO> list = null;
 		List<BoardDTO> planList = null;
 		
@@ -75,7 +76,6 @@ public class HomeAction implements Action {
 		
 		userid = (String)session.getAttribute("userid");
 		pwd = (String)session.getAttribute("pwd");
-		
 		// login.do에서 넘어온 로그인 정보 가져옴
 		if(request.getParameter("userid")!=null)	userid = request.getParameter("userid");
 		if(request.getParameter("pwd")!=null)	pwd = request.getParameter("pwd");
@@ -109,7 +109,46 @@ public class HomeAction implements Action {
 							planList.add(plans);
 						}
 					}
+					/////////////////////////////////////////////////////////////////
+					frndNoList = TestDAO.getMyFriends(loginUser.getUserno());
+					/*int random = (int)(Math.random()*frndNoList.size());
+					UserDTO ranUser = UserDAO.selectOne(frndNoList.get(random));*/
+					List<UserDTO> imgUser = new ArrayList<UserDTO>();
+					for(int i=0;i<frndNoList.size();i++){
+						if(TestDAO.selectLastDiary(frndNoList.get(i))!=null){
+							if(TestDAO.selectLastDiary(frndNoList.get(i)).getBrdcontent().split("!split!")[0]!=null){
+								imgUser.add(UserDAO.selectOne(frndNoList.get(i)));
+							}
+						}
+					}
+					int random = (int)(Math.random()*imgUser.size());
+					if(!imgUser.isEmpty()){
+					UserDTO ranUser = imgUser.get(random);	//이미지를 가지고 있는 내친구중에 한사람정보
+					DiaryDTO diary = null;
+					String image = null;
+					String content = null;
 					
+					System.out.println("=================================================");
+					/*System.out.println("내친구 수: "+frndNoList.size());
+					System.out.println("임의숫자: "+random);
+					System.out.println("임의로 얻은 친구: "+ranUser.getUserid());
+					if(TestDAO.selectLastDiary(frndNoList.get(random))!=null){
+						diary = TestDAO.selectLastDiary(frndNoList.get(random));
+						if(diary.getBrdcontent().split("!split!")[0]!=null){
+							image = diary.getBrdcontent().split("!split!")[0];
+						}
+						content = diary.getBrdcontent().split("!split!")[1];
+						System.out.println("이 친구의 최근 일기:"+diary.getTitle()+" "+diary.getBrdno());
+						System.out.println("일기사진: "+image);
+						System.out.println("내용: "+content);
+					}*/
+					System.out.println("=================================================");
+					diary = TestDAO.selectLastDiary(ranUser.getUserno());
+					request.setAttribute("randomUser", ranUser);
+					request.setAttribute("checkImg", diary.getBrdcontent().split("!split!")[0]);
+					request.setAttribute("checkCont", diary.getBrdcontent().split("!split!")[1]);
+					}
+					/////////////////////////////////////////////////////////////////
 					session.setAttribute("todayPlan", planList);
 					
 					// sender list를 session에 저장
