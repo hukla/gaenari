@@ -33,7 +33,7 @@
                         <li><a href="/gaenari/voluBoardList.do">자원봉사</a></li>
                     </ul>
                 </li>
-                <c:if test="#{sessionScope.userid != null }">
+                <c:if test="${sessionScope.userid != null}">
                 <li style="position:absolute;right:20px;">
                     <a href="" onclick="miniHome()"><img src="http://www.flaticon.com/png/256/35141.png"> 미니홈피</a>
                 </li>
