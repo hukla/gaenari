@@ -7,17 +7,17 @@
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="/gaenari/mallMain.do"><img src="./static/images/mall-icon.png"> 기부몰</a>
+                    <a href="/gaenari/mallMain.do"><img src="/gaenari/static/images/mall-icon.png"> 기부몰</a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="./static/images/petcommu-icon.png"> 애견 커뮤니티 <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/gaenari/static/images/petcommu-icon.png"> 애견 커뮤니티 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/gaenari/adpBoardMain.do">애견 분양</a></li>
                         <li><a href="/gaenari/ptBoardList.do">펫 도우미</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="./static/images/yuki-icon.png"> 유기견 센터<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/gaenari/static/images/yuki-icon.png"> 유기견 센터<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/gaenari/missingBoardMain.do">유기견 신고</a></li>
                         <li><a href="/gaenari/findingBoardMain.do">유기견 제보</a></li>
@@ -26,7 +26,7 @@
                 </li>
                 <c:if test="${sessionScope.userid != null}">
                 <li style="position:absolute;right:30px;">
-                    <a href="" onclick="miniHome()"><img src="./static/images/minihome-icon.png"> 미니홈피</a>
+                    <a href="" onclick="miniHome()"><img src="/gaenari/static/images/minihome-icon.png"> 미니홈피</a>
                 </li>
                 </c:if>
             </ul>
