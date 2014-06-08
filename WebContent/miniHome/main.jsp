@@ -56,8 +56,8 @@ div#doginfo {
  -->
 </head>
 
-<body id="bd">
-	<table align="left" width="800" id="tb">
+<body>
+	<table align="left" width="900" id="tb">
 		<tr>
 			<td width="100%" align="center">
 				<table border="0" align="center" width="80%" class="table">
