@@ -40,7 +40,6 @@ $(function(){
 				});
 				
 				$('#my_don_list tr:eq(0)').after(table);
-                $('.progress').remove();
 
 			},
 			error: function(data) { alert(data+' => 에러 발생');}

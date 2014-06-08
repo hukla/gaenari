@@ -46,7 +46,6 @@ $(function () {
                     });
                 //alert(table);
                 $('#item_list').html(table);
-                $('.progress').remove();
             },
             error: function (data) {
                 alert(data + ' => 에러 발생');
