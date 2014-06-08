@@ -1228,3 +1228,10 @@ color:#3E403A;
 	background-color:#FF9900;
 }   
 /**/
+
+/**/
+#modify-table.table > tbody > tr > th, #insert-table > tbody > tr > th {
+	vertical-align:middle;
+	text-align:center;
+}
+/**/

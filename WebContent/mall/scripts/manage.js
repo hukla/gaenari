@@ -16,8 +16,6 @@ $(function () {
             success: function (data) {
                 //alert("success");
             	
-            	
-            	
             	 var datalength = $(data).find('listlength').text();
                  var progress = 100 / datalength;
             	
@@ -154,7 +152,7 @@ $(function () {
 function deleteItem(itemno) {
 	var res = confirm("정말 삭제하시겠습니까?");
 	var newwindow;
-	var url = "/gaenari/rmItem.do?itemno ="+itemno;
+	var url = "/gaenari/rmItem.do?itemno="+itemno;
 	if(res == true) {
 		newwindow=window.open(url,'삭제 완료','height=150,width=400');
 		if(window.focus) {
@@ -167,7 +165,7 @@ function deleteItem(itemno) {
 // '수정하기' 버튼 클릭시 호출되는 함수
 function modifyItem(itemno) {
 	var newwindow;
-	var url =" /gaenari/itemUpdateForm.do?itemno ="+itemno;
+	var url ="/gaenari/itemUpdateForm.do?itemno="+itemno;
 	
 	newwindow=window.open(url, '상품 상세 정보 수정 페이지', 'height=550,width=660');
 	if(window.focus) {
@@ -178,7 +176,7 @@ function modifyItem(itemno) {
 // '등록하기' 버튼 클릭시 호출되는 함수
 function insertItem() {
 	var newwindow;
-	var url = " /gaenari/itemInsertForm.do";
+	var url = "/gaenari/itemInsertForm.do";
 	
 	newwindow = window.open(url, '상품 등록 페이지', 'height=550,width=660');
 	if(window.focus) {
