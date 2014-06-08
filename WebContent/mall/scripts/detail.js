@@ -35,9 +35,9 @@ $(function () {
         }
         //alert($('input[name=usertype]').val());
         if ($('input[name=usertype]').val() == 0) {
-            $('#item_list').prop('action', '/gaenari/donnate.do');
-            alert($('#item_list').prop('action').val());
-            return true;
+        	//alert($('#item_list').serialize());
+        	donnate();
+            return false;
         } else if ($('input[name=usertype]').val() > 0) {
             $('#item_list').prop('action', '/gaenari/mallRequest.do');
             return true;
@@ -53,4 +53,34 @@ $(function () {
         }
         $('#item_list').submit();
     });
+    
+    function donnate() {
+        $.ajax({
+            url: "/gaenari/donnate.do",
+            data: $('#item_list').serialize(),
+            dataType: "JSON",
+            success: function (data) {
+            	//alert(data.isSuccess);
+            	var alertmsg = "";
+            	$('.item-donate-state').empty();
+            	
+            	if(data.isSuccess) {
+            		
+            		alertmsg += "<div class='alert alert-warning alert-dismissable'>";
+            		alertmsg += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            		alertmsg += "<strong>기부 완료!</strong>";
+            		alertmsg += "</div>";
+            	}
+            	
+            	$('.item-donate-state').html(alertmsg);
+            	
+            },
+            error: function (data) {
+                alert(data + ' => 에러 발생');
+            }
+
+        }); // ajax 끝
+    }
+    
+    
 });

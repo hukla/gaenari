@@ -56,6 +56,8 @@ public class MallDonateAction implements Action {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 			url = "/error.jsp";
+			response.getWriter().print("{\"isSuccess\":true}");
+			request.getRequestDispatcher(url).forward(request, response);
 		}
 		// 성공 페이지에서 결과 출력하기 위해 attribute 설정
 		request.setAttribute("donnation", donnation);
@@ -63,8 +65,11 @@ public class MallDonateAction implements Action {
 		System.out.println(request.getParameter("item_name"));
 		request.setAttribute("cntrname", targetcntrname);
 		
+		response.getWriter().print("{\"isSuccess\":true}");
+		System.out.println("{\"isSuccess\":true}");
+		System.out.println("ok");
 		// forward
-		request.getRequestDispatcher(url).forward(request, response);
+		//request.getRequestDispatcher(url).forward(request, response);
 	}
 
 }

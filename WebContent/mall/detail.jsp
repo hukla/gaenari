@@ -89,9 +89,12 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="item-donate-state" style="position:fixed;bottom:0;left:45%"></div>
+            
             </div>
+            
         <%@ include file="/static/pages/footer.jsp"%>
-        </div>
         </div>
     </body>
     <script src="mall/scripts/detail.js"></script>

@@ -32,16 +32,16 @@ $(function () {
                             $(this).find("price").text() + "'><input type='hidden' name='gnr_point' value='" +
                             (parseInt($(this).find("price").text()) * 0.05) + "'><input type='hidden' name='don_target'>";
                         table += "<input type='hidden' name='item_name' value='" + $(this).find('itemname').text() + "'><input type='hidden' name='cntrname'>";
-                        table += "<div class='item-image'><img class='item_img' id='img_1' src='/gaenari/mall/img/" +
-                            $(this).find("itemno").text() + ".jpg' width='160' height='160' border='0' align='absmiddle'></div>";
+                        table += "<div class='item-image'>";
+                        table += "<a href='/gaenari/mallDetail.do?itemno=" +
+                        	$(this).find("itemno").text() + "'><img class='item_img' id='img_1' src='/gaenari/mall/img/" +
+                            $(this).find("itemno").text() + ".jpg' width='160' height='160' border='0' align='absmiddle'></a></div>";
                         table += "<div class='item-name'>";
-                        table += "<a href='http://localhost:9000/gaenari/mallDetail.do?itemno=" +
+                        table += "<a href='/gaenari/mallDetail.do?itemno=" +
                             $(this).find("itemno").text() + "'>" + $(this).find('itemname').text() + "</a></div>";
                         table += "<div class='item-price'>";
                         table += "<span style='color:#c33;font-weight:bold;'>\\ </span><span class='item_price'>" + $(this).find("price").text() + "</span>&nbsp; &nbsp;<span class='label gaenarige-label'> <img src='/gaenari/static/images/gaenarige-icon.png' height='10px'> " +
                             (parseInt($(this).find("price").text()) * 0.05) + "</span></div>";
-                        table += "<div class='item-qty'>";
-                        table += "<input type='text' class='ct_qty' name='qty' value='1' size='5' maxlength='5' autocomplete='off' style='text-align: center;'>개 <input type='submit' class='btn btn-yellow' value='기부하기'></div>";
                         table += "</li>";
                     });
                 //alert(table);
