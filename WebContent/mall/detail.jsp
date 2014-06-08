@@ -1,339 +1,98 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" info="2014-05-03:장재희:제품 상세 정보 페이지"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="/frame.jsp" %>
-<%@ include file="/mall/menu.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>제품 상세 정보 페이지</title>
-</head>
-<body>
-	<!-- 제품 상세 정보 테이블 시작 -->
-	<table width=950 cellpadding=0 cellspacing=0 align=center valign='top' border=0>
-		<tr>
-			<td>
-				<form name="itemlist" id="item_list" method='post'>
-				<input type="hidden" name="selectedItemNo" value="${selectedItem.itemno }">
-				<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
-						<tr>
-							<!--상품 이미지-->
-							<td>
-								<table width="380" cellpadding=0 cellspacing=0>
-								  	<tr>
-								    	<td colspan=3 align=center valign="middle">
-											<table cellpadding=0 cellspacing=0 bgcolor=#E4E4E4>
-												<tr>
-									  		  	<td>
-									  		  		<!-- popup TODO -->
-								                	<a href="javascript:popupOpen(${selectedItem.itemno})"><img id='${selectedItem.itemno}' src='mall/img/${selectedItem.itemno}.jpg' width='350' height='350' border='0' align='absmiddle'></a>
-								              	</td>
-												</tr>
-											</table>
-										</td>
-								  	</tr>
-								  	<tr>
-								    	<td height=10 colspan=3 valign="middle"/>
-								    	<!-- 큰 이미지와 작은 이미지 사이 공백 -->
-								  	</tr>
-								  	<!--작은이미지 시작-->
-								  	<tr>
-								    	<td align="center">
-								    		<a href="javascript:popupOpen(${selectedItem.itemno})">
-								       		<img id='middle1' src='mall/img/${selectedItem.itemno}.jpg' border=0 width=80 height=80 style='border: 2px solid #E4E4E4;' ></a>
-								    	</td>
-								  	</tr>
-								  	<!--작은이미지 끝-->
-								</table>
-							</td>
-							<!-- 상품 이미지 끝 -->
-							<!-- 상품 정보 시작 -->			
-							<td valign="top" width=520 align=center cellpadding=0 cellspacing=0>
-								<!-- 상품명 시작 -->
-								<table width=500 valign="top" cellpadding=0 cellspacing=0>
-									<tr>
-										<td valign=top>
-											<span style='font-size: 18px; font-family: 돋움; line-height: 130%;'>
-												<strong><!-- 상품명 -->${selectedItem.itemname}</strong>
-												<input type='hidden' name='item_name' value='${selectedItem.itemname}'>
-											</span>
-										</td>
-									</tr>
-									<tr>
-										<td height=5></td>
-									</tr>
-									<tr>
-										<td colspan="3" height="2" bgcolor="#97c7e4"></td><!-- 상품명 밑에 밑줄 -->
-									</tr>
-								</table>
-								<!-- 상품명 끝 -->
-								
-								<!-- 상품 정보 시작 -->
-								<table width=500 cellpadding=0 cellspacing=0>
-									<colgroup width=120></colgroup>
-									<colgroup width=20></colgroup>
-									<colgroup width=360></colgroup>
-									<!-- 소비자 가격 시작 -->
-									<tr height=25>
-										<td width="110" height="27" bgcolor="#FFFFFF" class="list2">
-											<img src='mall/img/dot_n.gif'> 소비자가격
-										</td>
-										<td width=33 align=center bgcolor="#FFFFFF">
-											<img src='mall/img/line_dot4.gif'>
-										</td>
-										<td bgcolor="#FFFFFF">
-											<table border=0 cellspacing=0 cellpadding=0>
-												<tr valign="middle">
-													<td width="219" valign="middle">&nbsp;
-														<b> <font color="#777777">\</font>
-															<font style="font-size: 14px;"><fmt:formatNumber value="${selectedItem.price}"/></font>
-														</b>
-														<input type=hidden name='price' value='${selectedItem.price}'>
-													</td>
-												</tr>
-											</table>
-										</td>
-									</tr>
-									<!-- 소비자 가격 끝 -->
-									<!-- 적립 개나리 포인트 시작 -->
-									<tr height=25>
-										<td width="115" height="27" bgcolor="#FFFFFF" class="list2">
-											<img src='mall/img/dot_n.gif'> 적립포인트
-										</td>
-										<td width=33 align=center bgcolor="#FFFFFF">
-											<img src='mall/img/line_dot4.gif'>
-										</td>
-										<td bgcolor="#FFFFFF">&nbsp;&nbsp;
-											<img src='mall/img/btn_point.png' align='absmiddle' width="20" height="relative">&nbsp;
-											<span id="gnr_point" style="border-width: 0px; font-weight: bold; font-family: Geneva; color: #666666;"><fmt:formatNumber maxFractionDigits="0" value="${selectedItem.price * 0.05}"/></span>
-											<input type="hidden" name="gnr_point" value="${selectedItem.price * 0.05}"> 
-										</td>
-									</tr>
-									<!-- 적립 개나리 포인트 끝 -->
-									<!-- 기부 수량 시작 -->
-									<tr height=25>
-										<td width="115" height="27" bgcolor="#FFFFFF" class="list3">
-											<img src='mall/img/dot_n.gif'> 기부수량
-										</td>
-										<td width=33 align=center bgcolor="#FFFFFF">
-											<img src='mall/img/line_dot4.gif'>
-										</td>
-										<td bgcolor="#FFFFFF">&nbsp;&nbsp; 
-											<input type=text name='ct_qty' value='1' size=5 maxlength=5 class='ed' autocomplete='off' style='text-align: center;' onkeyup='qty_keyup()'>
-												<img src='mall/img/qty_control.gif' border=0 align=absmiddle usemap="#qty_control_map"> 개 
-													<map name="qty_control_map">
-														<area shape="rect" coords="0, 0, 10, 9" href="javascript:qty_add(+1);">
-														<area shape="rect" coords="0, 10, 10, 19" href="javascript:qty_add(-1);">
-													</map>
-										</td>
-									</tr>
-									<!-- 기부 수량 끝 -->
-									<!-- 기부 대상 시작 --> 
-									<c:if test="${sessionScope.user.usertype == 0}">
-									<tr>
-										<td width="115" height="27" bgcolor="#FFFFFF" class="list3">
-											<img src='mall/img/dot_n.gif'> 기부 대상
-										</td>
-										<td width=33 align=center bgcolor="#FFFFFF">
-											<img src='mall/img/line_dot4.gif'>
-										</td>
-										<td bgcolor="#FFFFFF">&nbsp;&nbsp; 
-											<select name="don_target" id="target_sel">
-												<option value="0">기부할 센터 선택</option>
-												<c:forEach items="${sessionScope.centerList}" var="cntr">
-													<c:set var="test" value="${':'}${cntr.cntrno}${':'}"/>
-													<c:choose>
-													<c:when test="${fn:contains(selectedItem.reqcntr, test)}"><option value="${cntr.cntrno}" style="color:red;font-weight:bold;">${cntr.cntrname}</option></c:when>
-													<c:otherwise><option value="${cntr.cntrno}">${cntr.cntrname }</option></c:otherwise>
-													</c:choose>
-												
-												</c:forEach>
-											</select>
-											<input type='hidden' name='cntrname' id='cntr_name' value=''>
-										</td>
-									</tr>
-									</c:if>
-									<!-- 기부 대상 끝 -->
-									<!-- 밑줄 시작 -->
-									<tr>
-										<td colspan=3 height=1 bgcolor='#d6d6d6'></td>
-									</tr>
-									<!-- 밑줄 끝 -->
-							</table>
-							<!-- 상품 정보 끝 -->
-							<!-- submit 버튼 시작 -->
-							<table cellpadding="0" cellspacing="0">
-								<tr>
-									<td height=65 width="126">
-									<input type="hidden" name="usertype" id="usertype" value="${sessionScope.user.usertype }">
-									<c:choose>
-										<c:when test="${sessionScope.user.usertype > 0}">
-											<input type="submit" value="요청하기">
-										</c:when>
-										<c:when test="${sessionScope.user.usertype < 0}">
-											<input type="submit" value="상품 정보 수정하기">
-										</c:when>
-										<c:otherwise>
-											<input type="submit" value="기부하기">
-										</c:otherwise>
-									</c:choose>
-									</td>
-								</tr>
-							</table>
-							<!-- 구매하기 버튼 끝 -->
-							
-						</td>
-						<!-- 상품 정보 테이블 끝 -->
-						<td width="1" bgcolor="#FFFFFF"></td>
-					</tr>
-					<tr>
-						<td colspan="4" height="1" bgcolor="#FFFFFF"></td>
-					</tr>
-				</table>
-				</form>
-			</td>
-		</tr>
-		<tr>
-			<td colspan=2 height=20></td>
-		</tr>
-		</table>
-		<!-- 상단 제품 상세 정보 테이블 끝 -->
-		
-		<br>
-		<br>
-		
-		<!-- 상세정보 제목 테이블 시작 -->
-		<table width="950" border="0" align="center" cellpadding="0" cellspacing="0">
-			<tr>
-				<td>
-				상세정보
-				</td>
-			</tr>
-		</table>
-		<!-- 상세정보 제목 테이블 끝 -->
-		<!-- 상품설명 시작 -->
-		<div id='item_explan' style='display: block;'>
-			<table width=86% align="right" cellpadding=0 cellspacing=0>
-				<tr>
-					<td style='padding: 15px'>
-						${selectedItem.itemdetail}						
-					</td>
-				</tr>
-			</table>
-		</div> 
-		<!-- 상품설명 끝 -->
-</body>
-	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript">
-		function popupOpen(itemno){
-			var popUrl = "mall/img/"+itemno+".jpg";	//팝업창에 출력될 페이지 URL
-			var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
-		window.open(popUrl,"",popOption);
-		}
-		
-		// 수량 추가
-		function qty_add(x) {
-			var res = parseInt(document.itemlist.ct_qty.value) + parseInt(x);
-			if(res > 0) {
-				document.itemlist.ct_qty.value = res;
-			}
-		}
-		
-		// 수량 키보드 입력 예외 처리
-		function qty_keyup() {
-			if(parseInt(document.itemlist.ct_qty.value) < 0) {
-				document.itemlist.ct_qty.value=1;
-			}
-		}
-		
-		$(function(){
-			// selected되면 값을 hidden에 저장
-			$('#target_sel').blur(function(){
-				$('#cntr_name').val($('#target_sel option:selected').text());
-				//alert($('#cntr_name').val());
-			});
-			
-			// user type에 따라 submit action 다르게 하기
-			$('#item_list').submit(function(){
-				// 기부 대상 선택하지 않으면 에러메시지 출력
-				//alert($('#target_sel option:selected').val());
-				if($('#target_sel option:selected').val() == 0) {
-					alert("기부할 대상을 선택해주세요!");
-					return false;
-				}
-				
-				//alert($('input[name=usertype]').val());
-				if($('input[name=usertype]').val() == 0) {
-					$('#item_list').prop('action', '/gaenari/donnate.do');
-					alert($('#item_list').prop('action').val());
-					return true;
-				} else if($('input[name=usertype]').val() > 0) {
-					$('#item_list').prop('action', '/gaenari/mallRequest.do');
-					return true;
-				} else if($('input[name=usertype]').val() < 0){
-					var newwindow;
-					var url ="/gaenari/itemUpdateForm.do?itemno="+$('input[name=selectedItemNo]').val();
-					
-					newwindow=window.open(url, '상품 상세 정보 수정 페이지', 'height=550,width=660');
-					if(window.focus) {
-						newwindow.focus;
-					}
-				} else {
-					alert("로그인해주세요!");
-				}
-				
-				$('#item_list').submit();
-			});
-			
-		});
-	</script>
-	
-<!-- 상품정보 소셜네트워크로 보내기
-							<table border="0" cellspacing="0" cellpadding="0" align="center">
-								<tr>
-									<td height=25>
-										<a href="http://twitter.com/home/?status=%5BANF%5D+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84+%EC%96%91%EA%B3%A0%EA%B8%B0+%28%EB%9E%A828%29+7.5kg+++http%3A%2F%2Fohdog.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1201077495" target="_blank">
-											<img src="http://www.ohdog.co.kr/shop/img/item/btn_sns01.gif" height="25" border="0" alt="twitter로 보내기">
-										</a>
-									</td>
-									<td>
-										<a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fohdog.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1201077495&t=%5BANF%5D+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84+%EC%96%91%EA%B3%A0%EA%B8%B0+%28%EB%9E%A828%29+7.5kg"
-										target="_blank">
-											<img src="http://www.ohdog.co.kr/shop/img/item/btn_sns02.gif" height="25" border="0" alt="facebook으로 보내기">
-										</a>
-									</td>
-									<td>
-										<a href="http://yozm.daum.net/api/popup/prePost?sourceid=41&link=http%3A%2F%2Fohdog.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1201077495&prefix=%5BANF%5D+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84+%EC%96%91%EA%B3%A0%EA%B8%B0+%28%EB%9E%A828%29+7.5kg"
-										target="_blank">
-											<img src="http://www.ohdog.co.kr/shop/img/item/btn_sns03.gif" height="25" alt="요즘으로 보내기" border="0">
-										</a>
-									</td>
-									<td>
-										<a href='http://me2day.net/posts/new?new_post[body]=%5BANF%5D+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84+%EC%96%91%EA%B3%A0%EA%B8%B0+%28%EB%9E%A828%29+7.5kg+++++++["%EC%98%A4%EB%8F%84%EA%B7%B8":http%3A%2F%2Fohdog.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1201077495+]&new_post[tags]=%EC%83%81%ED%92%88+%EC%83%81%EC%84%B8%EB%B3%B4%EA%B8%B0+%3A+ANF+-+%5BANF%5D+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84+%EC%96%91%EA%B3%A0%EA%B8%B0+%28%EB%9E%A828%29+7.5kg+'
-										target="_blank">
-											<img src="http://www.ohdog.co.kr/shop/img/item/btn_sns04.gif" height="25" border="0" alt="Me2Day로 보내기">
-										</a>
-									</td>
-								-->
-								<!--  북마크추가 
-									<td>
-										<a href="http://bookmark.naver.com/post?ns=1&title=%5BANF%5D+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84+%EC%96%91%EA%B3%A0%EA%B8%B0+%28%EB%9E%A828%29+7.5kg&url=http://ohdog.co.kr/shop/item.php?it_id=1201077495"
-										target="_blank">
-										<img src="http://www.ohdog.co.kr/shop/img/item/btn_sns05.gif" alt="네이버로 북마크 하기"
-															height="25" border="0">
-										</a>
-									</td>
-									<td>
-										<a href="https://www.google.com/bookmarks/mark?op=add&title=%5BANF%5D+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84+%EC%96%91%EA%B3%A0%EA%B8%B0+%28%EB%9E%A828%29+7.5kg&bkmk=http://ohdog.co.kr/shop/item.php?it_id=1201077495"
-												target="_blank">
-											<img src="http://www.ohdog.co.kr/shop/img/item/btn_sns06.gif" alt="구글로 북마크 하기"
-															height="25" border="0">
-										</a>
-									</td>
-								</tr>
-							</table> 
-							//상품정보 소셜네트워크로로 보내기
-							-->
+    <%@ include file="/static/pages/head.jsp"%>
+    <body>
+    	
+        <div id="wrapper">
+            <%@ include file="/static/pages/header.jsp"%>
+            <div id="content">
+                <%@ include file="/static/pages/menubar.jsp"%>
+                <div class="container">
+	                <div class="aside-menu">
+	        			<%@ include file="menu.jsp" %>
+	        		</div>
+                    <div id="item-view-form">
+                        <form name="itemlist" id="item_list" method='post'>
+	                        <input type="hidden" name="selectedItemNo" value="${selectedItem.itemno }">
+	                        <input type='hidden' name='item_name' value='${selectedItem.itemname}'>
+							<input type=hidden name='price' value='${selectedItem.price}'>
+	                        <input type="hidden" name="gnr_point" value="${selectedItem.price * 0.05}">
+	                        <input type='hidden' name='cntrname' id='cntr_name' value=''>
+	                        <input type="hidden" name="usertype" id="usertype" value="${sessionScope.user.usertype }">
+                            <div class="item-info-header">
+                                <div class="item-dog-name">${selectedItem.itemname}</div>
+                            </div>
+                            <div class="item-info-main">
+                                <div class="left-part" style="background-image: url('mall/img/${selectedItem.itemno}.jpg');" onclick="popupOpen(${selectedItem.itemno})"></div>
+                                <div class="right-part">
+                                    <div class="part-header">
+                                        <div class="part-header-title">
+                                            <fmt:formatNumber value="${selectedItem.price}"/>
+                                            원 &nbsp; 
+                                            <div class='label gaenarige-label'>${selectedItem.price * 0.05}</div>
+                                            <br><br>
+                                            <c:choose>
+                                                <c:when test="${sessionScope.user.usertype > 0}">
+                                                    <input type="submit" class="btn btn-yellow" value="요청하기">
+                                                </c:when>
+                                                <c:when test="${sessionScope.user.usertype < 0}">
+                                                    <input type="submit" class="btn btn-yellow" value="상품 정보 수정하기">
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <input type="submit" class="btn btn-yellow" value="기부하기">
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                    </div>
+                                    <div class="part-line-gray">기부수량</div>
+                                    <div class="part-line">
+                                        <input type=text name='ct_qty' class="form-control qty" value='1'>
+                                        <img src='mall/img/qty_control.gif' border=0 align=absmiddle usemap="#qty_control_map"> 개 
+                                        <map name="qty_control_map">
+                                            <area shape="rect" coords="0, 0, 10, 9" href="javascript:qty_add(+1);">
+                                            <area shape="rect" coords="0, 10, 10, 19" href="javascript:qty_add(-1);">
+                                        </map>
+                                    </div>
+                                    <c:if test="${sessionScope.user.usertype == 0}">
+                                        <div class="part-line-gray">기부 대상</div>
+                                        <div class="part-line">
+                                            <select name="don_target" class="form-control" id="target_sel">
+                                                <option value="0">기부할 센터 선택</option>
+                                                <c:forEach items="${sessionScope.centerList}" var="cntr">
+                                                    <c:set var="test" value="${':'}${cntr.cntrno}${':'}"/>
+                                                    <c:choose>
+                                                        <c:when test="${fn:contains(selectedItem.reqcntr, test)}">
+                                                            <option value="${cntr.cntrno}" style="color:red;font-weight:bold;">${cntr.cntrname}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${cntr.cntrno}">${cntr.cntrname }</option>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </c:if>
+                                </div></div>
+                        </form>
+                    <div class="item-info-bottom">
+                        <div class="content-container">
+                            <div class="item-info-content">
+                                <div class="item-info-content-text">
+                                    ${selectedItem.itemdetail}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        <%@ include file="/static/pages/footer.jsp"%>
+        </div>
+        </div>
+    </body>
+    <script src="mall/scripts/detail.js"></script>
 </html>
