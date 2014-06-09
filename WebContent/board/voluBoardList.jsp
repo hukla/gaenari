@@ -121,14 +121,15 @@
         <%@ include file="/static/pages/footer.jsp"%>
         </div>
     </body>
-    <script language="javascript">
-    function checkUser(){
+<script language="javascript">
+function checkUser(){
 	if(<%=UserDAO.logCheck((String)session.getAttribute("userid")).getUsertype()%>!=0){
 		return true;
-	}else{
+    }else{
 		alert('센터 회원만 글 작성이 가능합니다.');
 		return false;
 	}
 }
-    </script>
+
+</script>
 </html>

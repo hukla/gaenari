@@ -28,6 +28,9 @@
                                 <div class="mboard-info-content-text">
                                     ${requestScope.resultContent.brdcontent}
                                 </div>
+                                <center>
+								<input class="btn btn-yellow" type=button value="입양하기" onclick='checkQuest()'>
+								</center>                                
                             </div>
                         </div>
                     </div>
@@ -35,10 +38,10 @@
             </div>
             <%@ include file="/static/pages/footer.jsp"%>
         </div>
-        <div class="ptboard-info-bottom">
-        	<div class="content-container">
-        		<input class="btn btn-yellow" type=button value="입양하기" onclick='checkQuest()'>
-        	</div>
-        </div>
     </body>
+<script language="javascript">
+function checkQuest(){
+	
+}
+</script>
 </html>
