@@ -177,6 +177,14 @@
 									<td align="center">${plan.wrdate}</td>
 									<td>
 										<a href="/gaenari/planDetail.do?brdno=${plan.brdno}&userid=${requestScope.user.userid}">${plan.title}</a>
+										<c:choose>
+											<c:when test="${plan.flag == 0}">
+												<span class="label label-info">미완료</span>
+											</c:when>
+											<c:otherwise>
+												<span class="label label-default">완료</span>
+											</c:otherwise>
+										</c:choose>
 									</td>
 									<td align="center">${plan.ploc}</td>
 								</tr>

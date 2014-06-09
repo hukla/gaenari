@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.DogDAO;
 import model.dao.TestDAO;
 import model.dao.UpdateDAO;
 import model.dao.UserDAO;
@@ -76,78 +77,64 @@ public class MinihomeMainAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{  
 		
 		int cnt=0;
-		int index=0;
-		int lastIndex=0;
 		String userid = null;
-		String savePath = null;
-		String fullpath = null;
 		String updateimg = null;
 		UserDTO loginUser = null;
+		DiaryDTO diary = null;
+		DogDTO planDog = null;
 		List<DogDTO> dog = null;
-		List<BoardDTO> allPlanList = null;
-		List<BoardDTO> planList = null;
-//		List<BoardDTO> diaryList = null;
-		List<BoardDTO> visitList = null;
+		List<PlanDTO> todayPlan = null;
+		PlanDTO nextPlan = null;
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		
 		try {
-			//14-05-25 성훈추가: 친구아이디인지 내아이디인지 구분하기
-			userid = (String)session.getAttribute("userid");		//세션의 userid가져오기
+			userid = (String)session.getAttribute("userid");								//14-05-25 성훈추가: 친구아이디인지 내아이디인지 구분하기
+			if(request.getParameter("userid")!=null){	
+				if(userid!=request.getParameter("userid"))	
+					userid = request.getParameter("userid");
+			}	
+			loginUser = UserDAO.logCheck(userid);
 			
-			//다른 아이디를 클릭할 때
-			if(request.getParameter("userid")!=null){				//만약 userid 파라미터를 넘겨 받았다면
-				if(userid!=request.getParameter("userid"))			//그리고 만약 세션 userid와 파라미터userid가 다르다면
-					userid = request.getParameter("userid");		//userid에 파라미터userid를 저장하기
-			}				
-			loginUser = UserDAO.logCheck(userid);				// userid로 user정보 가져온다
-			// 14-05-13 성훈 수정 세개씩 미리보기
-			updateimg = request.getParameter("updateimg");
+			updateimg = request.getParameter("updateimg");									//이미지 클릭해서 메인사진 바꾸기
 			if(updateimg!=null){
 				UpdateDAO.updateImg(loginUser.getUserid(),updateimg);
 				loginUser = UserDAO.logCheck(loginUser.getUserid());	
 			}
-			///////////////////////////////////////////////////////////////////
-			//14-05-26 성훈추가: 사용자별 사진첩 폴더생성
 			
-			///////////////////////////////////////////////
-//			diaryList = TestDAO.selectThreeDiaries(loginUser);	// 이 페이지 user의 일기, 일정, 방명록 3개씩 가져오기
-			planList = TestDAO.selectThreePlans(loginUser);
-			visitList = TestDAO.selectThreeVisits(loginUser);
-			allPlanList = TestDAO.selectPlan(loginUser);
-			dog = TestDAO.getMyDogInfo(loginUser.getUserno());
-			DiaryDTO di = null;
-			di = TestDAO.selectLastDiary(loginUser.getUserno());
-			if(di.getBrdcontent().split("!split!")[0]!=null){
-				request.setAttribute("diImage", di.getBrdcontent().split("!split!")[0]);
-			}else{
-				request.setAttribute("diImage",null);
+			dog = TestDAO.getMyDogInfo(loginUser.getUserno());								//내 강아지 정보가져오기
+			
+			
+			
+			diary = TestDAO.selectLastDiary(loginUser.getUserno());							//가장 최근 다이어리정보 가져오기(+사진,내용도)
+			if(diary != null){
+				if(!diary.getBrdcontent().split("!split!")[0].equals(""))
+					request.setAttribute("diImage", diary.getBrdcontent().split("!split!")[0]);
+				else	request.setAttribute("diImage",null);
+				request.setAttribute("diContent",  diary.getBrdcontent().split("!split!")[1]);	//일기+사진+내용 request에 setAttribute
 			}
-			request.setAttribute("diContent",  di.getBrdcontent().split("!split!")[1]);
-			request.setAttribute("di", di);
-			request.setAttribute("user", loginUser);				// 이 페이지 user를 request에 setAttribute
-			request.setAttribute("dog", dog);
-//			request.setAttribute("diary", diaryList);
-			request.setAttribute("planList", planList);
-			request.setAttribute("visit", visitList);
-			// 14-05-13 성훈 추가 실제경로에서 이미지 가져오기
-			savePath = session.getServletContext().getRealPath("image");
-			fullpath = savePath + "\\" + "hoonc.jpg";
-			request.setAttribute("fullpath", fullpath);
-
-			// 14-05-13 성훈 추가 오늘의 일정 띄우기
-			// - 1개인 경우와 1개 이상인 경우 나눔
-			for (BoardDTO plans : allPlanList) {
-				index++;
-				if (plans.getWrdate().equals(session.getAttribute("today"))) {
-					cnt++;
-					lastIndex = index - 1;
+			nextPlan = TestDAO.unfinishedPlan(loginUser.getUserid());						//오늘 이후의 일정
+			if(nextPlan != null){
+				if(nextPlan.getPlandogno()!=0){
+					planDog = DogDAO.getDogInfo(loginUser.getUserno(), nextPlan.getPlandogno());
+					request.setAttribute("plDogTitle", planDog.getDogname()+" "+nextPlan.getBrdcontent().split("!split!")[0]);
+				}else{
+					request.setAttribute("plDogTitle", null);
 				}
+				nextPlan.setBrdcontent(nextPlan.getBrdcontent().split("!split!")[1]);
 			}
-			// 14-05-13 성훈추가: 일정 개수
-			session.setAttribute("plans", cnt);
-			// 14-05-13 성훈추가: 당일 일정 1개인 경우 일정정보
-			if (cnt == 1)	session.setAttribute("plan", allPlanList.get(lastIndex));
+			
+			todayPlan = TestDAO.myTodaysPlan((String)session.getAttribute("userid"));		//오늘 내 일정리스트 가져오기
+			cnt = todayPlan.size();
+			
+			session.setAttribute("plans", cnt);				// 14-05-13 성훈추가: 일정 개수
+			session.setAttribute("todayPlan", todayPlan);	//오늘 일정리스트
+			request.setAttribute("nextPlan", nextPlan);		//이 다음 일정 한 개
+			
+			request.setAttribute("di", diary);				//가장 최근 일기
+			request.setAttribute("user", loginUser);		//user정보
+			request.setAttribute("dog", dog);				//내강아지정보
+			request.setAttribute("planDog", planDog);
 
 			url = "miniHome/main.jsp";
 

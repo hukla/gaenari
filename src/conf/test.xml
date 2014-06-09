@@ -215,4 +215,14 @@
 		SELECT * from board b join diaryinfo d on b.brdno = d.brdno and b.userno =#{userno}
 		order by b.wrdate desc limit 1
 	</select>
+	
+	<select id="myTodaysPlan" parameterType="String" resultMap="brdMap">
+		SELECT * FROM board b JOIN planboardinfo p ON b.brdno = p.brdno AND b.userid=#{userid} AND b.wrdate= SYSDATE
+	</select>
+	
+	<select id="unfinishedPlan" parameterType="String" resultMap="brdMap">
+		SELECT * FROM board b JOIN planboardinfo p ON p.brdno=b.brdno AND p.flag=0 AND userid=#{userid}
+		AND DATEDIFF(wrdate,SYSDATE)>0 ORDER BY DATEDIFF(wrdate,SYSDATE) LIMIT 1
+	</select>
+	
 </mapper>

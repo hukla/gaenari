@@ -53,8 +53,7 @@ public class WritePlanAction implements Action {
 			System.out.println(title+loc+tmpDate+content);
 			if (title.equals(null) || title.trim().length() == 0 || loc.equals("unchosen")
 					|| tmpDate.equals(null) || tmpDate.trim().length() == 0
-					|| content.equals(null) || content.trim().length() == 0
-					|| plandogno.equals("unchosen") || plantype.equals("unchosen")) {
+					|| content.equals(null) || content.trim().length() == 0) {
 				throw new Exception("내용을 모두 입력해주세요.");
 			} else {
 				date = tmpDate.substring(6, 10)+"-"+tmpDate.substring(0, 2)+"-"+tmpDate.substring(3, 5);
@@ -62,7 +61,8 @@ public class WritePlanAction implements Action {
 				boardDTO = new BoardDTO(content, date,(String) session.getAttribute("userid"), title, "pl",
 						(int)((UserDTO) session.getAttribute("user")).getUserno());
 				brdno = InsertDAO.insertPlanBoard(boardDTO);
-				InsertDAO.insertPlan(new PlanDTO(brdno, loc, date,Integer.parseInt(plandogno)));
+				if(plandogno!=null)	InsertDAO.insertPlan(new PlanDTO(brdno, loc, date,Integer.parseInt(plandogno)));
+				else	InsertDAO.insertPlan(new PlanDTO(brdno, loc, date));
 				// 입력값들을 보드DTO와 플랜DTO에 insert해준다.
 			}
 			url = "/planList.do";

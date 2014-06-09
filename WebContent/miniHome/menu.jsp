@@ -5,12 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumBrushWeb' rel='stylesheet' type='text/css' />
+<!-- <link href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumBrushWeb' rel='stylesheet' type='text/css' /> -->
 <link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<script src="//code.jquery.com/jquery.js"></script>
-<!--<link href="/gaenari/bootstrap/css/bootstrap-ko.css" rel="stylesheet"> -->
 <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="/gaenari/bootstrap/js/bootstrap.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery.js"></script> -->
+<!--<link href="/gaenari/bootstrap/css/bootstrap-ko.css" rel="stylesheet"> -->
+
 <title>Untitled Document</title>
 <style type="text/css">
 		.toggler { width: 500px; height: 200px; position: relative; }

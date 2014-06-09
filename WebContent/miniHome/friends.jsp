@@ -32,6 +32,7 @@ div#container{
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>친구관리 페이지</title>
 </head>
+<script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="/gaenari/dupcheck.js"></script>
 <!-- 
 작성: 최성훈
@@ -159,14 +160,13 @@ div#container{
 									<td align="center">Email</td>
 									<td align="center">주소</td>
 									<td align="center">강아지</td>
-									<td> </td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="4">
-							<div id="display"></div>
+							<div id="display">여기출력</div>
 						</td>
 					</tr>
 				</table>
@@ -199,7 +199,7 @@ div#container{
 		}
 	}
 
-	function getinfo(userid) {
+ 	function getinfo(userid) {
 		var newwindow;
 		var url = "/gaenari/userinfo.do?userid="+userid;
 		

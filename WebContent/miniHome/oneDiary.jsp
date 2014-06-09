@@ -65,9 +65,9 @@ height:50px;
 		<div class="panel-heading">
 			<table width="100%">
 				<tr>
-					<td width="80%"><h3 class="panel-title">제목:
+					<td width="70%"><h3 class="panel-title">제목:
 							${requestScope.oneDiary.title}</h3></td>
-					<td width="20%" align="right">${requestScope.oneDiary.wrdate}
+					<td width="30%" align="right">${requestScope.oneDiary.wrdate}
 						<c:if test="${requestScope.oneDiary.wrdate eq sessionScope.today}">
 							<font color="blue">[오늘입니다]</font>
 						</c:if>
