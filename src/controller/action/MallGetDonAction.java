@@ -18,9 +18,9 @@ import model.dao.DonReqDAO;
 import model.dao.ItemDAO;
 import model.dao.UserDAO;
 import model.dto.DonReqDTO;
-import model.dto.ItemDTO;
 
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 
 public class MallGetDonAction implements Action {
 
@@ -30,7 +30,6 @@ public class MallGetDonAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<DonReqDTO> donreqList = DonReqDAO.selectAll(1);
-		String result = "";
 		
 		PrintWriter out = response.getWriter();
 		
@@ -40,24 +39,25 @@ public class MallGetDonAction implements Action {
 				throw new Exception("donreqList가 null입니다.");
 			}
 			
-			result += "<donreqlist>";
-			result += "<listlength>"+donreqList.size()+"</listlength>";
-			log.debug("size:"+donreqList.size());
+			JSONObject obj = new JSONObject();
+			String json = "{\"donreqList\":[";
+			
+			//obj.put("listlength", donreqList.size());
+			//json += obj;
+			
 			for(DonReqDTO d : donreqList) {
-				result += "<donreq>";
-				result += "<drno>"+d.getDrno()+"</drno>";
-				result += "<userid>"+UserDAO.selectOne(d.getUserno()).getUserid()+"</userid>";
-				result += "<targetcntr>"+CenterDAO.selectOne(d.getTargetcntr()).getCntrname()+"</targetcntr>";
-				result += "<itemname>"+ItemDAO.selectOne(d.getItemno()).getItemname()+"</itemname>";
-				result += "<qty>"+d.getQty()+"</qty>";
-				result += "<sent>"+d.getSent()+"</sent>";
-				result += "</donreq>";
+				//out.print("\n,{\"donreq\":"+new JSONObject(d).toString()+"}");
+				obj = new JSONObject(d);
+				obj.put("userid", UserDAO.selectOne(d.getUserno()).getUserid());
+				obj.put("targetcntr", CenterDAO.selectOne(d.getTargetcntr()).getCntrname());
+				obj.put("itemname", ItemDAO.selectOne(d.getItemno()).getItemname());
+				json += obj.toString()+",";
+				
 			}
-			result += "</donreqlist>";
-			
-			log.info(result);
-			
-			out.print(result);
+			json = json.substring(0, json.lastIndexOf(","));
+			json += "]}";
+			out.print(json);
+			log.info(json);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
