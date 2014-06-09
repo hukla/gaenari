@@ -11,5 +11,8 @@
 					Reserved
 				</div>
 			</div>
+			<div class="footer-site-description">
+					본 사이트는 1280 X 720의 해상도에 최적화되어 있습니다.
+			</div>
 		</div>
 	</div>

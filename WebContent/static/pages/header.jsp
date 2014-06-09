@@ -4,8 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<div id="header">
 		<div class="container visible">
+			<a href="./">
 			<img class="logo"
-				src="/gaenari/static/images/logo.jpg" />
+				src="/gaenari/static/images/logo.jpg" /></a>
 			<c:choose>
 				<c:when test="${sessionScope.userid == null}">
 				<div class="header-user-menu-container not-login">

@@ -48,13 +48,17 @@ public class MallRequestAction implements Action {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 			url = "/error.jsp";
+			response.getWriter().print("{\"isSuccess\":true}");
+			request.getRequestDispatcher(url).forward(request, response);
 		}
 		// 성공 페이지에서 결과 출력하기 위해 attribute 설정
 		request.setAttribute("donrequest", donrequest);
 		request.setAttribute("itemname", request.getParameter("item_name"));
-
+		
+		response.getWriter().print("{\"isSuccess\":true}");
+		
 		// forward
-		request.getRequestDispatcher(url).forward(request, response);
+		//request.getRequestDispatcher(url).forward(request, response);
 	}
 
 }

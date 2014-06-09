@@ -139,9 +139,9 @@ public class MinihomeMainAction implements Action {
 				}
 			}
 			// 14-05-13 성훈추가: 일정 개수
-			request.setAttribute("plans", cnt);
+			session.setAttribute("plans", cnt);
 			// 14-05-13 성훈추가: 당일 일정 1개인 경우 일정정보
-			if (cnt == 1)	request.setAttribute("plan", allPlanList.get(lastIndex));
+			if (cnt == 1)	session.setAttribute("plan", allPlanList.get(lastIndex));
 
 			url = "miniHome/main.jsp";
 

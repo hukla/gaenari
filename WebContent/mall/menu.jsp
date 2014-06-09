@@ -1,45 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!--  
-	작성자 : 장재희
-	작성일 : 2014-05-27
--->
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<style type="text/css">
-	h1,h2,h3,h4,h5 {   font-family:'서울한강체' } 
-	#menu_bar {
-		position:relative;
-		left:0px;
-	}
-</style>
-</head>
-<!-- <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="/gaenari/bootstrap/js/bootstrap.min.js"></script> -->
-<body>
-	<table border="0" style='text-align:left' align='left' width="14%" height='100%' id="menu_bar">
-		<tr>
-			<td width="10%">
-			</td>
-			<td width="90%" >
-				<font face="서울한강체">
-					<ul class="nav nav-pills nav-stacked">
-						<li><a href="/gaenari/mallMain.do">기부몰 메인</a></li>
-						<c:if test="${sessionScope.user.usertype == 0}"><li><a href="/gaenari/mallMyPage.do">나의 기부 내역</a></li></c:if>
-						<c:if test="${sessionScope.user.usertype > 0}"><li><a href="/gaenari/mallMyPage.do">나의 기부 요청 내역</a></li></c:if>
-						<c:if test="${sessionScope.user.usertype == -1}"><li><a href="/gaenari/mallManage.do">기부몰 관리하기</a></li></c:if>
-					</ul>
-				</font>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
-				${sessionScope.user.userid}님<br>안녕하세요!
-			</td>
-		</tr>
-	</table>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-</body>
-</html>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<ul class="nav nav-pills nav-stacked" id="mall-menu">
+	<li><a href="/gaenari/mallMain.do">기부몰 메인</a></li>
+	<c:if test="${sessionScope.user.usertype == 0}">
+		<li><a href="/gaenari/mallMyPage.do">나의 기부 내역</a></li>
+	</c:if>
+	<c:if test="${sessionScope.user.usertype > 0}">
+		<li><a href="/gaenari/mallMyPage.do">나의 요청 내역</a></li>
+	</c:if>
+	<c:if test="${sessionScope.user.usertype == -1}">
+		<li>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">기부몰 관리하기<span class="caret"></span></a>
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="/gaenari/mallManage.do?menuno=1">물품 관리</a></li>
+				<li><a href="/gaenari/mallManage.do?menuno=2">기부 관리</a></li>
+				<li><a href="/gaenari/mallManage.do?menuno=3">요청 관리</a></li>
+			</ul>
+		</li>
+	</c:if>
+</ul>

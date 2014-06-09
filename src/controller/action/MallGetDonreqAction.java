@@ -41,6 +41,7 @@ public class MallGetDonreqAction implements Action {
 			}
 			
 			result += "<donreqlist>";
+			result += "<listlength>"+donreqList.size()+"</listlength>";
 			for(DonReqDTO d : donreqList) {
 				result += "<donreq>";
 				result += "<drno>"+d.getDrno()+"</drno>";
