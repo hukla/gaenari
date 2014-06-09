@@ -2,6 +2,7 @@ package controller.action;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,9 +24,11 @@ public class VoluBoardListAction implements Action {
 		String pageNumber = null;
 		List<VoluBoardDTO> tenVolu = null;
 		int pageCount = 0;
+		List<String> cntrName = null;
 		
 		String url = "/error.jsp";
 		try{
+			cntrName = new ArrayList<String>();
 			pageNumber = request.getParameter("pageNumber");
 			System.out.println("pageNumber="+pageNumber);
 				
@@ -35,12 +38,16 @@ public class VoluBoardListAction implements Action {
 			
 			pageCount = VoluBoardDAO.getVoluCount();// 게시판에 'vo'가 총 몇 개 있는지
 			tenVolu = VoluBoardDAO.getTenVolu((Integer.parseInt(pageNumber)-1)*10);// voluBoard 10개 받아옴
-			System.out.println(tenVolu.toString());
-			
+			for(int i=0;i<10;i++){
+				String cntr = VoluBoardDAO.getCntrName(tenVolu.get(i).getUserno());
+				cntrName.add(cntr);
+			}
 			url="board/voluBoardList.jsp";
 			
 			request.setAttribute("pageCount", pageCount);
 			request.setAttribute("tenVolu", tenVolu);
+			request.setAttribute("center",cntrName);
+			System.out.println(cntrName.toString());
 			
 		}catch(SQLException e){
 			e.printStackTrace();

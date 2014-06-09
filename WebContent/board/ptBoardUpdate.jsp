@@ -18,7 +18,7 @@
                         <form name="boardWriteForm" method="post"
                             action="ptBoardUpdate.do"
                             onSubmit='return checkValid()'>
-                            <input type="hidden" name="command" value="ptBoardUpdate">
+                            <input type="hidden" name="ptbrdno" value="${requestScope.resultContent.ptbrdno}">
                             <table class="table ptboard-write-table">
                                 <tr>
                                     <td colspan="2">

@@ -30,7 +30,7 @@
 						<tr>
                             <td class="ptboard-list-head ptboard-title">제목</td>
                             <td class="ptboard-list-head ptboard-time">날짜</td>
-                            <td class="ptboard-list-head ptboard-loc">지역</td>
+                           <!--  <td class="ptboard-list-head ptboard-loc">센터명</td> -->
                             <td class="ptboard-list-head ptboard-writer">작성</td>
                         </tr>
                         <!-- 글 레코드 시작 -->
@@ -55,9 +55,9 @@
 	                                               	</c:choose>
                                         	</div>
                                         </td>
-                                        <td class="ptboard-loc">
-                                                <div class="ptboard-loc-content">센터위치</div>
-                                        </td>
+                                        <%-- <td class="ptboard-loc">
+                                                <div class="ptboard-loc-content">${requestScope.cntrName}</div>
+                                        </td> --%>
                                         <td class="ptboard-writer">
                                                 <div class="ptboard-writer-author">${volu.userid}</div>
                                                 <div class="ptboard-writer-date">${volu.wrdate}</div>

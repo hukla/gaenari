@@ -22,7 +22,8 @@ public class PtBoardUpdateAction implements Action {
 		String brdcontent = request.getParameter("brdcontent");
 		String worktype = request.getParameter("worktype");
 		String workloc = request.getParameter("workloc");
-		String workhour = request.getParameter("workhour");
+		String workhour  = request.getParameter("workhour")+"!split!"+request.getParameter("workhour2")
+				+"!split!"+request.getParameter("workhour3");
 		String ptbrdno = request.getParameter("ptbrdno");
 		
 		try{

@@ -16,8 +16,9 @@ public class VoluBoardUpdateAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String title = request.getParameter("title");
-		String brdcontent = request.getParameter("brdcontent");
-		String vhour = request.getParameter("vhour");				
+		String brdcontent = request.getParameter("brdcontent").replaceAll("\r\n", "<br/>");
+		String vhour = request.getParameter("vhour")+"!split!"+request.getParameter("vhour2")
+				+"!split!"+request.getParameter("vhour3")+"!split!";				
 		String vbrdno = request.getParameter("vbrdno");
 		System.out.println( title + brdcontent+ vhour + vbrdno + "힘내.......");
 
