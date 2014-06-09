@@ -74,7 +74,7 @@ public class GetRandomMissing implements Action {
 				ranNum = (int)(Math.random()*mdto2.size());
 				System.out.println("ranNum="+ranNum);
 				if(mdto2.isEmpty()){						//분실 장소와 주소가 같은 글이 없으면
-					mdto3=MFABoardDAO.MselectOne(ranNum);	//난수로 목록 뽑음
+					mdto3=MFABoardDAO.MselectOne(ranNum+1);	//난수로 목록 뽑음
 				}else{										//분실 장소와 주소가 같은 글의 목록이 있으면
 					mdto3=mdto2.get(ranNum);				//그 목록에서 랜덤으로 가져옴
 				}

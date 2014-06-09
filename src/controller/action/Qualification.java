@@ -36,14 +36,13 @@ public class Qualification implements Action {
 			sqlSession = DBUtil.getSqlSession();
 			int userno = UserDAO.logCheck(userid).getUserno();
 			qdto = sqlSession.selectOne("u.checkQuest",userno);
-			System.out.println("userno="+userno+"/qdto="+qdto.toString());
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally{
 			DBUtil.closeSession(sqlSession);
 		}		
 		
-		if(qdto.getQno()>0) result='t'; //설문조사를 작성했을 경우->신청 페이지로 이동
+		if(qdto!=null) result='t'; //설문조사를 작성했을 경우->신청 페이지로 이동
 		else result='f'; //설문조사를 작성하지 않았을 경우->alert 띄우기
 		request.setAttribute("result", result);
 		request.getRequestDispatcher(url).forward(request,response);

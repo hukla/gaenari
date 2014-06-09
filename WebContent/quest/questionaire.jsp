@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="/frame.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8"%>
+<%@page import="model.dao.UserDAO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Questionaire check!</title>
+<%@ include file="/static/pages/head.jsp"%>
+</head>
+<body>
+</body>
 <script language=javascript>
 function checkQuest(){
 	if(<%=request.getAttribute("result").toString().equals("t")%>){
@@ -21,7 +24,4 @@ function checkQuest(){
 }
 checkQuest();
 </script>
-</head>
-<body>
-</body>
 </html>
