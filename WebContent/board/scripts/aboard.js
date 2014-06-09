@@ -9,7 +9,7 @@ $(function(){
 		type:"post"
 	});
 	
-	function getMdogList() {
+	function getAdogList() {
 		$.ajax({
 			url: "/gaenari/adpBoardList.do",
 			dataType: "xml",
@@ -42,7 +42,7 @@ $(function(){
 			
 		});
 	}
-	getMdogList();
+	getAdogList();
 	
 	$("#datepicker").datepicker();
 
