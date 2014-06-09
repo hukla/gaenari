@@ -76,12 +76,12 @@
                                 <input type=hidden name="writer" value="${requestScope.resultContent.userid}">
                                 <input class="btn btn-yellow" type=submit value="수정하기">
                             </form>
-                            <form name="requestDelete" method=post action="control" onsubmit="return send()">
+                            <form name="requestDelete" method=post action="control" onsubmit="ptDelete(${requestScope.resultContent.ptbrdno})">
                                 <input type=hidden name="ptbrdno" value="${requestScope.resultContent.ptbrdno}">
                                 <input type=hidden name="command" value="ptBoardDelete">
                                 <input type=hidden name="user" value="${sessionScope.userid}">
                                 <input type=hidden name="writer" value="${requestScope.resultContent.userid}">
-                                <input class="btn btn-yellow" type=submit value="삭제하기" onclick="ptDelete(${requestScope.resultContent.ptbrdno})">
+                                <input class="btn btn-yellow" type=submit value="삭제하기">
                             </form>
                             <a class="btn btn-yellow" href="/gaenari/ptBoardList.do">목록으로
                             </a>

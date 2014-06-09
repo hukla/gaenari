@@ -39,4 +39,9 @@
             <%@ include file="/static/pages/footer.jsp"%>
         </div>
     </body>
+<script language="javascript">
+function checkQuest(){
+	
+}
+</script>
 </html>

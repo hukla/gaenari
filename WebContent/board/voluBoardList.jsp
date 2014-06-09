@@ -130,5 +130,6 @@ function checkUser(){
 		return false;
 	}
 }
-    </script>
+
+</script>
 </html>

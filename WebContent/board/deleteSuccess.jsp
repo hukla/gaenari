@@ -8,7 +8,7 @@
 	<%@ include file="/static/pages/head.jsp"%>
 	<script language=javascript>
 		alert('삭제되었습니다.');
-		location.href="/gaenari/ptBoardList.do";
+		history.back();
 	</script>
 </head>
 <body>
