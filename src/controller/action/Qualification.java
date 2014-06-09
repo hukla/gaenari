@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.UserDAO;
+import model.dto.QuestionaireDTO;
 import model.dto.UserDTO;
 
 import org.apache.ibatis.session.SqlSession;
@@ -29,21 +30,21 @@ public class Qualification implements Action {
 		String userid = (String)session.getAttribute("userid");
 		String url = "/quest/questionaire.jsp";
 		char result = 't';
+		QuestionaireDTO qdto = null;
 		int qno = 0;
 		try{
-			System.out.println("==Quali 진입==");
 			sqlSession = DBUtil.getSqlSession();
 			int userno = UserDAO.logCheck(userid).getUserno();
-			qno = sqlSession.selectOne("u.checkQuest",userno);
+			qdto = sqlSession.selectOne("u.checkQuest",userno);
+			System.out.println("userno="+userno+"/qdto="+qdto.toString());
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally{
 			DBUtil.closeSession(sqlSession);
 		}		
 		
-		if(qno>0) result='t'; //설문조사를 작성했을 경우->신청 페이지로 이동
+		if(qdto.getQno()>0) result='t'; //설문조사를 작성했을 경우->신청 페이지로 이동
 		else result='f'; //설문조사를 작성하지 않았을 경우->alert 띄우기
-		System.out.println("result="+result);
 		request.setAttribute("result", result);
 		request.getRequestDispatcher(url).forward(request,response);
 	}

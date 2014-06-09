@@ -18,7 +18,7 @@
                     <form name="boardWriteForm" method="post"
                             action="voluBoardUpdate.do"
                             onSubmit='return checkValid()'>
-                            <input type="hidden" name="command" value="volusBoardUpdate">
+                            <input type="hidden" name="vbrdno" value="${requestScope.resultContent.vbrdno}">
                             <table class="table ptboard-write-table">
                                 <tr>
                                     <td colspan="2">

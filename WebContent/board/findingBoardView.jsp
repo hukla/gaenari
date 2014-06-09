@@ -3,7 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-    <%@ include file="/static/pages/head.jsp"%>
+	<head>
+        <%@ include file="/static/pages/head.jsp"%>
+        <script src="/gaenari/board/scripts/fboard.js"></script>
+    </head>
     <body>
         <div id="wrapper">
             <%@ include file="/static/pages/header.jsp"%>
@@ -15,7 +18,8 @@
                         <div class="mboard-dog-name">${requestScope.resultContent.title}</div>
                     </div>
                     <div class="mboard-info-main">
-                        <div class="left-part" style="background-image: url('${requestScope.picPath}');"></div>
+                        <div class="left-part" style="background-image: url('${requestScope.picPath}');"
+                        onclick="popupOpen(${requestScope.resultContent.brdno})"></div>
                         <div class="right-part">
                             <div class="part-header">
                                 <div class="part-header-title">${requestScope.resultContent.title}</div>
@@ -31,6 +35,14 @@
                                     ${requestScope.resultContent.brdcontent}
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="right-part">
+                    	<div class="mboard-info-bottom">
+                            <!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
+                            <input class="btn btn-yellow" type=button value="수정하기">
+                            <input class="btn btn-yellow" type=button value="삭제하기">
+                            <a class="btn btn-yellow" href="/gaenari/findingBoardMain.do">목록으로</a>
                         </div>
                     </div>
                 </div>

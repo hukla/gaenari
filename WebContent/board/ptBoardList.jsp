@@ -29,7 +29,7 @@
                             <tr>
                                 <td class="ptboard-list-head ptboard-type">종류</td>
                                 <td class="ptboard-list-head ptboard-title">제목</td>
-                                <td class="ptboard-list-head ptboard-time">도움 시간</td>
+                                <td class="ptboard-list-head ptboard-time">날짜</td>
                                 <td class="ptboard-list-head ptboard-loc">지역</td>
                                 <td class="ptboard-list-head ptboard-writer">작성</td>
                             </tr>
