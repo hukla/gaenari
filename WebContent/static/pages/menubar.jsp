@@ -12,7 +12,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/gaenari/static/images/petcommu-icon.png"> 애견 커뮤니티 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/gaenari/adpBoardMain.do">애견 분양</a></li>
+                        <li><a href="/gaenari/adpBoardMain.do">애견 입양</a></li>
                         <li><a href="/gaenari/ptBoardList.do">펫 도우미</a></li>
                     </ul>
                 </li>
@@ -21,7 +21,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="/gaenari/missingBoardMain.do">유기견 신고</a></li>
                         <li><a href="/gaenari/findingBoardMain.do">유기견 제보</a></li>
-                        <li><a href="/gaenari/voluBoardList.do">자원봉사</a></li>
+                        <li><a href="/gaenari/voluBoardList.do">보호소 자원봉사</a></li>
                     </ul>
                 </li>
                 <c:if test="${sessionScope.userid != null}">

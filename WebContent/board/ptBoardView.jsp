@@ -43,7 +43,7 @@
                                             <div class="ptboard-type-content">
 		                                        산책
 		                                    </div>
-                                        </c:when>
+                                         </c:when>
                                         <c:otherwise>
                                             <img class="ptboard-type-icon" src="/gaenari/static/images/pet-sitting-icon.png"/>
                                             <div class="ptboard-type-content">
@@ -57,11 +57,11 @@
                                 <div class="part-line">${requestScope.resultContent.userid}</div>
                                 <div class="part-line-gray">작성시간</div>
                                 <div class="part-line">${requestScope.resultContent.wrdate}</div>
-                                <div class="part-line-gray">위치</div>
+                                <div class="part-line-gray">장소</div>
                                 <div class="part-line">${requestScope.resultContent.workloc}</div>
-                                <div class="part-line-gray">작업날짜</div>
+                                <div class="part-line-gray">도움날짜</div>
                                 <div class="part-line">${requestScope.workhour[0]}</div>
-                                <div class="part-line-gray">작업시간</div>
+                                <div class="part-line-gray">시간</div>
                                 <div class="part-line">${requestScope.workhour[1]} ~ ${requestScope.workhour[2]}</div>
                             </div>
                         </div>
@@ -76,12 +76,12 @@
                                 <input type=hidden name="writer" value="${requestScope.resultContent.userid}">
                                 <input class="btn btn-yellow" type=submit value="수정하기">
                             </form>
-                            <form name="requestDelete" method=post action="control" onsubmit="return send()">
+                            <form name="requestDelete" method=post action="control" onsubmit="ptDelete(${requestScope.resultContent.ptbrdno})">
                                 <input type=hidden name="ptbrdno" value="${requestScope.resultContent.ptbrdno}">
                                 <input type=hidden name="command" value="ptBoardDelete">
                                 <input type=hidden name="user" value="${sessionScope.userid}">
                                 <input type=hidden name="writer" value="${requestScope.resultContent.userid}">
-                                <input class="btn btn-yellow" type=submit value="삭제하기" onclick="ptDelete(${requestScope.resultContent.ptbrdno})">
+                                <input class="btn btn-yellow" type=submit value="삭제하기">
                             </form>
                             <a class="btn btn-yellow" href="/gaenari/ptBoardList.do">목록으로
                             </a>

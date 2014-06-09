@@ -136,7 +136,7 @@
                                     <td colspan='2' class="ptboard-write-form-btn-group">
                                         <input type=submit class="btn btn-yellow ptboard-write-form-btn form-control" value=글쓰기>
                                         <input type=reset class="btn btn-yellow ptboard-write-form-btn form-control" value=다시쓰기><br>
-                                        <a class="btn btn-yellow ptboard-write-form-btn form-control" href="/gaenari/ptBoardMain.do">리스트로 돌아가기
+                                        <a class="btn btn-yellow ptboard-write-form-btn form-control" href="/gaenari/ptBoardLisst.do">리스트로 돌아가기
                                         </a>
                                     </td>
                                 </tr>

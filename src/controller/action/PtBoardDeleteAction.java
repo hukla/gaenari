@@ -36,7 +36,7 @@ public class PtBoardDeleteAction implements Action {
 			if(flag==0){
 				boolean result = PtBoardDAO.deleteContent(Integer.parseInt(ptbrdno));
 				if(result){
-					url = "/ptBoardList.do";
+					url = "/board/deleteSuccess.jsp?type=pt";
 				}else{
 					throw new Exception("입력값이 충분하지 않습니다.");
 				}

@@ -1,7 +1,8 @@
 /**
- * 작성자: 장재희
- * 작성일: 2014-06-07
- * 내용: 펫 도우미 게시판 js파일
+ * 작성자: 이수진
+ * 작성일: 2014-06-09
+ * 내용: 자원봉사 게시판 js파일
+ * 		삭제되어 재생성
  */
 function send() {
 	if (document.requestForm.command.value != "")
@@ -9,9 +10,9 @@ function send() {
 	else
 		return false;
 }
-function ptDelete(ptbrdno) {
+function voluDelete(vbrdno) {
 	if(confirm("삭제하시겠습니까?")) {
-		location.href = "/gaenari/ptBoardDelete.do?ptbrdno=" + ptbrdno;
+		location.href = "/gaenari/voluBoardDelete.do?vbrdno=" + vbrdno;
 	}else {
 		alert("삭제가 취소되었습니다.");
 		return false;
@@ -33,16 +34,8 @@ function checkValid() {
 		alert("글 내용을 입력해 주세요.");
 		return false;
 	}
-	if (func.worktype.value == "") {
-		alert("작업종류를 입력해 주세요.");
-		return false;
-	}
-	if (func.workloc.value == "") {
-		alert("작업장소를 입력해 주세요.");
-		return false;
-	}
-	if (func.workhour.value == "") {
-		alert("작업시간을 입력해 주세요.");
+	if (func.vhour.value == "") {
+		alert("봉사시간을 입력해 주세요.");
 		return false;
 	}
 	return true;
