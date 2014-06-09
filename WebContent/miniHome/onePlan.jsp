@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script src="/gaenari/dupcheck.js"></script>
 <style type="text/css">
 div#panel {
 float: left;
@@ -19,6 +20,7 @@ height:50px;
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>미니홈피 일정 상세보기</title>
+
 <!-- 
 작성자: 최성훈
 작성일: 2014-04-23
@@ -92,6 +94,20 @@ height:50px;
 				<tr>
 					<td style="text-align: left; vertical-align: top;">
 						${requestScope.onePlan.brdcontent}
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<c:if test="${requestScope.user.userid == sessionScope.userid}">
+						<c:choose>
+							<c:when test="${requestScope.onePlan.flag == 0}">
+								일정을 마치셨습니까? <button class="btn btn-default" id="plncheck" name="${requestScope.onePlan.brdno}">확인</button>
+							</c:when>
+							<c:otherwise>
+								완료된 일정입니다.
+							</c:otherwise>
+						</c:choose>
+					</c:if>
 					</td>
 				</tr>
 			</table>

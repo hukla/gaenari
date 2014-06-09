@@ -22,14 +22,14 @@
     background-color: #737373;
 }
 </style>
-<div class="navbar navbar-inverse" id="menubar">
+<div class="navbar navbar-inverse navbar-fixed-top" id="menubar">
     <div class="container">
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
                 <li>
                     <h3>${sessionScope.toYear}년 ${sessionScope.toMonth}월 ${sessionScope.toDate}일</h3> 
                 </li>
-                <li class="dropdown">
+                <li class="dropdown"><!-- !!!!!!!!14-06-09!!!!!!!!!일정 세션에서 리퀘스트로 바꿔야된다! -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">오늘의 일정<b class="caret"></b></a>
                     	<c:choose>
 							<c:when test="${sessionScope.plans eq 1}">

@@ -12,35 +12,42 @@ $(function () {
     function getDonList() {
         $.ajax({
             url: "/gaenari/getDonList.do",
-            dataType: "xml",
+            dataType: "json",
             success: function (data) {
-                //alert("success");
+                alert("success");
+            	//alert(data.donreqList);
             	
-            	 var datalength = $(data).find('listlength').text();
+            	var donList = data.donreqList;
+            	
+            	
+            	 var datalength = donList.length;
                  var progress = 100 / datalength;
-            	
+            	//alert(datalength);
                 $("#don_mgt tr:gt(0)").remove();
-                var table = "";
                 
-                $(data).find('donreq').each(function (index) {
-                	
+                
+                $.each(donList, function (index, item) {
+                	var don = item; //alert(don);
                     progressbar.css('width', progress * (index + 1) + '%');
+                    
+                	var line = $('<tr>');
                 	
-                    table += "<tr>";
-                    table += "<td>" + (index+1) + "</td>";
-                    table += "<td>" + $(this).find("userid").text() + "</td>";
-                    table += "<td>" + $(this).find("targetcntr").text() + "</td>";
-                    table += "<td>" + $(this).find("itemname").text() + "</td>";
-                    table += "<td>" + $(this).find("qty").text() + "</td>";
-                    if ($(this).find("sent").text() == 'N') {
-                        table += "<td id='reqSend'>" + "<input type='button' class='btn btn-yellow' value='배송하기' id='send' name='" + $(this).find("drno").text() + "'>" +
-                            "</td>";
+                	line.append($('<td>').html(index+1))
+                		.append($('<td>').html(don.userid))
+                		.append($('<td>').html(don.targetcntr))
+                		.append($('<td>').html(don.itemname))
+                		.append($('<td>').html(don.qty));
+                    
+                	
+                	if (don.sent == "Y") {
+                    	line.append($('<td>').attr('id', 'reqSend').append($("<input type='button' class='btn btn-yellow' value='배송하기' id='send' name='" + $(this).find("drno").text() + "'>")));
                     } else {
-                        table += "<td>배송 완료</td>";
+                    	line.append('<td>배송 완료</td>');
                     }
-                    table += "</tr>";
+                    
+                    $('#don_mgt tr:eq(0)').after(line);
                 });
-                $('#don_mgt tr:eq(0)').after(table);
+                
             },
             error: function (data) {
                 alert(data + ' => 에러 발생');
@@ -60,6 +67,7 @@ $(function () {
                 var table = "";
                 $(data).find('item').each(function (index) {
                     progressbar.css('width', progress * (index + 1) + '%');
+                    
                     table += "<tr>";
                     table += "<td>" + (index+1) + "</td>";
                     table += "<td>" + $(this).find("itemname").text() + "</td>";
@@ -190,9 +198,15 @@ $(function () {
     $("#refresh").click(function () {
         window.location.reload();
     });
-    getDonList();
-    getDonReqList();
-    getItemList();
+    
+    var menuno =  $('.explore-search-results').data('menuno');
+    
+    switch (menuno) {
+    case 1:getItemList(); break;
+    case 2:getDonList(); break;
+    case 3:getDonReqList(); break;
+    }
+    
 });
 
 // '삭제하기' 버튼 클릭시 호출되는 함수

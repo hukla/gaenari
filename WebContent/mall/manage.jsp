@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="explore-search-results">
+                        <div class="explore-search-results" data-menuno="${requestScope.menuno}">
                             <div class="progress progress-striped">
                                 <div class="progress-bar progress-bar-danger" id="mgt-pgbar" role="progressbar" aria-valuetransitiongoal="100"></div>
                             </div>

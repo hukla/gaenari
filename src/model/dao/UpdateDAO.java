@@ -118,4 +118,21 @@ public class UpdateDAO {
 		}
 		if (!result)	throw new SQLException("정보수정에 실패했습니다.");
 	}
+	
+	public static int planCheck(int brdno) throws SQLException {
+
+		SqlSession session = null;
+		int result = 0;
+		boolean rs = false;
+		try {
+			session = DBUtil.getSqlSession();
+			result = session.update("update.planCheck", brdno);
+			System.out.println("결과값:"+result);
+			if(result>0)	rs=true;
+		} finally {
+			DBUtil.closeSession(session, rs);
+		}
+		if (!rs)	throw new SQLException("일정 완료 전환에 실패했습니다.");
+		return result;
+	}
 }

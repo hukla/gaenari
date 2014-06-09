@@ -115,10 +115,13 @@ public class OnePlanAction implements Action {
 			url = "miniHome/onePlan.jsp";
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 		} catch (LoginException e) {
+			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 		} catch (Exception e) {
+			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 		}
 		request.getRequestDispatcher(url).forward(request, response);
