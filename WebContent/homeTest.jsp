@@ -140,7 +140,7 @@
 								class="img-rounded">
 							<div class="caption">
 								<h3>좀찾아주십시오</h3>
-								<p>말을잃어버려서기분이안좋스빈다.<br><div id="mname">mname</div></p>
+								<p>말을잃어버려서기분이안좋스빈다.<br><div id="test"></id></p>
 								<p>
 									<a href="#" class="btn btn-primary">봤어요</a> <a
 										href="/gaenari/missingBoardMain.do" class="btn btn-default">다른신고보기</a>
@@ -190,13 +190,19 @@ $(function(){
 		contentType:'application/x-www-form-urlencoded;charset=UTF-8',
 		type:"post"
 	});
+	function getXmlHttpRequest(){
+		var xmlhttp = false;
+		if(window.XMLHttpRequest) xmlhttp = new XMLHttpRequest();
+		else xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		return xmlhttp;
+	}
 	
 	function getRandomList() {
 		$.ajax({
 			url: "/gaenari/getRandomMissing.do",
-			dataType: "text",
+			dataType: "xml",
 			success: function(data) {
-				$(data).find('mlist').each(function(){
+				$(data).find('mdto').each(function(){
 					var mname = $(this).find("mname").text();
 					var brdno = $(this).find("brdno").text();
 					var mbrdno = $(this).find("mbrdno").text();
@@ -205,8 +211,20 @@ $(function(){
 					var mloc = $(this).find("mloc").text();
 					alert(mname);
 				});
-				$("#mname").append(mname);
-				alert(mname);
+				var xmlhttp = getXmlHttpRequest();
+				xmlhttp.open(method,action,true);
+				xmlhttp.onreadystatechange = function(){
+					if(xmlhttp.readyState == 4){
+						if(xmlhttp.status == 200){
+							document.getElementById(id).innerHTML = xmlhttp.responseText;
+						}else{
+							document.getElementById(id).innerHTML = "loading..failed...";
+						}
+					}
+				}
+				xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				xmlhttp.send(param);
+				forwardPage('test','/test.jsp','mname='+mname);
 			},
 			error: function(data) { alert(data+' => 에러 발생');}
 			

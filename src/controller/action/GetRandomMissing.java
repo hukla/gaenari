@@ -59,17 +59,12 @@ public class GetRandomMissing implements Action {
 			mdto=MFABoardDAO.MselectAll();
 		
 			if(userid!=null){
-				System.out.println("sessionID있음!");
 				address = UserDAO.logCheck(userid).getAddress();
 				
-				System.out.println("mdto.get(5).getMloc().toString()="+mdto.get(5).getMloc().toString());
-				System.out.println("["+address+"]");
-				System.out.println(mdto.get(0).getMloc());
-				System.out.println(mdto.get(0).getMloc().equals(address));
-				System.out.println(mdto.get(0).getMloc().equals("은평구"));
-				System.out.println(mdto.get(1).getMloc());
-				System.out.println(mdto.get(2).getMloc());
-				System.out.println(mdto.get(2).getMloc().equals("노원구"));
+				/*System.out.println("mdto.get(5).getMloc().toString()="+mdto.get(5).getMloc().toString());*/
+				System.out.println("[회원의 주소="+address+"]");
+				/*System.out.println(mdto.get(0).getMloc());
+				System.out.println(mdto.get(0).getMloc().equals(address));*/
 				for(int i=0;i<mdto.size();i++){//분실 장소와 주소가 같은 글 목록을 추려냄
 					if(mdto.get(i).getMloc().equals(address)){
 						mdto2.add(mdto.get(i));
@@ -83,11 +78,13 @@ public class GetRandomMissing implements Action {
 				}else{										//분실 장소와 주소가 같은 글의 목록이 있으면
 					mdto3=mdto2.get(ranNum);				//그 목록에서 랜덤으로 가져옴
 				}
+				System.out.println("로그인상태 "+mdto3.toString());
 			}else{
 				ranNum=(int)(Math.random()*mdto.size());
-				mdto3 = MFABoardDAO.MselectOne(ranNum); 
+				mdto3 = MFABoardDAO.MselectOne(ranNum);
+				System.out.println("로그인 안한 상태"+mdto3.toString());
 			}
-			/*result += "<mdto>";
+			result += "<mdto>";
 			result += "<mname>"+mdto3.getMname()+"</mname>";
 			result += "<brdno>"+mdto3.getBrdno()+"</brdno>";
 			result += "<mbrdno>"+mdto3.getMbrdno()+"</mbrdno>";
@@ -95,9 +92,7 @@ public class GetRandomMissing implements Action {
 			result += "<mdate>"+mdto3.getMdate()+"</mdate>";
 			result += "<mloc>"+mdto3.getMloc()+"</mloc>";
 			result += "<picPath>"+mdto3.getBrdcontent().split("!split!")[0]+"</picPath>";
-			result += "</mdto>";*/
-			
-			result += mdto3.getMname()+"/";
+			result += "</mdto>";
 
 			out.print(result);
 			System.out.println("mName="+mdto3.getMname());
