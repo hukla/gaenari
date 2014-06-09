@@ -36,6 +36,18 @@ div#panelhead {
     padding: 1px;
     text-align: center;
 }
+.panel-info > .panel-heading {
+    color: #6F8D52;
+    background-color: #E4E7C5;
+    border-color: #E4E7C5;
+}
+.panel-info {
+    border-color: #E4E7C5;
+}
+h5 {
+    font-family: "맑은 고딕";
+    line-height: 10px;
+}
 </style>
 <link rel="STYLESHEET" type="text/css" href="board_style.css">
 <SCRIPT LANGUAGE="JavaScript">
@@ -54,26 +66,26 @@ div#panelhead {
      {
   if ((year%4==0||year%100==0)&&(year%400==0)) monthDays[1]=29; else monthDays[1]=28 //leap year test
   var firstDay=new Date(year,month,1).getDay()
-  var calStr="<table border=0 cellpadding=5 cellspacing=1 class='table' align=center bgcolor=#CCCCCC>"
+  var calStr="<table border=0 cellpadding=5 cellspacing=1 class='table' align=center bgcolor=#CCCCCC style='border: hidden;'>"
 
   calStr+="<tr bgcolor=white><td colspan=7>"
 
-  calStr+="<table border=0 cellpadding=0 cellspacing=0 align=center width='100%'><tr>"
-  calStr+="<td><font size='5'><a href='javascript:;' onClick='nowm--; if (nowm<0) { nowy--; nowm=11; } showCalendar(nowd,nowm,nowy)' title='이전 월'> <<</a></font></td>"
+  calStr+="<table border=0 cellpadding=0 cellspacing=0 align=center width='100%' style='border: hidden;'><tr>"
+  calStr+="<td><font size='3'><a href='javascript:;' onClick='nowm--; if (nowm<0) { nowy--; nowm=11; } showCalendar(nowd,nowm,nowy)' title='이전 월'><img src='/gaenari/image/arrowhead7.png'></a></font></td>"
   calStr+="<td align=center><font size='5'>"+monthName[month].toUpperCase()+" "+year+"년</font></td>"
-  calStr+="<td align=right><font size='5'><a href='javascript:;'  onClick='nowm++; if (nowm>11) { nowy++; nowm=0; } showCalendar(nowd,nowm,nowy)' title='다음 월'> >></a></font></td>"
+  calStr+="<td align=right><font size='3'><a href='javascript:;'  onClick='nowm++; if (nowm>11) { nowy++; nowm=0; } showCalendar(nowd,nowm,nowy)' title='다음 월'><img src='/gaenari/image/arrow487.png'></a></font></td>"
   calStr+="</tr></table>"
 
   calStr+="</td></tr>"  
 
-  calStr+="<tr align=center bgcolor='#336666'>"
-  calStr+="<th><font color='red' size='5'>일</font></th>"
-  calStr+="<th><font color='white' size='5'>월</font></th>"
-  calStr+="<th><font color='white' size='5'>화</font></th>"
-  calStr+="<th><font color='white' size='5'>수</font></th>"
-  calStr+="<th><font color='white' size='5'>목</font></th>"
-  calStr+="<th><font color='white' size='5'>금</font></th>"
-  calStr+="<th><font color='#66CCFF' size='5'>토</font></th>" 
+  calStr+="<tr align=center bgcolor='#8D8D8D'>"
+  calStr+="<td><font color='darkred' size='3'>일</font></td>"
+  calStr+="<td><font color='white' size='3'>월</font></td>"
+  calStr+="<td><font color='white' size='3'>화</font></td>"
+  calStr+="<td><font color='white' size='3'>수</font></td>"
+  calStr+="<td><font color='white' size='3'>목</font></td>"
+  calStr+="<td><font color='white' size='3'>금</font></td>"
+  calStr+="<td><font color='#66CCFF' size='3'>토</font></td>" 
   calStr+="</tr>"  
 
   var dayCount=1
@@ -87,11 +99,11 @@ div#panelhead {
 
 	 // "${requestScope.date}"
   if(dayCount==day) {
-  calStr+="<td align=center bgcolor='#DFE7DE'><font size='5'><b>" // 오늘 날짜일때 배경색 지정,글자 진하게
+  calStr+="<td align=left bgcolor='#DFE7DE'><font size='3'><b>" // 오늘 날짜일때 배경색 지정,글자 진하게
 
   } else {
 	  
-  calStr+="<td align=center><font size='5'>"  // 오늘 날짜가 아닐때 배경색 지정
+  calStr+="<td align=left><font size='3'>"  // 오늘 날짜가 아닐때 배경색 지정
 	/* calStr+="<td style='text-align: left;vertical-align: top;'><font size='4'>" */
   }
 	
@@ -151,13 +163,16 @@ div#panelhead {
 	<table align="left"><tr><td width="800" align="center">
 	<table border="0" align="center" width="100%" height="100%">
 		<tr>
-			<td rowspan="2" width="60%">
+			<td width="100%" colspan="2">
 				<SPAN ID=calendar STYLE="position: relative;"></SPAN> 
 				<script language="JavaScript" type="text/JavaScript">
 					//showCalendar(nowd,nowm,nowy);
 					showCalendar("${requestScope.date}","${requestScope.month-1}","${requestScope.year}");
-				</script></td>
-			<td width="40%" style="vertical-align: top;">
+				</script>
+			</td>
+		</tr>
+		<tr>	
+			<td width="50%" style="vertical-align: top;">
 				<div class="panel panel-info">
 					<div class="panel-heading" id="panelhead">
 						<h5>일정</h5>
@@ -167,7 +182,7 @@ div#panelhead {
 						<c:when test="${not empty requestScope.plist}">
 							<c:forEach items="${requestScope.plist}" var="plan">
 								<a href="/gaenari/planDetail.do?brdno=${plan.brdno}&userid=${requestScope.user.userid}">
-									${plan.title}-${plan.wrdate}
+									${plan.title}-${plan.wrdate}<br>
 								</a>
 							</c:forEach>
 						</c:when>
@@ -178,9 +193,7 @@ div#panelhead {
 					</div>
 				</div>
 			</td>
-		</tr>
-		<tr>
-			<td style="vertical-align: top;">
+			<td style="vertical-align: top;" width="50%">
 				<div class="panel panel-info">
 					<div class="panel-heading" id="panelhead">
 						<h5>일기</h5> 

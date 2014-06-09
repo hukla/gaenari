@@ -643,4 +643,28 @@ public class TestDAO {
 		}
 		return dto;
 	}
+	public static List<PlanDTO> myTodaysPlan(String userid) throws SQLException {
+		SqlSession session = null;
+		List<PlanDTO> list = null;
+		try {
+			session = DBUtil.getSqlSession();
+			list = session.selectList("test.myTodaysPlan", userid);
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return list;
+	}
+	
+	
+	public static PlanDTO unfinishedPlan(String userid) throws SQLException {
+		SqlSession session = null;
+		PlanDTO plan = null;
+		try {
+			session = DBUtil.getSqlSession();
+			plan = session.selectOne("test.unfinishedPlan", userid);
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return plan;
+	}
 }

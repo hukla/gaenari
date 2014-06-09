@@ -24,8 +24,10 @@ $(document).ready(function() {
 				var table="";
 				$(data).find('user').each(function (index){
 					table+="<tr>"
-					table+="<td id='sendReq' align='center'>"+$(this).find("username").text()+"<br><div class='btn-group btn-group-xs'><input type='button' class='btn btn-default' value='정보보기' id='getinfo'" +
-						" name='"+$(this).find("userid").text()+"'></div></td>"
+					table+="<td id='sendReq' align='center'>"+$(this).find("username").text()
+						+"<br><div class='btn-group btn-group-xs'>"
+						+"<input type='button' class='btn btn-default' value='정보보기' id='getget' name='"
+						+$(this).find("userid").text()+"'><input type='button' class='btn btn-default' value='닫기' id='removeinfo' name='"+$(this).find("userid").text()+"'></div></td>"
 					table+="<td>"+$(this).find("userid").text()+"</td>"
 					table+="<td>"+$(this).find("email").text()+"</td>"
 					table+="<td>"+$(this).find("address").text()+"</td>"
@@ -36,6 +38,20 @@ $(document).ready(function() {
 				$("#listTable tr:eq(0)").after(table);
 			},
 			error: function (data){alert('입력정보가 없습니다.');}
+		});
+	})
+	$("table").on("click",'#getget',function(){
+		$.ajax({
+			url : "/gaenari/getfriendInfo.do",
+			dataType : "text",
+			data : "userid="+$(this).attr("name"),
+			success : function(data) {
+				$("#display").load("/gaenari/userinfo.do","userid="+data);
+				
+			},
+			error : function(data) {
+				alert(data + '=> 에러발생');
+			}
 		});
 	})
 	$("#btn2").click(function(){
@@ -97,32 +113,20 @@ $(document).ready(function() {
 	})
 	
 	
-	$("table").on("click",'#getinfo',function(){
+	
+	$("table").on("click",'#removeinfo',function(){
 		$.ajax({
 			url : "/gaenari/getfriendInfo.do",
 			dataType : "text",
 			data : "userid="+$(this).attr("name"),
 			success : function(data) {
-				$("#display").load("/gaenari/userinfo.do","userid="+data);
+				$("#display").empty();
 			},
 			error : function(data) {
 				alert(data + '=> 에러발생');
 			}
 		});
 	})
-/*	$("table").on("click",'#removeinfo',function(){
-		$.ajax({
-			url : "/gaenari/getfriendInfo.do",
-			dataType : "text",
-			data : "userid="+$(this).attr("name"),
-			success : function(data) {
-				$("#display").toggle();
-			},
-			error : function(data) {
-				alert(data + '=> 에러발생');
-			}
-		});
-	})*/
 	$("#here").click(function(){
 		$.ajax({
 			url : "/gaenari/getfriendInfo.do",

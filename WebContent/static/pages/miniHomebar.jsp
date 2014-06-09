@@ -10,8 +10,8 @@
 .nav {
     list-style: none outside none;
     font-family: 나눔고딕;
-    font-size: 18px;
-    line-height: 3.3;
+    font-size: 15px;
+    line-height: 4.3;
 }
 .navbar-inverse .navbar-nav > li > a {
     color: #FECC00;
@@ -21,48 +21,70 @@
     color: #FFF;
     background-color: #737373;
 }
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 500;
+    line-height: 2.1;
+}
+.container {
+    max-width: 1100px;
+}
 </style>
 <div class="navbar navbar-inverse navbar-fixed-top" id="menubar">
     <div class="container">
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
-                <li>
-                    <h3>${sessionScope.toYear}년 ${sessionScope.toMonth}월 ${sessionScope.toDate}일</h3> 
-                </li>
-                <li class="dropdown"><!-- !!!!!!!!14-06-09!!!!!!!!!일정 세션에서 리퀘스트로 바꿔야된다! -->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">오늘의 일정<b class="caret"></b></a>
+            	<li>
+                    <h4><a href="/gaenari/miniHome.do?userid=${sessionScope.userid}"><img src="${sessionScope.user.img}" width="40px" class="img-rounded"></a>
                     	<c:choose>
-							<c:when test="${sessionScope.plans eq 1}">
-								<ul class="dropdown-menu">
-									<li><a href="/gaenari/planDetail.do?brdno=${sessionScope.plan.brdno}&userid=${sessionScope.user.userid}">[ ${sessionScope.plan.title} ]입니다.</a> </li>
-								</ul>
-							</c:when>
-							<c:when test="${sessionScope.plans > 1}">
-								<ul class="dropdown-menu">
-                    				<c:forEach items="${sessionScope.plans}" var="plan">
-                    					<li><a href="#">${plan.title}</a></li>
-                    				</c:forEach>
-                    			</ul>
-							</c:when>
-							<c:otherwise>
-								<ul class="dropdown-menu">
-									<li><small>등록된 일정이 없습니다.</small></li>
-								</ul>
-							</c:otherwise>
-						</c:choose>
-                   
-                    <c:if test="${sessionScope.plans > 1}">
-                    	<ul class="dropdown-menu">
-                    		<c:forEach items="${sessionScope.plans}" var="plan">
-                    			<li><a href="#">${plan.title}</a></li>
-                    		</c:forEach>
-                    	</ul>
-                    </c:if>
+                    		<c:when test="${sessionScope.userid == requestScope.user.userid}">
+                    			${sessionScope.userid}님 홈페이지입니다.
+                    		</c:when>
+                    		<c:otherwise>
+                    			${requestScope.user.userid}님 홈페이지 방문중입니다.
+                    		</c:otherwise>
+                    	</c:choose>
+                    </h4>
+                </li>
+           		<li>
+                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;${sessionScope.toYear}년 ${sessionScope.toMonth}월 ${sessionScope.toDate}일</h4> 
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">오늘의 일정<b class="caret"></b></a>
+                    <c:choose>
+						<c:when test="${sessionScope.plans eq 1}">
+							<ul class="dropdown-menu">
+								<li>
+									<a href="/gaenari/planDetail.do?brdno=${sessionScope.todayPlan[0].brdno}&userid=${sessionScope.user.userid}">[${sessionScope.todayPlan[0].title}]입니다.
+									<c:choose>
+										<c:when test="${sessionScope.todayPlan[0].flag == 0}">
+											<span class="label label-default">미완료</span> 
+										</c:when>
+										<c:otherwise>
+											<span class="label label-info">완료</span> 
+										</c:otherwise>
+									</c:choose>
+									</a>
+								</li>
+							</ul>
+						</c:when>
+					<c:when test="${sessionScope.plans > 1}">
+						<ul class="dropdown-menu">
+                    		<c:forEach items="${sessionScope.todayPlan}" var="plan">
+                    			<li><a href="/gaenari/planDetail.do?brdno=${plan.brdno}&userid=${sessionScope.userid}">${plan.title}</a></li>
+                   			</c:forEach>
+                   		</ul>
+					</c:when>
+					<c:otherwise>
+						<ul class="dropdown-menu">
+							<li><small>등록된 일정이 없습니다.</small></li>
+						</ul>
+					</c:otherwise>
+				</c:choose>
                 </li>
                 <li style="position:absolute;right:30px;">
                 <table>
                 	<tr><td>
-                    내 친구들</td><td><select class="btn btn-default">
+                    ${sessionScope.userid}님의 친구목록</td><td><select class="btn btn-default">
                     	<option selected="selected">친구를 선택하세요</option>
                     	<option>정동일</option>
                     	<option>정동이</option>

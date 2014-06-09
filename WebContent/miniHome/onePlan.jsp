@@ -66,9 +66,9 @@ height:50px;
 		<div class="panel-heading">
 			<table width="100%">
 				<tr>
-					<td width="80%"><h3 class="panel-title">제목:
+					<td width="70%"><h3 class="panel-title">제목:
 							${requestScope.onePlan.title} <font color="blue" size="2">[${requestScope.dog.dogname} - ${requestScope.type}]</font></h3></td>
-					<td width="20%" align="right">${requestScope.onePlan.wrdate}
+					<td width="30%" align="right">${requestScope.onePlan.wrdate}
 						<c:if test="${requestScope.onePlan.wrdate eq sessionScope.today}">
 							<font color="blue">[오늘입니다]</font>
 						</c:if>

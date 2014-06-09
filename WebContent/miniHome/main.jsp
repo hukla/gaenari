@@ -19,7 +19,7 @@ div#scroll{
 	border: hidden;
 }
 div#panel-heading{
-padding: 1px;
+padding: 0px;
     height: 37px;
     text-align: left;
 }
@@ -28,6 +28,21 @@ div#doginfo {
     font-size: 15px;
     text-align: left;
     padding: 2px;
+}
+.alert-success {
+    color: #468847;
+    background-color: #E4E7C5;
+    border-color: #E4E7C5;
+}
+.btn-success {
+    color: #FFFFFF;
+    background-color: #AAED08;
+    border-color: #AAED08;
+}
+.panel-default > .panel-heading {
+    color: #333;
+    background-color: #BABABA;
+    border-color: #BABABA;
 }
 </style>
 
@@ -60,7 +75,7 @@ div#doginfo {
 			<td width="100%" align="center">
 				<table border="0" align="center" width="80%" class="table">
 					<tr>
-						<td width="35%" height="100%" rowspan="4">
+						<td width="35%"rowspan="4">
 							<div align="center">
 								<c:choose>
 									<c:when test="${requestScope.user.userid == sessionScope.userid}">
@@ -110,61 +125,53 @@ div#doginfo {
 							</c:choose>
 						</td>
 						<td width="65%" height="30%">
-							<h1 align="center"><%-- ${sessionScope.today} 오늘의 일정<br>
-								<c:choose>
-									<c:when test="${requestScope.plans eq 1}">
-									<small>[ ${requestScope.plan.title} ] 입니다.</small>
-									</c:when>
-									<c:when test="${requestScope.plans > 1}">
-									<small>[ ${requestScope.plans}개의 일정이 있습니다. ]</small>
-									</c:when>
-									<c:otherwise><small>등록된 일정이 없습니다.</small></c:otherwise>
-								</c:choose> --%>
+							<h1 align="center">
 								안녕하세요 ${requestScope.user.userid}입니다.
 							</h1>
 						</td>
 					</tr>
 					<tr>
-						<td height="25%">
-							<h4 align="center">일정(<%-- ${fn:length(planList)} --%>)</h4> 
+						<td>
+							<h4 align="left">오늘 이후의 일정</h4> 
 							<c:choose>
-								<c:when test="${not empty requestScope.planList}">
-									<c:forEach items="${requestScope.planList}" var="plan">
-										<ul>
-											<li>
-											<a href="/gaenari/planDetail.do?brdno=${plan.brdno}&userid=${requestScope.user.userid}">
-											${plan.title} - ${plan.wrdate}
-											</a>
-											</li>
-										</ul>
-									</c:forEach>
+								<c:when test="${requestScope.nextPlan != null}">
+									<table style="border: hidden;" border="0">
+										<tr>
+											<c:if test="${not empty requestScope.planDog}">
+												<td>
+													<img src="${requestScope.planDog.dogimg}" width="85px">
+												</td>
+											</c:if>
+											<td>
+												<a href="/gaenari/planDetail.do?brdno=${requestScope.nextPlan.brdno}&userid=${requestScope.user.userid}">
+													${requestScope.nextPlan.title} - ${requestScope.nextPlan.wrdate}
+												</a>(${requestScope.plDogTitle})<br>${requestScope.nextPlan.brdcontent}
+											</td>
+										</tr>
+									</table>
 								</c:when>
+								<c:otherwise>
+									오늘 이후의 일정이 등록되지 않았습니다.
+								</c:otherwise>
 							</c:choose>
 						</td>
 					</tr>
 					<tr>
-						<td height="80px">
+						<td>
 							<h4 align="left">최근 Diary소식</h4>
 							<c:choose>
 								<c:when test="${requestScope.di != null}">
-									<%-- <c:forEach items="${requestScope.diary}" var="diary">
-										<ul>
-											<li>
-											<a href="/gaenari/diaryDetail.do?brdno=${diary.brdno}&userid=${requestScope.user.userid}">
-											${diary.title} - ${diary.wrdate}
-											</a>
-											</li>
-										</ul>
-									</c:forEach> --%>
 									<table style="border: hidden;" border="0">
 										<tr>
 											<c:if test="${requestScope.diImage != null}">
 												<td>
-													<img src="${requestScope.diImage}" height="80px">
+													<img src="${requestScope.diImage}" width="85px">
 												</td>
 											</c:if>
 											<td>
-												<h4><a href="/gaenari/diaryDetail.do?brdno=${requestScope.di.brdno}&userid=${requestScope.user.userid}">${requestScope.di.title}</a></h4> ${requestScope.diContent}
+												<a href="/gaenari/diaryDetail.do?brdno=${requestScope.di.brdno}&userid=${requestScope.user.userid}">
+													${requestScope.di.title} - ${requestScope.di.wrdate}
+												</a><br>${requestScope.diContent}
 											</td>
 										</tr>
 									</table>
@@ -176,16 +183,29 @@ div#doginfo {
 						</td>
 					</tr>
 					<tr>
-						<td height="20%">
-							<table style="border: hidden;">
-								<tr>
-									<td width="25%">
-										<!-- 실종견 커뮤니티에서 사진과 실종신고 제목 불러오기 --> 
-										<input type="image" src="image/horse.jpg" width="80">
-									</td>
-									<td width="75%">${requestScope.mfMessage}우리말좀찾아줘요</td>
-								</tr>
-							</table>
+						<td>
+							<h4 align="left">유기견 알림</h4>
+							<%-- <c:choose>
+								<c:when test="${requestScope.di != null}"> --%>
+									<table style="border: hidden;" border="0">
+										<tr>
+											<%-- <c:if test="${requestScope.diImage != null}"> --%>
+												<td>
+													<img src="/gaenari/image/horse.jpg" width="70px">
+												</td>
+											<%-- </c:if> --%>
+											<td>
+												<a href="#">
+													저희말좀찾아주세요 - 2014-06-14
+												</a><br>유기견 설명
+											</td>
+										</tr>
+									</table>
+								<%-- </c:when>
+								<c:otherwise>
+									유기견 알림이 없습니다.
+								</c:otherwise>
+							</c:choose> --%>
 						</td>
 					</tr>
 				</table>
@@ -217,7 +237,7 @@ function sendReq() {
 var result = "${fn:length(dog)}";
 var scroll = document.getElementById("scroll");
 
-if(result>3){
+if(result>2){
 	scroll.style.overflowY="scroll";
 }else{
 	scroll.style.overflowY="hidden";
