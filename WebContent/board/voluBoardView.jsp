@@ -5,7 +5,7 @@
 <html>
     <head>
         <%@ include file="/static/pages/head.jsp"%>
-        <script src="/gaenari/board/scripts/ptboard.js"></script>
+        <script src="/gaenari/board/scripts/voluboard.js"></script>
     </head>
     <body>
     	<div id="wrapper">
@@ -28,6 +28,9 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="right-part">
+                            <div class="part-header">
+                                <div class="ptboard-type-container">
                        			<div class="part-line-gray">작성자</div>
                                 <div class="part-line">${requestScope.resultContent.userid}</div>
                                 <div class="part-line-gray">작성시간</div>
@@ -38,9 +41,10 @@
                                 <div class="part-line">${requestScope.vhour[0]}</div>
                                 <div class="part-line-gray">봉사시간</div>
                                 <div class="part-line">${requestScope.vhour[1]} ~ ${requestScope.vhour[2]}</div>
-                       </div>
-                                          <div class="ptboard-info-bottom">
-                        <div class="content-container">
+                           </div>
+                        </div>
+                        <div class="ptboard-info-bottom">
+                        	<div class="content-container">
                             <!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
                             <form name="requestForm" method=post action="control" onsubmit="return send()">
                                 <input type=hidden name="vbrdno" value="${requestScope.resultContent.vbrdno}">

@@ -43,7 +43,7 @@
                                             <div class="ptboard-type-content">
 		                                        산책
 		                                    </div>
-                                        </c:when>
+                                         </c:when>
                                         <c:otherwise>
                                             <img class="ptboard-type-icon" src="/gaenari/static/images/pet-sitting-icon.png"/>
                                             <div class="ptboard-type-content">
@@ -57,11 +57,11 @@
                                 <div class="part-line">${requestScope.resultContent.userid}</div>
                                 <div class="part-line-gray">작성시간</div>
                                 <div class="part-line">${requestScope.resultContent.wrdate}</div>
-                                <div class="part-line-gray">위치</div>
+                                <div class="part-line-gray">장소</div>
                                 <div class="part-line">${requestScope.resultContent.workloc}</div>
-                                <div class="part-line-gray">작업날짜</div>
+                                <div class="part-line-gray">도움날짜</div>
                                 <div class="part-line">${requestScope.workhour[0]}</div>
-                                <div class="part-line-gray">작업시간</div>
+                                <div class="part-line-gray">시간</div>
                                 <div class="part-line">${requestScope.workhour[1]} ~ ${requestScope.workhour[2]}</div>
                             </div>
                         </div>

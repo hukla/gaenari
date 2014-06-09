@@ -10,9 +10,8 @@ function send() {
 		return false;
 }
 function ptDelete(ptbrdno) {
-	alert('ptDelete');
+	alert('왜뜨냐고');
 	if(confirm("삭제하시겠습니까?")) {
-		alert('삭제되었습니다.');
 		location.href = "/gaenari/ptBoardDelete.do?ptbrdno=" + ptbrdno;
 	}else {
 		alert("삭제가 취소되었습니다.");
