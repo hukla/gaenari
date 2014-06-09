@@ -31,7 +31,7 @@
                        			<div class="part-line-gray">작성자</div>
                                 <div class="part-line">${requestScope.resultContent.userid}</div>
                                 <div class="part-line-gray">작성시간</div>
-                                <div class="part-line">${requestScope.resultContent.wrdate}</div>
+               		            <div class="part-line">${requestScope.resultContent.wrdate}</div>
                                 <%-- <div class="part-line-gray">위치</div>
                                 <div class="part-line">${requestScope.resultContent.workloc}</div> --%>
                                 <div class="part-line-gray">봉사날짜</div>
