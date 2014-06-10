@@ -114,8 +114,8 @@ public class PtBoardDAO {
 		PtBoardDTO pbdto = null;
 		boolean result = false;
 		try {
-			System.out.println("==ptboardDAO==");
 			pbdto = session.selectOne("ptboard.selectByNum", num);
+			pbdto.setUserid(pbdto.getUserid().trim());
 		}finally{
 			DBUtil.closeSession(session, result);
 		}

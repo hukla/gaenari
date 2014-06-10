@@ -15,11 +15,12 @@
                 <div class="container">
                 <div id="mboard-view-form">
                     <div class="mboard-info-header">
-                        <div class="mboard-dog-name">${requestScope.resultContent.title}</div>
+                        <div class="mboard-dog-name">${requestScope.resultContent.floc}에서 봤어요!</div>
                     </div>
                     <div class="mboard-info-main">
+                    <% boolean result = request.getAttribute("picPath").toString().contains("default")?true:false;%>
                         <div class="left-part" style="background-image: url('${requestScope.picPath}');"
-                        onclick="popupOpen(${requestScope.resultContent.brdno})"></div>
+                        onclick="popupOpen('<%=result%>','${requestScope.resultContent.brdno}')"></div>
                         <div class="right-part">
                             <div class="part-header">
                                 <div class="part-header-title">${requestScope.resultContent.title}</div>

@@ -24,7 +24,7 @@ public class FindingBoardViewAction implements Action {
 			request.setAttribute("picPath", picPath);
 			fdto.setBrdcontent(fdto.getBrdcontent().split("!split!")[1]);
 		}else{
-			request.setAttribute("picPath","image/board/"+fdto.getBrdno()+".jpg");
+			request.setAttribute("picPath","/gaenari/image/board/"+fdto.getBrdno()+".jpg");
 		}
 		
 		if(fdto!=null){

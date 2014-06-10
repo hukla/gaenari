@@ -2,6 +2,10 @@
  * 작성자 : 이수진
  * 작성일 : 2014-06-09
  * 내용 : 유기견 입양 게시판 ajax
+ * 
+ * 수정자 : 이수진
+ * 수정일 : 2014-06-10
+ * 내용 : 사진 클릭하면 원래 사진이 뜨도록 구현
  */
 $(function(){
 	$.ajaxSetup({
@@ -64,8 +68,13 @@ function checkValid() {
 	}
 	return true;
 }
-function popupOpen(brdno) {
-    var popUrl = "image/board/" + brdno + ".jpg"; //팝업창에 출력될 페이지 URL
+function popupOpen(result,brdno) {
+	var popUrl = null;
+	if(result=='true'){
+		popUrl = "image/board/defaultDog.jpg";
+	}else{
+		popUrl = "image/board/" + brdno + ".jpg"; //팝업창에 출력될 페이지 URL
+	}
     var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
     window.open(popUrl, "", popOption);
 }
