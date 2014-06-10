@@ -191,13 +191,12 @@ div#doginfo {
 										<tr>
 											<%-- <c:if test="${requestScope.diImage != null}"> --%>
 												<td>
-													<img src="/gaenari/image/horse.jpg" width="70px">
+													<img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg" width="70px">
 												</td>
 											<%-- </c:if> --%>
 											<td>
-												<a href="#">
-													저희말좀찾아주세요 - 2014-06-14
-												</a><br>유기견 설명
+												<a href="/gaenari/missingBoardView.do?mbrdno=${sessionScope.mdto.mbrdno}">
+													${sessionScope.mdto.title} - ${sessionScope.mdto.wrdate}</a><br>${sessionScope.mdto.brdcontent}
 											</td>
 										</tr>
 									</table>

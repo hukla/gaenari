@@ -139,8 +139,6 @@
                                 <small>${sessionScope.userid}님 이 아이 보신적있나요?</small>
                             </div>
                             <br><img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg" width="200" class="img-rounded">
-							<!-- <img src="/gaenari/image/horse.jpg" width="200"
-								class="img-rounded"> -->						
                             <div class="caption">
                                 <h3>${sessionScope.mdto.mname}를 찾습니다!</h3>
                                 <p>${sessionScope.mdto.title}</p>

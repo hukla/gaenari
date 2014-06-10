@@ -9,13 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
+
 import model.dao.DogDAO;
+import model.dao.MFABoardDAO;
 import model.dao.TestDAO;
 import model.dao.UpdateDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
 import model.dto.DogDTO;
+import model.dto.MissingBoardDTO;
 import model.dto.PlanDTO;
 import model.dto.UserDTO;
 /**
@@ -70,6 +74,9 @@ import model.dto.UserDTO;
  * 내용: 미니홈 아닌 전체 메인페이지(home.jsp, HomeAction)를 만듦으로써 
  * 		 여기선 불필요한 session스코프 이용 없앰, 
  * 		 session스코프 컨트롤은 HomeAction에서 하도록 한다.
+ * 
+ * 수정: 2014-06-10, 이수진
+ * 내용: 유기견 광고 뜨도록 기능 추가
  */
 
 public class MinihomeMainAction implements Action {  
@@ -137,6 +144,14 @@ public class MinihomeMainAction implements Action {
 			request.setAttribute("planDog", planDog);
 
 			url = "miniHome/main.jsp";
+			
+			//유기견 광고를 랜덤으로 받아 세션에 저장
+			SqlSession sqlSession = null;
+			String userId = (String)session.getAttribute("userid");
+			MissingBoardDTO mdto = null;
+			mdto = MFABoardDAO.getAds(userId);
+			
+			session.setAttribute("mdto", mdto);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
