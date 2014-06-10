@@ -66,7 +66,7 @@ h5 {
      {
   if ((year%4==0||year%100==0)&&(year%400==0)) monthDays[1]=29; else monthDays[1]=28 //leap year test
   var firstDay=new Date(year,month,1).getDay()
-  var calStr="<table border=0 cellpadding=5 cellspacing=1 class='table' align=center bgcolor=#CCCCCC style='border: hidden;'>"
+  var calStr="<table border=0 cellpadding=5 cellspacing=1 class='table' align=center bgcolor=#CCCCCC style='border: hidden;height: 370px;'>"
 
   calStr+="<tr bgcolor=white><td colspan=7>"
 
@@ -160,7 +160,7 @@ h5 {
  -->
 </head>
 <body>
-	<table align="left"><tr><td width="900" align="center">
+	<table align="left"><tr><td width="900" align="center" height="400px">
 	<table border="0" align="center" width="100%" height="100%">
 		<tr style="line-height: 0px;">
 			<td width="100%" colspan="2">
