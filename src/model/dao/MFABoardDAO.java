@@ -22,6 +22,11 @@ import util.DBUtil;
 
 public class MFABoardDAO {
 	
+	public static MissingBoardDTO getAds() throws SQLException{
+		SqlSession session = null;
+		return null;
+	}
+	
 	public static int getFCount() throws SQLException{
 		SqlSession session = null;
 		int fCount = 0;
