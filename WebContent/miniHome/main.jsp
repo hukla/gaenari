@@ -206,10 +206,7 @@ span#mfboard{
 											<td>
 												<a href="#" onclick="toMfboard('${sessionScope.mdto.mbrdno}')">
 													${sessionScope.mdto.title} - ${sessionScope.mdto.wrdate}
-												</a><br>
-												
-													${sessionScope.mdto.brdcontent}
-												
+												</a><br>${sessionScope.mdto.brdcontent}
 											</td>
 										</tr>
 									</table>

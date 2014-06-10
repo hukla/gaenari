@@ -8,14 +8,15 @@
 <style type="text/css">
 	td,th {	font-family: '맑은 고딕'	}
 	#bigimg > img{
-		width: 270px;
-		height: 330px;
+		width: 450px;
+		height: 350px;
 	}
 </style>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<!--<link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
 <title>개인정보</title>
 <!-- 
 작성자: 최성훈
@@ -32,10 +33,10 @@
 		${requestScope.user.userid}님 회원정보
 	</h1>
 	<hr color="blue">
-	<table align="center">
+	<table align="center" style="border: hidden;">
 		<tr>
-			<td width="300">
-				<table align="center" border="0" class="table">
+			<td width="550">
+				<table align="center" border="0" class="table" width="100%" style="border: hidden;">
 				<colgroup>
 					<col width="16%">
 					<col width="16%">
@@ -144,7 +145,7 @@
 						<div id="bigimg"><img src="${requestScope.imageList[0]}" height="70" width="100"></div>
 					</td>
 				</tr>
-				<tr>
+				<tr style="border: hidden;">
 					<c:choose>
 						<c:when test="${not empty requestScope.imageList}">
 							<c:forEach items="${requestScope.imageList}" var="image" end="5">

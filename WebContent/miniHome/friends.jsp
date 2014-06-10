@@ -8,12 +8,13 @@
 <head>
 <style type="text/css">
 
-table#searching{
+ table#searching{
 	width:600px;
 	float: left;
 	margin-left: 20px;
 }
-table#friendsList{
+
+ table#friendsList{
 	float: left;
 	left:;
 	width:280px;
@@ -22,6 +23,7 @@ table#requestList{
 	float: left;
 	width:300px;
 }
+
 div#container{
 	width:240px;
 	height:80px;
@@ -183,7 +185,7 @@ div#container{
 					</tr>
 					<tr>
 						<td colspan="4">
-							<div id="display"></div>
+							<div id="display" style="width: 560px"></div>
 						</td>
 					</tr>
 				</table>
@@ -191,7 +193,6 @@ div#container{
 			</td>
 		</tr>
 	</table>
-	<table height="400"></table>
 </body>
 <script type="text/javascript">
 	function accept(sender) {
