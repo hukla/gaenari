@@ -82,7 +82,7 @@ public class JoinAction implements Action {
 			}else{
 				InsertDAO.insertUser(new UserDTO(userid,pwd,email,username,addr,Integer.parseInt(type)));
 			}
-			
+			session.setAttribute("username", username);
 			session.setAttribute("userid", userid);
 			session.setAttribute("pwd", pwd);
 			request.setAttribute("email", email);

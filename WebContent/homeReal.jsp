@@ -62,7 +62,6 @@
             
             수정: 최성훈, 2014-06-04	내용: 안쓰는 주석 지우고 강아지 등록 팝업 크기조절
             수정: 이수진, 2014-06-07	내용: 유기견 광고 넣기
-		수정: 이수진, 2014-06-10	내용: 유기견 광고 나오도록 수정
              -->
     </head>
     <body>
@@ -138,12 +137,13 @@
                             <div align="center">
                                 <small>${sessionScope.userid}님 이 아이 보신적있나요?</small>
                             </div>
-                            <br><img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg" width="200" class="img-rounded">
+                            <br> <img src="/gaenari/image/horse.jpg" width="200"
+                                class="img-rounded">
                             <div class="caption">
-                                <h3>${sessionScope.mdto.mname}를 찾습니다!</h3>
-                                <p>${sessionScope.mdto.title}</p>
+                                <h3>좀찾아주십시오</h3>
+                                <p>말을잃어버려서기분이안좋스빈다.</p>
                                 <p>
-                                    <a href="/gaenari/missingBoardView.do?mbrdno=${sessionScope.mdto.mbrdno}" class="btn btn-primary">봤어요</a> <a
+                                    <a href="#" class="btn btn-primary">봤어요</a> <a
                                         href="/gaenari/missingBoardMain.do" class="btn btn-default">다른신고보기</a>
                                 </p>
                             </div>

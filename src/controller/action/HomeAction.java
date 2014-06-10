@@ -11,15 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.MFABoardDAO;
 import model.dao.TestDAO;
 import model.dao.UpdateDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
+import model.dto.MissingBoardDTO;
 import model.dto.UserDTO;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 
+import util.DBUtil;
 import exception.LoginException;
 /**
  * 작성: 최성훈
@@ -34,6 +38,9 @@ import exception.LoginException;
  *
  * 수정: 2014-05-31, 장재희
  * 내용: logger 추가
+ * 
+ * 수정: 2014-06-10, 이수진
+ * 내용: 광고 띄우는 부분 추가(174줄~)
  */
 public class HomeAction implements Action {
 	
@@ -163,6 +170,15 @@ public class HomeAction implements Action {
 			}
 			
 			url = "/home.jsp";
+			
+			//유기견 광고를 랜덤으로 받아 세션에 저장
+			SqlSession sqlSession = null;
+			String userId = (String)session.getAttribute("userid");
+			MissingBoardDTO mdto = null;
+			mdto = MFABoardDAO.getAds(userId);
+			
+			session.setAttribute("mdto", mdto);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
