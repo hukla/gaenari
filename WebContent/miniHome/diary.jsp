@@ -17,7 +17,22 @@ div#scroll{
 	overflow-y: scroll;
 	height: 140px;
 }
-
+.page-header {
+    margin: -20px 0px -5px;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 0px;
+}
+.thumbnail {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    padding: 4px;
+    line-height: 1.42857;
+    background-color: #CECECE;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out 0s;
+}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>미니홈피 일기</title>
@@ -79,13 +94,16 @@ div#scroll{
 </script>
 
 <body>
-<table><tr><td width="800">
+<table><tr><td width="900">
 	<table border="0" align="center" width="100%" height="100%" cellpadding="20" class="table">
 		<tr>
 			<c:if test="${requestScope.user.userid eq sessionScope.userid }">
 			<td width="45%">
+			<div class="row">
+  				<div class="col-lg-15 col-lg-10">
+    				<div class="thumbnail">
 				<form action="/gaenari/writeDiary.do" method="post" enctype="multipart/form-data" id="diaryForm">
-					<table border="0" class="table" width="100%" height="380" style="outline-style: ridge; table-layout: fixed;">
+					<table border="0" class="table" width="100%" height="380" style="border:hidden; table-layout: fixed;">
 						<colgroup>
 							<col width="20%"><col width="80%">
 						</colgroup>
@@ -100,12 +118,15 @@ div#scroll{
 						</tr>
 						<tr>
 							<td colspan="2">&nbsp;&nbsp;기분 : 
-							좋음<input type="radio" name="mood" value="good"> 
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-							보통<input type="radio" name="mood" value="soso">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-							구림<input type="radio" name="mood" value="bad"> <br/> 
-							&nbsp; 
+							<input type="radio" name="mood" value="/gaenari/image/joyful.png">&nbsp;<img src="/gaenari/image/joyful.png" height="17px">
+							&nbsp;&nbsp;&nbsp;&nbsp; 
+							<input type="radio" name="mood" value="/gaenari/image/love.png">&nbsp;<img src="/gaenari/image/love.png" height="15px">
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="mood" value="/gaenari/image/angry.png">&nbsp;<img src="/gaenari/image/angry.png" height="17px">
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="mood" value="/gaenari/image/sick.png">&nbsp;<img src="/gaenari/image/sick.png" height="17px">
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="mood" value="/gaenari/image/thinking.png">&nbsp;<img src="/gaenari/image/thinking.png" height="17px"> 
 							</td>
 						</tr>
 						<tr>
@@ -130,6 +151,9 @@ div#scroll{
 						</tr>
 					</table>
 				</form>
+				</div>
+				</div>
+				</div>
 			</td>
 			</c:if>
 			<td width="55%">
@@ -159,8 +183,12 @@ div#scroll{
 						<table border="0" width="100%" height="395">
 							<tr>
 								<td>
+								<div class="row">
+  										<div class="col-lg-15 col-lg-10">
+    										<div class="thumbnail" style="background-color: rgb(240, 240, 240); border-color: rgb(240, 240, 240);">
 									<form action="control" method="post" name="firstForm">
-										<table border="0" width="95%" height="400" style="outline-style: ridge; table-layout: fixed;">
+									
+										<table border="0" width="95%" height="400" style="border:hidden ; table-layout: fixed;">
 											<c:choose>
 												<c:when test="${not empty requestScope.diaryFirst}">
 													<tr height="13%">
@@ -176,7 +204,8 @@ div#scroll{
 													</tr>
 													<tr height="12%">
 														<td>&nbsp;&nbsp;기분 : 
-															${requestScope.diaryFirst.mood}
+															<%-- ${requestScope.diaryFirst.mood} --%>
+															<img src="${requestScope.diaryFirst.mood}" height="17px">
 															<c:if test="${requestScope.diaryFirstImg != null}">
 																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -227,12 +256,19 @@ div#scroll{
 												</c:otherwise>
 											</c:choose>
 										</table>
-									</form>
+										</form>
+										</div>
+										</div>
+										</div>
+									
 								</td>
 								<td>
 								<c:if test="${requestScope.user.userid != sessionScope.userid}">
+								<div class="row">
+  										<div class="col-lg-15 col-lg-10">
+    										<div class="thumbnail" style="background-color: rgb(240, 240, 240); border-color: rgb(240, 240, 240);">
 									<form action="control" method="post" name="secondForm">
-										<table border="0" width="95%" height="400" style="outline-style: ridge; table-layout: fixed;">
+										<table border="0" width="95%" height="400" style="border: hidden; table-layout: fixed;">
 											<c:choose>
 												<c:when test="${not empty requestScope.diarySecond}">
 													<tr height="13%">
@@ -248,7 +284,8 @@ div#scroll{
 													</tr>
 													<tr height="12%">
 														<td>&nbsp;&nbsp;기분 : 
-															${requestScope.diarySecond.mood}
+															<%-- ${requestScope.diarySecond.mood} --%>
+															<img src="${requestScope.diarySecond.mood}" height="17px">
 															<c:if test="${requestScope.diarySecondImg != null}">
 																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -299,6 +336,9 @@ div#scroll{
 											</c:choose>
 										</table>
 									</form>
+									</div>
+									</div>
+									</div>
 									</c:if>
 								</td>
 							</tr>
@@ -352,10 +392,18 @@ div#scroll{
 								<col width="50%">
 								<col width="20%">
 							</colgroup>
+							<tbody style="font-size: 13px;">
 							<tr>
-								<td align="center" height="30" style="word-break: break-all;">작성날짜</td>
-								<td align="center">제목</td>
-								<td align="center">기분</td>
+								<td colspan="3">
+									<div class="page-header">
+  										<h2>${requestScope.user.userid}님의 일기<small>${sessionScope.today}</small></h2>
+									</div>
+								</td>
+							</tr>
+							<tr height="40px" style="background-color: rgb(230, 227, 196);">
+								<td align="center" height="30" style="word-break: break-all;vertical-align: middle;">작성날짜</td>
+								<td align="center" style="vertical-align: middle;">제목</td>
+								<td align="center" style="vertical-align: middle;">기분</td>
 							</tr>
 							<c:choose>
 								<c:when test="${not empty requestScope.tenDiaries}">
@@ -366,7 +414,7 @@ div#scroll{
 													${diary.title}
 												</a>
 											</td>
-											<td align="center">${diary.mood}</td>
+											<td align="center"><%-- ${diary.mood} --%><img src="${diary.mood}" height="18px"></td>
 										</tr>
 									</c:forEach>
 									<c:if test="${fn:length(tenDiaries) < 10}">

@@ -160,9 +160,9 @@ h5 {
  -->
 </head>
 <body>
-	<table align="left"><tr><td width="800" align="center">
+	<table align="left"><tr><td width="900" align="center">
 	<table border="0" align="center" width="100%" height="100%">
-		<tr>
+		<tr style="line-height: 0px;">
 			<td width="100%" colspan="2">
 				<SPAN ID=calendar STYLE="position: relative;"></SPAN> 
 				<script language="JavaScript" type="text/JavaScript">

@@ -77,9 +77,9 @@ div#doginfo {
 					<tr>
 						<td width="35%"rowspan="4">
 							<div align="center">
+								<h3><font face="맑은 고딕">${requestScope.user.userid}님 홈페이지</font></h3>
 								<c:choose>
 									<c:when test="${requestScope.user.userid == sessionScope.userid}">
-										<h3><font face="맑은 고딕">${requestScope.user.userid}님 홈페이지</font></h3>
 										<input type="image" src="${requestScope.user.img}" onclick="image()" width="200">
 									</c:when>
 									<c:otherwise>
@@ -125,13 +125,13 @@ div#doginfo {
 							</c:choose>
 						</td>
 						<td width="65%" height="30%">
-							<h1 align="center">
+							<h1 align="left">
 								안녕하세요 ${requestScope.user.userid}입니다.
 							</h1>
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td style="background-color: rgb(234, 255, 228);height: 149px;">
 							<h4 align="left">오늘 이후의 일정</h4> 
 							<c:choose>
 								<c:when test="${requestScope.nextPlan != null}">
@@ -157,7 +157,7 @@ div#doginfo {
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td style="background-color: rgb(235, 235, 206);height: 149px;">
 							<h4 align="left">최근 Diary소식</h4>
 							<c:choose>
 								<c:when test="${requestScope.di != null}">
@@ -183,7 +183,7 @@ div#doginfo {
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td style="background-color: rgb(214, 232, 227);height: 149px;">
 							<h4 align="left">유기견 알림</h4>
 							<%-- <c:choose>
 								<c:when test="${requestScope.di != null}"> --%>

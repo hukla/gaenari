@@ -80,7 +80,7 @@ height:50px;
 				<tr>
 					<td width="60%" height="50">
 						<div class="alert alert-success" id="alert">
-							<font size="3">${requestScope.oneDiary.wrdate}&nbsp;&nbsp;&nbsp;${requestScope.user.userid}님의 기분 :  ${requestScope.oneDiary.mood}</font> 
+							<font size="3">${requestScope.oneDiary.wrdate}&nbsp;&nbsp;&nbsp;${requestScope.user.userid}님의 기분 : <img src="${requestScope.oneDiary.mood}" height="18px"> </font> 
 						</div>
 					</td>
 					<c:if test="${requestScope.oneDiaryImg != null}">
@@ -101,12 +101,12 @@ height:50px;
 				<tr>
 					<td align="center" height="40">
 						<ul class="pager">
-							<li><a href="/gaenari/diaryDetail.do?index=${requestScope.index +1}&userid=${requestScope.user.userid}">Previous</a></li>
+							<li><a href="/gaenari/diaryDetail.do?index=${requestScope.index -1}&userid=${requestScope.user.userid}">Previous</a></li>
 							<c:if test="${requestScope.user.userid eq sessionScope.userid }">
 								<li><a href="/gaenari/updateFormDiary.do?brdno=${requestScope.oneDiary.brdno}&userid=${requestScope.user.userid}">수정하기</a></li>
 								<li><a href="#" onclick="deleteDiary('${requestScope.oneDiary.brdno}')">삭제하기</a></li>
 							</c:if>
-							<li><a href="/gaenari/diaryDetail.do?index=${requestScope.index -1}&userid=${requestScope.user.userid}">Next</a></li>
+							<li><a href="/gaenari/diaryDetail.do?index=${requestScope.index +1}&userid=${requestScope.user.userid}">Next</a></li>
 						</ul>
 					</td>
 				</tr>

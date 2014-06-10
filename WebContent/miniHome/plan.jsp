@@ -7,6 +7,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style type="text/css">
+.page-header {
+    margin: -20px 0px -5px;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 0px;
+}
+.thumbnail {
+    display: block;
+    height: 477px;
+    max-width: 100%;
+    padding: 4px;
+    line-height: 1.42857;
+    background-color: #CECECE;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out 0s;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -54,15 +72,18 @@
 </head>
 
 <body>
-<table><tr><td width="800">
+<table><tr><td width="900">
 	<table border="0" align="center" width="100%" height="100%" cellpadding="20" class="table">
 		<tr>
 			<c:if test="${requestScope.user.userid eq sessionScope.userid}">
 			<td width="45%">
+			<div class="row">
+  				<div class="col-lg-15 col-lg-10">
+    				<div class="thumbnail">
 				<form action="/gaenari/writePlan.do" method="post" id="planForm">
-					<table class="table" border="0" width="100%" height="380" style="outline-style: ridge; table-layout: fixed;">
+					<table class="table" border="0" width="100%" height="380" style="border:hidden; table-layout: fixed;">
 						<colgroup>
-							<col width="20%"><col width="40%"><col width="40%">
+							<col width="20%"><col width="35%"><col width="45%">
 						</colgroup>
 						<tr>
 							<td colspan="3"><h2>일정 등록하기</h2></td>
@@ -76,7 +97,7 @@
 						<tr>
 							<td>&nbsp;&nbsp;선택 : </td>
 							<td align="left">
-							<select name="loc" class="btn btn-default">
+							<select name="loc" class="btn btn-default" style="width: 100%;">
 									<option selected="selected" value="unchosen">지역</option>
 									<option value="광진구">광진구</option>
 									<option value="동대문구">동대문구</option>
@@ -103,9 +124,10 @@
 									<option value="종로구">종로구</option>
 									<option value="중구">중구</option>
 									<option value="성북구">성북구</option>
-							</select></td>
+							</select>
+							</td>
 							<td align="left">
-							<select name="plandogno" class="btn btn-default">
+							<select name="plandogno" class="btn btn-default" style="width: 100%;">
 									<c:choose>
 										<c:when test="${not empty requestScope.dog}">
 											<option value="unchosen" selected="selected">강아지</option>
@@ -156,19 +178,28 @@
 						</tr>
 					</table>
 				</form>
+				</div></div></div>
 			</td>
 			</c:if>
 			<td width="55%">
-				<table class="table table-condensed" width="100%" height="395" style="table-layout: fixed;">
+				<table class="table table-condensed" width="100%" height="395" style="table-layout: fixed;border: hidden;">
 					<colgroup>
 						<col width="20%">
-						<col width="50%">
-						<col width="20%">
+						<col width="55%">
+						<col width="15%">
 					</colgroup>
+					<tbody style="font-size: 13px;">
 					<tr>
-						<td align="center" height="30" style="word-break: break-all;">작성날짜</td>
-						<td align="center">제목</td>
-						<td align="center">지역</td>
+						<td colspan="3">
+							<div class="page-header">
+  								<h2>${requestScope.user.userid}님의 일정<small>${sessionScope.today}</small></h2>
+							</div>
+						</td>
+					</tr>
+					<tr height="40px" style="background-color: rgb(147, 195, 227);">
+						<td style="vertical-align: middle;" align="center" height="30" style="word-break: break-all;">작성날짜</td>
+						<td style="vertical-align: middle;" align="center">제목</td>
+						<td style="vertical-align: middle;" align="center">지역</td>
 					</tr>
 					<c:choose>
 						<c:when test="${not empty requestScope.tenPlans}">
@@ -245,6 +276,7 @@
 							</c:choose>
 						</td>
 					</tr>
+					</tbody>
 				</table>
 			</td>
 		</tr>

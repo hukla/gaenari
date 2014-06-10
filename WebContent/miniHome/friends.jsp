@@ -9,7 +9,7 @@
 <style type="text/css">
 
 table#searching{
-	width:540px;
+	width:600px;
 	float: left;
 	margin-left: 20px;
 }
@@ -26,6 +26,10 @@ div#container{
 	width:240px;
 	height:80px;
 	background-color: #E9E9F7;
+}
+.jumbotron {
+    padding-top: 0px;
+    padding-bottom: 26px;
 }
 
 </style>
@@ -85,7 +89,7 @@ div#container{
 					<td>
 						<div class="panel panel-success">
 							<div class="panel-heading">
-								<h5>내 친구 목록</h5>
+								<h5>${requestScope.user.userid}님의 친구 목록</h5>
 							</div>
 							<div class="panel-body">
 								<c:forEach items="${requestScope.friendList}" var="friends">
@@ -108,7 +112,20 @@ div#container{
 				</tr>
 			</c:when>
 			<c:otherwise>
-				<h5>친구목록이 없습니다.</h5>
+				<tr>
+					<td>
+						<div class="panel panel-success">
+							<div class="panel-heading">
+								<h5>${requestScope.user.userid}님의 친구 목록</h5>
+							</div>
+							<div class="panel-body">
+								<div class="alert alert-success">
+									<h5>친구목록이 없습니다.</h5>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
 			</c:otherwise>
 		</c:choose>
 	</table>
@@ -166,7 +183,7 @@ div#container{
 					</tr>
 					<tr>
 						<td colspan="4">
-							<div id="display">여기출력</div>
+							<div id="display"></div>
 						</td>
 					</tr>
 				</table>
