@@ -94,7 +94,8 @@ div#scroll{
 </script>
 
 <body>
-<table><tr><td width="900">
+<div id="tb">
+<table width="100%"><tr><td width="100%">
 	<table border="0" align="center" width="100%" height="100%" cellpadding="20" class="table">
 		<tr>
 			<c:if test="${requestScope.user.userid eq sessionScope.userid }">
@@ -482,7 +483,7 @@ div#scroll{
 			</td>
 		</tr>
 	</table>
-	</td></tr></table>
+	</td></tr></table></div>
 </body>
 <script type="text/javascript">
 function submit(){

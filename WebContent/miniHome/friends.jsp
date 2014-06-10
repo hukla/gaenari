@@ -3,9 +3,10 @@
 <%-- <%@ include file="/frame.jsp" %> --%>
 <%@ include file="menu.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<!-- <script src="//code.jquery.com/jquery-1.9.1.min.js"></script> -->
 <style type="text/css">
 
  table#searching{
@@ -38,7 +39,7 @@ div#container{
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>친구관리 페이지</title>
 </head>
-<script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+
 <script src="/gaenari/dupcheck.js"></script>
 <!-- 
 작성: 최성훈

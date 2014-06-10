@@ -61,7 +61,8 @@ height:50px;
 	}
 </script>
 <body>
-	<div class="panel panel-default" id="panel">
+<div id="tb">
+	<div class="panel panel-default" id="panel" style="width: 97%">
 		<div class="panel-heading">
 			<table width="100%">
 				<tr>
@@ -112,6 +113,7 @@ height:50px;
 				</tr>
 			</table>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

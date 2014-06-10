@@ -73,7 +73,8 @@ span#mfboard{
 </head>
 
 <body>
-	<table align="left" width="900" id="tb">
+	<div id="tb">
+	<table align="left" width="100%">
 		<tr>
 			<td width="100%" align="center">
 				<table border="0" align="center" width="80%" class="table">
@@ -222,6 +223,7 @@ span#mfboard{
 			</td>
 		</tr>
 	</table>
+	</div>
 </body>
 
 <script type="text/javascript">

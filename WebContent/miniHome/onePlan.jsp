@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script src="/gaenari/dupcheck.js"></script>
+
 <style type="text/css">
 div#panel {
 float: left;
@@ -51,6 +51,7 @@ height:50px;
 			일기 수정중에 미니홈페이지 메뉴기능 이용이 불가능 했던 오류 수정
  -->
 </head>
+<script src="/gaenari/dupcheck.js"></script>
 <script type="text/javascript">
 	function deletePlan(brdno){
 		if(confirm("삭제하시겠습니까?")){

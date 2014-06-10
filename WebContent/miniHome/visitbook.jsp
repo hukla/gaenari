@@ -15,13 +15,13 @@
 table#visitbook {
 	float:left;
 	left:;
-	width: 440px;
+	width: 48%;
 }
 table#visitbook2 {
 	margin-left:20px;
 	float:left;
 	left:;
-	width: 440px;
+	width: 48%;
 }
 div#writer {
     background-color: #E9E9F7;
@@ -48,7 +48,8 @@ div#write{
 수정: 2014-06-03, 최성훈	내용: 내가 방문객들에게 쓰는 포스트, 방문객이 남기는 방명록 포스트, 댓글기능 추가(진행중)
 수정: 2014-06-03, 최성훈	내용: 출력오류수정, 댓글기능 구현완료
  -->
- <div class="page-header">
+ <div id="tb">
+ <div class="page-header" style="width: 100%">
   <h1>${requestScope.user.userid}님의 방명록  <small>   친구들과 대화를 나누세요</small></h1>
 </div>
 	<table border="0" width="35%" height="100%" id="visitbook">
@@ -252,6 +253,7 @@ div#write{
 			</c:otherwise>
 		</c:choose>
 	</table>
+	</div>
 </body>
 <script type="text/javascript">
 function yourSubmit(){

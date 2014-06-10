@@ -160,7 +160,8 @@ h5 {
  -->
 </head>
 <body>
-	<table align="left"><tr><td width="900" align="center" height="400px">
+	<div id="tb">
+	<table align="left" width="100%"><tr><td width="100%" align="center" height="400px">
 	<table border="0" align="center" width="100%" height="100%">
 		<tr style="line-height: 0px;">
 			<td width="100%" colspan="2">
@@ -217,6 +218,7 @@ h5 {
 		</tr>
 	</table>
 	</td></tr></table>
+	</div>
 </body>
 </html>
 <%-- <%@ include file="/bottom.jsp"%> --%>
