@@ -126,6 +126,8 @@ public class VoluBoardDAO {
 		System.out.println("num="+num+"  check="+check);
 		try {
 			vbdto = session.selectOne("voluboard.selectByNum", num);
+			vbdto.setUserid(vbdto.getUserid().trim());
+			System.out.println("VoluBoardDAO - Writer["+vbdto.getUserid()+"]");
 		}finally{
 			DBUtil.closeSession(session, result);
 		}

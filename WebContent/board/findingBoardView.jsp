@@ -38,10 +38,12 @@
                         </div>
                     </div>
                     <div class="right-part">
-                    	<div class="mboard-info-bottom">
+                    	<div class="mboard-info-bottom" style="text-align: right;">
                             <!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
+                            <c:if test="${sessionScope.userid == requestScope.resultContent.userid}">
                             <input class="btn btn-yellow" type=button value="수정하기">
                             <input class="btn btn-yellow" type=button value="삭제하기">
+                            </c:if>
                             <a class="btn btn-yellow" href="/gaenari/findingBoardMain.do">목록으로</a>
                         </div>
                     </div>

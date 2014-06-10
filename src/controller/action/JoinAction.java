@@ -39,7 +39,7 @@ public class JoinAction implements Action {
 		int cntrno,dogs=0;
 		
 		try{
-			userid = request.getParameter("userid");
+			userid = request.getParameter("userid").trim();
 			pwd = request.getParameter("pwd");
 			pwd1 = request.getParameter("pwd1");
 			email = request.getParameter("email");
@@ -73,7 +73,8 @@ public class JoinAction implements Action {
 				throw new Exception("비밀번호가 일치하지 않습니다.");
 			}
 			
-			if(type=="1"){
+			if(type.equals("1")){
+				System.out.println("center");
 				if(dogs<20)	cntrsize='s';
 				else if(dogs<50)	cntrsize='m';
 				else cntrsize='l';

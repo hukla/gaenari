@@ -46,6 +46,7 @@
                         <div class="ptboard-info-bottom">
                         	<div class="content-container">
                             <!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
+                            <c:if test="${sessionScope.userid == requestScope.resultContent.userid}">
                             <form name="requestForm" method=post action="control" onsubmit="return send()">
                                 <input type=hidden name="vbrdno" value="${requestScope.resultContent.vbrdno}">
                                 <input type=hidden name="command" value="voluBoardUpdateForm">
@@ -60,6 +61,7 @@
                                 <input type=hidden name="writer" value="${requestScope.resultContent.userid}">
                                 <input class="btn btn-yellow" type=submit value="삭제하기">
                             </form>
+                            </c:if>
                           	<a class="btn btn-yellow" href="/gaenari/voluBoardList.do">목록으로
                             </a>
                         </div>
