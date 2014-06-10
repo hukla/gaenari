@@ -64,7 +64,9 @@ jQuery(function() {
 					<li><a href="/gaenari/diaryList.do?userid=${requestScope.user.userid}"><img src="/gaenari/image/diarypage.PNG" width="90px"></a></li>
 					<li><a href="/gaenari/planList.do?userid=${requestScope.user.userid}"><img src="/gaenari/image/planImage.PNG" width="90px"></a></li>
 					<li><a href="/gaenari/visitList.do?userid=${requestScope.user.userid}"><img src="/gaenari/image/visit.png" width="90px"></a></li>
-					<li><a href="/gaenari/friends.do?userid=${requestScope.user.userid}"><img src="/gaenari/image/friends.PNG" width="90px"></a></li>
+					<c:if test="${requestScope.user.userid == sessionScope.userid}">
+						<li><a href="/gaenari/friends.do?userid=${requestScope.user.userid}"><img src="/gaenari/image/friends.PNG" width="90px"></a></li>
+					</c:if>
 				</ul>
 			</td>
 			<td width="10%"></td>
