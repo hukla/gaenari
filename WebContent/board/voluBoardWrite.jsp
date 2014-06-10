@@ -32,9 +32,10 @@
                                         </div>
                                     </td>
                                     <td><input type="text" class="form-control"
-                                        name="userid" value="${sessionScope.user.userid}"
+                                        value="${sessionScope.user.userid}"
                                         disabled="disabled">
                                     </td>
+                                    <input type="hidden" name="userid" value="${sessionScope.userid}">
                                 </tr>
                                 <tr>
                                     <td class="ptboard-write-table-head">

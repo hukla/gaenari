@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.VoluBoardDAO;
 import model.dto.VoluBoardDTO;
@@ -17,6 +18,7 @@ public class VoluBoardViewAction implements Action {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		String vbrdno = request.getParameter("vbrdno");
 		String vhour [] = null;
@@ -42,6 +44,8 @@ public class VoluBoardViewAction implements Action {
 				
 				request.setAttribute("resultContent",vbdto);
 				request.setAttribute("vhour", vhour);
+				
+				System.out.println("[sessionId:"+session.getAttribute("userid")+"][writer:"+vbdto.getUserid()+"]");
 				url = "board/voluBoardView.jsp";
 			}
 		}catch(SQLException e){
