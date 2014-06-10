@@ -150,6 +150,7 @@ public class MFABoardDAO {
 		try {
 			session = DBUtil.getSqlSession();
 			mdto = session.selectOne("mfboard.MselectOne", brdno);
+			mdto.setUserid(mdto.getUserid().trim());
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -210,6 +211,7 @@ public class MFABoardDAO {
 			try {
 				session = DBUtil.getSqlSession();
 				fdto = session.selectOne("mfboard.FselectOne", brdno);
+				fdto.setUserid(fdto.getUserid().trim());
 			} finally {
 				DBUtil.closeSession(session);
 			}
@@ -271,6 +273,7 @@ public class MFABoardDAO {
 			try {
 				session = DBUtil.getSqlSession();
 				adto = session.selectOne("mfboard.AselectOne", brdno);
+				adto.setUserid(adto.getUserid().trim());
 			} finally {
 				DBUtil.closeSession(session);
 			}
