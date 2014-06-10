@@ -28,7 +28,7 @@
 		<font size="8" color="#3f4536" face="맑은 고딕">
 		<c:if test="${requestScope.image != null}">
 			<img src="${requestScope.image}" width="100" class="img-rounded">
-		</c:if><p><p>${sessionScope.userid}님 가입을 축하드립니다!</font>
+		</c:if><p><p>${sessionScope.username}님 가입을 축하드립니다!</font>
 	</h1>
 	<h4 align="center">로그인 해주세요</h4>
 	<hr color="blue">
@@ -44,13 +44,13 @@
 						<tr>
 							<td>
 								<div class="form-group">
-									<label class="col-lg-2 control-label">Email</label>
+									<label class="col-lg-2 control-label">Id</label>
 								</div>
 							</td>
 							<td>
 								<div class="form-group">
 									<div class="col-lg-10">
-										<p class="form-control-static">${requestScope.email}</p>
+										<p class="form-control-static">${sessionScope.userid}</p>
 									</div>
 								</div>
 							</td>
