@@ -44,6 +44,9 @@ div#doginfo {
     background-color: #BABABA;
     border-color: #BABABA;
 }
+span#mfboard{
+	
+}
 </style>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -131,7 +134,8 @@ div#doginfo {
 						</td>
 					</tr>
 					<tr>
-						<td style="background-color: rgb(234, 255, 228);height: 149px;">
+						<td style="background-color: rgb(234, 255, 228);height: 150px;">
+						<div style="height:100%;text-overflow:ellipsis;overflow: auto;">
 							<h4 align="left">오늘 이후의 일정</h4> 
 							<c:choose>
 								<c:when test="${requestScope.nextPlan != null}">
@@ -154,10 +158,12 @@ div#doginfo {
 									오늘 이후의 일정이 등록되지 않았습니다.
 								</c:otherwise>
 							</c:choose>
+							</div>
 						</td>
 					</tr>
 					<tr>
-						<td style="background-color: rgb(235, 235, 206);height: 149px;">
+						<td style="background-color: rgb(235, 235, 206);height: 150px;">
+						<div style="height:100%;text-overflow:ellipsis;overflow: auto;">
 							<h4 align="left">최근 Diary소식</h4>
 							<c:choose>
 								<c:when test="${requestScope.di != null}">
@@ -171,7 +177,7 @@ div#doginfo {
 											<td>
 												<a href="/gaenari/diaryDetail.do?brdno=${requestScope.di.brdno}&userid=${requestScope.user.userid}">
 													${requestScope.di.title} - ${requestScope.di.wrdate}
-												</a><br>${requestScope.diContent}
+												</a><br><span id="diaryText">${requestScope.diContent}</span> 
 											</td>
 										</tr>
 									</table>
@@ -180,26 +186,34 @@ div#doginfo {
 									작성된 일기가 없습니다.
 								</c:otherwise>
 							</c:choose>
+						</div>
 						</td>
 					</tr>
 					<tr>
-						<td style="background-color: rgb(214, 232, 227);height: 149px;">
+						<td style="background-color: rgb(214, 232, 227);height: 150px;">
+						<div style="height:100%;text-overflow:ellipsis;overflow: auto;">
 							<h4 align="left">유기견 알림</h4>
 							<%-- <c:choose>
 								<c:when test="${requestScope.di != null}"> --%>
+								
 									<table style="border: hidden;" border="0">
 										<tr>
 											<%-- <c:if test="${requestScope.diImage != null}"> --%>
 												<td>
-													<img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg" width="70px">
+													<img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg" height="60px">
 												</td>
 											<%-- </c:if> --%>
 											<td>
-												<a href="/gaenari/missingBoardView.do?mbrdno=${sessionScope.mdto.mbrdno}">
-													${sessionScope.mdto.title} - ${sessionScope.mdto.wrdate}</a><br>${sessionScope.mdto.brdcontent}
+												<a href="#" onclick="toMfboard('${sessionScope.mdto.mbrdno}')">
+													${sessionScope.mdto.title} - ${sessionScope.mdto.wrdate}
+												</a><br>
+												
+													${sessionScope.mdto.brdcontent}
+												
 											</td>
 										</tr>
 									</table>
+									</div>
 								<%-- </c:when>
 								<c:otherwise>
 									유기견 알림이 없습니다.
@@ -249,6 +263,9 @@ function image(){
 	if (window.focus) {
 		newwindow.focus;
 	}
+}
+function toMfboard(mbrdno){
+	window.opener.location.href="/gaenari/missingBoardView.do?mbrdno="+mbrdno;
 }
 
 </script>
