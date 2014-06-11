@@ -26,31 +26,20 @@ public class ModifyInfoAction implements Action {
 		
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
-		String userid,userno,address,passwd,username=null;
+		String userno,address,passwd=null;
 		try{
-			userid = request.getParameter("userid");
 			userno = request.getParameter("userno");
 			address = request.getParameter("address");
 			passwd = request.getParameter("pwd");
-			username = request.getParameter("username");
 			
-			if(userid==null || userid.trim().length()==0 || passwd==null || passwd.trim().length()==0
-					|| address==null || address.trim().length()==0 || username==null || username.trim().length()==0){
+			if(passwd==null || passwd.trim().length()==0 || address==null || address.trim().length()==0){
 				throw new Exception("수정사항을 모두 입력해주세요.");
 			}
 			
-			if(UserDAO.idCheck(userid)!=null){
-				if(!userid.equals(session.getAttribute("userid"))){
-					throw new Exception("이미 사용중인 아이디 입니다.");
-				}
-			}
-			
-			UpdateDAO.updateInfo(new UserDTO(Integer.parseInt(userno),userid,username,passwd,address));
-			session.removeAttribute("userid");
+			UpdateDAO.updateInfo(new UserDTO(Integer.parseInt(userno),passwd,address));
 			session.removeAttribute("pwd");
-			session.setAttribute("userid", userid);
 			session.setAttribute("pwd", passwd);
-			url = "/userinfo.do?userid="+userid;
+			url = "/userinfo.do?userid="+session.getAttribute("userid");
 		}catch(Exception e){
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

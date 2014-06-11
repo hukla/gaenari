@@ -220,20 +220,20 @@ public class TestDAO {
 		return list;
 	}
 
-	public static BoardDTO selectOnePlan(int brdno) throws SQLException {
+	public static PlanDTO selectOnePlan(int brdno) throws SQLException {
 		SqlSession session = null;
-		BoardDTO boardDTO = null;
+		PlanDTO planDTO = null;
 		try {
 			session = DBUtil.getSqlSession();
 			System.out.println("==onePlanDAO진입==");
-			boardDTO = session.selectOne("test.selectOnePlan", brdno);
+			planDTO = session.selectOne("test.selectOnePlan", brdno);
 			System.out.println("==onePlanDAO종료==");
 			/* System.out.println(boardVo.getTitle()); */
 
 		} finally {
 			DBUtil.closeSession(session);
 		}
-		return boardDTO;
+		return planDTO;
 	}
 
 	public static BoardDTO selectOneDiary(int brdno) throws SQLException {
@@ -666,5 +666,17 @@ public class TestDAO {
 			DBUtil.closeSession(session);
 		}
 		return plan;
+	}
+	
+	public static List<PlanDTO> getPlanByDogno(int dogno) throws SQLException {
+		SqlSession session = null;
+		List<PlanDTO> planList = null;
+		try {
+			session = DBUtil.getSqlSession();
+			planList = session.selectList("test.getPlanByDogno", dogno);
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return planList;
 	}
 }

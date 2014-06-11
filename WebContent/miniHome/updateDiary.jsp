@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/frame.jsp" %>
 <%@ include file="menu.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,75 +16,72 @@
  -->
 </head>
 <body>
-	<table border="0" width="80%" height="100%">
+	<div id="tb">
+	<table border="0" width="100%" height="100%" class="table">
 		<tr>
-			<td width="100%" align="right">
-			<input type="button" onclick="location.href='/gaenari/diaryList.do'" value="일기전체">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			</td>
-		</tr>
-		<tr>
-			<td>
+			<td width="100%" align="center">
+				<div class="row">
+  				<div class="col-lg-15 col-lg-10">
+    				<div class="thumbnail" style="width: 500px">
 				<form action="/gaenari/updateDiary.do" method="post" enctype="multipart/form-data">
-					<table border="1" align="center" width="50%" height="100%">
+					<table border="0" class="table" width="100%" height="380" style="border:hidden; table-layout: fixed;">
+						<colgroup>
+							<col width="20%"><col width="80%">
+						</colgroup>
 						<tr>
-							<td align="center" height="7%" width="15%">작성날짜</td>
-							<td width="85%" align="center">
-								<div align="center">
-									<input type="text" value="${requestScope.oneDiary.wrdate}" disabled="disabled">
-								</div>
-							</td>
+							<td colspan="2"><h2>작성날짜 <small>${requestScope.oneDiary.wrdate}</small></h2></td>
 						</tr>
 						<tr>
-							<td align="center" height="7%">제목</td>
+							<td>&nbsp;&nbsp;제목 : </td>
 							<td>
-								<div align="center">
-									<input type="text" name="title" value="${requestScope.oneDiary.title}">
-								</div>
+								<input type="text" size="33" class="form-control" name="title" value="${requestScope.oneDiary.title}">
 							</td>
 						</tr>
 						<tr>
-							<td align="center" height="7%">기분</td>
-							<td>
-								<div align="center">
-									좋음<input type="radio" name="mood" value="good">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-									보통<input type="radio" name="mood" value="soso">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-									구림<input type="radio" name="mood" value="bad">
-								</div>
+							<td colspan="2">&nbsp;&nbsp;기분 : 
+							<input type="radio" name="mood" value="/gaenari/image/joyful.png">&nbsp;<img src="/gaenari/image/joyful.png" height="17px">
+							&nbsp;&nbsp;&nbsp;&nbsp; 
+							<input type="radio" name="mood" value="/gaenari/image/love.png">&nbsp;<img src="/gaenari/image/love.png" height="15px">
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="mood" value="/gaenari/image/angry.png">&nbsp;<img src="/gaenari/image/angry.png" height="17px">
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="mood" value="/gaenari/image/sick.png">&nbsp;<img src="/gaenari/image/sick.png" height="17px">
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="mood" value="/gaenari/image/thinking.png">&nbsp;<img src="/gaenari/image/thinking.png" height="17px"> 
 							</td>
 						</tr>
 						<tr>
-							<!-- 14-05-13 성훈수정: 경우에 따라 사진 넣고 말고 하기 -->
-							<td align="center" height="20%">내용</td>
-							<td>
-								<div align="center">
-									<input type="file" name="uploadFile" value="${requestScope.diaryImg}">
-									<div align="center">
-										<textarea rows="10" cols="50" name="brdcontent" class="form-control" rows="3">${requestScope.brdcontent}</textarea>
-									</div>
-								</div>
+							<td colspan="2">
+							<textarea rows="5" cols="50" name="brdcontent" class="form-control" rows="3">${requestScope.brdcontent}</textarea>
 							</td>
 						</tr>
 						<tr>
-							<!-- 14-05-14 성훈 추가: 이전 글, 다음 글 보기 -->
-							<!-- 14-05-21 성훈 수정: 이전 글, 다음 글 index로 이동 -->
-							<td align="center" colspan="2" height="7%">
-								<input type="hidden" name="brdno" value="${requestScope.oneDiary.brdno}"> 
-								<input type="hidden" name="userid" value="${requestScope.user.userid}"> 
-								<input type="submit" value="수정하기"> 
-								&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="reset" value="취소하기"> 
-								&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="button" onclick="history.back()" value="뒤로가기">
+							<td colspan="2">
+  								<input type="file" name="uploadFile" value="${requestScope.diaryImg}">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div align="center">
+									<input type="hidden" name="brdno" value="${requestScope.oneDiary.brdno}"> 
+									<input type="hidden" name="userid" value="${requestScope.user.userid}"> 
+									<input type="submit" class="btn btn-success" value="수정하기"> 
+									&nbsp;&nbsp;&nbsp;&nbsp; 
+									<input type="reset" class="btn btn-default" value="취소하기"> 
+									&nbsp;&nbsp;&nbsp;&nbsp; 
+									<input type="button" class="btn btn-default" onclick="history.back()" value="뒤로가기">
+								</div>
 							</td>
 						</tr>
 					</table>
 				</form>
+				</div>
+				</div>
+				</div>
 			</td>
 		</tr>
 	</table>
+	</div>
 </body>
 <script type="text/javascript">
 	var resultMood = "${requestScope.oneDiary.mood}";
@@ -97,4 +93,3 @@
 	}
 </script>
 </html>
-<%@ include file="/bottom.jsp"%>

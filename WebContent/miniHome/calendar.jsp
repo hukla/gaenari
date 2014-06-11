@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.Calendar"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <%@ include file="/frame.jsp" %> --%>
 <%@ include file="menu.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -27,7 +26,7 @@
 
 <style>
 td {text-decoration:none; }
-h5{ font-family: "맑은 고딕"}
+h5{ font-family: "나눔고딕"}
 font {text-decoration:none; line-height:130%;}
 A:link,A:active,A:visited{text-decoration:none;color:'#333333';}
 A:hover {text-decoration:none; color:'ff9900'}
@@ -45,7 +44,7 @@ div#panelhead {
     border-color: #E4E7C5;
 }
 h5 {
-    font-family: "맑은 고딕";
+    font-family: "나눔고딕";
     line-height: 10px;
 }
 </style>

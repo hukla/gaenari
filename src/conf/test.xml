@@ -225,4 +225,8 @@
 		AND DATEDIFF(wrdate,SYSDATE)>0 ORDER BY DATEDIFF(wrdate,SYSDATE) LIMIT 1
 	</select>
 	
+	<select id="getPlanByDogno" parameterType="int" resultMap="brdMap">
+		SELECT * FROM planboardinfo p JOIN board b ON p.brdno=b.brdno where plandogno=#{plandogno} ORDER BY b.brdno DESC
+	</select>
+	
 </mapper>

@@ -14,15 +14,6 @@
             body {
             background-color: white;
             }
-            h1,h2,h3,h4,small,a,button,p {
-            font-family: "맑은 고딕";
-            }
-            /* 	div#myCarousel {
-            float: left;
-            margin-left: 8%;
-            width: 980px;
-            heigth: 400px;
-            } */
             div#myCarousel {
             width: 100%;
             heigth: 300px;
@@ -33,21 +24,14 @@
             margin-left: 8%;
             margin-top: 20px;
             }
-            div#writer {
-            width: 400px;
-            margin-right: 6%;
-            float: right;
-            }
-            div#bigimg {
-            float: left;
-            margin-left: 8%;
-            }
             div#thumb {
+            margin-top:20px;
             float: left;
-            margin-left: 8%;
+            margin-left: 0;
             width: 280px;
             }
             div#thumb2 {
+            margin-top:20px;
             float: left;
             left:;
             width: 400px;
@@ -114,24 +98,7 @@
                     <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
                     <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
-                <div class="jumbotron" id="container">
-                    <div class="container">
-                        <c:choose>
-                            <c:when test="${sessionScope.userid != null }">
-                                <h1>${sessionScope.userid}님, 안녕하세요!</h1>
-                                <small>사랑스런 강아지를 개나리에 등록해주세요!</small> &nbsp;&nbsp;&nbsp;
-                                <a class="btn btn-primary btn-lg" onclick="addDog()">등록하기</a>
-                            </c:when>
-                            <c:otherwise>
-                                <h1>안녕하세요.</h1>
-                                <h3 align="center">
-                                    개나리 서비스를 이용해보세요!
-                                    <a href="#" class="btn btn-success btn-lg" data-toggle="modal" data-target="#signup-modal">가입하기</a>
-                                </h3>
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
-                </div>
+                
                 <div class="row">
                     <div class="col-sm-6 col-md-3" id="thumb">
                         <div class="thumbnail">
@@ -214,17 +181,6 @@
             </div>
         </div>
         <%@ include file="/static/pages/footer.jsp"%>
-        <!-- <div class="jumbotron" id="writer">
-            <div class="col-lg-12" id="write">
-            	<div class="input-group">
-            		<input type="text" class="form-control"> <span
-            			class="input-group-btn">
-            			<button class="btn btn-default" type="button">Go!</button>
-            		</span>
-            	</div>
-            	<small>검색? or 문구입력?</small>
-            </div>
-            </div> -->
     </body>
     <script type="text/javascript">
         function addDog() {

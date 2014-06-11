@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <style type="text/css">
-	td,th { text-align: center; vertical-align: center; font-family: "맑은 고딕";}
+	td,th { text-align: center; vertical-align: center; font-family: "나눔고딕";}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="/gaenari/bootstrap/js/bootstrap.min.js"></script>
 <link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
-<title>기르시는 강아지를 등록하세요</title>
+<title>상태표시글</title>
 </head>
 <body>
 	<table width="100%" align="center">
@@ -23,7 +23,7 @@
 					<col width="30%"><col width="70%">
 					</colgroup>
 					<tr>
-						<th>메인 메시지</th>
+						<th>상태표시글</th>
 						<td>
 							<form action="msgInput.do" method="post" id="msgForm">
 								<input class="form-control" type="text" size="29" name="mainmsg">

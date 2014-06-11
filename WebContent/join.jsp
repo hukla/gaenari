@@ -7,10 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <style type="text/css">
-	th{ text-align:left; font-family: '서울한강체';font-size: large;}
-	td{ text-align:left; font-family: '서울한강체';font-size: medium;}
+	th{ text-align:left; font-family: '나눔고딕';font-size: large;}
+	td{ text-align:left; font-family: '나눔고딕';font-size: medium;}
 	span{ font-size: small; font-weight: lighter; }
-	button,h1,h4{	font-family: '맑은 고딕';	}
+	button,h1,h4{	font-family: '나눔고딕';	}
 	.hidden{display: none;}
 </style>
 <title>회원가입 페이지</title>
@@ -31,7 +31,7 @@
 
 <body>
 	<h1 class="form-signin-heading" align="center">
-		<font size="8" color="#3f4536" face="맑은 고딕">
+		<font size="8" color="#3f4536" face="나눔고딕">
 		<c:if test="${requestScope.username ne null}">
 			<img src="${requestScope.image}" width="100" class="img-rounded"><p><p>${requestScope.username}님
 		</c:if>

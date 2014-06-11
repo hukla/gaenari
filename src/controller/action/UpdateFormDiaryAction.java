@@ -51,7 +51,7 @@ public class UpdateFormDiaryAction implements Action {
 			diaryImg = boardDTO.getBrdcontent().split("!split!")[0];
 			
 			request.setAttribute("user", user);
-			request.setAttribute("brdcontent", brdcontent);	//일기내용 setAttribute
+			request.setAttribute("brdcontent", brdcontent.replace("<br/>", "\n"));	//일기내용 setAttribute
 			request.setAttribute("diaryImg", diaryImg);		//일기의 사진 setAttribute
 			request.setAttribute("oneDiary", boardDTO);
 			

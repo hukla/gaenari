@@ -4,7 +4,7 @@
 <%@ include file="menu.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <style type="text/css">
@@ -81,7 +81,7 @@ span#mfboard{
 					<tr>
 						<td width="35%"rowspan="4">
 							<div align="center">
-								<h3><font face="맑은 고딕">${requestScope.user.userid}님 홈페이지</font></h3>
+								<h3><font face="나눔고딕">${requestScope.user.userid}님 홈페이지</font></h3>
 								<c:choose>
 									<c:when test="${requestScope.user.userid == sessionScope.userid}">
 										<input type="image" src="${requestScope.user.img}" onclick="image()" width="200">
@@ -105,10 +105,10 @@ span#mfboard{
 										<div class="panel-body">
 											<c:forEach items="${requestScope.dog}" var="dog">
 												<div class="alert alert-success" id="doginfo">
-													<a href="#">
+													<a href="#" onclick="doginfo('${dog.dogno}')">
 														<img src="${dog.dogimg}" height="55px" class="img-rounded">
 													</a>
-													<a href="#">
+													<a href="#" onclick="doginfo('${dog.dogno}')">
 														${dog.dogname}
 													</a><p>
 												</div>
@@ -290,6 +290,16 @@ function imputMsg(){
 	var url = "/gaenari/myMsg.do";
 
 	newwindow = window.open(url, '메시지등록페이지', 'height=140,width=400');
+	if (window.focus) {
+		newwindow.focus;
+	}
+}
+
+function doginfo(dogno) {
+	var newwindow;
+	var url = "/gaenari/myDoginfo.do?dogno="+dogno+"&userid=${requestScope.user.userid}";
+	
+	newwindow = window.open(url, '강아지정보','height=570,width=800,scrollbars=yes');
 	if (window.focus) {
 		newwindow.focus;
 	}

@@ -56,6 +56,11 @@ public class UserDTO {
 		this.username = username;
 		this.address = address;
 	}
+	public UserDTO(int userno, String passwd, String address){
+		this.userno = userno;
+		this.passwd = passwd;
+		this.address = address;
+	}
 	public UserDTO(String userid, String passwd){
 		this.userid = userid;
 		this.passwd = passwd;

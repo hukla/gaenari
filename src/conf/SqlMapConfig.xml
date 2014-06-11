@@ -51,9 +51,7 @@
 		<mapper resource="conf/insert.xml"/>
 		<mapper resource="conf/user.xml"/>
 		<mapper resource="conf/dog.xml"/>
-		<!-- <mapper resource="conf/plan.xml"/> -->
 		<mapper resource="conf/test.xml"/>
-		<!-- <mapper resource="conf/diary.xml"/> -->
 		<mapper resource="conf/voluBoard.xml"/>
 		<mapper resource="conf/ptBoard.xml"/>
 		
