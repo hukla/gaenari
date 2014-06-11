@@ -40,4 +40,9 @@
 	<update id="planCheck" parameterType="int">
 		update planboardinfo set flag=1 where brdno=#{brdno}
 	</update>
+	
+	
+	<update id="updateMsg" parameterType="map">
+		update userinfo set mainmsg=#{mainmsg} where userid=#{userid}
+	</update>
 </mapper>

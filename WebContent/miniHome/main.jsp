@@ -129,9 +129,16 @@ span#mfboard{
 							</c:choose>
 						</td>
 						<td width="65%" height="30%">
-							<h1 align="left">
-								안녕하세요 ${requestScope.user.userid}입니다.
-							</h1>
+							
+							<c:choose>
+								<c:when test="${requestScope.user.mainmsg == null}">
+									<h1 align="left">안녕하세요 ${requestScope.user.userid}입니다.</h1>
+								</c:when>
+								<c:otherwise>
+									<h1 align="left">${requestScope.user.mainmsg}</h1>
+								</c:otherwise>
+							</c:choose>
+							<button onclick="imputMsg()" class="btn btn-primary">메시지등록</button>
 						</td>
 					</tr>
 					<tr>
@@ -258,13 +265,22 @@ function image(){
 	var newwindow;
 	var url = "/gaenari/myImage.do?userid=${sessionScope.user.userid}";
 
-	newwindow = window.open(url, '강아지등록 페이지', 'height=600,width=660,scrollbars=yes');
+	newwindow = window.open(url, '사진변경페이지', 'height=600,width=660,scrollbars=yes');
 	if (window.focus) {
 		newwindow.focus;
 	}
 }
 function toMfboard(mbrdno){
 	window.opener.location.href="/gaenari/missingBoardView.do?mbrdno="+mbrdno;
+}
+function imputMsg(){
+	var newwindow;
+	var url = "/gaenari/myMsg.do";
+
+	newwindow = window.open(url, '메시지등록페이지', 'height=300,width=500,scrollbars=yes');
+	if (window.focus) {
+		newwindow.focus;
+	}
 }
 
 </script>

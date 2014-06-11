@@ -107,7 +107,7 @@ div#container{
 												<img class="img-rounded" src="${friends.img}" width="50">
 												</a></td>
 												<td><a href="/gaenari/miniHome.do?userid=${friends.userid}">
-												${friends.userid}</a><br> <h5>일정, 일기 등등 최근활동</h5></td>
+												${friends.userid}</a><br> <h5>${friends.mainmsg}</h5></td>
 											</tr>
 										</table>
 									</div>
