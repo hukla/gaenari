@@ -128,10 +128,25 @@ span#mfboard{
 								</c:otherwise>
 							</c:choose>
 						</td>
-						<td width="65%" height="30%">
-							<h1 align="left">
-								안녕하세요 ${requestScope.user.userid}입니다.
-							</h1>
+						<td width="65%" height="30%"><h1 align="left">
+							<c:choose>
+								<c:when test="${requestScope.user.userid == sessionScope.userid}">
+									<div class="btn-group btn-group-xs">
+										<!-- <button onclick="imputMsg()" class="btn btn-primary">내 소개</button> -->
+										<a href="#" onclick="imputMsg()">${requestScope.user.mainmsg}</a>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<c:choose>
+										<c:when test="${requestScope.user.mainmsg == null}">
+											안녕하세요 ${requestScope.user.userid}입니다.
+										</c:when>
+										<c:otherwise>
+											${requestScope.user.mainmsg}
+										</c:otherwise>
+									</c:choose>
+								</c:otherwise>
+							</c:choose></h1>
 						</td>
 					</tr>
 					<tr>
@@ -149,8 +164,8 @@ span#mfboard{
 											</c:if>
 											<td>
 												<a href="/gaenari/planDetail.do?brdno=${requestScope.nextPlan.brdno}&userid=${requestScope.user.userid}">
-													${requestScope.nextPlan.title} - ${requestScope.nextPlan.wrdate}
-												</a>(${requestScope.plDogTitle})<br>${requestScope.nextPlan.brdcontent}
+													${requestScope.nextPlan.title}(${requestScope.plDogTitle}) - ${requestScope.nextPlan.wrdate}
+												</a><br>${requestScope.nextPlan.brdcontent}
 											</td>
 										</tr>
 									</table>
@@ -258,13 +273,22 @@ function image(){
 	var newwindow;
 	var url = "/gaenari/myImage.do?userid=${sessionScope.user.userid}";
 
-	newwindow = window.open(url, '강아지등록 페이지', 'height=600,width=660,scrollbars=yes');
+	newwindow = window.open(url, '사진변경페이지', 'height=600,width=660,scrollbars=yes');
 	if (window.focus) {
 		newwindow.focus;
 	}
 }
 function toMfboard(mbrdno){
 	window.opener.location.href="/gaenari/missingBoardView.do?mbrdno="+mbrdno;
+}
+function imputMsg(){
+	var newwindow;
+	var url = "/gaenari/myMsg.do";
+
+	newwindow = window.open(url, '메시지등록페이지', 'height=140,width=400');
+	if (window.focus) {
+		newwindow.focus;
+	}
 }
 
 </script>

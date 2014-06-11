@@ -42,7 +42,7 @@
 				</colgroup>
 				<tr>
 					<td rowspan="3">
-						<img src="${requestScope.user.img}">
+						<img src="${requestScope.user.img}" width="150px">
 					</td>
 					<td align="center">
 						이름

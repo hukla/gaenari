@@ -11,7 +11,9 @@
 package model.dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import model.dto.DogDTO;
 import model.dto.QuestionaireDTO;
@@ -222,5 +224,22 @@ public class UserDAO {
 			DBUtil.closeSession(session);
 		}
 		return list;
+	}
+	
+	public static void updateMsg(String mainmsg,String userid) throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		Map<String,String> map = null;
+		try {
+			session = DBUtil.getSqlSession();
+			map = new HashMap<String,String>();
+			map.put("mainmsg", mainmsg);
+			map.put("userid", userid);
+			result = session.update("update.updateMsg", map) > 0 ? true : false;
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if (!result)	throw new SQLException("메시지수정에 실패했습니다.");
 	}
 }

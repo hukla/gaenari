@@ -2,6 +2,7 @@ package controller.action;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -91,6 +92,8 @@ public class MinihomeMainAction implements Action {
 		DogDTO planDog = null;
 		List<DogDTO> dog = null;
 		List<PlanDTO> todayPlan = null;
+		List<UserDTO> friendList = null;
+		List<Integer> friendNo = null;
 		PlanDTO nextPlan = null;
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
@@ -111,7 +114,11 @@ public class MinihomeMainAction implements Action {
 			
 			dog = TestDAO.getMyDogInfo(loginUser.getUserno());								//내 강아지 정보가져오기
 			
-			
+			friendNo = TestDAO.getMyFriends(((UserDTO)session.getAttribute("user")).getUserno());
+			friendList = new ArrayList<UserDTO>();
+			for(int no: friendNo){
+				friendList.add(UserDAO.selectOne(no));
+			}
 			
 			diary = TestDAO.selectLastDiary(loginUser.getUserno());							//가장 최근 다이어리정보 가져오기(+사진,내용도)
 			if(diary != null){
@@ -134,6 +141,7 @@ public class MinihomeMainAction implements Action {
 			todayPlan = TestDAO.myTodaysPlan((String)session.getAttribute("userid"));		//오늘 내 일정리스트 가져오기
 			cnt = todayPlan.size();
 			
+			session.setAttribute("myFriends", friendList);
 			session.setAttribute("plans", cnt);				// 14-05-13 성훈추가: 일정 개수
 			session.setAttribute("todayPlan", todayPlan);	//오늘 일정리스트
 			request.setAttribute("nextPlan", nextPlan);		//이 다음 일정 한 개

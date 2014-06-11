@@ -24,6 +24,7 @@ public class UserDTO {
 	private String email;
 	private String username;
 	private String address;
+	private String mainmsg;
 	private int userno;
 	private int usertype;
 	private int point; 
@@ -116,6 +117,12 @@ public class UserDTO {
 	}
 	public void setImg(String img) {
 		this.img = img;
+	}
+	public String getMainmsg() {
+		return mainmsg;
+	}
+	public void setMainmsg(String mainmsg) {
+		this.mainmsg = mainmsg;
 	}
 	@Override
 	public String toString() {
