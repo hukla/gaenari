@@ -24,6 +24,7 @@
      <typeAlias type="model.dto.CommentDTO" alias="CommentDTO"/>
      <typeAlias type="model.dto.QuestionaireDTO" alias="QuestionaireDTO"/>
      <typeAlias type="model.dto.CenterDTO" alias="CenterDTO"/>
+     <typeAlias type="model.dto.BrdReqDTO" alias="BrdReqDTO"/>
      <!-- <typeAlias type="model.dto.BoardPlanDTO" alias="BoardPlanDTO"/> -->
      
      <!-- <typeAlias type="model.test.dto.BoardVo" alias="boardVo"/>
@@ -71,6 +72,9 @@
 		
 		<!-- 2014-05-27 수진 추가 -->
 		<mapper resource="conf/mfBoard.xml"/>
+		
+		<!-- 2014-06-11 수진 추가 -->
+		<mapper resource="conf/brdReq.xml"/>
 		
 	</mappers>
 	
