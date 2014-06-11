@@ -42,6 +42,7 @@ public class Qualification implements Action {
 			System.out.println(qdto.toString());
 			if(qdto!=null){//설문조사를 작성했을 경우->신청 페이지로 이동
 				result='t';
+				request.setAttribute("abrdno", request.getParameter("abrdno"));
 				request.setAttribute("brdno", request.getParameter("brdno"));
 				request.setAttribute("type", request.getParameter("type"));
 			}
