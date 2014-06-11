@@ -70,7 +70,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 					<c:when test="${sessionScope.plans > 1}">
 						<ul class="dropdown-menu">
                     		<c:forEach items="${sessionScope.todayPlan}" var="plan">
-                    			<li><a href="/gaenari/planDetail.do?brdno=${plan.brdno}&userid=${sessionScope.userid}">${plan.title}</a></li>
+                    			<li>
+                    				<a href="/gaenari/planDetail.do?brdno=${plan.brdno}&userid=${sessionScope.userid}">
+                    					${plan.title}
+                    					<c:choose>
+										<c:when test="${plan.flag == 0}">
+											<span class="label label-info">미완료</span> 
+										</c:when>
+										<c:otherwise>
+											<span class="label label-default">완료</span> 
+										</c:otherwise>
+									</c:choose>
+                    				</a>
+                    			</li>
                    			</c:forEach>
                    		</ul>
 					</c:when>
@@ -84,17 +96,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
                 <li style="position:absolute;right:30px;">
                 <table>
                 	<tr><td>
-                    ${sessionScope.userid}님의 친구목록</td><td><select class="btn btn-default">
+                    ${sessionScope.userid}님의 친구목록</td><td><select class="btn btn-default" id="frndHome">
                     	<option selected="selected">친구를 선택하세요</option>
-                    	<option>정동일</option>
-                    	<option>정동이</option>
-                    	<option>정동삼</option>
-                    	<option>정동사</option>
-                    	<option>정동오</option>
-                    	<option>정동육</option>
-                    	<option>정동칠</option>
-                    	<option>정동팔</option>
-                    	<option>정동구</option>
+                    	<c:forEach items="${sessionScope.myFriends}" var="friend">
+                    		<option value="${friend.userid}">${friend.userid}</option>
+                    	</c:forEach>
                     </select>
                     </td>
                     </tr>
@@ -105,3 +111,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     </div>
 </div>
 <!-- 메뉴바 끝 -->
+<script type="text/javascript">
+$(function(){
+	$("#frndHome").change(function(){
+		location.href="/gaenari/miniHome.do?userid="+$("#frndHome").val();
+	});
+});
+</script>
