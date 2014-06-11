@@ -10,19 +10,22 @@
 <style type="text/css">
 
  table#searching{
-	width:600px;
+	/* width:600px; */
 	float: left;
 	margin-left: 20px;
+	width: 65%;
 }
 
  table#friendsList{
 	float: left;
 	left:;
-	width:280px;
+	/* width:280px; */
+	width: 32%;
 }
 table#requestList{
 	float: left;
-	width:300px;
+	/* width:300px; */
+	width: 32%;
 }
 
 div#container{
@@ -50,7 +53,7 @@ div#container{
 수정: 2014-05-30, 최성훈	내용: 친구검색 후 친구요청하기, 친구 요청상태확인, 친구인상태보이기
  -->
 <body>
-
+<div id="tb">
 	<table id="friendsList" border="0">
 		<c:if test="${sessionScope.userid eq requestScope.user.userid && not empty sessionScope.sender}">
 			<tr>
@@ -194,6 +197,7 @@ div#container{
 			</td>
 		</tr>
 	</table>
+	</div>
 </body>
 <script type="text/javascript">
 	function accept(sender) {
