@@ -11,6 +11,10 @@
 		</discriminator>
 	</resultMap>
 	
+	<select id="checkReq" parameterType="AdpBoardDTO" resultType="int">
+		select count(*) from brdreq where brdno=#{brdno} and userno=#{userno}
+	</select>
+	
 	<insert id="Ainsert" parameterType="BoardDTO">
 		insert into board(brdcontent,wrdate,userid,title,brdtype,userno)
 		values(#{brdcontent},#{wrdate},#{userid},#{title},#{brdtype},#{userno})

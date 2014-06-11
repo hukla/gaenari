@@ -35,9 +35,18 @@
                                     ${requestScope.resultContent.brdcontent}
                                 </div>
                                 <c:if test="${sessionScope.userid != requestScope.resultContent.userid}">
-                                <center>
-								<input class="btn btn-yellow" type=button value="입양하기" onclick='checkQuest(${requestScope.resultContent.brdno},${requestScope.resultContent.abrdno})'>
-								</center>                          
+                                	<c:choose>
+                                	<c:when test="${requestScope.flag}>0">
+                                		<center>
+											<input class="btn btn-yellow" type=button value="입양하기" onclick='checkQuest(${requestScope.resultContent.brdno},${requestScope.resultContent.abrdno})'>
+										</center>
+									</c:when>
+									<c:otherwise>
+										<center>
+											<input class="btn btn-yellow" type=button value="신청결과" onclick='checkStatus()'>
+										</center>
+									</c:otherwise>
+									</c:choose>
 								</c:if>      
                             </div>
                         </div>
@@ -61,6 +70,9 @@
 <script language="javascript">
 function checkQuest(brdno,abrdno){
 	location.href="/gaenari/qualif.do?type=a&brdno="+brdno+"&abrdno="+abrdno;
+}
+function checkStatus(){
+	
 }
 </script>
 </html>
