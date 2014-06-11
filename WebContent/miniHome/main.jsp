@@ -131,10 +131,14 @@ span#mfboard{
 						<td width="65%" height="30%"><h1 align="left">
 							<c:choose>
 								<c:when test="${requestScope.user.userid == sessionScope.userid}">
-									<div class="btn-group btn-group-xs">
-										<!-- <button onclick="imputMsg()" class="btn btn-primary">내 소개</button> -->
-										<a href="#" onclick="imputMsg()">${requestScope.user.mainmsg}</a>
-									</div>
+									<c:choose>
+										<c:when test="${requestScope.user.mainmsg == null}">
+											<button href="#" onclick="imputMsg()" class="btn btn-primary">메시지등록</button>
+										</c:when>
+										<c:otherwise>
+											<a href="#" onclick="imputMsg()">${requestScope.user.mainmsg}</a>
+										</c:otherwise>
+									</c:choose>
 								</c:when>
 								<c:otherwise>
 									<c:choose>

@@ -140,7 +140,7 @@
 											기르시는 강아지가 없습니다.
 										</c:otherwise>
 									</c:choose>
-									</select>
+								</select>
 							</td>
 							</tr>
 							<tr><td> &nbsp;&nbsp;날짜 : </td>
@@ -158,6 +158,7 @@
 										<option value="미용해주기">미용해주기</option>
 										<option value="강아지학교보내기">강아지학교보내기</option>
 										<option value="훈련시키기">훈련시키기</option>
+										<option value="위탁하기">위탁하기</option>
 										<option value="기타">기타</option>
 									</select>
 								</td>

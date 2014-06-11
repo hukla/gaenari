@@ -18,7 +18,7 @@
 		#arrow {  position:relative; text-indent:-99px; cursor:pointer;}
 		#worra {  position:relative; text-indent:-99px; cursor:pointer;}
 		#effect { width: 140px; height: 100%;  position: fixed;  left:0px; }
-		#tb { width: 900px; position: absolute; }
+		#tb { width: 900px; position: absolute;}
 		#content { width:160px; height: 100%; float:left; background-color:#FFCC00;top:0%;}
 </style>
 <!-- <style type="text/css">
