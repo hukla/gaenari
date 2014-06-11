@@ -42,9 +42,8 @@ public class Qualification implements Action {
 			System.out.println(qdto.toString());
 			if(qdto!=null){//설문조사를 작성했을 경우->신청 페이지로 이동
 				result='t';
-				System.out.println("qdto!=null이므로 신청 페이지로 이동!");
-				url=url+"?brdno="+request.getParameter("brdno")+"&type="+request.getParameter("type");
-				System.out.println("url="+url);
+				request.setAttribute("brdno", request.getParameter("brdno"));
+				request.setAttribute("type", request.getParameter("type"));
 			}
 			else result='f'; //설문조사를 작성하지 않았을 경우->alert 띄우기
 			
@@ -57,7 +56,6 @@ public class Qualification implements Action {
 		} finally{
 			DBUtil.closeSession(sqlSession);
 		}		
-		
 		request.setAttribute("result", result);
 		request.setAttribute("result2", result2);
 		request.getRequestDispatcher(url).forward(request,response);

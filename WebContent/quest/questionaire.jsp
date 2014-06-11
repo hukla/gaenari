@@ -13,10 +13,8 @@
 function checkQuest(){
 	if(<%=request.getAttribute("result").toString().equals("t")%>&&<%=request.getAttribute("result2").toString().equals("t")%>){
 		if(confirm('입양 신청 시 애견 입양 적합도 테스트의 결과와\n신청자의 정보의 일부(마일나리,강아지 정보)가\n분양자에게 전송됩니다.\n신청을 진행할까요?')){
-			alert("hi");
-			var brdno=<%=request.getParameter("brdno")%>;
-			var type=<%=request.getParameter("type")%>;
-			alert("brdno="+brdno+"<br>type="+type);
+			var brdno="${requestScope.brdno}";
+			var type="${requestScope.type}";
 			location.href="/gaenari/brdreq.do?brdno="+brdno+"&type="+type;
 			alert('신청이 완료되었습니다.');
 		}else{
@@ -29,7 +27,7 @@ function checkQuest(){
 	}else{
 		alert('입양 조건에 부합하지 않습니다.');
 	}
-	history.back();
+	/* history.back(); */
 }
 checkQuest();
 </script>

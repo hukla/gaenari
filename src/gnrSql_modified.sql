@@ -164,9 +164,10 @@ CREATE TABLE questionaire(
 	q5 VARCHAR(10) NOT NULL
 );
 --2014.06.11 입양/봉사/도우미 요청/내역확인을 위해 테이블 추가
+DROP TABLE brdreq;
 CREATE TABLE brdreq(
 	reqno INT PRIMARY KEY AUTO_INCREMENT,
-	brdno INT CONSTRAINT abrd_no_fk REFERENCES adpboardinfo(abrdno) NOT NULL,
+	brdno INT CONSTRAINT brd_no_fk REFERENCES board(brdno) NOT NULL,
 	userno INT CONSTRAINT user_no_fk REFERENCES userinfo(userno) NOT NULL,
 	status VARCHAR(5) NOT NULL,
 	type varchar(5) NOT NULL
