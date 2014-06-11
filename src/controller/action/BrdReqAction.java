@@ -39,12 +39,13 @@ public class BrdReqAction implements Action {
 			brdto = new BrdReqDTO(brdno,userno,request.getParameter("type"));
 			BrdReqDAO.insertReq(brdto);
 			if(brdto.getType().equals("a")){
-				url="/gaenari/adpBoardView.do?abrdno="+request.getParameter("abrdno");
+				url="/adpBoardView.do?abrdno="+request.getParameter("abrdno");
 			}
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally{
 			DBUtil.closeSession(sqlSession);
-		}	
+		}
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 }
