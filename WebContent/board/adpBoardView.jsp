@@ -34,9 +34,11 @@
                                 <div class="mboard-info-content-text">
                                     ${requestScope.resultContent.brdcontent}
                                 </div>
+                                <c:if test="${sessionScope.userid != requestScope.resultContent.userid}">
                                 <center>
 								<input class="btn btn-yellow" type=button value="입양하기" onclick='checkQuest()'>
-								</center>                                
+								</center>                          
+								</c:if>      
                             </div>
                         </div>
                     </div>
@@ -44,6 +46,7 @@
                     	<div class="mboard-info-bottom" style="text-align: right;">
                             <!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
                             <c:if test="${sessionScope.userid == requestScope.resultContent.userid}">
+                            <input class="btn btn-yellow" type=button value="신청자 정보확인">
                             <input class="btn btn-yellow" type=button value="수정하기">
                             <input class="btn btn-yellow" type=button value="삭제하기">
                             </c:if>

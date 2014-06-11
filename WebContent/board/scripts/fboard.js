@@ -74,7 +74,6 @@ function checkValid() {
 }
 function popupOpen(result,brdno) {
 	var popUrl = null;
-	alert('popup');
 	if(result=='true'){
 		popUrl = "image/board/defaultDog.jpg";
 	}else{
