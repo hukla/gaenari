@@ -23,6 +23,20 @@ import exception.LoginException;
 import util.DBUtil;
 
 public class MFABoardDAO {
+	public static int checkReq(AdpBoardDTO adto){
+		SqlSession session = null;
+		int userno = adto.getUserno();
+		int brdno = adto.getBrdno();
+		int count = 0;
+		
+		try{
+			session = DBUtil.getSqlSession();
+			count = session.selectOne("mfboard.checkReq",adto);
+		}finally{
+			DBUtil.closeSession(session);
+		}
+		return count;
+	}
 	
 	public static MissingBoardDTO getAds(String userId) throws SQLException, LoginException{
 		SqlSession session = null;

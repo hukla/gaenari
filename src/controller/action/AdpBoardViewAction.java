@@ -12,11 +12,11 @@ import model.dto.AdpBoardDTO;
 public class AdpBoardViewAction implements Action {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String url = "/error.jsp";
 		String no = request.getParameter("abrdno");
 		int abrdno = Integer.parseInt(no);
+		int result = 0;
 	
 		AdpBoardDTO adto = MFABoardDAO.AselectOne(abrdno);
 		if(adto.getBrdcontent().contains("split")){
@@ -30,8 +30,10 @@ public class AdpBoardViewAction implements Action {
 		if(adto!=null){
 			request.setAttribute("resultContent", adto);
 			url = "board/adpBoardView.jsp";
-			
-		request.getRequestDispatcher(url).forward(request, response);
 		}
+		result=MFABoardDAO.checkReq(adto);//0이상이면 신청한 상태,0이면 신청안한상태
+		request.setAttribute("flag", result);
+		
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 }
