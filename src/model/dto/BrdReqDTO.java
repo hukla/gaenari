@@ -50,5 +50,4 @@ public class BrdReqDTO {
 		return "BrdReqDTO [rqno=" + rqno + ", brdno=" + brdno + ", userno="
 				+ userno + ", status=" + status + "]";
 	}
-		
 }

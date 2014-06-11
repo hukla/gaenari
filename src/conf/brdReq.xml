@@ -53,4 +53,5 @@
 		DELETE FROM donreq WHERE itemno=${value}
 	</delete>
 	 -->
+
 </mapper>
