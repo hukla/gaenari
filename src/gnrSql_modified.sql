@@ -163,27 +163,14 @@ CREATE TABLE questionaire(
 	q4 VARCHAR(10) NOT NULL,
 	q5 VARCHAR(10) NOT NULL
 );
---2014.06.11 입양/봉사/도우미 요청내역확인을 위해 테이블 3개 추가
-DROP TABLE adpreq;
-CREATE TABLE adpreq(
-	arno INT PRIMARY KEY AUTO_INCREMENT,
-	abrdno INT CONSTRAINT abrd_no_fk REFERENCES adpboardinfo(abrdno) NOT NULL,
+--2014.06.11 입양/봉사/도우미 요청/내역확인을 위해 테이블 추가
+DROP TABLE brdreq;
+CREATE TABLE brdreq(
+	reqno INT PRIMARY KEY AUTO_INCREMENT,
+	brdno INT CONSTRAINT brd_no_fk REFERENCES board(brdno) NOT NULL,
 	userno INT CONSTRAINT user_no_fk REFERENCES userinfo(userno) NOT NULL,
-	arstatus VARCHAR(5) NOT NULL
-);
-DROP TABLE volureq;
-CREATE TABLE volureq(
-	vrno INT PRIMARY KEY AUTO_INCREMENT,
-	vbrdno INT CONSTRAINT vbrd_no__fk REFERENCES voluboardinfo(vbrdno) NOT NULL,
-	userno INT CONSTRAINT user_no_fk REFERENCES userinfo(userno) NOT NULL,
-	vrstatus VARCHAR(5) NOT NULL
-);
-DROP TABLE ptreq;
-CREATE TABLE ptreq(
-	prno INT PRIMARY KEY AUTO_INCREMENT,
-	ptbrdno INT CONSTRAINT ptbrd_no__fk REFERENCES ptboardinfo(ptbrdno) NOT NULL,
-	userno INT CONSTRAINT user_no_fk REFERENCES userinfo(userno) NOT NULL,
-	prstatus VARCHAR(5) NOT NULL
+	status VARCHAR(5) NOT NULL,
+	type varchar(5) NOT NULL
 );
 -------2014-04-23 검색, 컬럼확인, 테이블별 INSERT 쿼리----------------------------------------------------------------------------
 

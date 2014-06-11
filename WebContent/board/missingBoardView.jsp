@@ -35,6 +35,8 @@
                             <div class="part-line">${requestScope.resultContent.mgender}</div>
                             <div class="part-line-gray">연락처</div>
                             <div class="part-line">${requestScope.resultContent.mcontact}</div>
+                            <div class="part-line-gray">실종장소</div>
+                            <div class="part-line">${requestScope.resultContent.mloc}</div>
                         </div>
                     </div>
                     <div class="mboard-info-bottom">

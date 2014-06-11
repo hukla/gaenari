@@ -12,13 +12,13 @@ public class BrdReqDTO {
 	private int brdno;//해당 글에 해당하는 글 번호(abrdno, vbrdno, ptbrdno)
 	private int userno;//해당 글에서 요청한 유저의 번호
 	private char status;//해당 요청의 상태(수락Y/거절N/완료C/대기중P)
+	private String type;
 	
 	public BrdReqDTO() {}
-	public BrdReqDTO(int rqno, int brdno, int userno, char status) {
-		this.rqno = rqno;
+	public BrdReqDTO(int brdno, int userno, String type) {
 		this.brdno = brdno;
 		this.userno = userno;
-		this.status = status;
+		this.type = type;
 	}
 
 	public int getRqno() {
@@ -45,9 +45,15 @@ public class BrdReqDTO {
 	public void setStatus(char status) {
 		this.status = status;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	@Override
 	public String toString() {
 		return "BrdReqDTO [rqno=" + rqno + ", brdno=" + brdno + ", userno="
-				+ userno + ", status=" + status + "]";
+				+ userno + ", status=" + status + ", type=" + type + "]";
 	}
 }

@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.BrdReqDAO;
 import model.dao.UserDAO;
+import model.dto.BrdReqDTO;
 import model.dto.QuestionaireDTO;
 import model.dto.UserDTO;
 
@@ -32,12 +34,18 @@ public class Qualification implements Action {
 		char result = 't';//설문조사 여부
 		char result2 = 't';//마일나리 조건 충족 여부
 		QuestionaireDTO qdto = null;
-		int qno = 0;
+		int userno = 0;
 		try{
 			sqlSession = DBUtil.getSqlSession();
-			int userno = UserDAO.logCheck(userid).getUserno();
+			userno = UserDAO.logCheck(userid).getUserno();
 			qdto = sqlSession.selectOne("u.checkQuest",userno);
-			if(qdto!=null) result='t'; //설문조사를 작성했을 경우->신청 페이지로 이동
+			System.out.println(qdto.toString());
+			if(qdto!=null){//설문조사를 작성했을 경우->신청 페이지로 이동
+				result='t';
+				request.setAttribute("abrdno", request.getParameter("abrdno"));
+				request.setAttribute("brdno", request.getParameter("brdno"));
+				request.setAttribute("type", request.getParameter("type"));
+			}
 			else result='f'; //설문조사를 작성하지 않았을 경우->alert 띄우기
 			
 			int milenari = UserDAO.logCheck(userid).getPoint();
@@ -49,7 +57,6 @@ public class Qualification implements Action {
 		} finally{
 			DBUtil.closeSession(sqlSession);
 		}		
-		
 		request.setAttribute("result", result);
 		request.setAttribute("result2", result2);
 		request.getRequestDispatcher(url).forward(request,response);

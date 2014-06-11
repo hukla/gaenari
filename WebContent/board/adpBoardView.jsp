@@ -36,7 +36,7 @@
                                 </div>
                                 <c:if test="${sessionScope.userid != requestScope.resultContent.userid}">
                                 <center>
-								<input class="btn btn-yellow" type=button value="입양하기" onclick='checkQuest()'>
+								<input class="btn btn-yellow" type=button value="입양하기" onclick='checkQuest(${requestScope.resultContent.brdno},${requestScope.resultContent.abrdno})'>
 								</center>                          
 								</c:if>      
                             </div>
@@ -59,8 +59,8 @@
         </div>
     </body>
 <script language="javascript">
-function checkQuest(){
-	location.href="/gaenari/qualif.do";
+function checkQuest(brdno,abrdno){
+	location.href="/gaenari/qualif.do?type=a&brdno="+brdno+"&abrdno="+abrdno;
 }
 </script>
 </html>

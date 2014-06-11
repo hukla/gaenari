@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.UpdateDAO;
 import model.dao.UserDAO;
@@ -22,6 +23,8 @@ public class ModifyInfoAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		String userid,userno,address,passwd,username=null;
 		try{
@@ -31,9 +34,13 @@ public class ModifyInfoAction implements Action {
 			passwd = request.getParameter("pwd");
 			username = request.getParameter("username");
 			if(UserDAO.idCheck(userid)!=null){
-				throw new Exception("이미 사용중인 ID입니다. 다른 ID를 입력해주세요.");
+				if(!userid.equals(session.getAttribute("userid"))){
+					throw new Exception("이미 사용중인 아이디 입니다.");
+				}
 			}
 			UpdateDAO.updateInfo(new UserDTO(Integer.parseInt(userno),userid,username,passwd,address));
+			session.removeAttribute("userid");
+			session.setAttribute("userid", userid);
 			url = "/userinfo.do?userid="+userid;
 		}catch(Exception e){
 			e.printStackTrace();
