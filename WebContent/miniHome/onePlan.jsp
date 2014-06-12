@@ -138,15 +138,5 @@ height:50px;
 	</div>
 </div>
 </body>
-<script type="text/javascript">
-	$(function() {
-		var checkMilenari = "${requestScope.checkMilenari}";
-		if (checkMilenari != 0) {
-			alert("마일나리가 3포인트 적립되어 현재 ${requestScope.user.point}점입니다.");
-		} else {
-			return;
-		}
-	});
-</script>
 </html>
 <%-- <%@ include file="/bottom.jsp"%> --%>

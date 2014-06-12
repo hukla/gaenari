@@ -87,7 +87,7 @@ $(document).ready(function() {
 			success: function (data){
 				if(data>0){
 					alert("마일나리가 3포인트 적립되었습니다.");
-					location.href="/gaenari/planDetail.do?brdno="+$("#plncheck").attr("name")+"&milenari="+1+"&userid=${requestScope.user.userid}";
+					location.href="/gaenari/planDetail.do?brdno="+$("#plncheck").attr("name")+"&milenari="+1;
 				}else{
 					alert("일정이 완료되지 않았습니다.");
 				}

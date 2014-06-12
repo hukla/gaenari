@@ -253,11 +253,11 @@
 											<c:choose>
 												<c:when test="${cnt eq requestScope.pageNumber}">
 													<li class="active">
-														<a href="/gaenari/planList?pageNumber=${cnt}&userid=${requestScope.user.userid}">${cnt}<span class="sr-only">(current)</span></a>
+														<a href="/gaenari/planList.do?pageNumber=${cnt}&userid=${requestScope.user.userid}">${cnt}<span class="sr-only">(current)</span></a>
 													</li>
 												</c:when>
 												<c:otherwise>
-													<li><a href="/gaenari/planList?pageNumber=${cnt}&userid=${requestScope.user.userid}">${cnt}</a></li>
+													<li><a href="/gaenari/planList.do?pageNumber=${cnt}&userid=${requestScope.user.userid}">${cnt}</a></li>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
