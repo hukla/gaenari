@@ -24,17 +24,55 @@
             margin-left: 8%;
             margin-top: 20px;
             }
-            div#thumb {
+            div#media{
             margin-top:20px;
             float: left;
-            margin-left: 0;
-            width: 280px;
+            margin-left: 5%;
+            width: 330px;
+            height: 500px;
+            background-color: darkkhaki; 
+            border-top-left-radius: 5px; 
+            border-top-right-radius: 5px; 
+            border-bottom-left-radius: 5px; 
+            border-bottom-right-radius: 5px;
+            }
+            div#siteInfo {
+            margin-top:20px;
+            margin-right: 5%;
+            float: right;
+            width: 680px;
+            height: 80px;
+            background-color: gray;
+            border-top-left-radius: 5px; 
+            border-top-right-radius: 5px; 
+            border-bottom-left-radius: 5px; 
+            border-bottom-right-radius: 5px;
+            }
+            div#thumb {
+            float: left;/* 
+            margin-left: 5%; */
+            width: 50%;
+           	height: 200px;
             }
             div#thumb2 {
             margin-top:20px;
             float: left;
             left:;
             width: 400px;
+            }
+            div#con {
+            margin-top:20px;
+            float: left;
+            left:;
+            width: 33%;
+            height: 100%;
+            }
+            div#well{
+            margin-top:15px;
+            margin-right: 5%;
+            float: right;
+            width: 680px;
+            height: 406px;
             }
         </style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -99,12 +137,50 @@
                     <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
                 
-                <div class="row">
+                <!-- 자원봉사 펫도우미 최신글 -->
+				<div class="media" id="media">
+					<a class="pull-left" href="#"> 
+						<img class="media-object" src="/gaenari/image/dog9.jpg" width="130px">
+					</a>
+					<div class="media-body">
+						<h5 class="media-heading">Mawoef aowgijoawrjglari awgjowagj
+							awiw gi gwg jpwjgwairjawoef aowgijoawrjglari awgjowagj awiw gi
+							gwg jpwjgwairjawoef aowgijoawrjglari awgjowagj awiw gi gwg
+							jpwjgwairj
+						</h5>
+					</div>
+					<a class="pull-left" href="#"> 
+						<img class="media-object" src="/gaenari/image/dog9.jpg" width="130px">
+					</a>
+					<div class="media-body">
+						<h5 class="media-heading">awoef aowgijoawrjglari awgjowagj
+							awiw gi gwg jpwjgwairjawoef aowgijoawrjglari awgjowagj awiw gi
+							gwg jpwjgwairjawoef aowgijoawrjglari awgjowagj awiw gi gwg
+							jpwjgwairj
+						</h5>
+					</div>
+				</div>
+				<div id="siteInfo">
+					<div class="col-sm-6 col-md-3" id="con">
+                        <div class="panel panel-default" style="height: 60%; background-color: transparent;">
+                        	fasdifw
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3" id="con">
+                        <div class="panel panel-default" style="height: 60%; background-color: transparent;">
+                        	fasdifw
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3" id="con">
+                        <div class="panel panel-default" style="height: 60%; background-color: transparent;">
+                        	fasdifw
+                        </div>
+                    </div>
+				</div>
+				<div class="well" id="well">
+					
                     <div class="col-sm-6 col-md-3" id="thumb">
                         <div class="thumbnail">
-                            <div align="center">
-                                <small>${sessionScope.userid}님 이 아이 보신적있나요?</small>
-                            </div>
                             <br><img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg" width="200" class="img-rounded">
                             <div class="caption">
                                 <h3>${sessionScope.mdto.mname}를 찾습니다!</h3>
@@ -138,26 +214,40 @@
                         		request.setAttribute("img", TestDAO.selectLastDiary(user.getUserno()).getBrdcontent().split("!split!")[0]);
                         	}
                         %>
-                    <div class="col-sm-6 col-md-3" id="thumb2">
-                        <div class="panel panel-default" style="border:hidden;">
-                            <div class="panel-heading">
-                                <c:choose>
-                                    <c:when test="${requestScope.randomUser !=null}">
-                                        <img src="${requestScope.randomUser.img}" width="30" class="img-rounded">
-                                        ${requestScope.randomUser.userid}님의 최근 게시물
+                        
+                        <div class="col-sm-6 col-md-3" id="thumb">
+                        	<div class="thumbnail">
+                        	    <br><img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg" width="200" class="img-rounded">
+                        	    <c:choose>
+                                	<c:when test="${sessionScope.userid != null}">
+                                    	<c:choose>
+                                        	<c:when test="${requestScope.randomUser != null}">
+                                            	<img src="${requestScope.checkImg}" width="100%">
+                                                	${requestScope.checkCont}
+                 							</c:when>
+											<c:otherwise>친구정보가 없습니다.</c:otherwise>
+                                        </c:choose>
                                     </c:when>
-                                    <c:otherwise>
-                                    </c:otherwise>
+                                	<c:otherwise>
+                                	</c:otherwise>
                                 </c:choose>
-                            </div>
-                            <div class="panel-body">
-                                <div class="caption">
-                                    <p>
-                                        <c:choose>
+                        	    <div class="caption">
+                        	        <h3>${requestScope.randomUser.userid}님의 최근 게시물
+                        	        	<c:choose>
+                                   			<c:when test="${requestScope.randomUser !=null}">
+                                       			<img src="${requestScope.randomUser.img}" width="30" class="img-rounded">
+                                        		${requestScope.randomUser.userid}님의 최근 게시물
+                                    		</c:when>
+                                   			<c:otherwise>
+                                    		</c:otherwise>
+                                		</c:choose>
+                        	        </h3>
+                        	        <p>내용내용내용내용내용내용내용내용내용내용내용</p>
+                        	        <p>
+                        	        	<c:choose>
                                             <c:when test="${sessionScope.userid != null}">
                                                 <c:choose>
                                                     <c:when test="${requestScope.randomUser != null}">
-                                                        <img src="${requestScope.checkImg}" width="100%">
                                                         ${requestScope.checkCont}<br>
                                                         <a href="#" class="btn btn-primary" onclick="visitUser('${requestScope.randomUser.userid}')">방문하기</a>
                                                         <a href="/gaenari/home.do" class="btn btn-default">다른사람보기</a>
@@ -168,16 +258,14 @@
                                                 </c:choose>
                                             </c:when>
                                             <c:otherwise>
-                                                <img src="${requestScope.img}" width="100%"><br>
                                                 <a href="/gaenari/home.do" class="btn btn-default">다른게시물보기</a>
                                             </c:otherwise>
                                         </c:choose>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                       		        </p>
+                   	         	</div>
+                        	</div>
+                    	</div>
+				</div>
             </div>
         </div>
         <%@ include file="/static/pages/footer.jsp"%>
