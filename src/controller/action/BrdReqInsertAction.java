@@ -16,16 +16,14 @@ import org.apache.ibatis.session.SqlSession;
 
 import util.DBUtil;
 
-public class BrdReqAction implements Action {
+public class BrdReqInsertAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("==brdReqAction진입==");
 		HttpSession session = request.getSession();
 		SqlSession sqlSession = null;
 		String userid = (String)session.getAttribute("userid");
-		System.out.println("userid="+userid);
 		String url = null;
 		
 		BrdReqDTO brdto = null;

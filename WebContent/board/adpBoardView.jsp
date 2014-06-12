@@ -38,13 +38,13 @@
                                 	<c:choose>
                                 	<c:when test="${requestScope.flag>0}">
                                 		<center>
-											<input class="btn btn-yellow" type=button value="신청결과" onclick='checkStatus()'>
+											<input class="btn btn-yellow" type=button value="신청결과" onclick='checkMyStatus()'>
 											<input class="btn btn-yellow" type=button value="신청취소" onclick='adpDelete()'>
 										</center>
 									</c:when>
 									<c:otherwise>
 										<center>
-											<input class="btn btn-yellow" type=button value="입양하기" onclick='checkQuest(${requestScope.resultContent.brdno},${requestScope.resultContent.abrdno},${requestScope.flag})'>
+											<input class="btn btn-yellow" type=button value="입양하기" onclick='checkQuest(${requestScope.resultContent.brdno},${requestScope.resultContent.abrdno})'>
 										</center>
 									</c:otherwise>
 									</c:choose>
@@ -56,7 +56,7 @@
                     	<div class="mboard-info-bottom" style="text-align: right;">
                             <!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
                             <c:if test="${sessionScope.userid == requestScope.resultContent.userid}">
-                            <input class="btn btn-yellow" type=button value="신청자 정보확인">
+                            <input class="btn btn-yellow" type=button value="신청자 정보확인" onclick='checkBrdStatus(${requestScope.resultContent.brdno})'>
                             <input class="btn btn-yellow" type=button value="수정하기">
                             <input class="btn btn-yellow" type=button value="삭제하기">
                             </c:if>
@@ -69,11 +69,13 @@
         </div>
     </body>
 <script language="javascript">
-function checkQuest(brdno,abrdno,flag){
-	alert(flag>0);
+function checkQuest(brdno,abrdno){
 	location.href="/gaenari/qualif.do?type=a&brdno="+brdno+"&abrdno="+abrdno;
 }
-function checkStatus(){
+function checkBrdStatus(brdno){
+	location.href="/gaenari/brdreq.do?brdno="+brdno;
+}
+function checkMyStatus(){
 	
 }
 function adpDelete(){
