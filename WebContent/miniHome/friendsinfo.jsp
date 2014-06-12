@@ -13,7 +13,6 @@
 	}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-<link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
