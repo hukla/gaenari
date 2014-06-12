@@ -102,3 +102,4 @@
 	}
 </script>
 </html>
+<%@ include file="/static/pages/footer.jsp"%>
