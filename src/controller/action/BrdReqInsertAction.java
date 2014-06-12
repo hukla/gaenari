@@ -38,6 +38,8 @@ public class BrdReqInsertAction implements Action {
 			BrdReqDAO.insertReq(brdto);
 			if(brdto.getType().equals("a")){
 				url="/adpBoardView.do?abrdno="+request.getParameter("abrdno");
+			}else if(brdto.getType().equals("v")){
+				url="/voluBoardView.do?vbrdno="+request.getParameter("vbrdno");
 			}
 		} catch(Exception e){
 			e.printStackTrace();

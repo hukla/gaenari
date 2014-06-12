@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="model.dao.UserDAO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -43,10 +44,26 @@
                                 <div class="part-line">${requestScope.vhour[1]} ~ ${requestScope.vhour[2]}</div>
                            </div>
                         </div>
+                        <c:if test="${sessionScope.userid != requestScope.resultContent.userid}">
+                                	<c:choose>
+                                	<c:when test="${requestScope.flag>0}">
+                                		<center>
+											<input class="btn btn-yellow" type=button value="신청결과" onclick='checkMyStatus()'>
+											<input class="btn btn-yellow" type=button value="신청취소" onclick='voluDelete()'>
+										</center>
+									</c:when>
+									<c:otherwise>
+										<center>
+											<input class="btn btn-yellow" type=button value="신청하기" onclick='apply(${requestScope.resultContent.brdno},${requestScope.resultContent.vbrdno})'>
+										</center>
+									</c:otherwise>
+									</c:choose>
+								</c:if>
                         <div class="ptboard-info-bottom">
                         	<div class="content-container">
                             <!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
                             <c:if test="${sessionScope.userid == requestScope.resultContent.userid}">
+                            <input class="btn btn-yellow" type=button value="신청자 정보확인" onclick='checkBrdStatus(${requestScope.resultContent.brdno})'>
                             <form name="requestForm" method=post action="control" onsubmit="return send()">
                                 <input type=hidden name="vbrdno" value="${requestScope.resultContent.vbrdno}">
                                 <input type=hidden name="command" value="voluBoardUpdateForm">
@@ -72,4 +89,25 @@
             <%@ include file="/static/pages/footer.jsp"%>
         </div>
     </body>
+<script language="javascript">
+function apply(brdno,vbrdno){
+	alert(brdno);
+	location.href="/gaenari/brdreqInsert.do?type=v&brdno="+brdno+"&vbrdno="+vbrdno;
+}
+function checkBrdStatus(brdno){
+	var newwindow;
+	var url = "/gaenari/brdreqSelect.do?brdno="+brdno;
+	
+	newwindow = window.open(url, '봉사신청 확인 페이지','height=600,width=660,scrollbars=yes');
+	if(window.focus){
+		newwindow.focus;
+	}
+}
+function checkMyStatus(){
+	
+}
+function voluDelete(){
+	
+}
+</script>
 </html>
