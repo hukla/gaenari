@@ -37,3 +37,4 @@ function checkQuest(){
 checkQuest();
 </script>
 </html>
+<%@ include file="/static/pages/footer.jsp"%>

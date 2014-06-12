@@ -4,7 +4,7 @@
 
 	<!-- 글번호로 검색 -->
 	<select id="selectBrdReqByBrdno" parameterType="int" resultType="BrdReqDTO">
-		SELECT * FROM brdreq WHERE brdno=#{int}
+		SELECT * FROM brdreq WHERE brdno=#{int} order by reqno desc
 	</select>
 	
 	<!-- 유저번호로 검색 -->

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>    
+    pageEncoding="UTF-8"%>
 <%@ page import="model.dto.QuestionaireDTO" %>
-<%@ include file="/frame.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>애견 입양 적합도 테스트 수정</title>
+    <head>
+        <%@ include file="/static/pages/head.jsp"%>
 <SCRIPT language=javascript>
 	function checkValid() {
 		var func = window.document.questionaire; // 제목과 글 내용이 비면 넘어가지 않도록 하는 함수
@@ -21,10 +21,23 @@
 </SCRIPT>
 </head>
 <body>
-<form name="questionaire" method="post" action="/gaenari/control?command=questionUpdate" onSubmit='return checkValid()'>
-<p>다음의 질문에 간단하게 대답해 주세요.<br><br><br>
-1. 애완동물을 키운 경험이 있습니까?<br>
-<%
+	<div id="wrapper">
+            <%@ include file="/static/pages/header.jsp"%>
+            <div id="content">
+                <%@ include file="/static/pages/menubar.jsp"%>
+                <div class="container">
+                    <!--TODO-->
+                    <div id="ptboard-list-container">
+                        <div class="ptboard-list-header">
+                            <div class="ptboard-info" style="float: inherit;">
+                                <div class="ptboard-info-title">애견 입양 적합도 테스트</div>
+                                <div class="ptboard-info-description">애견 입양 적합도를 확인하기 위한 테스트입니다.</div>
+                            </div>
+                        </div>
+  						<div class="ptboard-list">
+  						<form name="questionaire" method="post" class="table ptboard-list" action="/gaenari/control?command=questionUpdate" onSubmit='return checkValid()'>                
+		<p>다음의 질문에 간단하게 대답해 주세요.<br><br><br>
+		<%
 	QuestionaireDTO qdto = null;
 	qdto=(QuestionaireDTO)request.getAttribute("resultContent");
 	String q1=qdto.getQ1();
@@ -32,7 +45,7 @@
 	String q3=qdto.getQ3();
 	String q4=qdto.getQ4();
 	String q5=qdto.getQ5();
-%>
+		%>
 <input type="radio" name="no1" value="Y" <%=(q1.equals("Y")?"checked":"") %>>&nbsp; 예
 <input type="radio" name="no1" value="N" <%=(q1.equals("N")?"checked":"") %>>&nbsp; 아니오<br>
 2. 현재 거주하는 주거형태는?<br>
@@ -65,4 +78,4 @@ for(var i = 0; i < worktypes.length; i++) {
 // TODO
 </script>
 </html>
-<%@ include file="../bottom.jsp"%>
+<%@ include file="/static/pages/footer.jsp"%>
