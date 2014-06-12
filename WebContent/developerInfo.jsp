@@ -30,7 +30,7 @@
                             <tr><div class="explore-info-description"><td><h4>PM:Jaehee Jang</h4></td><td><h4 style="float: left;margin-left: 30px">공대여신</h4></td></div></tr>
                             <tr><div class="explore-info-description"><td><h4>PL:Sunghoon Choi</h4></td><td><h4 style="float: left;margin-left: 30px">건담덕후</h4></td></div></tr>
                             <tr><div class="explore-info-description"><td><h4>PD:Sujin Lee</h4></td><td><h4 style="float: left;margin-left: 30px">롤덕후</h4></td></div></tr>
-                            </table>
+                            <tr></tr><tr></tr><tr><div class="explore-info-description"><h5>문의사항은 admin@gaenari.com으로 연락주세요:)</h5></div></tr></table>
                         </div>
                     </div>
                 </div>
