@@ -25,8 +25,6 @@ import util.DBUtil;
 public class MFABoardDAO {
 	public static int checkReq(AdpBoardDTO adto){
 		SqlSession session = null;
-		int userno = adto.getUserno();
-		int brdno = adto.getBrdno();
 		int count = 0;
 		
 		try{
