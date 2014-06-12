@@ -6,130 +6,92 @@
 <html>
     <head>
         <%@ include file="/static/pages/head.jsp"%>
-        <script src="/gaenari/board/scripts/mboard.js"></script>
     </head>
     <body>
         <div id="wrapper">
-            <%@ include file="/static/pages/header.jsp"%>
             <div id="content">
-                <%@ include file="/static/pages/menubar.jsp"%>
                 <div class="container">
                     <!--TODO-->
-                    <div id="ptboard-list-container">
-                        <div class="ptboard-list-header">
-                            <div class="ptboard-info">
-                                <div class="ptboard-info-title">신청자 정보확인</div>
-                                <div class="ptboard-info-description">해당 강아지 입양을 요청한 유저 목록입니다.</div>
-                            </div>
+                    <div class="explore-search-top">
+                        <div class="explore-info">
+                            <div class="explore-info-title">신청자 정보확인</div>
+                            <div class="explore-info-description">해당 강아지 입양을 요청한 유저 목록입니다.</div>
                         </div>
-                        <table class="table ptboard-list">
-                            <tr>
-                                <td class="ptboard-list-head ptboard-type">이름</td>
-                                <td class="ptboard-list-head ptboard-title">강아지정보</td>
-                                <td class="ptboard-list-head ptboard-time">테스트결과</td>
-                                <td class="ptboard-list-head ptboard-loc">마일나리</td>
-                                <td class="ptboard-list-head ptboard-writer">지역</td>
+                    </div>
+                    <div class="explore-search-results" data-brdno="${requestScope.brdno}">
+                        <table id="reqbrd_list" class="table .table-condensed">
+                            <tr style="background-color:#FC0;">
+                            	<th>신청자번호</th>
+                                <th>강아지수</th>
+                                <th>테스트결과</th>
+                                <th>마일나리</th>
+                                <th>지역</th>
+                                <th>수락하기</th>
                             </tr>
                             <!-- 글 레코드 시작 -->
-                            <c:choose>
-                                <c:when test="${not empty requestScope.brdtoList}">
-                                    <c:forEach items="${requestScope.brdtoList}" var="b">
-                                        <tr>
-                                            <td class="ptboard-type">
-                                                <c:choose>
-                                                    <c:when test="${pt.worktype == '목욕'}">
-                                                        <img src="/gaenari/static/images/bath-icon.png"/>
-                                                    </c:when>
-                                                    <c:when test="${pt.worktype == '산책'}">
-                                                        <img src="/gaenari/static/images/dog-walk-icon.png"/>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <img src="/gaenari/static/images/pet-sitting-icon.png"/>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                <div class="ptboard-type-content">${pt.worktype}</div>
-                                            </td>
-                                            <td class="ptboard-title">
-                                                <a class="ptboard-title-content" href="/gaenari/control?command=ptBoardView&ptbrdno=${pt.ptbrdno}">
-                                                ${pt.title}</a>
-                                            </td>
-                                            <td class="ptboard-time">
-                                                <div class="ptboard-time-content">
-                                                	<c:choose>
-	                                                	<c:when test="${fn:contains(pt.workhour, '!split!')}">
-		                                                	<c:set var="workdate" value="${fn:split(pt.workhour, '!split!')}" />
-		                                                	${workdate[0]}
-	                                                	</c:when>
-	                                                	<c:otherwise>
-	                                                	${pt.workhour}
-	                                                	</c:otherwise>
-	                                               	</c:choose>
-                                                </div>
-                                            </td>
-                                            <td class="ptboard-loc">
-                                                <div class="ptboard-loc-content">${pt.workloc}</div>
-                                            </td>
-                                            <td class="ptboard-writer">
-                                                <div class="ptboard-writer-author">${pt.userid}</div>
-                                                <div class="ptboard-writer-date">${pt.wrdate}</div>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </c:when>
-                                <c:otherwise>
-                                    <tr>
-                                        <td colspan="5" style="text-align:center;font-size:15px;font-weight:bold;color:gray;">입양신청한 사람이 없습니다.</td>
-                                    </tr>
-                                </c:otherwise>
-                            </c:choose>
-                            <!-- 글 레코드 끝 -->
                             <tr>
-                                <td colspan="5" class="ptboard-list-pages">
-                                    <c:choose>
-                                        <c:when test="${not empty requestScope.pageCount}">
-                                            <ul class="pagination">
-                                                <c:choose>
-                                                    <c:when test="${requestScope.pageNumber-1 > 0}">
-                                                        <li><a href="control?command=ptBoardList&pageNumber=${requestScope.pageNumber-1}">«</a></li>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <li><a href="#">«</a></li>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                <c:forEach begin="1" end="${requestScope.pageCount}" var="cnt">
-                                                    <c:choose>
-                                                        <c:when test="${cnt eq requestScope.pageNumber}">
-                                                            <li class="active">
-                                                                <a href="control?command=ptBoardList&pageNumber=${cnt}">
-                                                                ${cnt}<span class="sr-only">(current)</span>
-                                                                </a>
-                                                            </li>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <li><a href="control?command=ptBoardList&pageNumber=${cnt}">${cnt}</a></li>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </c:forEach>
-                                                <c:choose>
-                                                    <c:when test="${requestScope.pageNumber+1 < requestScope.pageCount+1}">
-                                                        <li><a href="control?command=ptBoardList&pageNumber=${requestScope.pageNumber+1}">»</a></li>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <li><a href="#">»</a></li>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </ul>
-                                        </c:when>
-                                    </c:choose>
-                                </td>
+                                <td colspan="5" style="text-align:center;font-size:15px;font-weight:bold;color:gray;">입양신청한 사람이 없습니다.</td>
                             </tr>
+                            <!-- 글 레코드 끝 -->
                         </table>
                     </div>
+                    <!--TODO-->
                 </div>
-                <!--TODO-->
             </div>
         </div>
-        <%@ include file="/static/pages/footer.jsp"%>
-        </div>
     </body>
+    <script>
+    $(function () {
+        $.ajaxSetup({
+            contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+            type: "post"
+        });
+        
+        
+        function getBrdreqList() {
+            $.ajax({
+                url: "/gaenari/brdreqSelect.do",
+                dataType: "json",
+                data: "brdno="+$('.explore-search-results').data('brdno'),
+                success: function (data) {
+                    //alert(data);
+                	
+                	var list = data.brdtoList;
+                	
+                	if(data.brdtoList[0] != 'empty') {
+                	
+	                    $("#reqbrd_list tr:gt(0)").remove();
+	                    
+	                    $.each(data.brdtoList, function (index, item) {
+	                    	var brdreq = item; //alert(brdreq);
+	                        
+	                    	var line = $('<tr>');
+	                    	
+	                    	line.append($('<td>').html(index+1))
+	                    		.append($('<td>').html(brdreq.doginfo+"마리"))
+	                    		.append($('<td>').html('<a href="#">결과 확인</a>'))
+	                    		.append($('<td>').html(brdreq.point))
+	                    		.append($('<td>').html(brdreq.address));
+	                    	
+	                    	if (true) {
+	                        	line.append($('<td>').attr('id', 'reqSend').append($("<input type='button' class='btn btn-yellow' value='수락하기' id='send' name='" + $(this).find("drno").text() + "'>")));
+	                        } else {
+	                        	line.append('<td>수락됨</td>');
+	                        }
+	                        //alert(line);
+	                        $('#reqbrd_list tr:eq(0)').after(line);
+	                    });
+                	}
+                    
+                },
+                error: function (data) {
+                	alert($('.explore-search-results').data('brdno'));
+                    alert(data + ' => 에러 발생');
+                }
+            }); // ajax 끝
+        } // getBrdreqReq() 함수 끝
+        
+        getBrdreqList();
+    });
+    </script>
 </html>

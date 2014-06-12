@@ -922,3 +922,7 @@ border-bottom-color:#FFFFFF;
 #menubar.navbar-inverse .navbar-brand,#menubar.navbar-inverse .navbar-nav>li>a,.dropdown-menu>li>a,#mall-menu li> .dropdown-menu>li>a {
 color:#3E403A;
 }
+
+#reqbrd-list > th{
+	width:auto;
+}
