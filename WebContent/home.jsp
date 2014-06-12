@@ -153,7 +153,7 @@
 					</a>
 					</div>
 					<div class="list-group">
-					<a href="#" class="list-group-item" style=" background-color: #FFCC00;border-color: #FFCC00;height:122px">
+					<a href="#" onclick="developer()" class="list-group-item" style=" background-color: #FFCC00;border-color: #FFCC00;height:122px">
 						<h4 class="list-group-item-heading"><img src="/gaenari/static/images/developer.png" width="60px;"> 개발자정보</h4>
 						<p class="list-group-item-text">개발자정보를 보는 곳입니다. 공대여신과 롤덕과 성훈이가 나옵니다.</p>
 					</a>
@@ -200,11 +200,12 @@
                         
                         <div class="col-sm-6 col-md-3" id="thumb">
                         	<div class="thumbnail">
-                        	    <br><img src="${requestScope.checkImg}" height="100%" width="inherit">
+                        	    <%-- <br><img src="${requestScope.checkImg}" height="100%" width="inherit"> --%>
                         	    <c:choose>
                                 	<c:when test="${sessionScope.userid != null}">
                                     	<c:choose>
                                         	<c:when test="${requestScope.randomUser != null}">
+                                        		<br><img src="${requestScope.checkImg}" height="100%" width="inherit">
                  							</c:when>
 											<c:otherwise>친구정보가 없습니다.</c:otherwise>
                                         </c:choose>
@@ -285,5 +286,10 @@
         		newwindow = window.open(url, '입양테스트','height=570,width=800,scrollbars=yes');
         	}
     	}
+        function developer(){
+        	var newwindow;
+        	var url = "/gaenari/developerInfo.jsp";
+        	newwindow = window.open(url, '개발자정보','height=580,width=420,scrollbars=yes');
+        }
     </script>
 </html>
