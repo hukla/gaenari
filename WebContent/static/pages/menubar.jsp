@@ -26,7 +26,7 @@
                 </li>
                 <c:if test="${sessionScope.userid != null}">
                 <li style="position:absolute;right:30px;">
-                    <a href="" onclick="miniHome()"><img src="/gaenari/static/images/minihome-icon.png"> 미니홈피</a>
+                    <a href="" onclick="miniHome()"><img src="/gaenari/static/images/minihome-icon.png"> 개작은집</a>
                 </li>
                 </c:if>
             </ul>
