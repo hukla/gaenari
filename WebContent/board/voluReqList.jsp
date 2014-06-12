@@ -28,7 +28,7 @@
                             </tr>
                             <!-- 글 레코드 시작 -->
                             <tr>
-                                <td colspan="5" style="text-align:center;font-size:15px;font-weight:bold;color:gray;">입양신청한 사람이 없습니다.</td>
+                                <td colspan="5" style="text-align:center;font-size:15px;font-weight:bold;color:gray;">자원봉사를 신청한 사람이 없습니다.</td>
                             </tr>
                             <!-- 글 레코드 끝 -->
                         </table>
@@ -48,7 +48,7 @@
         
         function getVoluReqList() {
             $.ajax({
-                url: "/gaenari/VoluReqSelect.do",
+                url: "/gaenari/voluReqSelect.do",
                 dataType: "json",
                 data: "brdno="+$('.explore-search-results').data('brdno'),
                 success: function (data) {
@@ -66,8 +66,6 @@
 	                    	var line = $('<tr>');
 	                    	
 	                    	line.append($('<td>').html(index+1))
-	                    		.append($('<td>').html(brdreq.doginfo+"마리"))
-	                    		.append($('<td>').html('<a href="#">결과 확인</a>'))
 	                    		.append($('<td>').html(brdreq.point))
 	                    		.append($('<td>').html(brdreq.address));
 	                    	
