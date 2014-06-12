@@ -73,7 +73,13 @@ function checkQuest(brdno,abrdno){
 	location.href="/gaenari/qualif.do?type=a&brdno="+brdno+"&abrdno="+abrdno;
 }
 function checkBrdStatus(brdno){
-	location.href="/gaenari/brdreqSelect.do?brdno="+brdno;
+	var newwindow;
+	var url = "/gaenari/brdreqSelect.do?brdno="+brdno;
+	
+	newwindow = window.open(url, '입양신청 확인 페이지','height=600,width=660,scrollbars=yes');
+	if(window.focus){
+		newwindow.focus;
+	}
 }
 function checkMyStatus(){
 	
