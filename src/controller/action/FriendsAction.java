@@ -59,6 +59,9 @@ public class FriendsAction implements Action {
 			for(int no: friendNo){
 				friendList.add(UserDAO.selectOne(no));
 			}
+			if(request.getParameter("milenari")!=null){
+				request.setAttribute("milenariCheck", 1);
+			}
 			request.setAttribute("friendList", friendList);
 			request.setAttribute("user", user);
 			url="miniHome/friends.jsp";

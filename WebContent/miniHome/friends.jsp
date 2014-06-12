@@ -230,6 +230,15 @@ div#container{
 			newwindow.focus;
 		}
 	}
+ 	
+	$(function(){
+		var milenariCheck = "${requestScope.milenariCheck}";
+		if(milenariCheck != 0){
+			alert("두 분이 친구가 되셨습니다. 마일나리 10점 적립됩니다.");
+		}else{
+			return;
+		}
+	});
 </script>
 </html>
 <%-- <%@ include file="/bottom.jsp"%> --%>

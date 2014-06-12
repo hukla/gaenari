@@ -40,8 +40,11 @@
 		update planboardinfo set flag=1 where brdno=#{brdno}
 	</update>
 	
-	
 	<update id="updateMsg" parameterType="map">
 		update userinfo set mainmsg=#{mainmsg} where userid=#{userid}
+	</update>
+	
+	<update id="plusMilenari" parameterType="map">
+		update userinfo set point=point + #{point} where userno=#{userno}
 	</update>
 </mapper>

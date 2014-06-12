@@ -57,10 +57,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 									<a href="/gaenari/planDetail.do?brdno=${sessionScope.todayPlan[0].brdno}&userid=${sessionScope.user.userid}">[${sessionScope.todayPlan[0].title}]입니다.
 									<c:choose>
 										<c:when test="${sessionScope.todayPlan[0].flag == 0}">
-											<span class="label label-default">미완료</span> 
+											<span class="label label-info">미완료</span> 
 										</c:when>
 										<c:otherwise>
-											<span class="label label-info">완료</span> 
+											<span class="label label-default">완료</span> 
 										</c:otherwise>
 									</c:choose>
 									</a>
@@ -92,6 +92,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 						</ul>
 					</c:otherwise>
 				</c:choose>
+                </li>
+                <li>
+                    <h5>
+                    	${requestScope.user.userid}님의 마일나리는 ${requestScope.user.point}점입니다.
+                    </h5>
                 </li>
                 <li style="position:absolute;right:30px;">
                 <table>

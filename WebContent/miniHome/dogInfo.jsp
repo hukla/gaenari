@@ -59,7 +59,9 @@
 							<c:forEach items="${requestScope.dogsPlanList}" var="dogPlan">
 								<tr>
 									<td align="center">${dogPlan.pdate}</td>
-									<td align="left">${dogPlan.title}</td>
+									<td align="left">
+										<a href="#" onclick="goOnePlan('${dogPlan.brdno}')">${dogPlan.title}</a> 
+									</td>
 									<td align="center">${dogPlan.ploc}</td>
 									<td align="center">
 										<c:choose>
@@ -94,5 +96,9 @@
 			self.close();
 		});
 	});
+	
+	function goOnePlan(brdno){
+		window.opener.location.href="/gaenari/planDetail.do?brdno="+brdno+"&userid=${requestScope.user.userid}";
+	}
 </script>
 </html>

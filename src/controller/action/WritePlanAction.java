@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.InsertDAO;
+import model.dao.UpdateDAO;
 import model.dto.BoardDTO;
 import model.dto.PlanDTO;
 import model.dto.UserDTO;
@@ -61,9 +62,12 @@ public class WritePlanAction implements Action {
 				boardDTO = new BoardDTO(content, date,(String) session.getAttribute("userid"), title, "pl",
 						(int)((UserDTO) session.getAttribute("user")).getUserno());
 				brdno = InsertDAO.insertPlanBoard(boardDTO);
+				
 				if(plandogno!=null)	InsertDAO.insertPlan(new PlanDTO(brdno, loc, date,Integer.parseInt(plandogno)));
 				else	InsertDAO.insertPlan(new PlanDTO(brdno, loc, date));
+				UpdateDAO.plusMilenari(((UserDTO)session.getAttribute("user")).getUserno(),5);
 				// 입력값들을 보드DTO와 플랜DTO에 insert해준다.
+				request.setAttribute("milenari", 1);
 			}
 			url = "/planList.do";
 		} catch (StringIndexOutOfBoundsException e) {

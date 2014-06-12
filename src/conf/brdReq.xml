@@ -17,6 +17,11 @@
 		INSERT INTO brdreq VALUES (null, #{brdno}, #{userno}, 'p', #{type})
 	</insert>
 	
+	<!-- 요청 삭제하기 -->
+	<delete id="deleteBrdReq" parameterType="BrdReqDTO">
+		DELETE FROM brdreq WHERE brdno=#{brdno} and userno=#{userno}
+	</delete>
+	
 	<!-- <insert id="insertAbrdReq" parameterType="BrdReqDTO">
 		INSERT INTO adpreq VALUES (null, #{brdno}, #{userno}, 'p')
 	</insert>

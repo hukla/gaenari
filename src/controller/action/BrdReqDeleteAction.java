@@ -10,13 +10,12 @@ import javax.servlet.http.HttpSession;
 import model.dao.BrdReqDAO;
 import model.dao.UserDAO;
 import model.dto.BrdReqDTO;
-import model.dto.QuestionaireDTO;
 
 import org.apache.ibatis.session.SqlSession;
 
 import util.DBUtil;
 
-public class BrdReqInsertAction implements Action {
+public class BrdReqDeleteAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
@@ -29,17 +28,23 @@ public class BrdReqInsertAction implements Action {
 		BrdReqDTO brdto = null;
 		int brdno = 0;
 		int userno = 0;
+		boolean result=false;
 		try{
 			sqlSession = DBUtil.getSqlSession();
-			userno = UserDAO.logCheck(userid).getUserno();//세션으로 로그인되어있는 사용자의 userno찾기
+			userno = UserDAO.logCheck(userid).getUserno();
 			String brdnoString = request.getParameter("brdno");
 			brdno = Integer.parseInt(brdnoString);
-			brdto = new BrdReqDTO(brdno,userno,request.getParameter("type"));//현재 사용자의 userno
-			BrdReqDAO.insertReq(brdto);
+			brdto = new BrdReqDTO(brdno,userno,request.getParameter("type"));
+			result = BrdReqDAO.deleteReq(brdto);
+			
+			url = "/quest/brDelete.jsp";
+			request.setAttribute("type",brdto.getType());
+			request.setAttribute("result",result);
+			
 			if(brdto.getType().equals("a")){
-				url="/adpBoardView.do?abrdno="+request.getParameter("abrdno");
+				request.setAttribute("abrdno",request.getParameter("abrdno"));
 			}else if(brdto.getType().equals("v")){
-				url="/voluBoardView.do?vbrdno="+request.getParameter("vbrdno");
+				request.setAttribute("vbrdno",request.getParameter("vbrdno"));
 			}
 		} catch(Exception e){
 			e.printStackTrace();
@@ -47,5 +52,7 @@ public class BrdReqInsertAction implements Action {
 			DBUtil.closeSession(sqlSession);
 		}
 		request.getRequestDispatcher(url).forward(request, response);
+
 	}
+
 }

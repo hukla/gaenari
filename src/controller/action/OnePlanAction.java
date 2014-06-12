@@ -107,6 +107,9 @@ public class OnePlanAction implements Action {
 			onePlan.setBrdcontent(onePlan.getBrdcontent().split("!split!")[1]);
 			dog = DogDAO.getDogInfo(user.getUserno(), planDTO.getPlandogno());
 			
+			if(request.getParameter("milenari")!=null){
+				request.setAttribute("checkMilenari", 1);
+			}
 			request.setAttribute("index", indexInt);	//현재 보여지는 일정의 index 번호 setAttribute
 			request.setAttribute("onePlan", onePlan);	//선택된 일정의 전체정보 setAttribute
 			request.setAttribute("type", planType);

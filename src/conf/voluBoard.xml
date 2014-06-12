@@ -26,7 +26,7 @@
 	</select>
 	 
 	<select id="selectByNum" resultType="VoluBoardDTO" parameterType="int">
-		select b.title, b.userid, b.wrdate, b.brdcontent, v.vhour, v.vbrdno
+		select b.brdno, b.title, b.userid, b.wrdate, b.brdcontent, v.vhour, v.vbrdno
 		from board b join voluboardinfo v on v.brdno=b.brdno where v.vbrdno=#{int}
 	</select>
 	
