@@ -46,7 +46,7 @@ $(document).ready(function() {
 			dataType : "text",
 			data : "userid="+$(this).attr("name"),
 			success : function(data) {
-				$("#display").load("/gaenari/userinfo.do","userid="+data);
+				$("#display").load("/gaenari/friendsinfo.do","userid="+data);
 				
 			},
 			error : function(data) {
@@ -133,7 +133,7 @@ $(document).ready(function() {
 			dataType : "text",
 			data : "userid="+$(this).attr("name"),
 			success : function(data) {
-				$("#display").load("/gaenari/userinfo.do","userid="+data);
+				$("#display").load("/gaenari/friendsinfo.do","userid="+data);
 			},
 			error : function(data) {
 				alert(data + '=> 에러발생');
