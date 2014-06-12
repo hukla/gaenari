@@ -21,7 +21,10 @@ public class AdpBoardViewAction implements Action {
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		String no = request.getParameter("abrdno");
-		String userid = session.getAttribute("userid").toString();
+		String userid = null;
+		if(session.getAttribute("userid")!=null){
+			userid = session.getAttribute("userid").toString();
+		}
 		UserDTO udto = null;
 		int abrdno = Integer.parseInt(no);
 		int result = 0;
