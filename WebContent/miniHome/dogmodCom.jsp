@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="model.dao.UserDAO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>강아지 등록완료</title>
+<%@ include file="/static/pages/head.jsp"%>
+<script src="//code.jquery.com/jquery.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <!-- 
 작성: 2014-06-04
 작성자: 최성훈
@@ -30,3 +33,4 @@
 	});
 </script>
 </html>
+<%@ include file="/static/pages/footer.jsp"%>

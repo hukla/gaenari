@@ -12,6 +12,10 @@
 		</discriminator>
 	</resultMap>
 	
+	<select id="latestVolu" resultType="VoluBoardDTO">
+		SELECT * FROM board b JOIN voluboardinfo v ON b.brdno = v.brdno WHERE b.brdtype='vo' order by b.brdno DESC LIMIT 1
+	</select>
+	
 	<select id="selectTenVolu" parameterType="int" resultType="VoluBoardDTO">
 		SELECT * FROM board b JOIN voluboardinfo v ON b.brdno = v.brdno WHERE b.brdtype='vo' order by b.brdno desc limit #{value}, 10
 	</select>

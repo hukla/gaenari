@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="model.dao.UserDAO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-	td,th { text-align: center; vertical-align: center; font-family: "나눔고딕";}
-</style>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<%@ include file="/static/pages/head.jsp"%>
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<title>강아지 정보수정 페이지</title>
 <!-- 
 작성: 2014-06-03
 작성자: 최성훈
@@ -74,3 +70,4 @@
 	}
 </script>
 </html>
+<%@ include file="/static/pages/footer.jsp"%>

@@ -230,4 +230,4 @@
 	</script>
 </body>
 </html>
-<%@ include file="bottom.jsp"%>
+<%@ include file="/static/pages/footer.jsp"%>

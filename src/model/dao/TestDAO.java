@@ -45,8 +45,10 @@ import model.dto.CommentDTO;
 import model.dto.DiaryDTO;
 import model.dto.DogDTO;
 import model.dto.PlanDTO;
+import model.dto.PtBoardDTO;
 import model.dto.UserDTO;
 import model.dto.VisitDTO;
+import model.dto.VoluBoardDTO;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -678,5 +680,29 @@ public class TestDAO {
 			DBUtil.closeSession(session);
 		}
 		return planList;
+	}
+	//자원봉사 게시판에서 최신 글의 DTO 1개 가져옴
+	public static VoluBoardDTO getLatestVolu() throws SQLException {
+		SqlSession session = null;
+		VoluBoardDTO vdto = null;
+		try{
+			session = DBUtil.getSqlSession();
+			vdto = session.selectOne("voluboard.latestVolu");
+		}finally{
+			DBUtil.closeSession(session);
+		}
+		return vdto;
+	}
+	//펫도우미 게시판에서 최신 글의 DTO 1개 가져옴
+	public static PtBoardDTO getLatestPt() throws SQLException {
+		SqlSession session = null;
+		PtBoardDTO pdto = null;
+		try{
+			session = DBUtil.getSqlSession();
+			pdto = session.selectOne("ptboard.latestPt");
+		}finally{
+			DBUtil.closeSession(session);
+		}
+		return pdto;
 	}
 }

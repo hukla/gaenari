@@ -8,6 +8,10 @@
 			<case value="pt" resultType="model.dto.PtBoardDTO"/>
 		</discriminator>
 	</resultMap>
+	
+	<select id="latestPt" resultType="PtBoardDTO">
+		SELECT * FROM board b JOIN ptboardinfo p ON b.brdno = p.brdno WHERE b.brdtype='pt' order by b.brdno DESC LIMIT 1
+	</select>
 
 	<select id="selectTenPt" parameterType="int" resultType="PtBoardDTO">
 		SELECT * FROM board b JOIN ptboardinfo p ON b.brdno = p.brdno WHERE b.brdtype='pt' order by b.brdno desc limit #{value}, 10
