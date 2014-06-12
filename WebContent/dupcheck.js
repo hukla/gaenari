@@ -86,15 +86,15 @@ $(document).ready(function() {
 			data: "brdno="+$(this).attr("name"),
 			success: function (data){
 				if(data>0){
-					alert("일정을 완료하셨습니다.");
-					location.href="/gaenari/planDetail.do?brdno="+$("#plncheck").attr("name");
+					alert("마일나리가 3포인트 적립되었습니다.");
+					location.href="/gaenari/planDetail.do?brdno="+$("#plncheck").attr("name")+"&milenari="+1+"&userid=${requestScope.user.userid}";
 				}else{
 					alert("일정이 완료되지 않았습니다.");
 				}
 			},
 			error: function (data){alert(data+'=>에러발생');}
 		});
-	})
+	});
 	//////////////////////////////////////////////////////////////////////////////////14-05-31 하던중
 	$("#dogbtn").click(function(){
 		$.ajax({

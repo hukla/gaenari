@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import model.dao.DeleteDAO;
 import model.dao.InsertDAO;
+import model.dao.UpdateDAO;
 
 public class AcceptFriendAction implements Action {
 /**
@@ -26,8 +27,10 @@ public class AcceptFriendAction implements Action {
 			sender = Integer.parseInt(request.getParameter("sender"));
 			receiver = Integer.parseInt(request.getParameter("receiver"));
 			InsertDAO.insertFriends(sender,receiver);
+			UpdateDAO.plusMilenari(sender, 10);
+			UpdateDAO.plusMilenari(receiver, 10);
 			DeleteDAO.deleteFrndReq(sender,receiver);
-			url = "/friends.do";
+			url = "/friends.do?milenari="+1;
 		}catch (Exception e){
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

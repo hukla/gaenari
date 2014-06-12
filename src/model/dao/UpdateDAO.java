@@ -2,6 +2,7 @@ package model.dao;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
@@ -134,5 +135,22 @@ public class UpdateDAO {
 		}
 		if (!rs)	throw new SQLException("일정 완료 전환에 실패했습니다.");
 		return result;
+	}
+	
+	public static void plusMilenari(int userno,int point) throws SQLException {
+		SqlSession session = null;
+		boolean result = false;
+		Map<String,Integer> map = null;
+		try {
+			session = DBUtil.getSqlSession();
+			map = new HashMap<String,Integer>();
+			map.put("userno", userno);
+			map.put("point", point);
+			System.out.println(userno+":"+point);
+			result = session.update("update.plusMilenari", map) > 0 ? true : false;
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if (!result)	throw new SQLException("마일나리 적립에 실패했습니다.");
 	}
 }
