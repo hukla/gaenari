@@ -57,7 +57,7 @@ public class MallGetDonAction implements Action {
 			json = json.substring(0, json.lastIndexOf(","));
 			json += "]}";
 			out.print(json);
-			log.info(json);
+			log.debug(json);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
