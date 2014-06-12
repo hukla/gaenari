@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.MFABoardDAO;
+import model.dao.UserDAO;
 import model.dao.VoluBoardDAO;
+import model.dto.UserDTO;
 import model.dto.VoluBoardDTO;
 
 public class VoluBoardViewAction implements Action {
@@ -16,13 +19,18 @@ public class VoluBoardViewAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		String vbrdno = request.getParameter("vbrdno");
+		String userid = null;
+		VoluBoardDTO vbdto = null;
+		if(session.getAttribute("userid")!=null){
+			userid = session.getAttribute("userid").toString();
+		}
+		UserDTO udto = null;
 		String vhour [] = null;
 		boolean result=true;
+		int flag=0;
 		if(request.getParameter("result")!=null){
 			result=false;
 		}
@@ -31,7 +39,7 @@ public class VoluBoardViewAction implements Action {
 				throw new Exception("입력값이 충분하지 않습니다.");
 			}
 			int num=Integer.parseInt(vbrdno);
-			VoluBoardDTO vbdto = VoluBoardDAO.getContent(num,result);
+			vbdto = VoluBoardDAO.getContent(num,result);
 			
 			if(vbdto==null){
 				throw new Exception("게시물이 존재하지 않습니다.");
@@ -45,7 +53,14 @@ public class VoluBoardViewAction implements Action {
 				request.setAttribute("resultContent",vbdto);
 				request.setAttribute("vhour", vhour);
 				
-				System.out.println("[sessionId:"+session.getAttribute("userid")+"][writer:"+vbdto.getUserid()+"]");
+				try {
+					udto = UserDAO.idCheck(userid);
+					vbdto.setUserno(udto.getUserno());
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				flag=MFABoardDAO.checkReq(vbdto);//0이상이면 신청한 상태,0이면 신청안한상태
+				request.setAttribute("flag", flag);
 				url = "board/voluBoardView.jsp";
 			}
 		}catch(SQLException e){
@@ -53,6 +68,7 @@ public class VoluBoardViewAction implements Action {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		System.out.println("brdno="+vbdto.getBrdno());
 		request.getRequestDispatcher(url).forward(request,response);
 	}
 

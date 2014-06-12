@@ -16,6 +16,7 @@ import model.dto.BoardDTO;
 import model.dto.FindingBoardDTO;
 import model.dto.MissingBoardDTO;
 import model.dto.PtBoardDTO;
+import model.dto.VoluBoardDTO;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -23,10 +24,20 @@ import exception.LoginException;
 import util.DBUtil;
 
 public class MFABoardDAO {
+	public static int checkReq(VoluBoardDTO vdto){
+		SqlSession session = null;
+		int count = 0;
+		
+		try{
+			session = DBUtil.getSqlSession();
+			count = session.selectOne("mfboard.checkVoluReq",vdto);
+		}finally{
+			DBUtil.closeSession(session);
+		}
+		return count;
+	}
 	public static int checkReq(AdpBoardDTO adto){
 		SqlSession session = null;
-		int userno = adto.getUserno();
-		int brdno = adto.getBrdno();
 		int count = 0;
 		
 		try{

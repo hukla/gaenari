@@ -16,7 +16,7 @@ function checkQuest(){
 			var abrdno="${requestScope.abrdno}";
 			var brdno="${requestScope.brdno}";
 			var type="${requestScope.type}";
-			location.href="/gaenari/brdreq.do?brdno="+brdno+"&type="+type+"&abrdno="+abrdno;
+			location.href="/gaenari/brdreqInsert.do?brdno="+brdno+"&type="+type+"&abrdno="+abrdno;
 			alert('신청이 완료되었습니다.');
 		}else{
 			alert('신청이 취소되었습니다.');

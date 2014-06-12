@@ -11,6 +11,10 @@
 		</discriminator>
 	</resultMap>
 	
+	<select id="checkVoluReq" parameterType="VoluBoardDTO" resultType="int">
+		select count(*) from brdreq where brdno=#{brdno} and userno=#{userno}
+	</select>
+	
 	<select id="checkReq" parameterType="AdpBoardDTO" resultType="int">
 		select count(*) from brdreq where brdno=#{brdno} and userno=#{userno}
 	</select>

@@ -2,40 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="brdreq">
 
-	<!-- <select id="selectABrdReqByAbrdno" parameterType="int" resultType="BrdReqDTO">
-		SELECT * FROM adpreq WHERE abrdno = #{int}
+	<!-- 글번호로 검색 -->
+	<select id="selectBrdReqByBrdno" parameterType="int" resultType="BrdReqDTO">
+		SELECT * FROM brdreq WHERE brdno=#{int}
 	</select>
 	
-	<select id="selectVBrdReqByVbrdno" parameterType="int" resultType="BrdReqDTO">
-		SELECT * FROM volureq WHERE vbrdno = #{int}
+	<!-- 유저번호로 검색 -->
+	<select id="selectBrdReqByUserNo" parameterType="int" resultType="BrdReqDTO">
+		SELECT * FROM brdreq WHERE userno=#{int}
 	</select>
 	
-	<select id="selectPtBrdReqByPtbrdno" parameterType="int" resultType="BrdReqDTO">
-		SELECT * FROM ptreq WHERE ptbrdno = #{int}
-	</select>
- -->	
-<!--
-	본인의 userno로 모든 요청 검색 가능 but 어느 페이지에서 뿌려줄지??? 
-	
-	<select id="selectABrdReqByUserno" parameterType="int" resultType="BrdReqDTO">
-		SELECT userno FROM adpreq WHERE userno = #{int}
-	</select>
-	
-	<select id="selectVBrdReqByUserno" parameterType="int" resultType="BrdReqDTO">
-		SELECT userno FROM volureq WHERE userno = #{int}
-	</select>
-	
-	<select id="selectPtBrdReqByUserno" parameterType="int" resultType="BrdReqDTO">
-		SELECT userno FROM ptreq WHERE userno = #{int}
-	</select>
-	
-	-->
-	
+	<!-- 입양 요청 넣기 -->
 	<insert id="insertBrdReq" parameterType="BrdReqDTO">
 		INSERT INTO brdreq VALUES (null, #{brdno}, #{userno}, 'p', #{type})
 	</insert>
 	
-	<insert id="insertAbrdReq" parameterType="BrdReqDTO">
+	<!-- <insert id="insertAbrdReq" parameterType="BrdReqDTO">
 		INSERT INTO adpreq VALUES (null, #{brdno}, #{userno}, 'p')
 	</insert>
 	
@@ -46,7 +28,7 @@
 	<insert id="insertPtbrdReq" parameterType="BrdReqDTO">
 		INSERT INTO ptreq VALUES (null, #{brdno}, #{userno}, 'p')
 	</insert>
-	
+	 -->
 	<!-- <update id="sendOne" parameterType="int">
 		UPDATE donreq
 		SET sent='Y'
