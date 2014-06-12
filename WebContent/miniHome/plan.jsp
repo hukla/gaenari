@@ -285,6 +285,14 @@
 	</td></tr></table></div>
 </body>
 <script type="text/javascript">
+	$(function(){
+		var milenari = "${requestScope.milenari}";
+		if(milenari != 0){
+			alert("마일나리가 5포인트 적립되어 현재 ${requestScope.user.point}점입니다.");
+		}else{
+			return;
+		}
+	});
 	function submit(){
 		$("#planForm").submit();
 	}
