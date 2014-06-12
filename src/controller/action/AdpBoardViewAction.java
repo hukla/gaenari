@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import exception.LoginException;
 import model.dao.MFABoardDAO;
@@ -17,11 +18,11 @@ public class AdpBoardViewAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		String no = request.getParameter("abrdno");
-		String userid = request.getParameter("userid");
+		String userid = session.getAttribute("userid").toString();
 		UserDTO udto = null;
-		System.out.println("userid="+userid);
 		int abrdno = Integer.parseInt(no);
 		int result = 0;
 	

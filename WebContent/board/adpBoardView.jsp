@@ -36,14 +36,15 @@
                                 </div>
                                 <c:if test="${sessionScope.userid != requestScope.resultContent.userid}">
                                 	<c:choose>
-                                	<c:when test="${requestScope.flag}>0">
+                                	<c:when test="${requestScope.flag>0}">
                                 		<center>
-											<input class="btn btn-yellow" type=button value="입양하기" onclick='checkQuest(${requestScope.resultContent.brdno},${requestScope.resultContent.abrdno})'>
+											<input class="btn btn-yellow" type=button value="신청결과" onclick='checkStatus()'>
+											<input class="btn btn-yellow" type=button value="신청취소" onclick='adpDelete()'>
 										</center>
 									</c:when>
 									<c:otherwise>
 										<center>
-											<input class="btn btn-yellow" type=button value="신청결과" onclick='checkStatus()'>
+											<input class="btn btn-yellow" type=button value="입양하기" onclick='checkQuest(${requestScope.resultContent.brdno},${requestScope.resultContent.abrdno},${requestScope.flag})'>
 										</center>
 									</c:otherwise>
 									</c:choose>
@@ -68,10 +69,14 @@
         </div>
     </body>
 <script language="javascript">
-function checkQuest(brdno,abrdno){
+function checkQuest(brdno,abrdno,flag){
+	alert(flag>0);
 	location.href="/gaenari/qualif.do?type=a&brdno="+brdno+"&abrdno="+abrdno;
 }
 function checkStatus(){
+	
+}
+function adpDelete(){
 	
 }
 </script>
