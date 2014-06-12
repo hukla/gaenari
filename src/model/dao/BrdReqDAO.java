@@ -13,6 +13,21 @@ import util.DBUtil;
 
 public class BrdReqDAO {
 	
+	public static boolean deleteReq(BrdReqDTO brdto) throws SQLException{
+		SqlSession session = DBUtil.getSqlSession();
+		session.commit();
+		boolean result = false;
+		try {
+			int count =  session.insert("brdreq.deleteBrdReq", brdto);
+			if(count != 0) {
+				result =  true;
+			}
+		}finally{
+			DBUtil.closeSession(session, result); //성공하면 commit 실패하면 rollback
+		}	
+		return result;
+	}
+	
 	public static List<BrdReqDTO> selectReqByBrdno(int brdno) throws SQLException{
 		SqlSession session = DBUtil.getSqlSession();
 		List<BrdReqDTO> brdtoList = null;
@@ -31,9 +46,7 @@ public class BrdReqDAO {
 		session.commit();
 		boolean result = false;
 		try {
-			System.out.println("insert 이전");
 			int count =  session.insert("brdreq.insertBrdReq", brdto);
-			System.out.println("insert 이후");
 			if(count != 0) {
 				result =  true;
 			}
