@@ -18,14 +18,14 @@
 		#arrow {  position:relative; text-indent:-99px; cursor:pointer;}
 		#worra {  position:relative; text-indent:-99px; cursor:pointer;}
 		#effect { width: 140px; height: 100%;  position: fixed;  left:0px; }
-		#tb { width: 900px; position: absolute; }
+		#tb { width: 900px; position: absolute;}
 		#content { width:160px; height: 100%; float:left; background-color:#FFCC00;top:0%;}
 </style>
 <!-- <style type="text/css">
 	body { padding-top: 45px; }
 </style> -->
 <style type="text/css">
-	h1,h2,h3,h4,h5,td,small,a,arrow,p {   font-family:'맑은 고딕' } 
+	h1,h2,h3,h4,h5,td,small,a,arrow,p {   font-family:'나눔고딕' } 
 	table#menu{
 		margin-top: 50px;
 	}

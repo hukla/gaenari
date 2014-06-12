@@ -1,15 +1,18 @@
 package controller.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.DogDAO;
 import model.dao.TestDAO;
 import model.dao.UserDAO;
-import model.dto.BoardDTO;
+import model.dto.DogDTO;
+import model.dto.PlanDTO;
 import model.dto.UserDTO;
 
 /**
@@ -32,12 +35,13 @@ public class UpdateFormPlanAction implements Action {
 		
 		HttpSession session = request.getSession();
 		String url="/error.jsp";
-		BoardDTO boardDTO = null;
+		PlanDTO planDTO = null;
 		String chosenDate = null;	//등록할 때 선택했던 날짜형태(yyyy-mm-dd)
 		String date = null;			//수정페이지에서 보여줄 날짜형태(mm/dd/yyyy)
 		String brdno = null;
 		String userid = null;
 		UserDTO user = null;
+		List<DogDTO> dog = null;
 		
 		try{
 			userid = request.getParameter("userid");
@@ -47,11 +51,16 @@ public class UpdateFormPlanAction implements Action {
 			user = UserDAO.logCheck(userid);
 			brdno = request.getParameter("brdno");
 			if(brdno.equals(null) || brdno.trim().length()==0)	throw new Exception("일정정보가 없습니다.");
-			boardDTO = TestDAO.selectOnePlan(Integer.parseInt(brdno));
-			chosenDate = boardDTO.getWrdate();	//저장된 wrdate(yyyy-mm-dd)를 가져옴
+			planDTO = TestDAO.selectOnePlan(Integer.parseInt(brdno));
+			dog = TestDAO.getMyDogInfo(user.getUserno());
+			chosenDate = planDTO.getWrdate();	//저장된 wrdate(yyyy-mm-dd)를 가져옴
 			date = chosenDate.substring(5,7)+"/"+chosenDate.substring(8)+"/"+chosenDate.substring(0, 4);
 			//wrdate를 (mm/dd/yyyy)형태의 날짜형식으로 바꿔줌
-			request.setAttribute("onePlan", boardDTO);
+			
+			request.setAttribute("dog", dog);
+			request.setAttribute("onePlan", planDTO);
+			request.setAttribute("plantype", planDTO.getBrdcontent().split("!split!")[0]);
+			request.setAttribute("brdcontent", (planDTO.getBrdcontent().split("!split!")[1]).replace("<br/>", "\n"));
 			request.setAttribute("date", date);
 			request.setAttribute("user", user);
 			

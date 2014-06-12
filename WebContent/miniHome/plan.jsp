@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%-- <%@ include file="/frame.jsp" %> --%>
 <%@ include file="menu.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <style type="text/css">
@@ -140,7 +139,7 @@
 											기르시는 강아지가 없습니다.
 										</c:otherwise>
 									</c:choose>
-									</select>
+								</select>
 							</td>
 							</tr>
 							<tr><td> &nbsp;&nbsp;날짜 : </td>
@@ -158,6 +157,7 @@
 										<option value="미용해주기">미용해주기</option>
 										<option value="강아지학교보내기">강아지학교보내기</option>
 										<option value="훈련시키기">훈련시키기</option>
+										<option value="위탁하기">위탁하기</option>
 										<option value="기타">기타</option>
 									</select>
 								</td>

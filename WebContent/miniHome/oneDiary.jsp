@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <%@ include file="/frame.jsp" %> --%>
 <%@ include file="menu.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <style type="text/css">
@@ -67,11 +66,16 @@ height:50px;
 			<table width="100%">
 				<tr>
 					<td width="70%"><h3 class="panel-title">제목:
-							${requestScope.oneDiary.title}</h3></td>
+							${requestScope.oneDiary.title}</h3>
+					</td>
 					<td width="30%" align="right">${requestScope.oneDiary.wrdate}
+						
 						<c:if test="${requestScope.oneDiary.wrdate eq sessionScope.today}">
 							<font color="blue">[오늘입니다]</font>
 						</c:if>
+						<div class="btn-group btn-group-xs">
+							<button onclick="location.href='/gaenari/diaryList.do?userid=${requestScope.user.userid}'" class="btn btn-default">목록보기</button>
+						</div>
 					</td>
 				</tr>
 			</table>

@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <style type="text/css">
-	td,th {	font-family: '맑은 고딕'	}
+	td,th {	font-family: '나눔고딕'	}
 	#bigimg > img{
 		width: 450px;
 		height: 350px;
@@ -131,7 +131,9 @@
 						<c:choose>
 							<c:when test="${not empty requestScope.dog}">
 								<c:forEach items="${requestScope.dog}" var="doggy">
-									<a href="#"><img src="${doggy.dogimg}" width="35" class="img-rounded"> ${doggy.dogname}(${doggy.dogkind})</a><br/><br/>
+									<a href="#" onclick="getMydogsInfo('${doggy.dogno}')">
+										<img src="${doggy.dogimg}" width="35" class="img-rounded"> ${doggy.dogname}(${doggy.dogkind})
+									</a><br/><br/>
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
@@ -222,8 +224,14 @@
 			return;
 		}
 	}
+	function getMydogsInfo(dogno) {
+		var newwindow;
+		var url = "/gaenari/myDoginfo.do?dogno="+dogno+"&userid=${requestScope.user.userid}";
+		
+		newwindow = window.open(url, '강아지정보','height=570,width=800,scrollbars=yes');
+		if (window.focus) {
+			newwindow.focus;
+		}
+	}
 </script>
 </html>
-<c:if test="${requestScope.user.userid == sessionScope.userid}">
-	<%@ include file="/bottom.jsp"%>
-</c:if>

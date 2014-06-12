@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <style type="text/css">
-	td,th {	font-family: '맑은 고딕'	}
+	td,th {	font-family: '나눔고딕'	}
 	#bigimg > img{
 		width: 400px;
 		height: 330px;
@@ -48,7 +48,7 @@
 						이름
 					</td>
 					<td>
-						<input type="text" class="form-control" name="username" value="${requestScope.user.username}">
+						<input type="text" class="form-control" disabled="disabled" value="${requestScope.user.username}">
 					</td>
 				</tr>
 				<tr>
@@ -56,7 +56,7 @@
 						ID
 					</td>
 					<td>
-						<input type="text" class="form-control" name="userid" value="${requestScope.user.userid}">
+						<input type="text" class="form-control" disabled="disabled" value="${requestScope.user.userid}">
 					</td>
 				</tr>
 				<tr>

@@ -33,8 +33,7 @@
 	</update>
 	
 	<update id="updateInfo" parameterType="UserDTO">
-		update userinfo set userid=#{userid},username=#{username},passwd=#{passwd},address=#{address}
-		where userno=#{userno}
+		update userinfo set passwd=#{passwd},address=#{address} where userno=#{userno}
 	</update>
 	
 	<update id="planCheck" parameterType="int">
