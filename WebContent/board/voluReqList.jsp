@@ -22,6 +22,7 @@
                         <table id="reqbrd_list" class="table .table-condensed">
                             <tr style="background-color:#FC0;">
                             	<th>신청자번호</th>
+                            	<th>이름</th>
                                 <th>마일나리</th>
                                 <th>지역</th>
                                 <th>수락하기</th>
@@ -66,6 +67,7 @@
 	                    	var line = $('<tr>');
 	                    	
 	                    	line.append($('<td>').html(index+1))
+	                    		.append($('<td>').html(brdreq.name))
 	                    		.append($('<td>').html(brdreq.point))
 	                    		.append($('<td>').html(brdreq.address));
 	                    	
