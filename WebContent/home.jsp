@@ -6,75 +6,67 @@
 <%@ page import="model.dto.UserDTO" %>
 <%@ page import="model.dao.UserDAO" %>
 <%@ page import="model.dao.TestDAO" %>
+<%@ page import="model.dto.DiaryDTO" %>
 <!DOCTYPE html>
 <html>
     <head>
         <%@ include file="/static/pages/head.jsp" %>
         <style type="text/css">
-            body {
-            background-color: white;
-            }
-            div#myCarousel {
-            width: 100%;
-            heigth: 300px;
-            }
-            div#container {
-            width: 980px;
-            float: left;
-            margin-left: 8%;
-            margin-top: 20px;
-            }
-            div#media{
-            margin-top:20px;
-            float: left;
-            margin-left: 5%;
-            width: 330px;
-            height: inherit;
-            background-color: white; 
-            border-top-left-radius: 5px; 
-            border-top-right-radius: 5px; 
-            border-bottom-left-radius: 5px; 
-            border-bottom-right-radius: 5px;
-            }
-            div#siteInfo {
-            margin-top:20px;
-            margin-right: 5%;
-            float: right;
-            width: 680px;
-            height: 80px;
-            background-color: gray;
-            border-top-left-radius: 5px; 
-            border-top-right-radius: 5px; 
-            border-bottom-left-radius: 5px; 
-            border-bottom-right-radius: 5px;
-            }
-            div#thumb {
-            float: left;/* 
+body {
+	background-color: white;
+}
+
+div#myCarousel {
+	width: 100%;
+	heigth: 300px;
+}
+
+div#container {
+	width: 980px;
+	float: left;
+	margin-left: 8%;
+	margin-top: 20px;
+}
+
+div#media {
+	margin-top: 20px;
+	float: left;
+	margin-left: 5%;
+	width: 330px;
+	height: inherit;
+	background-color: white;
+	border-radius: 5px;
+}
+
+div#thumb {
+	float: left; /* 
             margin-left: 5%; */
-            width: 50%;
-           	height: 200px;
-            }
-            div#thumb2 {
-            margin-top:20px;
-            float: left;
-            left:;
-            width: 400px;
-            }
-            div#con {
-            margin-top:20px;
-            float: left;
-            left:;
-            width: 33%;
-            height: 100%;
-            }
-            div#well{
-            margin-top:20px;
-            margin-right: 5%;
-            float: right;
-            width: 680px;
-            height: 406px;
-            }
-        </style>
+	width: 50%;
+	height: 200px;
+}
+
+div#con {
+	margin-top: 20px;
+	float: left;
+	left:;
+	width: 33%;
+	height: 100%;
+}
+
+div#well {
+	margin-top: 20px;
+	margin-right: 5%;
+	float: right;
+	width: 680px;
+	height: 406px;
+}
+
+.thumbnail>img, .thumbnail a>img {
+margin-left: auto;
+margin-right: auto;
+height: 222px;
+}
+</style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <!-- 
@@ -163,8 +155,8 @@
 				<div class="well" id="well">
 					
                     <div class="col-sm-6 col-md-3" id="thumb">
-                        <div class="thumbnail">
-                            <br><img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg" width="200" class="img-rounded">
+                        <div class="thumbnail" style="text-overflow: ellipsis;">
+                            <br><img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg" width="200px" class="img-rounded">
                             <div class="caption">
                                 <h4>${sessionScope.mdto.mname}를 찾습니다!</h4>
                                 <p>${sessionScope.mdto.title}</p>
@@ -180,13 +172,15 @@
                         List<UserDTO> list = null;
                         List<UserDTO> imgUser = null;
                         UserDTO user = null;
+                        DiaryDTO diary = null;
                         int ran = 0;
                         	if(session.getAttribute("userid")==null){
                         		list = UserDAO.allUsers();
                         		imgUser = new ArrayList<UserDTO>();
                         		for(int i=0;i<list.size();i++){
-                        			if(TestDAO.selectLastDiary(list.get(i).getUserno())!=null){
-                        				if(TestDAO.selectLastDiary(list.get(i).getUserno()).getBrdcontent().split("!split!")[0]!=null){
+                        			diary = TestDAO.selectLastDiary(list.get(i).getUserno());
+                        			if(diary!=null){
+                        				if(diary.getBrdcontent().split("!split!")[0].trim().length()!=0){
                         					imgUser.add(UserDAO.selectOne(list.get(i).getUserno()));
                         				}
                         			}
@@ -197,65 +191,58 @@
                         		request.setAttribute("img", TestDAO.selectLastDiary(user.getUserno()).getBrdcontent().split("!split!")[0]);
                         	}
                         %>
-                        
-                        <div class="col-sm-6 col-md-3" id="thumb">
-                        	<div class="thumbnail">
-                        	    <%-- <br><img src="${requestScope.checkImg}" height="100%" width="inherit"> --%>
-                        	    <c:choose>
-                                	<c:when test="${sessionScope.userid != null}">
-                                    	<c:choose>
-                                        	<c:when test="${requestScope.randomUser != null}">
-                                        		<br><img src="${requestScope.checkImg}" height="100%" width="inherit">
-                 							</c:when>
-											<c:otherwise>친구정보가 없습니다.</c:otherwise>
-                                        </c:choose>
-                                    </c:when>
-                                	<c:otherwise>
-                                	</c:otherwise>
-                                </c:choose>
-                        	    <div class="caption">
-                        	        <h4><%-- ${requestScope.randomUser.userid}님의 최근 게시물 --%>
-                        	        	<c:choose>
-                                   			<c:when test="${requestScope.randomUser !=null}">
-                                       			<img src="${requestScope.randomUser.img}" width="30" class="img-rounded">
-                                        		${requestScope.randomUser.userid}님의 최근 게시물
-                                    		</c:when>
-                                   			<c:otherwise>
-                                    		</c:otherwise>
-                                		</c:choose>
-                        	        </h4>
-                        	        <p>asdf</p>
-                        	        <p>
-                        	        	<c:choose>
-                                            <c:when test="${sessionScope.userid != null}">
-                                                <c:choose>
-                                                    <c:when test="${requestScope.randomUser != null}">
-                                                        ${requestScope.checkCont}<br>
-                                                        <a href="#" class="btn btn-primary" onclick="visitUser('${requestScope.randomUser.userid}')">방문하기</a>
-                                                        <a href="/gaenari/home.do" class="btn btn-default">다른사람보기</a>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        친구정보가 없습니다.
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <a href="/gaenari/home.do" class="btn btn-default">다른게시물보기</a>
-                                            </c:otherwise>
-                                        </c:choose>
-                       		        </p>
-                   	         	</div>
-                        	</div>
-                    	</div>
+                     <div class="col-sm-6 col-md-3" id="thumb">
+                     	<div class="thumbnail" style="text-overflow: ellipsis;"><br>
+                     		<c:choose>
+                     			<c:when test="${sessionScope.userid == null}"><!-- 로그인 안 된 상태 -->
+									<img src="${requestScope.img}" width="200px" class="img-rounded">
+									<div class="caption">
+										<h4><img src="${requestScope.randomUser.img}" width="30" class="img-rounded">${requestScope.randomUser.userid}님의 최근 게시물</h4>
+										<%-- <p>${sessionScope.mdto.title}</p> --%>
+										<p>
+											<a href="#" class="btn btn-primary" onclick="visitUser('${requestScope.randomUser.userid}')">정보보기</a>
+                                            <a href="/gaenari/home.do" class="btn btn-default">다른사람보기</a>
+										</p>
+									</div>
+								</c:when>
+                     			<c:otherwise><!-- 로그인 된 상태 -->
+                     				<c:choose>
+                     					<c:when test="${requestScope.randomUser == null}"><!-- 친구 한 명도 없을 때 -->
+											<img src="/gaenari/image/smalldog.jpg" width="200px" class="img-rounded">
+											<div class="caption">
+												<h4>등록된 친구가 없습니다.</h4>
+												<p>개작은집에서 친구를 검색해보세요!</p>
+												<p>
+													<a href="/gaenari/friends.do?userid=${sessionScope.user.userid}" class="btn btn-info">검색하러가기</a>
+												</p>
+											</div>
+                     					</c:when>
+                     					<c:otherwise><!-- 친구 있을 때 -->
+                     						<img src="${requestScope.checkImg}" width="200px" class="img-rounded">
+											<div class="caption">
+												<h4><img src="${requestScope.randomUser.img}" width="30" class="img-rounded">${requestScope.randomUser.userid}님의 최근 게시물</h4>
+												<p>${requestScope.checkCont}</p>
+												<p>
+													<a href="#" class="btn btn-primary" onclick="visitUser('${requestScope.randomUser.userid}')">방문하기</a>
+                                                    <a href="/gaenari/home.do" class="btn btn-default">다른사람보기</a>
+												</p>
+											</div>
+                     					</c:otherwise>
+                     				</c:choose>
+                     			</c:otherwise>
+                     		</c:choose>
+                     	</div>
+                    </div>
 				</div>
             </div>
         </div>
+       </div>
         <%@ include file="/static/pages/footer.jsp"%>
     </body>
     <script type="text/javascript">
         function addDog() {
         	var newwindow;
-        	var userid = "${sessionScope.user.userid}";
+        	var userid = "${sessionScope.userid}";
         	var url = "/gaenari/addDog.do?userid="+userid;
         	if(userid==0){
         		alert("로그인 해주세요");
