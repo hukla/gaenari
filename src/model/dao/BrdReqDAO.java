@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.dto.BrdReqDTO;
@@ -12,8 +13,20 @@ import util.DBUtil;
 
 public class BrdReqDAO {
 	
-	public static boolean insertReq(BrdReqDTO brdto) throws SQLException{
+	public static List<BrdReqDTO> selectReqByBrdno(int brdno) throws SQLException{
+		SqlSession session = DBUtil.getSqlSession();
+		List<BrdReqDTO> brdtoList = null;
 		System.out.println("==BrdReqDAO진입==");
+		try{
+			brdtoList = new ArrayList<BrdReqDTO>();
+			brdtoList = session.selectList("brdreq.selectBrdReqByBrdno",brdno);	
+		}finally{
+			DBUtil.closeSession(session); //성공하면 commit 실패하면 rollback
+		}
+		return brdtoList;
+	}
+	
+	public static boolean insertReq(BrdReqDTO brdto) throws SQLException{
 		SqlSession session = DBUtil.getSqlSession();
 		session.commit();
 		boolean result = false;

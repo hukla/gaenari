@@ -73,7 +73,7 @@ function checkQuest(brdno,abrdno){
 	location.href="/gaenari/qualif.do?type=a&brdno="+brdno+"&abrdno="+abrdno;
 }
 function checkBrdStatus(brdno){
-	location.href="/gaenari/brdreq.do?brdno="+brdno;
+	location.href="/gaenari/brdreqSelect.do?brdno="+brdno;
 }
 function checkMyStatus(){
 	
