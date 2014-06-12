@@ -16,7 +16,11 @@ public class BrdtoFormAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//System.out.println("BRDNO=======================>"+request.getParameter("brdno"));
+		String url="/quest/brdtoList.jsp";
 		request.setAttribute("brdno", request.getParameter("brdno"));
-		request.getRequestDispatcher("/quest/brdtoList.jsp").forward(request, response);
+		if(request.getParameter("type").equals("v")){
+			url = "/board/voluReqList.jsp";
+		}
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 }

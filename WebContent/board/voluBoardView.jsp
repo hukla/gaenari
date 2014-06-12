@@ -98,7 +98,7 @@ function apply(brdno,vbrdno){
 }
 function checkBrdStatus(brdno){
 	var newwindow;
-	var url = "/gaenari/brdreqSelect.do?brdno="+brdno;
+	var url = "/gaenari/brdreqList.do?brdno="+brdno+"&type=v";
 	
 	newwindow = window.open(url, '봉사신청 확인 페이지','height=600,width=660,scrollbars=yes');
 	if(window.focus){

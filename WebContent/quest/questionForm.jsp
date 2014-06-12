@@ -29,7 +29,7 @@
                     <!--TODO-->
                     <div id="ptboard-list-container">
                         <div class="ptboard-list-header">
-                            <div class="ptboard-info">
+                            <div class="ptboard-info" style="float: inherit;">
                                 <div class="ptboard-info-title">애견 입양 적합도 테스트</div>
                                 <div class="ptboard-info-description">애견 입양 적합도를 확인하기 위한 테스트입니다.</div>
                             </div>
