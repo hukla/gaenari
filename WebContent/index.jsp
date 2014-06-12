@@ -5,6 +5,6 @@
 <head>
 </head>
 <body>
-<% request.getRequestDispatcher("home.do").forward(request, response); %>
+<% request.getRequestDispatcher("/home.do").forward(request, response); %>
 </body>
 </html>

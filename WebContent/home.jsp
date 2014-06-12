@@ -29,8 +29,8 @@
             float: left;
             margin-left: 5%;
             width: 330px;
-            height: 500px;
-            background-color: darkkhaki; 
+            height: inherit;
+            background-color: white; 
             border-top-left-radius: 5px; 
             border-top-right-radius: 5px; 
             border-bottom-left-radius: 5px; 
@@ -68,7 +68,7 @@
             height: 100%;
             }
             div#well{
-            margin-top:15px;
+            margin-top:20px;
             margin-right: 5%;
             float: right;
             width: 680px;
@@ -137,54 +137,36 @@
                     <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
                     <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
-                
-                <!-- 자원봉사 펫도우미 최신글 -->
+
+				<!-- 자원봉사 펫도우미 최신글 -->
 				<div class="media" id="media">
-					<a class="pull-left" href="#"> 
-						<img class="media-object" src="/gaenari/image/dog9.jpg" width="130px">
+					<div class="list-group">
+					<a href="#" onclick="addDog()" class="list-group-item" style=" background-color: #FFCC00;border-color: #FFCC00;height:122px">
+						<h4 class="list-group-item-heading"><img src="/gaenari/static/images/footprint.png" width="60px;"> 강아지등록</h4>
+						<p class="list-group-item-text">강아지를 등록하는 곳입니다. 강아지를 등록하면 강아지가 등록됩니다.</p>
 					</a>
-					<div class="media-body">
-						<h5 class="media-heading">Mawoef aowgijoawrjglari awgjowagj
-							awiw gi gwg jpwjgwairjawoef aowgijoawrjglari awgjowagj awiw gi
-							gwg jpwjgwairjawoef aowgijoawrjglari awgjowagj awiw gi gwg
-							jpwjgwairj
-						</h5>
 					</div>
-					<a class="pull-left" href="#"> 
-						<img class="media-object" src="/gaenari/image/dog9.jpg" width="130px">
+					<div class="list-group">
+					<a href="#" onclick="goQuest()"  class="list-group-item" style=" background-color: #FFCC00;border-color: #FFCC00;height:122px">
+						<h4 class="list-group-item-heading"><img src="/gaenari/static/images/note.png" width="60px;"> 입양테스트</h4>
+						<p class="list-group-item-text">입양테스트를 하는 곳입니다. 입양테스트를 하면 입양테스트를 한 겁니다.</p>
 					</a>
-					<div class="media-body">
-						<h5 class="media-heading">awoef aowgijoawrjglari awgjowagj
-							awiw gi gwg jpwjgwairjawoef aowgijoawrjglari awgjowagj awiw gi
-							gwg jpwjgwairjawoef aowgijoawrjglari awgjowagj awiw gi gwg
-							jpwjgwairj
-						</h5>
+					</div>
+					<div class="list-group">
+					<a href="#" class="list-group-item" style=" background-color: #FFCC00;border-color: #FFCC00;height:122px">
+						<h4 class="list-group-item-heading"><img src="/gaenari/static/images/developer.png" width="60px;"> 개발자정보</h4>
+						<p class="list-group-item-text">개발자정보를 보는 곳입니다. 공대여신과 롤덕과 성훈이가 나옵니다.</p>
+					</a>
 					</div>
 				</div>
-				<div id="siteInfo">
-					<div class="col-sm-6 col-md-3" id="con">
-                        <div class="panel panel-default" style="height: 60%; background-color: transparent;">
-                        	fasdifw
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3" id="con">
-                        <div class="panel panel-default" style="height: 60%; background-color: transparent;">
-                        	fasdifw
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3" id="con">
-                        <div class="panel panel-default" style="height: 60%; background-color: transparent;">
-                        	fasdifw
-                        </div>
-                    </div>
-				</div>
+				
 				<div class="well" id="well">
 					
                     <div class="col-sm-6 col-md-3" id="thumb">
                         <div class="thumbnail">
                             <br><img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg" width="200" class="img-rounded">
                             <div class="caption">
-                                <h3>${sessionScope.mdto.mname}를 찾습니다!</h3>
+                                <h4>${sessionScope.mdto.mname}를 찾습니다!</h4>
                                 <p>${sessionScope.mdto.title}</p>
                                 <p>
                                     <a href="/gaenari/missingBoardView.do?mbrdno=${sessionScope.mdto.mbrdno}" class="btn btn-primary">봤어요</a> <a
@@ -218,13 +200,11 @@
                         
                         <div class="col-sm-6 col-md-3" id="thumb">
                         	<div class="thumbnail">
-                        	    <br><img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg" width="200" class="img-rounded">
+                        	    <br><img src="${requestScope.checkImg}" height="100%" width="inherit">
                         	    <c:choose>
                                 	<c:when test="${sessionScope.userid != null}">
                                     	<c:choose>
                                         	<c:when test="${requestScope.randomUser != null}">
-                                            	<img src="${requestScope.checkImg}" width="100%">
-                                                	${requestScope.checkCont}
                  							</c:when>
 											<c:otherwise>친구정보가 없습니다.</c:otherwise>
                                         </c:choose>
@@ -233,7 +213,7 @@
                                 	</c:otherwise>
                                 </c:choose>
                         	    <div class="caption">
-                        	        <h3>${requestScope.randomUser.userid}님의 최근 게시물
+                        	        <h4><%-- ${requestScope.randomUser.userid}님의 최근 게시물 --%>
                         	        	<c:choose>
                                    			<c:when test="${requestScope.randomUser !=null}">
                                        			<img src="${requestScope.randomUser.img}" width="30" class="img-rounded">
@@ -242,8 +222,8 @@
                                    			<c:otherwise>
                                     		</c:otherwise>
                                 		</c:choose>
-                        	        </h3>
-                        	        <p>내용내용내용내용내용내용내용내용내용내용내용</p>
+                        	        </h4>
+                        	        <p>asdf</p>
                         	        <p>
                         	        	<c:choose>
                                             <c:when test="${sessionScope.userid != null}">
@@ -274,12 +254,15 @@
     <script type="text/javascript">
         function addDog() {
         	var newwindow;
-        	var url = "/gaenari/addDog.do?userid=${sessionScope.user.userid}";
-        
-        	newwindow = window.open(url, '강아지등록 페이지',
-        			'height=600,width=660,scrollbars=yes');
-        	if (window.focus) {
-        		newwindow.focus;
+        	var userid = "${sessionScope.user.userid}";
+        	var url = "/gaenari/addDog.do?userid="+userid;
+        	if(userid==0){
+        		alert("로그인 해주세요");
+        	}else{
+        		newwindow = window.open(url, '강아지등록 페이지','height=600,width=660,scrollbars=yes');
+        		if (window.focus) {
+        			newwindow.focus;
+        		}
         	}
         }
         function visitUser(userid) {
@@ -291,5 +274,16 @@
         		newwindow.focus;
         	}
         }
+        function goQuest(){
+        	var userid="${sessionScope.userid}";
+        	var newwindow;
+        	var url = "/gaenari/questionform.do?userid="+userid;
+        
+        	if(userid==0){
+        		alert("로그인 해주세요");
+        	}else{
+        		newwindow = window.open(url, '입양테스트','height=570,width=800,scrollbars=yes');
+        	}
+    	}
     </script>
 </html>
