@@ -32,7 +32,6 @@ public class BrdReqSelectAction implements Action {
 		String xmlData = "";
 		int brdno = 0;
 		int userno = 0;
-		System.out.println("brdno="+brdno);
 		
 		String url = null;
 		List<BrdReqDTO> brdtoList = null;
@@ -42,6 +41,7 @@ public class BrdReqSelectAction implements Action {
 			userno = UserDAO.logCheck(userid).getUserno();
 			String brdnoString = request.getParameter("brdno");
 			brdno = Integer.parseInt(brdnoString);
+			System.out.println("brdno="+brdno);
 			brdtoList = new ArrayList<BrdReqDTO>();
 			
 			brdtoList = BrdReqDAO.selectReqByBrdno(brdno);

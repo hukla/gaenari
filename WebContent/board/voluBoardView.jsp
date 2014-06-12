@@ -44,7 +44,10 @@
                                 <div class="part-line">${requestScope.vhour[1]} ~ ${requestScope.vhour[2]}</div>
                            </div>
                         </div>
-                        <c:if test="${sessionScope.userid != requestScope.resultContent.userid}">
+                        
+                        <div class="ptboard-info-bottom">
+                        	<div class="content-container">
+                        	<c:if test="${sessionScope.userid != requestScope.resultContent.userid}">
                                 	<c:choose>
                                 	<c:when test="${requestScope.flag>0}">
                                 		<center>
@@ -58,9 +61,8 @@
 										</center>
 									</c:otherwise>
 									</c:choose>
-								</c:if>
-                        <div class="ptboard-info-bottom">
-                        	<div class="content-container">
+							</c:if>
+                        	
                             <!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
                             <c:if test="${sessionScope.userid == requestScope.resultContent.userid}">
                             <input class="btn btn-yellow" type=button value="신청자 정보확인" onclick='checkBrdStatus(${requestScope.resultContent.brdno})'>
@@ -91,9 +93,8 @@
     </body>
 <script language="javascript">
 function apply(brdno,vbrdno){
-	alert(brdno);
-	alert(vbrdno);
-	location.href="/gaenari/brdreqInsert.do?type=v&brdno="+brdno+"&vbrdno="+vbrdno;
+	location.href="/gaenari/brdreqCheck.do?type=v&brdno="+brdno+"&vbrdno="+vbrdno;
+	/* location.href="/gaenari/brdreqInsert.do?type=v&brdno="+brdno+"&vbrdno="+vbrdno; */
 }
 function checkBrdStatus(brdno){
 	var newwindow;
