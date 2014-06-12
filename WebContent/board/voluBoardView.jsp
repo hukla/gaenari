@@ -92,6 +92,7 @@
 <script language="javascript">
 function apply(brdno,vbrdno){
 	alert(brdno);
+	alert(vbrdno);
 	location.href="/gaenari/brdreqInsert.do?type=v&brdno="+brdno+"&vbrdno="+vbrdno;
 }
 function checkBrdStatus(brdno){
