@@ -22,7 +22,7 @@
                         <table id="reqbrd_list" class="table .table-condensed">
                             <tr style="background-color:#FC0;">
                             	<th>신청자번호</th>
-                            	<th>이름</th>
+                            	<!-- <th>이름</th> -->
                                 <th>마일나리</th>
                                 <th>지역</th>
                                 <th>수락하기</th>
@@ -56,6 +56,7 @@
                     //alert(data);
                 	
                 	var list = data.brdtoList;
+                	var size = data.brdtoList.length;
                 	
                 	if(data.brdtoList[0] != 'empty') {
                 	
@@ -66,8 +67,8 @@
 	                        
 	                    	var line = $('<tr>');
 	                    	
-	                    	line.append($('<td>').html(index+1))
-	                    		.append($('<td>').html(brdreq.name))
+	                    	line.append($('<td>').html(size-index))
+	                    		/* .append($('<td>').html(brdreq.name)) */
 	                    		.append($('<td>').html(brdreq.point))
 	                    		.append($('<td>').html(brdreq.address));
 	                    	

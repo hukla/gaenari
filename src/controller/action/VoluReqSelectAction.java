@@ -53,7 +53,6 @@ public class VoluReqSelectAction implements Action {
 					
 					/*
 					 * 출력할 신청자의 정보
-					 * - 이름
 					 * - 마일나리
 					 * - 지역
 					 */
@@ -65,18 +64,18 @@ public class VoluReqSelectAction implements Action {
 						
 						//obj.put("listlength", donreqList.size());
 						//json += obj;
-						json += "["; 
+						json += "[";
 						for(BrdReqDTO d : brdtoList) {
 							//log.info(d);
 							//out.print("\n,{\"donreq\":"+new JSONObject(d).toString()+"}");
 							obj = new JSONObject(d);
-							obj.put("name",UserDAO.selectOne(d.getUserno()).getUsername());
+							/*obj.put("name",UserDAO.selectOne(d.getUserno()).getUsername());*/
 							obj.put("point", UserDAO.selectOne(d.getUserno()).getPoint());
 							obj.put("address", UserDAO.selectOne(d.getUserno()).getAddress());
 							json += obj.toString()+",";
 						}
 						json = json.substring(0, json.lastIndexOf(","));
-						json += "]}";
+						json += "], \"length\":"+brdtoList.size()+"}";
 					} else {
 						json += "\"empty\"}";
 					}
