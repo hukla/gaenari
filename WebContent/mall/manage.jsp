@@ -22,8 +22,10 @@
                             </div>
                         </div>
                         <div class="explore-search-results" data-menuno="${requestScope.menuno}">
-                            <div class="progress progress-striped">
-                                <div class="progress-bar progress-bar-danger" id="mgt-pgbar" role="progressbar" aria-valuetransitiongoal="100"></div>
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-danger" id="mgt-pgbar" role="progressbar" aria-valuetransitiongoal="100" style="width:100%;">
+                                	<span>페이지 로딩중입니다. 잠시만 기다려주세요!</span>
+                                </div>
                             </div>
                             <c:choose>
                             <c:when test="${requestScope.menuno == 1}">

@@ -39,7 +39,7 @@ $(function () {
                 		.append($('<td>').html(don.qty));
                     
                 	
-                	if (don.sent == "Y") {
+                	if (don.sent == 'N') {
                     	line.append($('<td>').attr('id', 'reqSend').append($("<input type='button' class='btn btn-yellow' value='배송하기' id='send' name='" + $(this).find("drno").text() + "'>")));
                     } else {
                     	line.append('<td>배송 완료</td>');
@@ -47,6 +47,9 @@ $(function () {
                     
                     $('#don_mgt tr:eq(0)').after(line);
                 });
+                
+                $('.progress').attr('class', 'progress progress-striped');
+                $('#mgt-pgbar').empty();
                 
             },
             error: function (data) {
@@ -79,6 +82,9 @@ $(function () {
                 });
                 table += "<tr><td colspan='6' align='center'><button class='btn btn-yellow' onclick='insertItem()'>상품 등록하기</button></td></tr>"
                 $('#item_mgt tr:eq(0)').after(table);
+                
+                $('.progress').attr('class', 'progress progress-striped');
+                $('#mgt-pgbar').empty();
             },
             error: function (data) {
                 alert(data + ' => 에러 발생');
@@ -116,6 +122,9 @@ $(function () {
                     table += "</tr>";
                 });
                 $('#donreq_mgt tr:eq(0)').after(table);
+                
+                $('.progress').attr('class', 'progress progress-striped');
+                $('#mgt-pgbar').empty();
             },
             error: function (data) {
                 alert(data + ' => 에러 발생');

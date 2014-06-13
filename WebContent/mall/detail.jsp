@@ -87,10 +87,13 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
-            
-            <div class="item-donate-state" style="position:fixed;bottom:0;left:45%"></div>
+
+            <div class="item-donate-state">
+            	<div class="item-donate-state-text"></div>
+            </div>
             
             </div>
             

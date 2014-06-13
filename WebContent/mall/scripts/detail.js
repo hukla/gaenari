@@ -63,17 +63,18 @@ $(function () {
             success: function (data) {
             	//alert(data.isSuccess);
             	var alertmsg = "";
-            	$('.item-donate-state').empty();
+            	$('.item-donate-state-text').empty();
             	
             	if(data.isSuccess) {
             		
             		alertmsg += "<div class='alert alert-warning alert-dismissable'>";
             		alertmsg += "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
-            		alertmsg += "<strong>기부 완료!</strong>";
+            		alertmsg += "<strong>기부가 완료되었습니다!</strong>";
+            		alertmsg += "<br><a href='/gaenari/mallMyPage.do'>확인하러 가기</a>";
             		alertmsg += "</div>";
             	}
             	
-            	$('.item-donate-state').html(alertmsg);
+            	$('.item-donate-state-text').html(alertmsg);
             	
             },
             error: function (data) {
