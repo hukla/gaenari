@@ -23,7 +23,7 @@ public class MallUpdateItemAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String url = "mall/complete.jsp";
+		String url = "/mall/complete.jsp";
 		String operation = "수정";
 		String fileName = null;
 		

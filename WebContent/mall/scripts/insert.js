@@ -6,4 +6,6 @@ $(function(){
 		opener.location.reload();
 			self.close();
 	});
+	
+	
 });

@@ -8,7 +8,7 @@
         <div id="wrapper">
             <div id="content">
                 <div class="container">
-                    <form name="itemModify" method="post" action="control?command=insertItem" enctype="multipart/form-data">
+                    <form name="itemModify" method="post" action="/gaenari/updateItem.do" enctype="multipart/form-data">
                         <input type="hidden" name="itemno" value="${selectedItem.itemno}">
                         <table class="table" id="modify-table" style="margin-top:10px;">
                             <tr>
