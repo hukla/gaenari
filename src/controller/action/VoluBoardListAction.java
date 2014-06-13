@@ -25,10 +25,12 @@ public class VoluBoardListAction implements Action {
 		List<VoluBoardDTO> tenVolu = null;
 		int pageCount = 0;
 		List<String> cntrName = null;
+		List<String> cntrLoc = null;
 		
 		String url = "/error.jsp";
 		try{
 			cntrName = new ArrayList<String>();
+			cntrLoc = new ArrayList<String>();
 			pageNumber = request.getParameter("pageNumber");
 			System.out.println("pageNumber="+pageNumber);
 				
@@ -41,12 +43,16 @@ public class VoluBoardListAction implements Action {
 			for(int i=0;i<10;i++){
 				String cntr = VoluBoardDAO.getCntrName(tenVolu.get(i).getUserno());
 				cntrName.add(cntr);
+				String loc = VoluBoardDAO.getCntrLoc(tenVolu.get(i).getUserno());
+				cntrLoc.add(loc);
 			}
 			url="board/voluBoardList.jsp";
 			
 			request.setAttribute("pageCount", pageCount);
+			
 			request.setAttribute("tenVolu", tenVolu);
 			request.setAttribute("center",cntrName);
+			request.setAttribute("centerLoc",cntrLoc);
 			System.out.println(cntrName.toString());
 			
 		}catch(SQLException e){

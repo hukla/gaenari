@@ -64,6 +64,10 @@
 		select cntrname from centerinfo where cntrno=#{int}
 	</select>
 	
+	<select id="centerLoc" parameterType="int" resultType="String">
+		select cntrloc from centerinfo where cntrno=#{int}
+	</select>
+	
 	<select id="getUserType" parameterType="int" resultType="int">
 		select usertype from userinfo where userno=#{int}
 	</select>
