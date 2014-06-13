@@ -84,7 +84,7 @@ height: 222px;
         <%@ include file="/static/pages/header.jsp"%>
         <div id="content">
             <%@ include file="/static/pages/menubar.jsp"%>
-            <div class="container">
+            <div class="container" style="width:1322px;">
                 <div id="myCarousel" class="carousel slide" align="left" data-ride="carousel" data-interval="3000">
                     <ol class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
