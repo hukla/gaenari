@@ -100,5 +100,5 @@
         <%@ include file="/static/pages/footer.jsp"%>
         </div>
     </body>
-    <script src="mall/scripts/detail.js"></script>
+    <script src="/gaenari/mall/scripts/detail.js"></script>
 </html>

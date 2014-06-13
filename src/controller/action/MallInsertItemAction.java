@@ -24,7 +24,7 @@ public class MallInsertItemAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		String url = "mall/complete.jsp";
+		String url = "/gaenari/mall/complete.jsp";
 		String operation = "등록";
 		String fileName = null;
 		

@@ -40,7 +40,7 @@ $(function () {
                     
                 	
                 	if (don.sent == 'N') {
-                    	line.append($('<td>').attr('id', 'reqSend').append($("<input type='button' class='btn btn-yellow' value='배송하기' id='send' name='" + $(this).find("drno").text() + "'>")));
+                    	line.append($('<td>').attr('id', 'reqSend').append($("<input type='button' class='btn btn-yellow' value='배송하기' id='send' data-drno="+don.drno+" name='" + don.drno + "'>")));
                     } else {
                     	line.append('<td>배송 완료</td>');
                     }
@@ -137,7 +137,7 @@ $(function () {
         $.ajax({
             url: "/gaenari/sendDonreq.do",
             dataType: "text",
-            data: "drno=" + $(this).attr("name"),
+            data: "drno=" + $(this).data("drno"),
             success: function (data) {
                 $('.mall-action-state-text').empty();
                 

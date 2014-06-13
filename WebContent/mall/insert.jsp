@@ -8,7 +8,8 @@
         <div id="wrapper">
             <div id="content">
                 <div class="container">
-                    <form name="itemModify" method="post" action="control?command=insertItem" enctype="multipart/form-data">
+                    <form name="itemModify" method="post" action="/gaenari/mall/insertItem.do" enctype="multipart/form-data">
+                    <input type="hidden" name="itemno" value="${requestScope.finalitemno}">
                         <table class="table" id="insert-table" style="margin-top:10px;">
                             <tr>
                                 <th colspan="2" style="text-align:center;font-size:20px;background-color:#fc0;border-radius:5px;">상품 등록</td>

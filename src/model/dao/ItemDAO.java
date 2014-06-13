@@ -77,10 +77,14 @@ public class ItemDAO {
 		
 		try {
 			session = DBUtil.getSqlSession();
-			finalItemNo = session.selectOne("iteminfo.selectMaxItemNo");
-			if(finalItemNo < 0) {
-				log.error("negative finalItemNo : "+finalItemNo);
+			if(session.selectOne("iteminfo.selectMaxItemNo") != null){
+				finalItemNo = session.selectOne("iteminfo.selectMaxItemNo");
+				
+				if(finalItemNo < 0) {
+					log.error("negative finalItemNo : "+finalItemNo);
+				}
 			}
+			
 		} finally {
 			DBUtil.closeSession(session);
 		}
