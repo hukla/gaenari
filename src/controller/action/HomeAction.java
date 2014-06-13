@@ -170,9 +170,7 @@ public class HomeAction implements Action {
 			}
 			
 			url = "/home.jsp";
-			
 			//유기견 광고를 랜덤으로 받아 세션에 저장
-			SqlSession sqlSession = null;
 			String userId = (String)session.getAttribute("userid");
 			MissingBoardDTO mdto = null;
 			mdto = MFABoardDAO.getAds(userId);
