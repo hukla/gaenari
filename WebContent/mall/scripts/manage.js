@@ -14,13 +14,13 @@ $(function () {
             url: "/gaenari/getDonList.do",
             dataType: "json",
             success: function (data) {
-                alert("success");
+                //alert("success");
             	//alert(data.donreqList);
             	
             	var donList = data.donreqList;
             	
             	
-            	 var datalength = donList.length;
+            	 var datalength = data.listlength;
                  var progress = 100 / datalength;
             	//alert(datalength);
                 $("#don_mgt tr:gt(0)").remove();
@@ -32,7 +32,7 @@ $(function () {
                     
                 	var line = $('<tr>');
                 	
-                	line.append($('<td>').html(index+1))
+                	line.append($('<td>').html(datalength - index))
                 		.append($('<td>').html(don.userid))
                 		.append($('<td>').html(don.targetcntr))
                 		.append($('<td>').html(don.itemname))
@@ -139,7 +139,7 @@ $(function () {
             dataType: "text",
             data: "drno=" + $(this).attr("name"),
             success: function (data) {
-                $('.manage-state').empty();
+                $('.mall-action-state-text').empty();
                 
                 var statemsg = "";
                 
@@ -156,7 +156,7 @@ $(function () {
             		statemsg += "</div>";
                 }
                 
-                $('.manage-state').html(statemsg);
+                $('.mall-action-state-text').html(statemsg);
             },
             error: function (data) {
                 alert(data + ' => 에러 발생');
@@ -171,7 +171,7 @@ $(function () {
             dataType: "text",
             data: "drno=" + $(this).attr("name"),
             success: function (data) {
-            	$('.manage-state').empty();
+            	$('.mall-action-state-text').empty();
                 
                 var statemsg = "";
                 
@@ -188,7 +188,7 @@ $(function () {
             		statemsg += "</div>";
                 }
                 
-                $('.manage-state').html(statemsg);
+                $('.mall-action-state-text').html(statemsg);
             },
             error: function (data) {
                 alert(data + ' => 에러 발생');

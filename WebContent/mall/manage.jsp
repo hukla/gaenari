@@ -72,7 +72,9 @@
                             	<script type="text/javascript">alert("잘못된 접근입니다!");history.back();</script>
                             </c:otherwise>
                             </c:choose>
-                            <div class="manage-state" style="position:fixed;bottom:0;align:center"></div>
+                            <div class="mall-action-state">
+            	<div class="mall-action-state-text"></div>
+            </div>
                         </div>
                     </div>
                 </div>

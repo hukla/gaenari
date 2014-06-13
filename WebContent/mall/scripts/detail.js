@@ -63,7 +63,7 @@ $(function () {
             success: function (data) {
             	//alert(data.isSuccess);
             	var alertmsg = "";
-            	$('.item-donate-state-text').empty();
+            	$('.mall-action-state-text').empty();
             	
             	if(data.isSuccess) {
             		
@@ -74,7 +74,7 @@ $(function () {
             		alertmsg += "</div>";
             	}
             	
-            	$('.item-donate-state-text').html(alertmsg);
+            	$('.mall-action-state-text').html(alertmsg);
             	
             },
             error: function (data) {
@@ -92,7 +92,7 @@ $(function () {
             success: function (data) {
             	//alert(data.isSuccess);
             	var alertmsg = "";
-            	$('.item-donate-state').empty();
+            	$('.mall-action-state-text').empty();
             	
             	if(data.isSuccess) {
             		
@@ -102,7 +102,7 @@ $(function () {
             		alertmsg += "</div>";
             	}
             	
-            	$('.item-donate-state').html(alertmsg);
+            	$('.mall-action-state-text').html(alertmsg);
             	
             },
             error: function (data) {

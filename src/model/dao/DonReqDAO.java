@@ -8,15 +8,40 @@
  */
 package model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import model.dto.CenterDTO;
 import model.dto.DonReqDTO;
+import model.dto.ItemDTO;
+import model.dto.UserDTO;
 
 import org.apache.ibatis.session.SqlSession;
 
 import util.DBUtil;
 
 public class DonReqDAO {
+	public static Map<String, String> selectDonAll(int userno, int targetcntr, int itemno) {
+		SqlSession session = null;
+		Map<String, String> res = new HashMap<String, String>();
+		
+		try {
+			session = DBUtil.getSqlSession();
+			UserDTO user = session.selectOne("u.selectOne", userno);
+			CenterDTO center = session.selectOne("centerinfo.selectOne", targetcntr);
+			ItemDTO item = session.selectOne("iteminfo.selectOne", itemno);
+			
+			res.put("userid", user.getUserid());
+			res.put("targetcntr", center.getCntrname());
+			res.put("itemname", item.getItemname());
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		
+		return res;
+	}
+	
 	/**
 	 * donreq에 있는 모든 레코드를 가져옴
 	 * @param type(1이면 기부 / 0이면 기부 요청)

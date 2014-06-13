@@ -91,8 +91,8 @@
                 </div>
             </div>
 
-            <div class="item-donate-state">
-            	<div class="item-donate-state-text"></div>
+            <div class="mall-action-state">
+            	<div class="mall-action-state-text"></div>
             </div>
             
             </div>

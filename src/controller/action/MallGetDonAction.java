@@ -8,6 +8,7 @@ package controller.action;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -45,17 +46,20 @@ public class MallGetDonAction implements Action {
 			//obj.put("listlength", donreqList.size());
 			//json += obj;
 			
+			Map<String, String> res = null; 
+			
 			for(DonReqDTO d : donreqList) {
+				res = DonReqDAO.selectDonAll(d.getUserno(), d.getTargetcntr(), d.getItemno());
 				//out.print("\n,{\"donreq\":"+new JSONObject(d).toString()+"}");
 				obj = new JSONObject(d);
-				obj.put("userid", UserDAO.selectOne(d.getUserno()).getUserid());
-				obj.put("targetcntr", CenterDAO.selectOne(d.getTargetcntr()).getCntrname());
-				obj.put("itemname", ItemDAO.selectOne(d.getItemno()).getItemname());
+				obj.put("userid", res.get("userid"));
+				obj.put("targetcntr", res.get("targetcntr"));
+				obj.put("itemname", res.get("itemname"));
 				json += obj.toString()+",";
 				
 			}
 			json = json.substring(0, json.lastIndexOf(","));
-			json += "]}";
+			json += "],\"listlength\":"+donreqList.size()+"}";
 			out.print(json);
 			log.debug(json);
 			

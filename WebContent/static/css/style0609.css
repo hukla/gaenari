@@ -926,3 +926,15 @@ color:#3E403A;
 #reqbrd-list > th{
 	width:auto;
 }
+
+.mall-action-state {
+position: fixed;
+width: 100%;
+top: 50%;
+display: inline-block;
+text-align: -webkit-center;
+}
+
+.mall-action-state .mall-action-state-text {
+	width:500px;
+}
