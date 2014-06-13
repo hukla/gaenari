@@ -155,43 +155,69 @@ height: 222px;
 				
 				<div class="well" id="well">
 					
-                    <div class="col-sm-6 col-md-3" id="thumb">
-                        <div class="thumbnail" style="text-overflow: ellipsis;">
-                            <br><img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg" width="200px" class="img-rounded">
-                            <div class="caption">
-                                <h4>${sessionScope.mdto.mname}를 찾습니다!</h4>
-                                <p>${sessionScope.mdto.title}</p>
-                                <p>
-                                    <a href="/gaenari/missingBoardView.do?mbrdno=${sessionScope.mdto.mbrdno}" class="btn btn-primary">봤어요</a> <a
-                                        href="/gaenari/missingBoardMain.do" class="btn btn-default">다른신고보기</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+					<c:choose>
+						<c:when test="${not empty sessionScope.mdto}">
+							<div class="col-sm-6 col-md-3" id="thumb">
+								<div class="thumbnail" style="text-overflow: ellipsis;">
+									<br>
+									<img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg"
+										width="200px" class="img-rounded">
+									<div class="caption">
+										<h4>${sessionScope.mdto.mname}를찾습니다!</h4>
+										<p>${sessionScope.mdto.title}</p>
+										<p>
+											<a
+												href="/gaenari/missingBoardView.do?mbrdno=${sessionScope.mdto.mbrdno}"
+												class="btn btn-primary">봤어요</a> <a
+												href="/gaenari/missingBoardMain.do" class="btn btn-default">다른신고보기</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="col-sm-6 col-md-3" id="thumb">
+								<div class="thumbnail" style="text-overflow: ellipsis;">
+									<br>
+									<img src="/gaenari/image/defaultDog.jpg"
+										width="200px" class="img-rounded">
+									<div class="caption">
+										<h4>아무정보도 없습니다.</h4>
+									</div>
+								</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					
+                    
                     <%
-                        String img = null;
-                        List<UserDTO> list = null;
-                        List<UserDTO> imgUser = null;
-                        UserDTO user = null;
-                        DiaryDTO diary = null;
-                        int ran = 0;
-                        	if(session.getAttribute("userid")==null){
-                        		list = UserDAO.allUsers();
-                        		imgUser = new ArrayList<UserDTO>();
-                        		for(int i=0;i<list.size();i++){
-                        			diary = TestDAO.selectLastDiary(list.get(i).getUserno());
-                        			if(diary!=null){
-                        				if(diary.getBrdcontent().split("!split!")[0].trim().length()!=0){
-                        					imgUser.add(UserDAO.selectOne(list.get(i).getUserno()));
-                        				}
-                        			}
-                        		}
-                        		ran = (int)(Math.random()*imgUser.size());
-                        		user = UserDAO.selectOne(imgUser.get(ran).getUserno());
-                        		request.setAttribute("randomUser", user);
-                        		request.setAttribute("img", TestDAO.selectLastDiary(user.getUserno()).getBrdcontent().split("!split!")[0]);
-                        	}
-                        %>
+					                                        	String img = null;
+					                                        	List<UserDTO> list = null;
+					                                        	List<UserDTO> imgUser = null;
+					                                        	UserDTO user = null;
+					                                        	DiaryDTO diary = null;
+					                                        	int ran = 0;
+					                                        	if (session.getAttribute("userid") == null) {
+					                                        		list = UserDAO.allUsers();
+					                                        		imgUser = new ArrayList<UserDTO>();
+					                                        		for (int i = 0; i < list.size(); i++) {
+					                                        			diary = TestDAO.selectLastDiary(list.get(i).getUserno());
+					                                        			if (diary != null) {
+					                                        				if (diary.getBrdcontent().split("!split!")[0].trim()
+					                                        						.length() != 0) {
+					                                        					imgUser.add(UserDAO.selectOne(list.get(i)
+					                                        							.getUserno()));
+					                                        				}
+					                                        			}
+					                                        		}
+					                                        		ran = (int) (Math.random() * imgUser.size());
+					                                        		user = UserDAO.selectOne(imgUser.get(ran).getUserno());
+					                                        		request.setAttribute("randomUser", user);
+					                                        		request.setAttribute("img",
+					                                        				TestDAO.selectLastDiary(user.getUserno())
+					                                        						.getBrdcontent().split("!split!")[0]);
+					                                        	}
+					                                        %>
                      <div class="col-sm-6 col-md-3" id="thumb">
                      	<div class="thumbnail" style="text-overflow: ellipsis;"><br>
                      		<c:choose>

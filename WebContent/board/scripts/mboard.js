@@ -33,12 +33,8 @@ $(function(){
 					bc += "</div>";
 					bc += "<div class='mfboard-card-content'>";
 					bc += "<div class='mfboard-card-title'>";
-					bc += "<a href='/gaenari/missingBoardView.do?mbrdno="+$(this).find("mbrdno").text()+"'>실종 장소 : "+$(this).find("mloc").text()+"<br>";
-					bc += "실종 날짜 : "+$(this).find("mdate").text()+"</a>";
-					bc += "</div>";
-					bc += "<div class='mfboard-card-author'>";
-					bc += "ON "+$(this).find("mdate").text();
-					bc += "</div> </div> </div> </div> </div>";
+					bc += "<a href='/gaenari/missingBoardView.do?mbrdno="+$(this).find("mbrdno").text()+"'>실종 장소 : "+$(this).find("mloc").text()+"</a>";
+					bc += "</div></div> </div> </div> </div>";
 				});	
 				
 				//alert(table);

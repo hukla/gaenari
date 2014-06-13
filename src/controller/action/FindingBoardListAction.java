@@ -63,6 +63,7 @@ public class FindingBoardListAction implements Action {
 				xmlData += "<brdno>"+f.getBrdno()+"</brdno>";
 				xmlData += "<fbrdno>"+f.getFbrdno()+"</fbrdno>";
 				xmlData += "<floc>"+f.getFloc()+"</floc>";
+				xmlData += "<wrdate>"+f.getWrdate()+"</wrdate>";
 				if(f.getBrdcontent().contains("split")){
 					picPath = f.getBrdcontent().split("!split!")[0];
 				}else{
