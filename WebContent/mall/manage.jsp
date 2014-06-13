@@ -72,12 +72,13 @@
                             	<script type="text/javascript">alert("잘못된 접근입니다!");history.back();</script>
                             </c:otherwise>
                             </c:choose>
-                            <div class="mall-action-state">
-            	<div class="mall-action-state-text"></div>
-            </div>
+                            
                         </div>
                     </div>
                 </div>
+                <div class="mall-action-state">
+            	<div class="mall-action-state-text"></div>
+            </div>  
             </div>
             <%@ include file="/static/pages/footer.jsp" %>
         </div>

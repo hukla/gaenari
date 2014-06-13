@@ -41,8 +41,7 @@ div#media {
 div#thumb {
 float: left;
 width: 50%;
-height: 400px;
-overflow-y: overlay;
+height: 360px;
 }
 
 div#con {
@@ -59,6 +58,8 @@ div#well {
 	float: right;
 	width: 680px;
 	height: 406px;
+	background-color: #fff;
+	border:0;
 }
 
 .thumbnail>img, .thumbnail a>img {
@@ -66,6 +67,19 @@ margin-left: auto;
 margin-right: auto;
 height: 222px;
 }
+
+.thumbnail.title {
+background-color: #fc0;
+border: none;
+margin-bottom: 0;
+}
+
+.thumbnail.content {
+text-overflow: ellipsis;
+height: 330px;
+overflow-y: overlay;
+}
+
 </style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -158,7 +172,10 @@ height: 222px;
 					<c:choose>
 						<c:when test="${sessionScope.mdto != null}">
 							<div class="col-sm-6 col-md-3" id="thumb">
-								<div class="thumbnail" style="text-overflow: ellipsis;">
+								<div class="thumbnail title" style="background-color: #fc0;border: none;margin-bottom: 0;">
+									<div class="caption" style="font-size: 20px;text-align: center;padding: 0;">우리 지역 실종견 신고</div>
+								</div>
+								<div class="thumbnail content" style="text-overflow: ellipsis;">
 									<br>
 									<img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg"
 										width="200px" class="img-rounded">
@@ -211,7 +228,10 @@ height: 222px;
 						}
 					%>
 					<div class="col-sm-6 col-md-3" id="thumb">
-                     	<div class="thumbnail" style="text-overflow: ellipsis;"><br>
+						<div class="thumbnail title" style="background-color: #fc0;border: none;margin-bottom: 0;">
+									<div class="caption" style="font-size: 20px;text-align: center;padding: 0;">내 친구 소식</div>
+								</div>
+                     	<div class="thumbnail content" style="text-overflow: ellipsis;"><br>
                      		<c:choose>
                      			<c:when test="${sessionScope.userid == null}"><!-- 로그인 안 된 상태 -->
 									<img src="${requestScope.img}" width="200px" class="img-rounded">
