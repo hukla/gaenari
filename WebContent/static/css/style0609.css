@@ -15,7 +15,7 @@ padding:0;
 .container {
 margin-left:auto;
 margin-right:auto;
-height:auto;
+height:auto
 }
 
 #wrapper {
@@ -571,8 +571,7 @@ background-image:none;
 min-width:600px;
 border-radius:4px;
 width:96%;
-margin-left:auto;
-margin-right:auto;
+margin:0 auto;
 border-color:#ffffff;
 }
 
@@ -937,4 +936,8 @@ text-align: -webkit-center;
 
 .mall-action-state .mall-action-state-text {
 	width:500px;
+}
+
+.thumbnail {
+margin:0;
 }

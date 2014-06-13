@@ -128,7 +128,7 @@ span#mfboard{
 								</c:otherwise>
 							</c:choose>
 						</td>
-						<td width="65%" height="30%"><h1 align="left">
+						<td width="65%" height="17%"><h1 align="left">
 							<c:choose>
 								<c:when test="${requestScope.user.userid == sessionScope.userid}">
 									<c:choose>
@@ -154,7 +154,7 @@ span#mfboard{
 						</td>
 					</tr>
 					<tr>
-						<td style="background-color: rgb(234, 255, 228);height: 150px;">
+						<td style="background-color: rgb(234, 255, 228);height: 120px;border: hidden;">
 						<div style="height:100%;text-overflow:ellipsis;overflow: auto;">
 							<h4 align="left">오늘 이후의 일정</h4> 
 							<c:choose>
@@ -182,7 +182,7 @@ span#mfboard{
 						</td>
 					</tr>
 					<tr>
-						<td style="background-color: rgb(235, 235, 206);height: 150px;">
+						<td style="background-color: rgb(235, 235, 206);height: 120px;">
 						<div style="height:100%;text-overflow:ellipsis;overflow: auto;">
 							<h4 align="left">최근 Diary소식</h4>
 							<c:choose>
@@ -210,7 +210,7 @@ span#mfboard{
 						</td>
 					</tr>
 					<tr>
-						<td style="background-color: rgb(214, 232, 227);height: 150px;">
+						<td style="background-color: rgb(214, 232, 227);height: 120px;">
 						<div style="height:100%;text-overflow:ellipsis;overflow: auto;">
 							<h4 align="left">유기견 알림</h4>
 							<%-- <c:choose>

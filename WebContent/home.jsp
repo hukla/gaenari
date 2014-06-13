@@ -17,8 +17,8 @@ body {
 }
 
 div#myCarousel {
-	width: 100%;
-	heigth: 300px;
+	width: 96%;
+	margin:0 auto;
 }
 
 div#container {
@@ -39,10 +39,10 @@ div#media {
 }
 
 div#thumb {
-	float: left; /* 
-            margin-left: 5%; */
-	width: 50%;
-	height: 200px;
+float: left;
+width: 50%;
+height: 400px;
+overflow-y: overlay;
 }
 
 div#con {
@@ -84,8 +84,7 @@ height: 222px;
         <%@ include file="/static/pages/header.jsp"%>
         <div id="content">
             <%@ include file="/static/pages/menubar.jsp"%>
-            <div class="container">
-                <div id="myCarousel" class="carousel slide" align="left" data-ride="carousel" data-interval="3000">
+            <div id="myCarousel" class="carousel slide" align="left" data-ride="carousel" data-interval="3000">
                     <ol class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -129,6 +128,8 @@ height: 222px;
                     <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
                     <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
+            <div class="container">
+                
 
 				<!-- 자원봉사 펫도우미 최신글 -->
 				<div class="media" id="media">
@@ -236,8 +237,9 @@ height: 222px;
 				</div>
             </div>
         </div>
-       </div>
         <%@ include file="/static/pages/footer.jsp"%>
+       </div>
+        
     </body>
     <script type="text/javascript">
         function addDog() {

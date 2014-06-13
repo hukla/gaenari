@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <link href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumBrushWeb' rel='stylesheet' type='text/css' /> -->
+
 <link href="/gaenari/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script src="//code.jquery.com/jquery-1.9.1.min.js"></script><!-- jquery기능에 필요 -->
 <script src="/gaenari/bootstrap/js/bootstrap.min.js"></script><!-- 메뉴바에 필요 -->
