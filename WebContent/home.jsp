@@ -136,7 +136,7 @@ height: 222px;
 					<div class="list-group">
 					<a href="#" onclick="addDog()" class="list-group-item" style=" background-color: #FFCC00;border-color: #FFCC00;height:122px">
 						<h4 class="list-group-item-heading"><img src="/gaenari/static/images/footprint.png" width="50px;"> 강아지등록</h4>
-						<p class="list-group-item-text">개작은집에서 강아지와 함께 하는 일정과 일기를 편리하게 작성해 보세요.</p>
+						<p class="list-group-item-text">개작은집에서 강아지와 함께 하는 일정과 일기를 편리하게 작성할 수 있도록 강아지를 등록해 주세요.</p>
 					</a>
 					</div>
 					<div class="list-group">
@@ -148,7 +148,7 @@ height: 222px;
 					<div class="list-group">
 					<a href="#" onclick="developer()" class="list-group-item" style=" background-color: #FFCC00;border-color: #FFCC00;height:122px">
 						<h4 class="list-group-item-heading"><img src="/gaenari/static/images/developer.png" width="50px;"> 개발자정보</h4>
-						<p class="list-group-item-text">개나리 프로젝트를 개발한 개발자정보를 알려 드립니다.</p>
+						<p class="list-group-item-text">개나리 프로젝트를 개발한 개발자정보입니다.</p>
 					</a>
 					</div>
 				</div>
