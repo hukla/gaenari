@@ -135,20 +135,20 @@ height: 222px;
 				<div class="media" id="media">
 					<div class="list-group">
 					<a href="#" onclick="addDog()" class="list-group-item" style=" background-color: #FFCC00;border-color: #FFCC00;height:122px">
-						<h4 class="list-group-item-heading"><img src="/gaenari/static/images/footprint.png" width="60px;"> 강아지등록</h4>
-						<p class="list-group-item-text">강아지를 등록하는 곳입니다. 강아지를 등록하면 강아지가 등록됩니다.</p>
+						<h4 class="list-group-item-heading"><img src="/gaenari/static/images/footprint.png" width="50px;"> 강아지등록</h4>
+						<p class="list-group-item-text">개작은집에서 강아지와 함께 하는 일정과 일기를 편리하게 작성해 보세요.</p>
 					</a>
 					</div>
 					<div class="list-group">
 					<a href="#" onclick="goQuest()"  class="list-group-item" style=" background-color: #FFCC00;border-color: #FFCC00;height:122px">
-						<h4 class="list-group-item-heading"><img src="/gaenari/static/images/note.png" width="60px;"> 입양테스트</h4>
-						<p class="list-group-item-text">입양테스트를 하는 곳입니다. 입양테스트를 하면 입양테스트를 한 겁니다.</p>
+						<h4 class="list-group-item-heading"><img src="/gaenari/static/images/note.png" width="50px;"> 입양테스트</h4>
+						<p class="list-group-item-text">애견 입양 적합 테스트를 시행합니다. 테스트 결과가 있고 마일나리가 300이상인 회원만 입양 신청이 가능합니다.</p>
 					</a>
 					</div>
 					<div class="list-group">
 					<a href="#" onclick="developer()" class="list-group-item" style=" background-color: #FFCC00;border-color: #FFCC00;height:122px">
-						<h4 class="list-group-item-heading"><img src="/gaenari/static/images/developer.png" width="60px;"> 개발자정보</h4>
-						<p class="list-group-item-text">개발자정보를 보는 곳입니다. 공대여신과 롤덕과 성훈이가 나옵니다.</p>
+						<h4 class="list-group-item-heading"><img src="/gaenari/static/images/developer.png" width="50px;"> 개발자정보</h4>
+						<p class="list-group-item-text">개나리 프로젝트를 개발한 개발자정보를 알려 드립니다.</p>
 					</a>
 					</div>
 				</div>
