@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<%@ include file="/static/pages/head.jsp"%>
-        <script src="/gaenari/board/scripts/mboard.js"></script>
+        <script src="/gaenari/board/scripts/voluboard.js"></script>
 	</head>
 	<body>
 		<div id="wrapper">

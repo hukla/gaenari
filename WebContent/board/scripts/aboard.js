@@ -78,3 +78,21 @@ function popupOpen(result,brdno) {
     var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
     window.open(popUrl, "", popOption);
 }
+function checkQuest(brdno,abrdno){
+	location.href="/gaenari/qualif.do?type=a&brdno="+brdno+"&abrdno="+abrdno;
+}
+function checkBrdStatus(brdno){
+	var newwindow;
+	var url = "/gaenari/brdreqList.do?brdno="+brdno+"&type=a";
+	
+	newwindow = window.open(url, '입양신청 확인 페이지','height=600,width=660,scrollbars=yes');
+	if(window.focus){
+		newwindow.focus;
+	}
+}
+function checkMyStatus(){
+	
+}
+function adpDelete(){
+	
+}
