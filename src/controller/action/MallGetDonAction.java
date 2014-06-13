@@ -58,7 +58,9 @@ public class MallGetDonAction implements Action {
 				json += obj.toString()+",";
 				
 			}
-			json = json.substring(0, json.lastIndexOf(","));
+			if(json.lastIndexOf(",") != -1){
+				json = json.substring(0, json.lastIndexOf(","));
+			}
 			json += "],\"listlength\":"+donreqList.size()+"}";
 			out.print(json);
 			log.debug(json);
