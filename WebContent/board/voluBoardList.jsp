@@ -28,16 +28,20 @@
                         </div>
 					<table class="table ptboard-list">
 						<tr>
+							<td class="ptboard-list-head ptboard-loc">봉사장소</td>
                             <td class="ptboard-list-head ptboard-title">제목</td>
-                            <td class="ptboard-list-head ptboard-time">날짜</td>
-                           <!--  <td class="ptboard-list-head ptboard-loc">센터명</td> -->
+                            <td class="ptboard-list-head ptboard-time">봉사날짜</td>
+                            <td class="ptboard-list-head ptboard-cntr" style="width:100px;">센터명</td>
                             <td class="ptboard-list-head ptboard-writer">작성</td>
                         </tr>
                         <!-- 글 레코드 시작 -->
                         <c:choose>
     						<c:when test="${not empty requestScope.tenVolu}">
-							<c:forEach items="${requestScope.tenVolu}" var="volu">
+							<c:forEach items="${requestScope.tenVolu}" var="volu" varStatus="status">
 								    <tr>
+								    	<td class="ptboard-loc">
+                                            <div class="ptboard-loc-content">${requestScope.centerLoc[status.index]}</div>
+                                        </td>
 								    	<td class="ptboard-title">
                                         	<a class="ptboard-title-content" href="/gaenari/control?command=voluBoardView&vbrdno=${volu.vbrdno}">
                                                 ${volu.title}</a>
@@ -55,9 +59,9 @@
 	                                               	</c:choose>
                                         	</div>
                                         </td>
-                                        <%-- <td class="ptboard-loc">
-                                                <div class="ptboard-loc-content">${requestScope.cntrName}</div>
-                                        </td> --%>
+                                        <td class="ptboard-cntr" style="width:100px;" align="center">
+                                                <div class="ptboard-loc-content">${requestScope.center[status.index]}</div>
+                                        </td>
                                         <td class="ptboard-writer">
                                                 <div class="ptboard-writer-author">${volu.userid}</div>
                                                 <div class="ptboard-writer-date">${volu.wrdate}</div>

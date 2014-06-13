@@ -58,7 +58,7 @@
                 	
                 	var list = data.brdtoList;
                 	
-                	if(data.brdtoList[0] != 'empty') {
+                	if(data.brdtoList != 'empty') {
                 	
 	                    $("#reqbrd_list tr:gt(0)").remove();
 	                    

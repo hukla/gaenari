@@ -537,7 +537,7 @@ font-size:15px;
 color:#000;
 }
 
-#ptboard-list-container .ptboard-time .ptboard-time-content,#ptboard-list-container .ptboard-loc .ptboard-loc-content,#ptboard-list-container .ptboard-writer>* {
+#ptboard-list-container .ptboard-time .ptboard-time-content,#ptboard-list-container .ptboard-loc .ptboard-loc-content,#ptboard-list-container .ptboard-writer>* .ptboard-cntr {
 text-align:center;
 }
 

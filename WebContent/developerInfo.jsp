@@ -25,7 +25,7 @@
                     
                     <div class="explore-search-top" align="center" style="float: top;">
                         <div class="explore-info" style="float: inherit;">
-                            <div class="explore-info-title"><h2 align="center">Project Gae:nari</h2></div>
+                            <div class="explore-info-title"><h2 align="center">Project Gaena:ri</h2></div>
                             <table>
                             <tr><div class="explore-info-description"><td><h4>PM:Jaehee Jang</h4></td><td><h4 style="float: left;margin-left: 30px">공대여신</h4></td></div></tr>
                             <tr><div class="explore-info-description"><td><h4>PL:Sunghoon Choi</h4></td><td><h4 style="float: left;margin-left: 30px">건담덕후</h4></td></div></tr>

@@ -48,8 +48,8 @@ public class Qualification implements Action {
 			else result='f'; //설문조사를 작성하지 않았을 경우->alert 띄우기
 			
 			int milenari = UserDAO.logCheck(userid).getPoint();
-			if(milenari>300) result2='t';
-			else result2='f';
+			if(milenari<300) result2='f';
+			else result2='t';
 			
 		} catch(Exception e){
 			e.printStackTrace();

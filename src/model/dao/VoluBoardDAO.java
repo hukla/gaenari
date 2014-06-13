@@ -13,6 +13,20 @@ import util.DBUtil;
 
 public class VoluBoardDAO {
 	
+	public static String getCntrLoc(int userno) throws SQLException{
+		SqlSession session = DBUtil.getSqlSession();
+		session.commit();
+		String cntrLoc = null;
+		int usertype = 0;
+		try{
+			usertype = session.selectOne("voluboard.getUserType",userno);
+			cntrLoc = session.selectOne("voluboard.centerLoc",usertype);
+		}finally{
+			DBUtil.closeSession(session);
+		}
+		return cntrLoc;	
+	}
+	
 	public static String getCntrName(int userno) throws SQLException{
 		SqlSession session = DBUtil.getSqlSession();
 		session.commit();
