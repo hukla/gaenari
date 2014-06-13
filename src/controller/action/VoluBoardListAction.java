@@ -26,7 +26,6 @@ public class VoluBoardListAction implements Action {
 		int pageCount = 0;
 		List<String> cntrName = null;
 		List<String> cntrLoc = null;
-		
 		String url = "/error.jsp";
 		try{
 			cntrName = new ArrayList<String>();
@@ -39,12 +38,16 @@ public class VoluBoardListAction implements Action {
 			}
 			
 			pageCount = VoluBoardDAO.getVoluCount();// 게시판에 'vo'가 총 몇 개 있는지
-			tenVolu = VoluBoardDAO.getTenVolu((Integer.parseInt(pageNumber)-1)*10);// voluBoard 10개 받아옴
-			for(int i=0;i<10;i++){
-				String cntr = VoluBoardDAO.getCntrName(tenVolu.get(i).getUserno());
+			tenVolu = VoluBoardDAO.getTenVolu((Integer.parseInt(pageNumber)-1)*10);	//voluBoard 10개 받아옴
+			/*for(int i=0;i<tenVolu.size();i++){
+				String cntr = VoluBoardDAO.getCntrName(tenVolu.get(i).getUserno());	//user번호로 센터이름얻어내기
 				cntrName.add(cntr);
-				String loc = VoluBoardDAO.getCntrLoc(tenVolu.get(i).getUserno());
+				String loc = VoluBoardDAO.getCntrLoc(tenVolu.get(i).getUserno());	//user번호로 센터이름얻어내기
 				cntrLoc.add(loc);
+			}*/
+			for(VoluBoardDTO dto: tenVolu){
+				cntrName.add(VoluBoardDAO.getCntrName(dto.getUserno()));
+				cntrLoc.add(VoluBoardDAO.getCntrLoc(dto.getUserno()));
 			}
 			url="board/voluBoardList.jsp";
 			
