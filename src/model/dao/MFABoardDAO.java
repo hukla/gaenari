@@ -85,9 +85,13 @@ public class MFABoardDAO {
 				}
 				System.out.println("로그인상태 "+mdto3.toString());
 			}else{
-				ranNum=(int)(Math.random()*mdto.size());
-				mdto3 = MFABoardDAO.MselectOne(mdto.get(ranNum).getMbrdno());
-				System.out.println("로그인 안한 상태"+mdto3.toString());
+				if(mdto.isEmpty()){
+					System.out.println("아무 정보도 없는 상태");
+				}else{
+					ranNum=(int)(Math.random()*mdto.size());
+					mdto3 = MFABoardDAO.MselectOne(mdto.get(ranNum).getBrdno());
+					System.out.println("로그인 안한 상태"+mdto3.toString());
+				}
 			}
 		} finally {
 			DBUtil.closeSession(session);
