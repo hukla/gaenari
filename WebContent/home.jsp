@@ -156,7 +156,7 @@ height: 222px;
 				<div class="well" id="well">
 					
 					<c:choose>
-						<c:when test="${not empty sessionScope.mdto}">
+						<c:when test="${sessionScope.mdto != null}">
 							<div class="col-sm-6 col-md-3" id="thumb">
 								<div class="thumbnail" style="text-overflow: ellipsis;">
 									<br>
@@ -166,10 +166,8 @@ height: 222px;
 										<h4>${sessionScope.mdto.mname}를찾습니다!</h4>
 										<p>${sessionScope.mdto.title}</p>
 										<p>
-											<a
-												href="/gaenari/missingBoardView.do?mbrdno=${sessionScope.mdto.mbrdno}"
-												class="btn btn-primary">봤어요</a> <a
-												href="/gaenari/missingBoardMain.do" class="btn btn-default">다른신고보기</a>
+											<a href="/gaenari/missingBoardView.do?mbrdno=${sessionScope.mdto.mbrdno}" class="btn btn-primary">봤어요</a> 
+											<a href="/gaenari/missingBoardMain.do" class="btn btn-default">다른신고보기</a>
 										</p>
 									</div>
 								</div>
@@ -188,37 +186,31 @@ height: 222px;
 							</div>
 						</c:otherwise>
 					</c:choose>
-					
-                    
-                    <%
-					                                        	String img = null;
-					                                        	List<UserDTO> list = null;
-					                                        	List<UserDTO> imgUser = null;
-					                                        	UserDTO user = null;
-					                                        	DiaryDTO diary = null;
-					                                        	int ran = 0;
-					                                        	if (session.getAttribute("userid") == null) {
-					                                        		list = UserDAO.allUsers();
-					                                        		imgUser = new ArrayList<UserDTO>();
-					                                        		for (int i = 0; i < list.size(); i++) {
-					                                        			diary = TestDAO.selectLastDiary(list.get(i).getUserno());
-					                                        			if (diary != null) {
-					                                        				if (diary.getBrdcontent().split("!split!")[0].trim()
-					                                        						.length() != 0) {
-					                                        					imgUser.add(UserDAO.selectOne(list.get(i)
-					                                        							.getUserno()));
-					                                        				}
-					                                        			}
-					                                        		}
-					                                        		ran = (int) (Math.random() * imgUser.size());
-					                                        		user = UserDAO.selectOne(imgUser.get(ran).getUserno());
-					                                        		request.setAttribute("randomUser", user);
-					                                        		request.setAttribute("img",
-					                                        				TestDAO.selectLastDiary(user.getUserno())
-					                                        						.getBrdcontent().split("!split!")[0]);
-					                                        	}
-					                                        %>
-                     <div class="col-sm-6 col-md-3" id="thumb">
+					<%
+						String img = null;				
+						List<UserDTO> list = null;
+						List<UserDTO> imgUser = null;
+						UserDTO user = null;
+						DiaryDTO diary = null;
+						int ran = 0;
+						if (session.getAttribute("userid") == null) {	//세션의 유저정보가 없으면[로그인 상태가 아니면]
+							list = UserDAO.allUsers();					//타입이 0인 일반유저를 모두 불러옴
+							imgUser = new ArrayList<UserDTO>();	
+							for (int i = 0; i < list.size(); i++) {		//모든 유저들을 for문 돌려서 다이어리DTO에 user마다의 마지막 일기를 저장
+								diary = TestDAO.selectLastDiary(list.get(i).getUserno());
+								if (diary != null) {					//다이어리 정보가 있는 user의 경우에
+									if (diary.getBrdcontent().split("!split!")[0].trim().length() != 0) {	//마지막일기에 이미지가 등록되어있으면
+										imgUser.add(list.get(i));
+									}
+								}		//결국 imgUser에는 마지막일기를 보유한 사람중에 그 일기에 이미지를 등록한 사람의 리스트가 저장된다.
+							}
+							ran = (int) (Math.random() * imgUser.size());	// 사람들 수 만큼 랜덤값을 얻어낸다.
+							user = imgUser.get(ran);
+							request.setAttribute("randomUser", user);
+							request.setAttribute("img",TestDAO.selectLastDiary(user.getUserno()).getBrdcontent().split("!split!")[0]);
+						}
+					%>
+					<div class="col-sm-6 col-md-3" id="thumb">
                      	<div class="thumbnail" style="text-overflow: ellipsis;"><br>
                      		<c:choose>
                      			<c:when test="${sessionScope.userid == null}"><!-- 로그인 안 된 상태 -->
