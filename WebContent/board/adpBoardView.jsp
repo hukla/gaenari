@@ -65,27 +65,8 @@
                     </div>
                 </div>
             </div>
+            </div>
             <%@ include file="/static/pages/footer.jsp"%>
         </div>
     </body>
-<script language="javascript">
-function checkQuest(brdno,abrdno){
-	location.href="/gaenari/qualif.do?type=a&brdno="+brdno+"&abrdno="+abrdno;
-}
-function checkBrdStatus(brdno){
-	var newwindow;
-	var url = "/gaenari/brdreqList.do?brdno="+brdno+"&type=a";
-	
-	newwindow = window.open(url, '입양신청 확인 페이지','height=600,width=660,scrollbars=yes');
-	if(window.focus){
-		newwindow.focus;
-	}
-}
-function checkMyStatus(){
-	
-}
-function adpDelete(){
-	
-}
-</script>
 </html>
