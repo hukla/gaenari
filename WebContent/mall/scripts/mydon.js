@@ -19,13 +19,13 @@ $(function(){
                 var progress = 100 / datalength;
 
 				$("#my_don_list tr:gt(0)").remove();
-				var table="";
+				//var table="";
 				
 				$(data).find('donreq').each(function (index){
                     progressbar.css('width', progress * (index + 1) + '%');
-					
+					var table = "";
 					table += "<tr>";
-					table += "<td>"+(parseInt(index)+1)+"</td>";
+					table += "<td>"+(datalength - parseInt(index))+"</td>";
 					table += "<td>"+$(this).find("itemname").text()+"</td>";
 					table += "<td>"+$(this).find("targetcntr").text()+"</td>";
 					table += "<td>"+$(this).find("price").text()+"</td>";
@@ -37,9 +37,13 @@ $(function(){
 						table += "<td>배송 완료</td>";	
 					}
 					table += "</tr>";
+					$('#my_don_list tr:eq(0)').after(table);
+
 				});
 				
-				$('#my_don_list tr:eq(0)').after(table);
+				//$('#my_don_list tr:eq(0)').after(table);
+                $('.progress').attr('class', 'progress progress-striped');
+                $('#mydon-pgbar').empty();
 
 			},
 			error: function(data) { alert(data+' => 에러 발생');}

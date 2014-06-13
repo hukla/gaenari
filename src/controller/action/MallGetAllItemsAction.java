@@ -35,6 +35,8 @@ public class MallGetAllItemsAction implements Action {
 				throw new Exception("itemList가 null입니다.");
 			}
 			
+			
+			log.info(itemList.size());
 			xmlData += "<itemlist>";
 			xmlData += "<listlength>"+itemList.size()+"</listlength>";
 			for(ItemDTO i : itemList) {

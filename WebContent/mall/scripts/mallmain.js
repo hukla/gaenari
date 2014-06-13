@@ -45,6 +45,7 @@ $(function () {
                     });
                 //alert(table);
                 $('#item_list').html(table);
+                $('.progress').attr('class', 'progress progress-striped');
             },
             error: function (data) {
                 alert(data + ' => 에러 발생');

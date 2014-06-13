@@ -23,8 +23,8 @@
                             </div>
                         </div>
                         <div class="explore-search-results">
-                            <div class="progress progress-striped">
-                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuetransitiongoal="100"></div>
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-danger" id="mgt-pgbar" role="progressbar" aria-valuetransitiongoal="100" style="width:100%"></div>
                             </div>
                             <ul id="item_list"></ul>
                         </div>
@@ -35,5 +35,5 @@
             <%@ include file="/static/pages/footer.jsp" %>
         </div>
     </body>
-    <script src="mall/scripts/mallmain.js"></script>
+    <script src="/gaenari/mall/scripts/mallmain.js"></script>
 </html>
