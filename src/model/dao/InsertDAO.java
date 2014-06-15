@@ -39,12 +39,8 @@ public class InsertDAO {
 		int brdno = 0;
 		try{
 			session = DBUtil.getSqlSession();
-			System.out.println("==diaryBoard insert 진입==");
 			result = session.insert("insert.insertDiaryBoard",boardDTO)>0 ? true:false;
-			System.out.println("==diaryBoard insert 완료==");
-			System.out.println("==diaryBoard select 진입==");
 			brdno = session.selectOne("test.selectBoard", boardDTO);
-			System.out.println("==diaryBoard select 완료==");
 		}finally{
 			DBUtil.closeSession(session, result);
 		}
@@ -62,12 +58,8 @@ public class InsertDAO {
 		int brdno = 0;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==commentBoard insert 진입==");
 			result = session.insert("insert.insertCmtBoard", boardDTO) > 0 ? true : false;
-			System.out.println("==commentBoard insert 완료==");
-			System.out.println("==commentBoard select 진입==");
 			brdno = session.selectOne("test.selectBoard", boardDTO);
-			System.out.println("==commentBoard select 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -85,12 +77,8 @@ public class InsertDAO {
 		int brdno = 0;
 		try{
 			session = DBUtil.getSqlSession();
-			System.out.println("==planBoard insert 진입==");
 			result = session.insert("insert.insertPlanBoard",boardDTO)>0 ? true:false;
-			System.out.println("==planBoard insert 완료==");
-			System.out.println("==planBoard select 진입==");
 			brdno = session.selectOne("test.selectBoard", boardDTO);
-			System.out.println("==planBoard select 완료==");
 		}finally{
 			DBUtil.closeSession(session, result);
 		}
@@ -110,12 +98,8 @@ public class InsertDAO {
 		int brdno = 0;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==visitBoard insert 진입==");
 			result = session.insert("insert.insertVisitBoard", boardDTO) > 0 ? true : false;
-			System.out.println("==visitBoard insert 완료==");
-			System.out.println("==visitBoard select 진입==");
 			brdno = session.selectOne("test.selectVisitBoard", boardDTO);
-			System.out.println("==visitBoard select 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -132,9 +116,7 @@ public class InsertDAO {
 		boolean result = false;
 		try{
 			session = DBUtil.getSqlSession();
-			System.out.println("==diary insert 진입==");
 			result = session.insert("insert.insertDiary",diaryDTO)>0 ? true:false;
-			System.out.println("==diary insert 완료==");
 		}finally{
 			DBUtil.closeSession(session, result);
 		}
@@ -148,9 +130,7 @@ public class InsertDAO {
 		boolean result = false;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==comment insert 진입==");
 			result = session.insert("insert.insertComment", commentDTO) > 0 ? true : false;
-			System.out.println("==comment insert 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -164,9 +144,7 @@ public class InsertDAO {
 		boolean result = false;
 		try{
 			session = DBUtil.getSqlSession();
-			System.out.println("==plan insert 진입==");
 			result = session.insert("insert.insertPlan",planDTO)>0 ? true:false;
-			System.out.println("==plan insert 완료==");
 		}finally{
 			DBUtil.closeSession(session, result);
 		}
@@ -180,9 +158,7 @@ public class InsertDAO {
 		boolean result = false;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==visitbook insert 진입==");
 			result = session.insert("insert.insertVisitbook", brdno) > 0 ? true : false;
-			System.out.println("==visitbook insert 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -196,9 +172,7 @@ public class InsertDAO {
 		boolean result = false;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==insertUser insert 진입==");
 			result = session.insert("insert.insertUser", user) > 0 ? true : false;
-			System.out.println("==insertUser insert 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -211,9 +185,7 @@ public class InsertDAO {
 		boolean result = false;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==insertDoginfo insert 진입==");
 			result = session.insert("insert.insertDoginfo", dog) > 0 ? true : false;
-			System.out.println("==insertDoginfo insert 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -228,12 +200,10 @@ public class InsertDAO {
 		Map<String,Integer> map = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==insertFrndReq insert 진입==");
 			map = new HashMap<String,Integer>();
 			map.put("sender", sender);
 			map.put("receiver", receiver);
 			result = session.insert("insert.insertFrndReq", map) > 0 ? true : false;
-			System.out.println("==insertFrndReq insert 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -248,12 +218,10 @@ public class InsertDAO {
 		Map<String,Integer> map = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==insertFriends insert 진입==");
 			map = new HashMap<String,Integer>();
 			map.put("subuser", sender);
 			map.put("prmuser", receiver);
 			result = session.insert("insert.insertFriends", map) > 0 ? true : false;
-			System.out.println("==insertFriends insert 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -275,5 +243,4 @@ public class InsertDAO {
 		}
 		return cntrno;
 	}
-	
 }

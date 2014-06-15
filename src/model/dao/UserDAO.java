@@ -34,7 +34,6 @@ public class UserDAO {
 		SqlSession session =null;
 		UserDTO user =null;
 		try{
-			System.out.println("==UserDAO 진입==");
 			session = DBUtil.getSqlSession();
 			user = session.selectOne("u.getOneLoginUser",userid);
 		}finally{
@@ -48,7 +47,6 @@ public class UserDAO {
 		SqlSession session =null;
 		UserDTO user =null;
 		try{
-			System.out.println("==UserDAO 진입==");
 			session = DBUtil.getSqlSession();
 			user = session.selectOne("u.checkByName",username);
 		}finally{
@@ -62,7 +60,6 @@ public class UserDAO {
 		SqlSession session =null;
 		UserDTO user =null;
 		try{
-			System.out.println("==UserDAO 진입==");
 			session = DBUtil.getSqlSession();
 			user = session.selectOne("u.checkByAddr",address);
 		}finally{
@@ -77,7 +74,6 @@ public class UserDAO {
 		SqlSession session =null;
 		List<DogDTO> user =null;
 		try{
-			System.out.println("==UserDAO 진입==");
 			session = DBUtil.getSqlSession();
 			user = session.selectList("u.getUserById",userid);
 		}finally{
@@ -90,7 +86,6 @@ public class UserDAO {
 		SqlSession session =null;
 		List<UserDTO> user =null;
 		try{
-			System.out.println("==UserDAO 진입==");
 			session = DBUtil.getSqlSession();
 			user = session.selectList("u.userById",userid);
 		}finally{
@@ -104,7 +99,6 @@ public class UserDAO {
 		SqlSession session =null;
 		List<DogDTO> user =null;
 		try{
-			System.out.println("==UserDAO 진입==");
 			session = DBUtil.getSqlSession();
 			user = session.selectList("u.getUserByname",username);
 		}finally{
@@ -118,7 +112,6 @@ public class UserDAO {
 		SqlSession session =null;
 		List<DogDTO> user =null;
 		try{
-			System.out.println("==UserDAO 진입==");
 			session = DBUtil.getSqlSession();
 			user = session.selectList("u.getUserByAddr",addr);
 		}finally{
@@ -145,9 +138,7 @@ public class UserDAO {
 		UserDTO user =null;
 		try{
 			session = DBUtil.getSqlSession();
-			System.out.println("==UserDAO 진입==");
 			user = session.selectOne("u.getEmailCheck",email);
-			System.out.println("==UserDAO 종료==");
 		}finally{
 			DBUtil.closeSession(session);
 		}
@@ -169,7 +160,6 @@ public class UserDAO {
 		} finally {
 			DBUtil.closeSession(session);
 		}
-		
 		return user;
 	}
 	

@@ -54,6 +54,7 @@ public class VisitBookAction implements Action {
 			}
 			
 			visitList = TestDAO.selectVisit(user);				//페이지 주인인 user의 방명록을 가져옴 거기엔 작성자인 userid도 있음.
+			
 			myList = new ArrayList<BoardDTO>();
 			myOneCmtList = new ArrayList<CommentDTO>();
 			myWholeCmtList = new ArrayList<List<CommentDTO>>();	//내가 올린 게시글별 댓글리스트를 담은 리스트

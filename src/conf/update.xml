@@ -14,7 +14,7 @@
 	
 	<!-- PlanDTO의 일정정보 수정 -->
 	<update id="updatePlan" parameterType="PlanDTO">
-		update planboardinfo set ploc=#{ploc}, pdate=#{pdate} where brdno=#{brdno}
+		update planboardinfo set ploc=#{ploc}, pdate=#{pdate},plandogno=#{plandogno} where brdno=#{brdno}
 	</update>
 
 	<!-- BoardDTO의 일기정보 수정 -->

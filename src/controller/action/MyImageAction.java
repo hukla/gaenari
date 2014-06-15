@@ -43,13 +43,9 @@ public class MyImageAction implements Action {
 			imageList = new ArrayList<String>();
 			for(BoardDTO dto: diaryList){
 				image = dto.getBrdcontent().split("!split!")[0];
-				
 				if(image!=null){
 					imageList.add(image);
 				}
-			}
-			for(String img: imageList){
-				System.out.println(img);
 			}
 			request.setAttribute("user", user);
 			request.setAttribute("imageList", imageList);
