@@ -24,7 +24,7 @@
 	<div id="wrapper">
             <%@ include file="/static/pages/header.jsp"%>
             <div id="content">
-                <%@ include file="/static/pages/menubar.jsp"%>
+                <%-- <%@ include file="/static/pages/menubar.jsp"%> --%>
                 <div class="container">
                     <!--TODO-->
                     <div id="ptboard-list-container">

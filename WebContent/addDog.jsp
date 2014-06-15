@@ -1,16 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="frame.jsp" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-	td,th { text-align: center; vertical-align: center; font-family: "맑은 고딕";}
-</style>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<%@ include file="/static/pages/head.jsp" %>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<title>기르시는 강아지를 등록하세요</title>
 <!-- 
 작성: 2014-05-27
 작성자: 최성훈
@@ -23,7 +17,17 @@
 </script>
 </head>
 <body>
+	<div id="header">
+		<div class="container visible">
+			<a href="./">
+			<img class="logo"
+				src="/gaenari/static/images/logo.png" /></a>
+		</div>
+	</div>
 	<table width="62%" align="center">
+		<tr>
+			<th colspan='2' style='text-align:center;font-size:20px;background-color:#FC0;padding:10px;'>강아지 등록하기</th>
+		</tr>
 		<tr>
 			<td>
 				<form action="dogInsert.do" method="post" enctype="multipart/form-data" id="addDogForm">
@@ -131,8 +135,8 @@
 						<td><textarea class="form-control" rows="2" name="doginfo"></textarea></td>
 					</tr>
 					<tr>
-						<td colspan="2">
-							<button type="button" onclick="submit()" class="btn btn-success" data-toggle="button">등록하기</button>
+						<td colspan="2" style="text-align:center;">
+							<button type="button" onclick="submit()" class="btn btn-yellow" data-toggle="button">등록하기</button>
 							&nbsp;&nbsp;&nbsp;&nbsp;
 							<button id="close" class="btn btn-default" data-toggle="button">닫기</button>
 						</td>
@@ -155,4 +159,3 @@
 	}
 </script>
 </html>
-<%@ include file="bottom.jsp"%>

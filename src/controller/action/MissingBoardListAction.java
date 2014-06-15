@@ -45,6 +45,7 @@ public class MissingBoardListAction implements Action  {
 				xmlData += "<mbrdno>"+m.getMbrdno()+"</mbrdno>";
 				xmlData += "<mloc>"+m.getMloc()+"</mloc>";
 				xmlData += "<mdate>"+m.getMdate()+"</mdate>";
+				xmlData += "<title>"+m.getTitle()+"</title>";
 				if(m.getBrdcontent().contains("split")){
 					picPath = m.getBrdcontent().split("!split!")[0];
 				}else{

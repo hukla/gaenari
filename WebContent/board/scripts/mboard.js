@@ -33,7 +33,9 @@ $(function(){
 					bc += "</div>";
 					bc += "<div class='mfboard-card-content'>";
 					bc += "<div class='mfboard-card-title'>";
-					bc += "<a href='/gaenari/missingBoardView.do?mbrdno="+$(this).find("mbrdno").text()+"'>실종 장소 : "+$(this).find("mloc").text()+"</a>";
+					bc += "<a href='/gaenari/missingBoardView.do?mbrdno="+$(this).find("mbrdno").text()+"'>"+$(this).find("title").text()+"</a>";
+					bc += "</div><div class='mfboard-card-author'>";
+					bc += "<b>"+$(this).find("mloc").text()+"</b>에서 ON "+$(this).find("mdate").text();
 					bc += "</div></div> </div> </div> </div>";
 				});	
 				
