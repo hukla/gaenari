@@ -90,9 +90,3 @@ function checkBrdStatus(brdno){
 		newwindow.focus;
 	}
 }
-function checkMyStatus(){
-	
-}
-function adpDelete(){
-	
-}

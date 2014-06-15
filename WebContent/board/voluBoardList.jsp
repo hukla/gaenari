@@ -134,6 +134,5 @@ function checkUser(){
 		return false;
 	}
 }
-
 </script>
 </html>
