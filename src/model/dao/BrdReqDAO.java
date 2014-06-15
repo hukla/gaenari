@@ -31,7 +31,6 @@ public class BrdReqDAO {
 	public static List<BrdReqDTO> selectReqByBrdno(int brdno) throws SQLException{
 		SqlSession session = DBUtil.getSqlSession();
 		List<BrdReqDTO> brdtoList = null;
-		System.out.println("==BrdReqDAO진입==");
 		try{
 			brdtoList = new ArrayList<BrdReqDTO>();
 			brdtoList = session.selectList("brdreq.selectBrdReqByBrdno",brdno);	
