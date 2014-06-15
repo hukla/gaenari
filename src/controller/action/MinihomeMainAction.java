@@ -95,6 +95,7 @@ public class MinihomeMainAction implements Action {
 		List<UserDTO> friendList = null;
 		List<Integer> friendNo = null;
 		PlanDTO nextPlan = null;
+		HomeAction home = new HomeAction();
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		
@@ -151,16 +152,10 @@ public class MinihomeMainAction implements Action {
 			request.setAttribute("dog", dog);				//내강아지정보
 			request.setAttribute("planDog", planDog);
 
+			
+			request.setAttribute("mdto", home.getAds(userid));
 			url = "miniHome/main.jsp";
 			
-			//유기견 광고를 랜덤으로 받아 세션에 저장
-			SqlSession sqlSession = null;
-			String userId = (String)session.getAttribute("userid");
-			MissingBoardDTO mdto = null;
-			mdto = MFABoardDAO.getAds(userId);
-			
-			session.setAttribute("mdto", mdto);
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

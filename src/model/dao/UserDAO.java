@@ -165,7 +165,6 @@ public class UserDAO {
 		
 		try {
 			session = DBUtil.getSqlSession();
-			
 			user = session.selectOne("u.selectOne", userno);
 		} finally {
 			DBUtil.closeSession(session);

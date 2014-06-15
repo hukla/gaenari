@@ -220,13 +220,13 @@ span#mfboard{
 										<tr>
 											<%-- <c:if test="${requestScope.diImage != null}"> --%>
 												<td>
-													<img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg" height="60px">
+													<img src="/gaenari/image/board/${requestScope.mdto.brdno}.jpg" height="60px">
 												</td>
 											<%-- </c:if> --%>
 											<td>
-												<a href="#" onclick="toMfboard('${sessionScope.mdto.mbrdno}')">
-													${sessionScope.mdto.title} - ${sessionScope.mdto.wrdate}
-												</a><br>${sessionScope.mdto.brdcontent}
+												<a href="#" onclick="toMfboard('${requestScope.mdto.mbrdno}')">
+													${requestScope.mdto.title} - ${requestScope.mdto.wrdate}
+												</a><br>${requestScope.mdto.brdcontent}
 											</td>
 										</tr>
 									</table>

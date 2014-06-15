@@ -37,7 +37,6 @@ public class FriendsAction implements Action {
 		try{
 			user = (UserDTO) session.getAttribute("user");
 			userid = user.getUserid();
-			//다른 아이디를 클릭할 때
 			if(request.getParameter("userid")!=null){				//만약 userid 파라미터를 넘겨 받았다면
 				if(userid!=request.getParameter("userid")){			//그리고 만약 세션 userid와 파라미터userid가 다르다면
 					userid = request.getParameter("userid");		//userid에 파라미터userid를 저장하기

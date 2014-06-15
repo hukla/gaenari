@@ -17,7 +17,7 @@ public class AddDogAction implements Action {
 		
 		String url = "/error.jsp";
 		try{
-			url = "addDog.jsp";
+			url = "/addDog.jsp";
 		}catch(Exception e){
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

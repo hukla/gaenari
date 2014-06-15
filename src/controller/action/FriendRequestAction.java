@@ -26,9 +26,9 @@ public class FriendRequestAction implements Action {
 			sndrNo = UserDAO.logCheck(sender).getUserno();
 			rcvrNo = UserDAO.logCheck(receiver).getUserno();
 			
-			if(cancelValue==null){	// 친구 요청으로 폼 전송 받았을 때
+			if(cancelValue==null){					// 친구 요청으로 폼 전송 받았을 때
 				InsertDAO.insertFrndReq(sndrNo,rcvrNo);
-			}else{					// 친구 요청 취소로 폼 전송 받았을 때
+			}else{									// 친구 요청 취소로 폼 전송 받았을 때
 				DeleteDAO.deleteFrndReq(sndrNo, rcvrNo);
 			}
 			url = "/friends.do";

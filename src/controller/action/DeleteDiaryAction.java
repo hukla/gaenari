@@ -24,10 +24,8 @@ public class DeleteDiaryAction implements Action {
 		try{
 			brdno = request.getParameter("brdno");
 			if(brdno.equals(null) || brdno.trim().length()==0)	throw new Exception("정보없습니다.");
-			
 			DeleteDAO.deleteDiary(Integer.parseInt(brdno));		//foreign key로인해 diary 정보부터 삭제
 			DeleteDAO.deleteBoard(Integer.parseInt(brdno));		//diary정보 삭제 후 board 정보 삭제
-			
 			url="/diaryList.do";
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -38,5 +36,4 @@ public class DeleteDiaryAction implements Action {
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-
 }

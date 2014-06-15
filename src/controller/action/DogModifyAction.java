@@ -46,17 +46,12 @@ public class DogModifyAction implements Action {
 			
 			dogName = multi.getParameter("dogname");
 			dogInfo = multi.getParameter("doginfo");	
-			//dogImg = multi.getFilesystemName("dogimg"); 				// 파일의 이름 얻기
 			dogno = multi.getParameter("dogno");
 			
 			//이미지 파일 업로드 됨.
 			if(dogName.equals(null) || dogName.trim().length()==0)	throw new Exception("이름은 꼭 입력해주세요.");
-			
 			dog = new DogDTO(Integer.parseInt(dogno),dogName,dogInfo);
-			/*if (dogImg != null) {
-				dogImg = "/gaenari/image/"+user.getUserid()+"/"+dogImg;
-				dog = new DogDTO(Integer.parseInt(dogno),dogName,dogInfo,dogImg);
-			}*/
+			
 			System.out.println("dogname="+dogName);
 			System.out.println("dogInfo="+dogInfo);
 			System.out.println("dogno="+dogno);
@@ -72,5 +67,4 @@ public class DogModifyAction implements Action {
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-
 }

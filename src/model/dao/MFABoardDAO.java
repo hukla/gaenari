@@ -49,56 +49,6 @@ public class MFABoardDAO {
 		return count;
 	}
 	
-	public static MissingBoardDTO getAds(String userId) throws SQLException, LoginException{
-		SqlSession session = null;
-		String userid = userId;
-		String address = null;
-		int ranNum = 0;
-		
-		List<MissingBoardDTO> mdto = null;//신고 게시판의 모든 글 목록
-		List<MissingBoardDTO> mdto2 = null;//신고 게시판의 분실 장소와 주소가 같은 글 목록
-		MissingBoardDTO mdto3 = null;//글 목록 중 랜덤으로 선택된 DTO
-		
-		try{
-			mdto = new ArrayList<MissingBoardDTO>();
-			mdto2 = new ArrayList<MissingBoardDTO>();
-			session = DBUtil.getSqlSession();
-			mdto=MFABoardDAO.MselectAll();
-			
-			if(userid!=null){
-				address = UserDAO.logCheck(userid).getAddress();
-				
-				System.out.println("[회원의 주소="+address+"]");
-				for(int i=0;i<mdto.size();i++){//분실 장소와 주소가 같은 글 목록을 추려냄
-					if(mdto.get(i).getMloc().equals(address)){
-						mdto2.add(mdto.get(i));
-					}
-				}
-				System.out.println("mdto2[]="+mdto2.size());
-				ranNum = (int)(Math.random()*mdto2.size());
-				System.out.println("ranNum="+ranNum);
-				if(mdto2.isEmpty()){						//분실 장소와 주소가 같은 글이 없으면
-					ranNum = (int)(Math.random()*mdto.size());
-					mdto3=MFABoardDAO.MselectOne(ranNum+1);	//난수로 목록 뽑음
-				}else{										//분실 장소와 주소가 같은 글의 목록이 있으면
-					mdto3=mdto2.get(ranNum);				//그 목록에서 랜덤으로 가져옴
-				}
-				System.out.println("로그인상태 "+mdto3.toString());
-			}else{
-				if(mdto.isEmpty()){
-					System.out.println("아무 정보도 없는 상태");
-				}else{
-					ranNum=(int)(Math.random()*mdto.size());
-					mdto3 = MFABoardDAO.MselectOne(mdto.get(ranNum).getMbrdno());
-					System.out.println("로그인 안한 상태"+mdto3.toString());
-				}
-			}
-		} finally {
-			DBUtil.closeSession(session);
-		}
-		return mdto3;
-	}
-	
 	public static int getFCount() throws SQLException{
 		SqlSession session = null;
 		int fCount = 0;

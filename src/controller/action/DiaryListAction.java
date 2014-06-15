@@ -58,7 +58,6 @@ public class DiaryListAction implements Action {
 					user = UserDAO.logCheck(userid);
 				}
 			}
-			
 			diaryList = TestDAO.selectDiary(user);
 			pageNumber = request.getParameter("pageNumber");
 			diaryNumber = request.getParameter("diaryNumber");
@@ -73,24 +72,19 @@ public class DiaryListAction implements Action {
 			}
 			
 			pageCount = TestDAO.getDiaryCount(user.getUserno());
-			System.out.println("선택페이지:"+Integer.parseInt(pageNumber)+", 계산값:"+(Integer.parseInt(pageNumber)-1)*10);
 			tenDiaries = TestDAO.getTenDiaries((Integer.parseInt(pageNumber)-1)*10,user.getUserno());
 			//14-05-20 성훈 수정: 다이어리 정보가 있을 때만 출력하기
 			if (!diaryList.isEmpty()) {
-				
-				diaryFirst = diaryList.get(Integer.parseInt(diaryNumber)); // 첫번째 테두리에 넣을 일기 정보
+				diaryFirst = diaryList.get(Integer.parseInt(diaryNumber)); 			// 첫번째 테두리에 넣을 일기 정보
 				diaryContents = diaryFirst.getBrdcontent().split("!split!");
-
-				// 14-05-13 성훈 수정: 이미지 경로가 null인지 확인하는 조건 수정
 				if (diaryContents[0] == null || diaryContents[0].trim().length() == 0) {
-					System.out.println("경로 null임!" + diaryContents[0]);
 					request.setAttribute("diaryFirstImg", null);
-				} else {
-					diaryFisrtImg = diaryContents[0]; // 첫번째 일기 내용중 이미지경로 발췌
+				} 
+				else {
+					diaryFisrtImg = diaryContents[0]; 								// 첫번째 일기 내용중 이미지경로 발췌
 					request.setAttribute("diaryFirstImg", diaryFisrtImg);
-					System.out.println("경로 null아님!" + diaryContents[0]);
 				}
-				diaryFirstWords = diaryContents[1].replaceAll("\r\n", "<br/>"); // 첫번째 일기 내용중 글부분 발췌
+				diaryFirstWords = diaryContents[1].replaceAll("\r\n", "<br/>"); 	// 첫번째 일기 내용중 글부분 발췌
 				//14-05-26 성훈추가: 기존의 일기 내용에 줄바꿈 추가
 				diaryFirst.setBrdcontent(diaryFirstWords); 	// content에 글부분만 다시저장
 				
@@ -101,15 +95,13 @@ public class DiaryListAction implements Action {
 
 					// 14-05-13 성훈 수정: 이미지 경로가 null인지 확인하는 조건 수정
 					if (diaryContents[0] == null || diaryContents[0].trim().length() == 0) {
-						System.out.println("경로 null임!" + diaryContents[0]);
 						request.setAttribute("diarySecondImg", null);
 					} else {
-						diarySecondImg = diaryContents[0]; // 두번째 일기 내용중 이미지경로 발췌
+						diarySecondImg = diaryContents[0];							// 두번째 일기 내용중 이미지경로 발췌
 						request.setAttribute("diarySecondImg", diarySecondImg);
-						System.out.println("경로 null아님!" + diaryContents[0]);
 					}
-					diarySecondWords = diaryContents[1]; // 두번째 일기 내용중 글부분 발췌
-					diarySecond.setBrdcontent(diarySecondWords); // content에 글부분만 다시저장
+					diarySecondWords = diaryContents[1];							// 두번째 일기 내용중 글부분 발췌
+					diarySecond.setBrdcontent(diarySecondWords);					// content에 글부분만 다시저장
 				}
 			}
 			request.setAttribute("pageNumber", pageNumber);
@@ -131,5 +123,4 @@ public class DiaryListAction implements Action {
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-
 }

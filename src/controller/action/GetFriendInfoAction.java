@@ -14,7 +14,6 @@ public class GetFriendInfoAction implements Action {
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		String userid = request.getParameter("userid");
-		System.out.println(userid);
 		out.print(userid);
 	}
 }

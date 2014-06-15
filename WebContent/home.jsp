@@ -156,17 +156,17 @@ height: 222px;
 				<div class="well" id="well">
 					
 					<c:choose>
-						<c:when test="${sessionScope.mdto != null}">
+						<c:when test="${requestScope.mdto != null}">
 							<div class="col-sm-6 col-md-3" id="thumb">
 								<div class="thumbnail" style="text-overflow: ellipsis;">
 									<br>
-									<img src="/gaenari/image/board/${sessionScope.mdto.brdno}.jpg"
+									<img src="/gaenari/image/board/${requestScope.mdto.brdno}.jpg"
 										width="200px" class="img-rounded">
 									<div class="caption">
-										<h4>${sessionScope.mdto.mname}를찾습니다!</h4>
-										<p>${sessionScope.mdto.title}</p>
+										<h4>${requestScope.mdto.mname}를찾습니다!</h4>
+										<p>${requestScope.mdto.title}</p>
 										<p>
-											<a href="/gaenari/missingBoardView.do?mbrdno=${sessionScope.mdto.mbrdno}" class="btn btn-primary">봤어요</a> 
+											<a href="/gaenari/missingBoardView.do?mbrdno=${requestScope.mdto.mbrdno}" class="btn btn-primary">봤어요</a> 
 											<a href="/gaenari/missingBoardMain.do" class="btn btn-default">다른신고보기</a>
 										</p>
 									</div>

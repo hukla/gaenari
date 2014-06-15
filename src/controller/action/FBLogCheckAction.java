@@ -39,41 +39,27 @@ public class FBLogCheckAction implements Action {
 			if(email.equals(null) || email.trim().length() == 0 || username.equals(null) || username.trim().length()==0){
 				throw new Exception("Facebook Email Login 접속에러");
 			}
-			
-			// email주소로 user가 DB에 있는지 확인
-			user = UserDAO.emailCheck(email);
-			
-			if (user != null) { // user가 DB에 있으면
-				
-				if(user.getImg() == null){ // user image path가 null이면
-					
-					//System.out.println("페북로그인체크에서 이미지:"+image);
-					
-					if(image == null){ // 파라미터로 들어온 이미지가 없으면
+			user = UserDAO.emailCheck(email);		// email주소로 user가 DB에 있는지 확인
+			if (user != null) { 					// user가 DB에 있으면
+				if(user.getImg() == null){ 			// user image path가 null이면
+					if(image == null){				// 파라미터로 들어온 이미지가 없으면
 						image="/gaenari/image/usericon.jpg";
 					}
-					
 					UpdateDAO.updateImg(user.getUserid(),image);
 				}
-				
 				// 로그인
 				session.setAttribute("userid", user.getUserid());
 				session.setAttribute("pwd", user.getPasswd());
-				//session.setAttribute("fbMainImage", image);
 				
 				url = "/home.do";
-			} else { // user가 DB에 없으면
+			} else { 								// user가 DB에 없으면
 				request.setAttribute("email", email);
 				request.setAttribute("username", username);
-				
 				if(image!=null){
 					request.setAttribute("image", image);
 				}
-				
 				url = "join.jsp";
 			}
-			
-			
 		}catch(Exception e){
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

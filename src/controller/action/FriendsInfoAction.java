@@ -48,13 +48,12 @@ public class FriendsInfoAction implements Action {
 		int sender,receiver,result = 0;
 		boolean friend = false;
 		try{
-			userid = (String) session.getAttribute("userid");	// 세션의 userid가져오기
-
-			// 다른 아이디를 클릭할 때
+			userid = (String) session.getAttribute("userid");
 			if (request.getParameter("userid") != null) {		// 만약 userid 파라미터를 넘겨 받았다면
 				if (userid != request.getParameter("userid"))	// 그리고 만약 세션 userid와 파라미터userid가 다르다면
 					userid = request.getParameter("userid");	// userid에 파라미터userid를 저장하기
-				sender = UserDAO.logCheck((String) session.getAttribute("userid")).getUserno();	//나
+				
+				sender = ((UserDTO) session.getAttribute("user")).getUserno();
 				receiver = UserDAO.logCheck(userid).getUserno();	//상대방
 				result= TestDAO.amIsender(sender, receiver);	//1이면 O, 2이면 X, 3이면 요청관계없음
 				friend = TestDAO.areWeFriends(sender, receiver);
@@ -73,20 +72,14 @@ public class FriendsInfoAction implements Action {
 			imageList = new ArrayList<String>();
 			for(BoardDTO dto: diaryList){
 				image = dto.getBrdcontent().split("!split!")[0];
-				
-				if(image!=null){
-					imageList.add(image);
-				}
-			}
-			for(String img: imageList){
-				System.out.println(img);
+				if(image!=null)	imageList.add(image);
 			}
 			request.setAttribute("user", user);
 			request.setAttribute("imageList", imageList);
-			request.setAttribute("friendList", friendList);		//수락한 사람도 친구목록에 친구가 떠야되는데 안됨.
+			request.setAttribute("friendList", friendList);
 			request.setAttribute("dog", list);
 			request.setAttribute("user", user);
-			request.setAttribute("friend", friend);	//친구이면 true
+			request.setAttribute("friend", friend);
 			request.setAttribute("result", result);
 			url = "/miniHome/friendsinfo.jsp";
 		}catch(Exception e){

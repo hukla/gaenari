@@ -41,6 +41,9 @@ import exception.LoginException;
  * 
  * 수정: 2014-06-10, 이수진
  * 내용: 광고 띄우는 부분 추가(174줄~)
+ * 
+ * 수정: 2014-06-14, 최성훈
+ * 내용: 광고부분 코드수정
  */
 public class HomeAction implements Action {
 	
@@ -48,19 +51,20 @@ public class HomeAction implements Action {
 	Calendar cal = null;
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{  
-		
-		//System.out.println(request.getAttribute("user.name"));
-		//System.out.println(request.getAttribute("user.email"));
+
 		// 현재 시간
 		cal = Calendar.getInstance();
 		int year = cal.get(cal.YEAR);
 		int mth = cal.get(cal.MONTH)+1;
 		int day = cal.get(cal.DATE);
+		int random = 0;
 		String month = null;
 		String date = null;
 		String userid = null;
 		String pwd = null;
 		UserDTO loginUser = null;
+		UserDTO ranUser = null;
+		DiaryDTO diary = null;
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		List<Integer> senderNo =null;
@@ -99,13 +103,10 @@ public class HomeAction implements Action {
 					if(loginUser.getImg()==null){
 						UpdateDAO.updateImg(loginUser.getUserid(),"/gaenari/image/usericon.jpg"); // user default image
 					}
-					
 					senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno()); // 나한테 친구요청한 사람의 리스트를 받음
 					
 					if(!senderNo.isEmpty()){
-						//senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno());	//
 						list = new ArrayList<UserDTO>();
-						
 						for(int no: senderNo){
 							list.add(UserDAO.selectOne(no));
 						}
@@ -116,66 +117,32 @@ public class HomeAction implements Action {
 							planList.add(plans);
 						}
 					}
-					/////////////////////////////////////////////////////////////////
 					frndNoList = TestDAO.getMyFriends(loginUser.getUserno());
-					/*int random = (int)(Math.random()*frndNoList.size());
-					UserDTO ranUser = UserDAO.selectOne(frndNoList.get(random));*/
 					List<UserDTO> imgUser = new ArrayList<UserDTO>();
-					for(int i=0;i<frndNoList.size();i++){
-						if(TestDAO.selectLastDiary(frndNoList.get(i))!=null){
-							if(TestDAO.selectLastDiary(frndNoList.get(i)).getBrdcontent().split("!split!")[0]!=null){
-								imgUser.add(UserDAO.selectOne(frndNoList.get(i)));
+					for(int frnd:frndNoList){
+						if(TestDAO.selectLastDiary(frnd)!=null){
+							if(TestDAO.selectLastDiary(frnd).getBrdcontent().split("!split!")[0]!=null){
+								imgUser.add(UserDAO.selectOne(frnd));
 							}
 						}
 					}
-					int random = (int)(Math.random()*imgUser.size());
-					if(!imgUser.isEmpty()){
-					UserDTO ranUser = imgUser.get(random);	//이미지를 가지고 있는 내친구중에 한사람정보
-					DiaryDTO diary = null;
-					String image = null;
-					String content = null;
-					
-					System.out.println("=================================================");
-					/*System.out.println("내친구 수: "+frndNoList.size());
-					System.out.println("임의숫자: "+random);
-					System.out.println("임의로 얻은 친구: "+ranUser.getUserid());
-					if(TestDAO.selectLastDiary(frndNoList.get(random))!=null){
-						diary = TestDAO.selectLastDiary(frndNoList.get(random));
-						if(diary.getBrdcontent().split("!split!")[0]!=null){
-							image = diary.getBrdcontent().split("!split!")[0];
-						}
-						content = diary.getBrdcontent().split("!split!")[1];
-						System.out.println("이 친구의 최근 일기:"+diary.getTitle()+" "+diary.getBrdno());
-						System.out.println("일기사진: "+image);
-						System.out.println("내용: "+content);
-					}*/
-					System.out.println("=================================================");
-					diary = TestDAO.selectLastDiary(ranUser.getUserno());
-					request.setAttribute("randomUser", ranUser);
-					request.setAttribute("checkImg", diary.getBrdcontent().split("!split!")[0]);
-					request.setAttribute("checkCont", diary.getBrdcontent().split("!split!")[1]);
+					random = (int)(Math.random()*imgUser.size());
+					if (!imgUser.isEmpty()) {
+						ranUser = imgUser.get(random); // 이미지를 가지고 있는 내친구중에 한사람정보
+						diary = TestDAO.selectLastDiary(ranUser.getUserno());
+						request.setAttribute("randomUser", ranUser);
+						request.setAttribute("checkImg", diary.getBrdcontent().split("!split!")[0]);
+						request.setAttribute("checkCont", diary.getBrdcontent().split("!split!")[1]);
 					}
-					/////////////////////////////////////////////////////////////////
 					session.setAttribute("todayPlan", planList);
-					
-					// sender list를 session에 저장
-					session.removeAttribute("sender");
+					session.removeAttribute("sender");			// sender list를 session에 저장
 					session.setAttribute("sender", list);
-					
-					// session에 login된 상태를 저장
-					session.setAttribute("user", loginUser);
+					session.setAttribute("user", loginUser);	// session에 login된 상태를 저장
 					log.info("logined user : "+loginUser);
 				}
-				
 			}
-			
+			request.setAttribute("mdto", getAds(userid));
 			url = "/home.jsp";
-			//유기견 광고를 랜덤으로 받아 세션에 저장
-			String userId = (String)session.getAttribute("userid");
-			MissingBoardDTO mdto = null;
-			mdto = MFABoardDAO.getAds(userId);
-			
-			session.setAttribute("mdto", mdto);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -189,5 +156,35 @@ public class HomeAction implements Action {
 			request.setAttribute("errorMsg", e.getMessage());
 		}
 		request.getRequestDispatcher(url).forward(request, response);
+	}
+	
+	public MissingBoardDTO getAds(String userid) throws SQLException,
+			LoginException {
+
+		String address = null;
+		int ranNum = 0;
+		List<MissingBoardDTO> mdto = MFABoardDAO.MselectAll();			// 신고 게시판의 모든 글 목록
+		List<MissingBoardDTO> mdto2 = new ArrayList<MissingBoardDTO>();	// 신고 게시판의 분실 장소와 주소가 같은 글 목록
+		MissingBoardDTO mdto3 = null;									// 글 목록 중 랜덤으로 선택된 DTO
+
+		if (userid != null) {
+			address = UserDAO.logCheck(userid).getAddress();
+			for(MissingBoardDTO dto: mdto){								// 분실 장소와 주소가 같은 글 목록을 추려냄
+				if(dto.getMloc().equals(address))	mdto2.add(dto);
+			}
+			ranNum = (int) (Math.random() * mdto2.size());
+			if (mdto2.isEmpty()) { 										// 분실 장소와 주소가 같은 글이 없으면
+				ranNum = (int) (Math.random() * mdto.size());
+				mdto3 = MFABoardDAO.MselectOne(mdto.get(ranNum+1).getBrdno());// 난수로 목록 뽑음
+			} else {													// 분실 장소와 주소가 같은 글의 목록이 있으면
+				mdto3 = mdto2.get(ranNum); 								// 그 목록에서 랜덤으로 가져옴
+			}
+		} else {
+			if (!mdto.isEmpty()) {
+				ranNum = (int) (Math.random() * mdto.size());
+				mdto3 = MFABoardDAO.MselectOne(mdto.get(ranNum).getMbrdno());
+			}
+		}
+		return mdto3;
 	}
 }

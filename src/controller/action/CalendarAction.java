@@ -47,7 +47,6 @@ public class CalendarAction implements Action {
 		try{
 			user = (UserDTO) session.getAttribute("user");
 			userid = user.getUserid();
-			//다른 아이디를 클릭할 때
 			if(request.getParameter("userid")!=null){				//만약 userid 파라미터를 넘겨 받았다면
 				if(userid!=request.getParameter("userid")){			//그리고 만약 세션 userid와 파라미터userid가 다르다면
 					userid = request.getParameter("userid");		//userid에 파라미터userid를 저장하기
@@ -78,8 +77,8 @@ public class CalendarAction implements Action {
 			
 			request.setAttribute("dlist", dlist);		//현재날짜 or 달력에서 클릭한 날짜의 일기리스트 setAttribute
 			request.setAttribute("plist", plist);		//현재날짜 or 달력에서 클릭한 날짜의 일정리스트 setAttribute
-			request.setAttribute("user", user);
 			
+			request.setAttribute("user", user);
 			request.setAttribute("date", date);	
 			request.setAttribute("month", month);
 			request.setAttribute("year", year);
