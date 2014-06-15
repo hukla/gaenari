@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.BrdReqDAO;
-import model.dao.TestDAO;
+import model.dao.DogDAO;
 import model.dao.UserDAO;
 import model.dto.BrdReqDTO;
-import model.dto.UserDTO;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
@@ -72,7 +71,7 @@ public class BrdReqSelectAction implements Action {
 					//log.info(d);
 					//out.print("\n,{\"donreq\":"+new JSONObject(d).toString()+"}");
 					obj = new JSONObject(d);
-					obj.put("doginfo", TestDAO.getMyDogInfo(d.getUserno()).size());
+					obj.put("doginfo", DogDAO.getMyDogInfo(d.getUserno()).size());
 					obj.put("point", UserDAO.selectOne(d.getUserno()).getPoint());
 					obj.put("address", UserDAO.selectOne(d.getUserno()).getAddress());
 					json += obj.toString()+",";

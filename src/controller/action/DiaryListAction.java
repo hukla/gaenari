@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.TestDAO;
+import model.dao.DiaryDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
@@ -58,7 +58,7 @@ public class DiaryListAction implements Action {
 					user = UserDAO.logCheck(userid);
 				}
 			}
-			diaryList = TestDAO.selectDiary(user);
+			diaryList = DiaryDAO.selectDiary(user);
 			pageNumber = request.getParameter("pageNumber");
 			diaryNumber = request.getParameter("diaryNumber");
 			
@@ -71,8 +71,8 @@ public class DiaryListAction implements Action {
 				flag = true;
 			}
 			
-			pageCount = TestDAO.getDiaryCount(user.getUserno());
-			tenDiaries = TestDAO.getTenDiaries((Integer.parseInt(pageNumber)-1)*10,user.getUserno());
+			pageCount = DiaryDAO.getDiaryCount(user.getUserno());
+			tenDiaries = DiaryDAO.getTenDiaries((Integer.parseInt(pageNumber)-1)*10,user.getUserno());
 			//14-05-20 성훈 수정: 다이어리 정보가 있을 때만 출력하기
 			if (!diaryList.isEmpty()) {
 				diaryFirst = diaryList.get(Integer.parseInt(diaryNumber)); 			// 첫번째 테두리에 넣을 일기 정보

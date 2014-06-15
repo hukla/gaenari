@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.UpdateDAO;
+import model.dao.PlanDAO;
 import model.dto.BoardDTO;
 import model.dto.PlanDTO;
 /**
@@ -46,8 +46,8 @@ public class UpdatePlanAction implements Action {
 			}
 			brdcontent=plType+"!split!"+brdcontent;
 			BoardDTO boardDTO = new BoardDTO(Integer.parseInt(brdno),brdcontent,tmpdate,title);
-			UpdateDAO.updatePlanBoard(boardDTO);
-			UpdateDAO.updatePlan(new PlanDTO(Integer.parseInt(brdno),ploc,tmpdate,Integer.parseInt(dogno)));
+			PlanDAO.updatePlanBoard(boardDTO);
+			PlanDAO.updatePlan(new PlanDTO(Integer.parseInt(brdno),ploc,tmpdate,Integer.parseInt(dogno)));
 			url="/planDetail.do?brdno="+brdno;
 		} catch(Exception e){
 			e.printStackTrace();

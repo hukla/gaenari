@@ -7,7 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.DeleteDAO;
+import model.dao.BoardDAO;
+import model.dao.DiaryDAO;
 /**
  * 작성:2014-05-21
  * 작성자: 최성훈
@@ -24,8 +25,8 @@ public class DeleteDiaryAction implements Action {
 		try{
 			brdno = request.getParameter("brdno");
 			if(brdno.equals(null) || brdno.trim().length()==0)	throw new Exception("정보없습니다.");
-			DeleteDAO.deleteDiary(Integer.parseInt(brdno));		//foreign key로인해 diary 정보부터 삭제
-			DeleteDAO.deleteBoard(Integer.parseInt(brdno));		//diary정보 삭제 후 board 정보 삭제
+			DiaryDAO.deleteDiary(Integer.parseInt(brdno));		//foreign key로인해 diary 정보부터 삭제
+			BoardDAO.deleteBoard(Integer.parseInt(brdno));		//diary정보 삭제 후 board 정보 삭제
 			url="/diaryList.do";
 		}catch(SQLException e){
 			e.printStackTrace();

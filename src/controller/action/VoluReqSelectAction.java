@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.BrdReqDAO;
-import model.dao.TestDAO;
-import model.dao.UpdateDAO;
 import model.dao.UserDAO;
 import model.dto.BrdReqDTO;
 
@@ -47,7 +45,7 @@ public class VoluReqSelectAction implements Action {
 					brdtoList = new ArrayList<BrdReqDTO>();
 					
 					brdtoList = BrdReqDAO.selectReqByBrdno(brdno);
-					UpdateDAO.plusMilenari(userno, 20);
+					UserDAO.plusMilenari(userno, 20);
 					
 					/*
 					 * 출력할 신청자의 정보

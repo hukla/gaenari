@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.TestDAO;
+import model.dao.DiaryDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
@@ -73,7 +73,7 @@ public class OneDiaryAction implements Action {
 					user = UserDAO.logCheck(userid);
 				}
 			}
-			dlist = TestDAO.selectAllDiary(user);				//user정보를 이용하여 전체 일기 리스트받아오기
+			dlist = DiaryDAO.selectAllDiary(user);				//user정보를 이용하여 전체 일기 리스트받아오기
 			
 			/**
 			 * 14-05-14 성훈 추가: 일기접근 번호(게시판번호, 일기번호)
@@ -87,16 +87,17 @@ public class OneDiaryAction implements Action {
 				if(Integer.parseInt(index)<0 || Integer.parseInt(index)>dlist.size()-1)	
 					throw new IndexOutOfBoundsException("페이지의 끝입니다.");
 				//이전글, 다음글 클릭하여 얻은 index가 정해진 범위를 초과하면 Exception발생!
-				diaryDTO =  TestDAO.getOneDiary(dlist.get(Integer.parseInt(index)).getDbrdno(),user.getUserno());
+				//diaryDTO =  TestDAO.getOneDiary(dlist.get(Integer.parseInt(index)).getDbrdno(),user.getUserno());
+				diaryDTO = dlist.get(Integer.parseInt(index));
 				//이전글, 다음글 클릭하여 얻은 index와 현재 user정보에 해당하는 diaryDTO가져오기
 			}
 			else if(request.getParameter("brdno")!=null)//미리보기 버튼 클릭하여 들어올 경우
-				diaryDTO = TestDAO.getJustDiary(Integer.parseInt(request.getParameter("brdno")));
+				diaryDTO = DiaryDAO.getJustDiary(Integer.parseInt(request.getParameter("brdno")));
 			for(DiaryDTO dto:dlist)
 				if(dto.getBrdno()==diaryDTO.getBrdno())	indexInt = dlist.indexOf(dto);
 				//전체 일정중 현재 보여지는 일기에 해당하는 index를 구함
 			
-			oneDiary = TestDAO.selectOneDiary(diaryDTO.getBrdno());
+			oneDiary = DiaryDAO.selectOneDiary(diaryDTO.getBrdno());
 			//14-05-26 성훈수정: 다이어리 컨텐츠 줄바꿈 추가
 			oneDiaryContents = oneDiary.getBrdcontent().replaceAll("\r\n", "<br/>").split("!split!");
 			

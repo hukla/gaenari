@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.DogDAO;
-import model.dao.TestDAO;
+import model.dao.PlanDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.DogDTO;
@@ -70,7 +70,7 @@ public class OnePlanAction implements Action {
 					user = UserDAO.logCheck(userid);
 				}
 			}
-			plist = TestDAO.selectPlanList(user.getUserno());
+			plist = PlanDAO.selectPlanList(user.getUserno());
 			for(PlanDTO dto: plist){
 				dto.setBrdcontent(dto.getBrdcontent().replaceAll("\r\n", "<br/>"));
 			}
@@ -86,19 +86,20 @@ public class OnePlanAction implements Action {
 				if(Integer.parseInt(index)<0 || Integer.parseInt(index)>plist.size()-1)	
 					throw new IndexOutOfBoundsException("페이지의 끝입니다.");
 				//이전글, 다음글 클릭하여 얻은 index가 정해진 범위를 초과하면 Exception발생!
-				planDTO = TestDAO.getOnePlan(plist.get(Integer.parseInt(index)).getPbrdno(),user.getUserno());
+				//planDTO = TestDAO.getOnePlan(plist.get(Integer.parseInt(index)).getPbrdno(),user.getUserno());
+				planDTO = plist.get(Integer.parseInt(index));
 				//이전글, 다음글 클릭하여 얻능 index와 현재 user정보에 해당하는 planDTO가져오기
 			}
 			
 			else if(request.getParameter("brdno")!=null)//미리보기 버튼 클릭하여 들어올 경우
-				planDTO = TestDAO.getJustPlan(Integer.parseInt(request.getParameter("brdno")));
+				planDTO = PlanDAO.getJustPlan(Integer.parseInt(request.getParameter("brdno")));
 			
 			//14-05-26 성훈추가: 줄바꿈추가
 			for(PlanDTO dto:plist)
 				if(dto.getBrdno()==planDTO.getBrdno())	indexInt = plist.indexOf(dto);
 				//전체 일정중 현재 보여지는 일정에 해당하는 index를 구함
 			
-			onePlan = TestDAO.selectOnePlan(planDTO.getBrdno());
+			onePlan = PlanDAO.selectOnePlan(planDTO.getBrdno());
 			planType = onePlan.getBrdcontent().split("!split!")[0];
 			onePlan.setBrdcontent(onePlan.getBrdcontent().split("!split!")[1]);
 			dog = DogDAO.getDogInfo(user.getUserno(), planDTO.getPlandogno());

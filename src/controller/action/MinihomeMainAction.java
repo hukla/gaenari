@@ -10,17 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
-
+import model.dao.DiaryDAO;
 import model.dao.DogDAO;
-import model.dao.MFABoardDAO;
-import model.dao.TestDAO;
-import model.dao.UpdateDAO;
+import model.dao.FriendDAO;
+import model.dao.PlanDAO;
 import model.dao.UserDAO;
-import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
 import model.dto.DogDTO;
-import model.dto.MissingBoardDTO;
 import model.dto.PlanDTO;
 import model.dto.UserDTO;
 /**
@@ -109,26 +105,26 @@ public class MinihomeMainAction implements Action {
 			
 			updateimg = request.getParameter("updateimg");									//이미지 클릭해서 메인사진 바꾸기
 			if(updateimg!=null){
-				UpdateDAO.updateImg(loginUser.getUserid(),updateimg);
+				UserDAO.updateImg(loginUser.getUserid(),updateimg);
 				loginUser = UserDAO.logCheck(loginUser.getUserid());	
 			}
 			
-			dog = TestDAO.getMyDogInfo(loginUser.getUserno());								//내 강아지 정보가져오기
+			dog = DogDAO.getMyDogInfo(loginUser.getUserno());								//내 강아지 정보가져오기
 			
-			friendNo = TestDAO.getMyFriends(((UserDTO)session.getAttribute("user")).getUserno());
+			friendNo = FriendDAO.getMyFriends(((UserDTO)session.getAttribute("user")).getUserno());
 			friendList = new ArrayList<UserDTO>();
 			for(int no: friendNo){
 				friendList.add(UserDAO.selectOne(no));
 			}
 			
-			diary = TestDAO.selectLastDiary(loginUser.getUserno());							//가장 최근 다이어리정보 가져오기(+사진,내용도)
+			diary = DiaryDAO.selectLastDiary(loginUser.getUserno());							//가장 최근 다이어리정보 가져오기(+사진,내용도)
 			if(diary != null){
 				if(!diary.getBrdcontent().split("!split!")[0].equals(""))
 					request.setAttribute("diImage", diary.getBrdcontent().split("!split!")[0]);
 				else	request.setAttribute("diImage",null);
 				request.setAttribute("diContent",  diary.getBrdcontent().split("!split!")[1]);	//일기+사진+내용 request에 setAttribute
 			}
-			nextPlan = TestDAO.unfinishedPlan(loginUser.getUserid());						//오늘 이후의 일정
+			nextPlan = PlanDAO.unfinishedPlan(loginUser.getUserid());						//오늘 이후의 일정
 			if(nextPlan != null){
 				if(nextPlan.getPlandogno()!=0){
 					planDog = DogDAO.getDogInfo(loginUser.getUserno(), nextPlan.getPlandogno());
@@ -139,7 +135,7 @@ public class MinihomeMainAction implements Action {
 				nextPlan.setBrdcontent(nextPlan.getBrdcontent().split("!split!")[1]);
 			}
 			
-			todayPlan = TestDAO.myTodaysPlan((String)session.getAttribute("userid"));		//오늘 내 일정리스트 가져오기
+			todayPlan = PlanDAO.myTodaysPlan((String)session.getAttribute("userid"));		//오늘 내 일정리스트 가져오기
 			cnt = todayPlan.size();
 			
 			session.setAttribute("myFriends", friendList);

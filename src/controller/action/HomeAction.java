@@ -11,19 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.DiaryDAO;
+import model.dao.FriendDAO;
 import model.dao.MFABoardDAO;
-import model.dao.TestDAO;
-import model.dao.UpdateDAO;
+import model.dao.PlanDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
 import model.dto.MissingBoardDTO;
 import model.dto.UserDTO;
 
-import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 
-import util.DBUtil;
 import exception.LoginException;
 /**
  * 작성: 최성훈
@@ -101,9 +100,9 @@ public class HomeAction implements Action {
 					throw new LoginException("비밀번호를 확인해주세요.");			// 14-05-20 성훈 추가: LoginException 추가
 				}else{
 					if(loginUser.getImg()==null){
-						UpdateDAO.updateImg(loginUser.getUserid(),"/gaenari/image/usericon.jpg"); // user default image
+						UserDAO.updateImg(loginUser.getUserid(),"/gaenari/image/usericon.jpg"); // user default image
 					}
-					senderNo = TestDAO.checkMyReqinfo(loginUser.getUserno()); // 나한테 친구요청한 사람의 리스트를 받음
+					senderNo = FriendDAO.checkMyReqinfo(loginUser.getUserno()); // 나한테 친구요청한 사람의 리스트를 받음
 					
 					if(!senderNo.isEmpty()){
 						list = new ArrayList<UserDTO>();
@@ -112,16 +111,16 @@ public class HomeAction implements Action {
 						}
 					}
 					planList = new ArrayList<BoardDTO>();
-					for (BoardDTO plans : TestDAO.selectPlan(loginUser)) {
+					for (BoardDTO plans : PlanDAO.selectPlan(loginUser)) {
 						if (plans.getWrdate().equals(session.getAttribute("today"))) {
 							planList.add(plans);
 						}
 					}
-					frndNoList = TestDAO.getMyFriends(loginUser.getUserno());
+					frndNoList = FriendDAO.getMyFriends(loginUser.getUserno());
 					List<UserDTO> imgUser = new ArrayList<UserDTO>();
 					for(int frnd:frndNoList){
-						if(TestDAO.selectLastDiary(frnd)!=null){
-							if(TestDAO.selectLastDiary(frnd).getBrdcontent().split("!split!")[0]!=null){
+						if(DiaryDAO.selectLastDiary(frnd)!=null){
+							if(DiaryDAO.selectLastDiary(frnd).getBrdcontent().split("!split!")[0]!=null){
 								imgUser.add(UserDAO.selectOne(frnd));
 							}
 						}
@@ -129,7 +128,7 @@ public class HomeAction implements Action {
 					random = (int)(Math.random()*imgUser.size());
 					if (!imgUser.isEmpty()) {
 						ranUser = imgUser.get(random); // 이미지를 가지고 있는 내친구중에 한사람정보
-						diary = TestDAO.selectLastDiary(ranUser.getUserno());
+						diary = DiaryDAO.selectLastDiary(ranUser.getUserno());
 						request.setAttribute("randomUser", ranUser);
 						request.setAttribute("checkImg", diary.getBrdcontent().split("!split!")[0]);
 						request.setAttribute("checkCont", diary.getBrdcontent().split("!split!")[1]);

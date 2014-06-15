@@ -5,8 +5,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.dto.UserDTO" %>
 <%@ page import="model.dao.UserDAO" %>
-<%@ page import="model.dao.TestDAO" %>
 <%@ page import="model.dto.DiaryDTO" %>
+<%@ page import="model.dao.DiaryDAO" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -214,7 +214,7 @@ overflow-y: overlay;
 							list = UserDAO.allUsers();					//타입이 0인 일반유저를 모두 불러옴
 							imgUser = new ArrayList<UserDTO>();	
 							for (int i = 0; i < list.size(); i++) {		//모든 유저들을 for문 돌려서 다이어리DTO에 user마다의 마지막 일기를 저장
-								diary = TestDAO.selectLastDiary(list.get(i).getUserno());
+								diary = DiaryDAO.selectLastDiary(list.get(i).getUserno());
 								if (diary != null) {					//다이어리 정보가 있는 user의 경우에
 									if (diary.getBrdcontent().split("!split!")[0].trim().length() != 0) {	//마지막일기에 이미지가 등록되어있으면
 										imgUser.add(list.get(i));
@@ -224,7 +224,7 @@ overflow-y: overlay;
 							ran = (int) (Math.random() * imgUser.size());	// 사람들 수 만큼 랜덤값을 얻어낸다.
 							user = imgUser.get(ran);
 							request.setAttribute("randomUser", user);
-							request.setAttribute("img",TestDAO.selectLastDiary(user.getUserno()).getBrdcontent().split("!split!")[0]);
+							request.setAttribute("img",DiaryDAO.selectLastDiary(user.getUserno()).getBrdcontent().split("!split!")[0]);
 						}
 					%>
 					<div class="col-sm-6 col-md-3" id="thumb">

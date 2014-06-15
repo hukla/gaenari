@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.UpdateDAO;
+import model.dao.DiaryDAO;
 import model.dto.BoardDTO;
 import model.dto.DiaryDTO;
 
@@ -78,8 +78,8 @@ public class UpdateDiaryAction implements Action{
 				else				//파일업로드하는 경우(brdno,content,title)
 					boardDTO = new BoardDTO(Integer.parseInt(brdno), imagefile+"!split!"+brdcontent, title);
 				
-				UpdateDAO.updateDiaryBoard(boardDTO);
-				UpdateDAO.updateDiary(new DiaryDTO(Integer.parseInt(brdno),mood));
+				DiaryDAO.updateDiaryBoard(boardDTO);
+				DiaryDAO.updateDiary(new DiaryDTO(Integer.parseInt(brdno),mood));
 				// 보드DTO와 다이어리DTO에 받은 값들을 입력해준다.
 			}
 			url = "/diaryDetail.do?brdno=" + brdno;

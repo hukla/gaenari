@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.InsertDAO;
 import model.dao.UserDAO;
+import model.dao.VisitDAO;
 import model.dto.BoardDTO;
 import model.dto.UserDTO;
 /**
@@ -50,10 +50,9 @@ public class WriteVisitAction implements Action {
 						(String) session.getAttribute("userid"),writer.getImg(), "vi",
 						(int) (user.getUserno()));		// 현재 시간과 보드 타입 "vi"와 userno를 넣어준다.
 
-				brdno = InsertDAO.insertVisitBoard(boardDTO);
-				InsertDAO.insertVisitbook(brdno);		// 보드DTO와 방명록DTO에 받은 값들을 입력해준다.
+				brdno = VisitDAO.insertVisitBoard(boardDTO);
+				VisitDAO.insertVisitbook(brdno);		// 보드DTO와 방명록DTO에 받은 값들을 입력해준다.
 			}
-			
 			url = "/visitList.do?userid="+user.getUserid();
 		} catch (SQLException e) {
 			e.printStackTrace();

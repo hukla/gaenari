@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.TestDAO;
+import model.dao.DiaryDAO;
+import model.dao.DogDAO;
+import model.dao.FriendDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.DogDTO;
@@ -55,20 +57,20 @@ public class FriendsInfoAction implements Action {
 				
 				sender = ((UserDTO) session.getAttribute("user")).getUserno();
 				receiver = UserDAO.logCheck(userid).getUserno();	//상대방
-				result= TestDAO.amIsender(sender, receiver);	//1이면 O, 2이면 X, 3이면 요청관계없음
-				friend = TestDAO.areWeFriends(sender, receiver);
+				result= FriendDAO.amIsender(sender, receiver);	//1이면 O, 2이면 X, 3이면 요청관계없음
+				friend = FriendDAO.areWeFriends(sender, receiver);
 			}
 			
 			user = UserDAO.logCheck(userid);
-			list = TestDAO.getMyDogInfo(user.getUserno());
+			list = DogDAO.getMyDogInfo(user.getUserno());
 			
-			friendNo = TestDAO.getMyFriends(user.getUserno());
+			friendNo = FriendDAO.getMyFriends(user.getUserno());
 			friendList = new ArrayList<UserDTO>();
 			for(int no: friendNo){
 				friendList.add(UserDAO.selectOne(no));
 			}
 			
-			diaryList = TestDAO.selectDiary(user);
+			diaryList = DiaryDAO.selectDiary(user);
 			imageList = new ArrayList<String>();
 			for(BoardDTO dto: diaryList){
 				image = dto.getBrdcontent().split("!split!")[0];

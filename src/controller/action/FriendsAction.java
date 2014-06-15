@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.TestDAO;
+import model.dao.FriendDAO;
 import model.dao.UserDAO;
 import model.dto.UserDTO;
 /**
@@ -43,9 +43,9 @@ public class FriendsAction implements Action {
 					user = UserDAO.logCheck(userid);
 				}
 			}
-			senderNo = TestDAO.checkMyReqinfo(user.getUserno());
+			senderNo = FriendDAO.checkMyReqinfo(user.getUserno());
 			if(!senderNo.isEmpty()){
-				senderNo = TestDAO.checkMyReqinfo(user.getUserno());	//나한테 친구요청한 사람번호의 리스트를 받음
+				senderNo = FriendDAO.checkMyReqinfo(user.getUserno());	//나한테 친구요청한 사람번호의 리스트를 받음
 				list = new ArrayList<UserDTO>();
 				for(int no: senderNo){
 					list.add(UserDAO.selectOne(no));					//번호리스트를 사람리스트로 만듦.
@@ -53,7 +53,7 @@ public class FriendsAction implements Action {
 			}
 			session.removeAttribute("sender");
 			session.setAttribute("sender", list);
-			friendNo = TestDAO.getMyFriends(user.getUserno());
+			friendNo = FriendDAO.getMyFriends(user.getUserno());
 			friendList = new ArrayList<UserDTO>();
 			for(int no: friendNo){
 				friendList.add(UserDAO.selectOne(no));

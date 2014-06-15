@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.TestDAO;
+import model.dao.DogDAO;
 import model.dao.UserDAO;
 import model.dto.DogDTO;
 import model.dto.UserDTO;
@@ -28,7 +28,7 @@ public class ModifyInfoFormAction implements Action {
 		try{
 			userid = (String) session.getAttribute("userid");	// 세션의 userid가져오기
 			user = UserDAO.logCheck(userid);
-			list = TestDAO.getMyDogInfo(user.getUserno());
+			list = DogDAO.getMyDogInfo(user.getUserno());
 			request.setAttribute("user", user);
 			request.setAttribute("dog", list);
 			

@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.InsertDAO;
-import model.dao.UpdateDAO;
+import model.dao.PlanDAO;
+import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.PlanDTO;
 import model.dto.UserDTO;
@@ -60,11 +60,11 @@ public class WritePlanAction implements Action {
 				content = plantype+"!split!"+content;
 				boardDTO = new BoardDTO(content, date,(String) session.getAttribute("userid"), title, "pl",
 						(int)((UserDTO) session.getAttribute("user")).getUserno());
-				brdno = InsertDAO.insertPlanBoard(boardDTO);
+				brdno = PlanDAO.insertPlanBoard(boardDTO);
 				
-				if(plandogno!=null)	InsertDAO.insertPlan(new PlanDTO(brdno, loc, date,Integer.parseInt(plandogno)));
-				else	InsertDAO.insertPlan(new PlanDTO(brdno, loc, date));
-				UpdateDAO.plusMilenari(((UserDTO)session.getAttribute("user")).getUserno(),5);
+				if(plandogno!=null)	PlanDAO.insertPlan(new PlanDTO(brdno, loc, date,Integer.parseInt(plandogno)));
+				else	PlanDAO.insertPlan(new PlanDTO(brdno, loc, date));
+				UserDAO.plusMilenari(((UserDTO)session.getAttribute("user")).getUserno(),5);
 				// 입력값들을 보드DTO와 플랜DTO에 insert해준다.
 				request.setAttribute("milenari", 1);
 			}

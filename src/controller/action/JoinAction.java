@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.InsertDAO;
-import model.dao.UpdateDAO;
+import model.dao.CenterDAO;
+import model.dao.UserDAO;
 import model.dto.CenterDTO;
 import model.dto.UserDTO;
 /**
@@ -78,17 +78,17 @@ public class JoinAction implements Action {
 				if(dogs<20)	cntrsize='s';
 				else if(dogs<50)	cntrsize='m';
 				else cntrsize='l';
-				cntrno = InsertDAO.insertCntrUser(new CenterDTO(cntrname, cntrloc, cntrcontact, cntrsize));
-				InsertDAO.insertUser(new UserDTO(userid,pwd,email,username,addr,cntrno));
+				cntrno = CenterDAO.insertCntrUser(new CenterDTO(cntrname, cntrloc, cntrcontact, cntrsize));
+				UserDAO.insertUser(new UserDTO(userid,pwd,email,username,addr,cntrno));
 			}else{
-				InsertDAO.insertUser(new UserDTO(userid,pwd,email,username,addr,Integer.parseInt(type)));
+				UserDAO.insertUser(new UserDTO(userid,pwd,email,username,addr,Integer.parseInt(type)));
 			}
 			session.setAttribute("username", username);
 			session.setAttribute("userid", userid);
 			session.setAttribute("pwd", pwd);
 			request.setAttribute("email", email);
 			if(fbImage!=null){
-				UpdateDAO.updateImg(userid,fbImage);
+				UserDAO.updateImg(userid,fbImage);
 				request.setAttribute("image", fbImage);
 			}
 			url = "welcome.jsp";

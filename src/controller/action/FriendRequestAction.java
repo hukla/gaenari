@@ -6,8 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.DeleteDAO;
-import model.dao.InsertDAO;
+import model.dao.FriendDAO;
 import model.dao.UserDAO;
 
 public class FriendRequestAction implements Action {
@@ -27,9 +26,9 @@ public class FriendRequestAction implements Action {
 			rcvrNo = UserDAO.logCheck(receiver).getUserno();
 			
 			if(cancelValue==null){					// 친구 요청으로 폼 전송 받았을 때
-				InsertDAO.insertFrndReq(sndrNo,rcvrNo);
+				FriendDAO.insertFrndReq(sndrNo,rcvrNo);
 			}else{									// 친구 요청 취소로 폼 전송 받았을 때
-				DeleteDAO.deleteFrndReq(sndrNo, rcvrNo);
+				FriendDAO.deleteFrndReq(sndrNo, rcvrNo);
 			}
 			url = "/friends.do";
 		}catch(Exception e){

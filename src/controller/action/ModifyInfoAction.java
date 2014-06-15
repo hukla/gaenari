@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.UpdateDAO;
 import model.dao.UserDAO;
 import model.dto.UserDTO;
 /**
@@ -36,7 +35,7 @@ public class ModifyInfoAction implements Action {
 				throw new Exception("수정사항을 모두 입력해주세요.");
 			}
 			
-			UpdateDAO.updateInfo(new UserDTO(Integer.parseInt(userno),passwd,address));
+			UserDAO.updateInfo(new UserDTO(Integer.parseInt(userno),passwd,address));
 			session.removeAttribute("pwd");
 			session.setAttribute("pwd", passwd);
 			url = "/userinfo.do?userid="+session.getAttribute("userid");

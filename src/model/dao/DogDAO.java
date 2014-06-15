@@ -56,4 +56,29 @@ public class DogDAO {
 		}
 		if(!result)	throw new SQLException("정보 수정에 실패했습니다.");
 	}
+	//14-05-29 성훈추가: 내 강아지정보 가져오기
+	public static List<DogDTO> getMyDogInfo(int userno) throws SQLException{
+		SqlSession session = null;
+		List<DogDTO> list = null;
+		try {
+			session = DBUtil.getSqlSession();
+			list = session.selectList("dog.getInfo",userno);
+		} finally {
+			DBUtil.closeSession(session);
+		}
+		return list;
+	}
+	//14-05-28 성훈추가: 강아지 정보입력
+	public static void insertDoginfo(DogDTO dog) throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		try {
+			session = DBUtil.getSqlSession();
+			result = session.insert("insert.insertDoginfo", dog) > 0 ? true : false;
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if(!result)	throw new SQLException("강아지 등록에 실패했습니다.");
+	}
 }

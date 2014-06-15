@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.DogDAO;
-import model.dao.TestDAO;
+import model.dao.PlanDAO;
 import model.dao.UserDAO;
 import model.dto.DogDTO;
 import model.dto.PlanDTO;
@@ -39,7 +39,7 @@ public class MyDogInfoAction implements Action {
 			}
 			dogno= Integer.parseInt(request.getParameter("dogno"));
 			dog = DogDAO.getDogInfo(user.getUserno(), dogno);
-			dogsPlan = TestDAO.getPlanByDogno(dog.getDogno());
+			dogsPlan = PlanDAO.getPlanByDogno(dog.getDogno());
 			
 			request.setAttribute("user", user);
 			request.setAttribute("dogsPlanList", dogsPlan);

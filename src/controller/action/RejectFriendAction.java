@@ -6,8 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.DeleteDAO;
-import model.dao.InsertDAO;
+import model.dao.FriendDAO;
 
 public class RejectFriendAction implements Action {
 
@@ -20,7 +19,7 @@ public class RejectFriendAction implements Action {
 		try{
 			sender = Integer.parseInt(request.getParameter("sender"));
 			receiver = Integer.parseInt(request.getParameter("receiver"));
-			DeleteDAO.deleteFrndReq(sender,receiver);
+			FriendDAO.deleteFrndReq(sender,receiver);
 			url = "/friends.do";
 		}catch (Exception e){
 			e.printStackTrace();
