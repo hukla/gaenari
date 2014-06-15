@@ -65,7 +65,6 @@ public class UpdateDiaryAction implements Action{
 			imagefile = "/gaenari/image/"+userid+"/"+fileName;	//방금등록한 이미지실제경로(사용자별 폴더)
 			
 			if (fileName == null) System.out.print("파일 업로드 되지 않았음");	// 파일이 업로드 되지 않았을때
-			else System.out.println("File Name  : " + fileName);				// 파일이 업로드 되었을때
 			
 			//이미지 파일 업로드 됨.
 		

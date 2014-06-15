@@ -34,7 +34,6 @@ public class WriteVisitAction implements Action {
 		String content = null;
 		UserDTO user = null;
 		UserDTO writer = null;
-		String img = null;
 		String url = "/error.jsp";
 		int brdno = 0;
 		
@@ -49,13 +48,10 @@ public class WriteVisitAction implements Action {
 				BoardDTO boardDTO = new BoardDTO(content,
 						(String) session.getAttribute("today"),
 						(String) session.getAttribute("userid"),writer.getImg(), "vi",
-						(int) (user.getUserno()));
-				// 현재 시간과 보드 타입 "vi"와 userno를 넣어준다.
+						(int) (user.getUserno()));		// 현재 시간과 보드 타입 "vi"와 userno를 넣어준다.
 
 				brdno = InsertDAO.insertVisitBoard(boardDTO);
-				System.out.println("인서트된 보드넘버" + brdno);
-				InsertDAO.insertVisitbook(brdno);
-				// 보드DTO와 방명록DTO에 받은 값들을 입력해준다.
+				InsertDAO.insertVisitbook(brdno);		// 보드DTO와 방명록DTO에 받은 값들을 입력해준다.
 			}
 			
 			url = "/visitList.do?userid="+user.getUserid();

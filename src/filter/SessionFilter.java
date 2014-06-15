@@ -33,19 +33,9 @@ public class SessionFilter implements Filter {
 	
 	private final static Logger log = Logger.getLogger(SessionFilter.class);
 
-    /**
-     * Default constructor. 
-     */
     public SessionFilter() { }
-
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() { }
-
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
+    public void destroy() { }
+    
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
 		
 		HttpServletRequest request = (HttpServletRequest)req;
@@ -54,19 +44,8 @@ public class SessionFilter implements Filter {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		// facebook으로 가입하던 중에 첫 화면으로 돌아갔을 때 발생하는 에러
-		String email,username = null;
-		email= request.getParameter("email");
-		username = request.getParameter("username");
-		
 		if(session.isNew()){
 			log.info("session is new!");
-			
-			/*if(email==null && username==null){
-				response.sendRedirect("/gaenari/login.do"); // TODO
-				//request.getRequestDispatcher("/gaenari/login.do").forward(request, response);
-			}*/
-			
 		}else{
 			String userid = null;
 			String pwd = null;
@@ -76,9 +55,6 @@ public class SessionFilter implements Filter {
 				pwd = request.getParameter("pwd");
 			}else{
 				System.out.println(request.getRequestURI());
-				/*if(request.getRequestURI().contains("login.jsp")){
-					response.sendRedirect("/gaenari/login.do");
-				}*/
 				log.info("session.getAttribute('userid') = "+(String)session.getAttribute("userid"));
 				userid = (String) session.getAttribute("userid");
 				pwd = (String) session.getAttribute("pwd");
@@ -96,10 +72,6 @@ public class SessionFilter implements Filter {
 		}
 		chain.doFilter(request, response);
 	}
-
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
 	public void init(FilterConfig fConfig) throws ServletException { }
 
 }

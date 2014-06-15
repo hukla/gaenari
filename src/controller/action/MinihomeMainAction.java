@@ -152,7 +152,6 @@ public class MinihomeMainAction implements Action {
 			request.setAttribute("dog", dog);				//내강아지정보
 			request.setAttribute("planDog", planDog);
 
-			
 			request.setAttribute("mdto", home.getAds(userid));
 			url = "miniHome/main.jsp";
 			

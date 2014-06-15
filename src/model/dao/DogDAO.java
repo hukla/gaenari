@@ -19,7 +19,6 @@ public class DogDAO {
 		List<DogDTO> list =null;
 		try{
 			session =  DBUtil.getSqlSession();
-			System.out.println("==DogDAO진입==");
 			list = session.selectList("dog.getInfo",userno.getUserdto().getUserno());
 		}finally{
 			DBUtil.closeSession(session);

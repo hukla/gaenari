@@ -72,12 +72,7 @@ public class WriteDiaryAction implements Action {
 			
 			imagefile = "/gaenari/image/"+userid+"/"+fileName;	//방금등록한 이미지실제경로(사용자별 폴더)
 			
-			if (fileName == null) { // 파일이 업로드 되지 않았을때
-				System.out.print("파일 업로드 되지 않았음");
-			} else { 				// 파일이 업로드 되었을때
-				System.out.println("File Name  : " + fileName);
-			}
-			//이미지 파일 업로드 됨.
+			if (fileName == null)	System.out.print("파일 업로드 되지 않았음");
 
 			if (title.equals(null) || title.trim().length() == 0 || mood.equals(null) || mood.trim().length() == 0
 					|| content.equals(null) || content.trim().length() == 0) {

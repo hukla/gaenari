@@ -51,7 +51,6 @@ public class WritePlanAction implements Action {
 			plantype = request.getParameter("plantype");
 			plandogno = request.getParameter("plandogno");
 			
-			System.out.println(title+loc+tmpDate+content);
 			if (title.equals(null) || title.trim().length() == 0 || loc.equals("unchosen")
 					|| tmpDate.equals(null) || tmpDate.trim().length() == 0
 					|| content.equals(null) || content.trim().length() == 0) {

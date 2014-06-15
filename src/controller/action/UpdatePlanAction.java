@@ -28,31 +28,26 @@ public class UpdatePlanAction implements Action {
 			throws ServletException, IOException {
 
 		String url = "/error.jsp";
-		String title,brdcontent,wrdate,tmpdate,ploc,brdno=null;
+		String title,brdcontent,wrdate,tmpdate,ploc,brdno,dogno,plType=null;
 		
 		try{
 			title = request.getParameter("title");
 			brdcontent = request.getParameter("brdcontent").replaceAll("\r\n", "<br/>");
-			tmpdate = request.getParameter("wrdate");
-			ploc = request.getParameter("ploc");
+			tmpdate = request.getParameter("date").toString();
+			ploc = request.getParameter("ploc").toString();
+			dogno = request.getParameter("plandogno").toString();
+			plType = request.getParameter("plantype").toString();
 			brdno = request.getParameter("brdno");
-			
-			/*title = new String(title.getBytes("8859_1"),"utf-8");
-			ploc = new String(ploc.getBytes("8859_1"),"utf-8");
-			tmpdate = new String(tmpdate.getBytes("8859_1"),"utf-8");
-			brdcontent = new String(brdcontent.getBytes("8859_1"),"utf-8");*/
-			
-			if(title.equals(null) || title.trim().length()==0 || brdcontent.equals(null) || brdcontent.trim().length()==0 
-					|| tmpdate.equals(null) || tmpdate.trim().length()==0 || ploc.equals(null) || ploc.trim().length()==0
-					|| brdno.equals(null) || brdno.trim().length()==0){
+			if(title==null || title.trim().length()==0 || brdcontent==null || brdcontent.trim().length()==0 
+					|| tmpdate==null || tmpdate.trim().length()==0 || ploc==null || ploc.trim().length()==0
+					|| brdno==null || brdno.trim().length()==0 || dogno==null || dogno.trim().length()==0
+					|| plType==null || plType.trim().length()==0){
 				throw new Exception("모든 항목을 작성해주세요");
 			}
-			wrdate = tmpdate.substring(6, 10)+"-"+tmpdate.substring(0,2)+"-"+tmpdate.substring(3, 5);
-			//
-			BoardDTO boardDTO = new BoardDTO(Integer.parseInt(brdno),brdcontent,wrdate,title);
-
+			brdcontent=plType+"!split!"+brdcontent;
+			BoardDTO boardDTO = new BoardDTO(Integer.parseInt(brdno),brdcontent,tmpdate,title);
 			UpdateDAO.updatePlanBoard(boardDTO);
-			UpdateDAO.updatePlan(new PlanDTO(Integer.parseInt(brdno),ploc,wrdate));
+			UpdateDAO.updatePlan(new PlanDTO(Integer.parseInt(brdno),ploc,tmpdate,Integer.parseInt(dogno)));
 			url="/planDetail.do?brdno="+brdno;
 		} catch(Exception e){
 			e.printStackTrace();

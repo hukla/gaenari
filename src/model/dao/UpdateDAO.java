@@ -29,9 +29,7 @@ public class UpdateDAO {
 		boolean result = false;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==planBoard update 진입==");
 			result = session.update("update.updatePlanBoard", boardDTO) > 0 ? true : false;
-			System.out.println("==planBoard update 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -45,9 +43,7 @@ public class UpdateDAO {
 		boolean result = false;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==plan update 진입==");
 			result = session.insert("update.updatePlan", planDTO) > 0 ? true : false;
-			System.out.println("==plan update 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -61,9 +57,7 @@ public class UpdateDAO {
 		boolean result = false;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==diaryBoard update 진입==");
 			result = session.update("update.updateDiaryBoard", boardDTO) > 0 ? true : false;
-			System.out.println("==diaryBoard update 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -77,9 +71,7 @@ public class UpdateDAO {
 		boolean result = false;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==diary update 진입==");
 			result = session.insert("update.updateDiary", diaryDTO) > 0 ? true : false;
-			System.out.println("==diary update 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -146,7 +138,6 @@ public class UpdateDAO {
 			map = new HashMap<String,Integer>();
 			map.put("userno", userno);
 			map.put("point", point);
-			System.out.println(userno+":"+point);
 			result = session.update("update.plusMilenari", map) > 0 ? true : false;
 		} finally {
 			DBUtil.closeSession(session, result);

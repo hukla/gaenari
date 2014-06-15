@@ -71,9 +71,7 @@ public class PlanListAction implements Action {
 			tenPlans = TestDAO.getTenPlans((Integer.parseInt(pageNumber)-1)*10,user.getUserno());
 			for(PlanDTO dto:tenPlans){
 				dto.setTitle(dto.getTitle()+" - "+dto.getBrdcontent().split("!split!")[0]);
-				
 			}
-			//pageNumber에 해당하는 페이지수의 일정 10개의 리스트
 			request.setAttribute("dog", dog);
 			request.setAttribute("pageNumber", pageNumber);
 			request.setAttribute("pageCount", pageCount);

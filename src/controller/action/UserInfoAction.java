@@ -48,27 +48,24 @@ public class UserInfoAction implements Action {
 		int sender,receiver,result = 0;
 		boolean friend = false;
 		try{
-			userid = (String) session.getAttribute("userid");	// 세션의 userid가져오기
+			userid = (String) session.getAttribute("userid");		// 세션의 userid가져오기
 
 			// 다른 아이디를 클릭할 때
-			if (request.getParameter("userid") != null) {		// 만약 userid 파라미터를 넘겨 받았다면
-				if (userid != request.getParameter("userid"))	// 그리고 만약 세션 userid와 파라미터userid가 다르다면
-					userid = request.getParameter("userid");	// userid에 파라미터userid를 저장하기
+			if (request.getParameter("userid") != null) {			// 만약 userid 파라미터를 넘겨 받았다면
+				if (userid != request.getParameter("userid"))		// 그리고 만약 세션 userid와 파라미터userid가 다르다면
+					userid = request.getParameter("userid");		// userid에 파라미터userid를 저장하기
 				sender = UserDAO.logCheck((String) session.getAttribute("userid")).getUserno();	//나
 				receiver = UserDAO.logCheck(userid).getUserno();	//상대방
-				result= TestDAO.amIsender(sender, receiver);	//1이면 O, 2이면 X, 3이면 요청관계없음
+				result= TestDAO.amIsender(sender, receiver);		//1이면 O, 2이면 X, 3이면 요청관계없음
 				friend = TestDAO.areWeFriends(sender, receiver);
 			}
-			
 			user = UserDAO.logCheck(userid);
 			list = TestDAO.getMyDogInfo(user.getUserno());
-			
 			friendNo = TestDAO.getMyFriends(user.getUserno());
 			friendList = new ArrayList<UserDTO>();
 			for(int no: friendNo){
 				friendList.add(UserDAO.selectOne(no));
 			}
-			
 			diaryList = TestDAO.selectDiary(user);
 			imageList = new ArrayList<String>();
 			for(BoardDTO dto: diaryList){

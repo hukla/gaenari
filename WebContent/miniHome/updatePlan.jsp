@@ -106,8 +106,8 @@
 							<td>&nbsp;&nbsp;선택 : </td>
 							<td align="left">
 							<select id="ploc" name="ploc" class="btn btn-default" style="width: 100%;">
-									<option value="unchosen">지역</option>
-									<option value=광진구">광진구</option>
+									<option>지역</option>
+									<option value="광진구">광진구</option>
 									<option value="동대문구">동대문구</option>
 									<option value="중랑구">중랑구</option>
 									<option value="용산구">용산구</option>
@@ -138,7 +138,7 @@
 							<select name="plandogno" id="myDog" class="btn btn-default" style="width: 100%;">
 									<c:choose>
 										<c:when test="${not empty requestScope.dog}">
-											<option value="unchosen" selected="selected">강아지</option>
+											<option selected="selected">강아지</option>
 											<c:forEach items="${requestScope.dog}" var="dogs">
 												<option value="${dogs.dogno}">${dogs.dogname}</option>
 											</c:forEach>

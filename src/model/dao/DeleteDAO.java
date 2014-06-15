@@ -21,9 +21,7 @@ public class DeleteDAO {
 		boolean result = false;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==planBoard delete 진입==");
 			result = session.update("delete.deleteBoard", brdno) > 0 ? true : false;
-			System.out.println("==planBoard delete 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -37,9 +35,7 @@ public class DeleteDAO {
 		boolean result = false;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==plan delete 진입==");
 			result = session.insert("delete.deletePlan", brdno) > 0 ? true : false;
-			System.out.println("==plan delete 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -53,9 +49,7 @@ public class DeleteDAO {
 		boolean result = false;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==diary delete 진입==");
 			result = session.insert("delete.deleteDiary", brdno) > 0 ? true : false;
-			System.out.println("==diary delete 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}
@@ -69,12 +63,10 @@ public class DeleteDAO {
 		Map<String,Integer> map = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==deleteFrndReq 진입==");
 			map = new HashMap<String,Integer>();
 			map.put("receiver", receiver);
 			map.put("sender", sender);
 			result = session.delete("delete.deleteFrndReq", map) > 0 ? true : false;
-			System.out.println("==deleteFrndReq 완료==");
 		} finally {
 			DBUtil.closeSession(session, result);
 		}

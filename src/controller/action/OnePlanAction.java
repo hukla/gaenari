@@ -59,11 +59,8 @@ public class OnePlanAction implements Action {
 		int indexInt=0;
 		
 		//14-05-14 성훈 추가 일정접근 번호(게시판번호, 전체일정 인덱스번호)
-		System.out.println("받은 brdno="+request.getParameter("brdno")+"번");
-		System.out.println("받은 index="+request.getParameter("index"));
 		if(request.getParameter("index")!=null)	index = request.getParameter("index");
 		try {
-			
 			user = (UserDTO) session.getAttribute("user");
 			userid = user.getUserid();
 			//다른 아이디를 클릭할 때
@@ -73,7 +70,7 @@ public class OnePlanAction implements Action {
 					user = UserDAO.logCheck(userid);
 				}
 			}
-			plist = TestDAO.selectAllPlan(user);			//user정보를 이용하여 전체 일정 리스트받아오기
+			plist = TestDAO.selectPlanList(user.getUserno());
 			for(PlanDTO dto: plist){
 				dto.setBrdcontent(dto.getBrdcontent().replaceAll("\r\n", "<br/>"));
 			}
@@ -85,7 +82,6 @@ public class OnePlanAction implements Action {
 			 * 14-05-21 성훈 수정: 
 			 * 기존에 일정번호로 접근했던 것을 user에 해당하는 전체일정의 index로 접근
 			 */
-			System.out.println("일정개수: "+plist.size()+", 받은 index: "+index);
 			if(index!=null){//이전글, 다음글 클릭하여 들어올 경우
 				if(Integer.parseInt(index)<0 || Integer.parseInt(index)>plist.size()-1)	
 					throw new IndexOutOfBoundsException("페이지의 끝입니다.");

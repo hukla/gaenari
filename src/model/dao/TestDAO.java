@@ -63,25 +63,7 @@ public class TestDAO {
 
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==planDAO진입==");
 			list = session.selectList("test.selectPlan", user.getUserno());
-			System.out.println("==planDAO종료==");
-		} finally {
-			DBUtil.closeSession(session);
-		}
-
-		return list;
-	}
-	// 일정 전체목록받기(14-05-27 성훈추가)
-	public static List<PlanDTO> selectAllPlan(UserDTO user) throws SQLException {
-		SqlSession session = null;
-		List<PlanDTO> list = null;
-
-		try {
-			session = DBUtil.getSqlSession();
-			System.out.println("==planDAO진입==");
-			list = session.selectList("test.selectPlan", user.getUserno());
-			System.out.println("==planDAO종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -93,12 +75,9 @@ public class TestDAO {
 	public static List<PlanDTO> selectPlanList(int userno) throws SQLException {
 		SqlSession session = null;
 		List<PlanDTO> list = null;
-
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==planListDAO진입==");
 			list = session.selectList("test.selectPlan", userno);
-			System.out.println("==planListDAO종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -113,9 +92,7 @@ public class TestDAO {
 
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==diaryDAO진입==");
 			list = session.selectList("test.selectDiary", user.getUserno());
-			System.out.println("==diaryDAO종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -130,9 +107,7 @@ public class TestDAO {
 
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==diaryDAO진입==");
 			list = session.selectList("test.selectDiary", user.getUserno());
-			System.out.println("==diaryDAO종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -146,9 +121,7 @@ public class TestDAO {
 		List<BoardDTO> list = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==visitDAO진입==");
 			list = session.selectList("test.selectReverseVisit", user.getUserno());
-			System.out.println("==visitDAO종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -159,9 +132,7 @@ public class TestDAO {
 		List<VisitDTO> list = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==visitDAO진입==");
 			list = session.selectList("test.selectReverseVisit", user.getUserno());
-			System.out.println("==visitDAO종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -176,9 +147,7 @@ public class TestDAO {
 
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==diary미리보기DAO진입==");
 			list = session.selectList("test.selectLastThree", user.getUserno());
-			System.out.println("==diary미리보기DAO종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -194,9 +163,7 @@ public class TestDAO {
 
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==plan미리보기DAO진입==");
 			list = session.selectList("test.selectLastThreePlan",user.getUserno());
-			System.out.println("==plan미리보기DAO종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -212,9 +179,7 @@ public class TestDAO {
 
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==plan미리보기DAO진입==");
 			list = session.selectList("test.selectLastThreeVisit",user.getUserno());
-			System.out.println("==plan미리보기DAO종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -227,10 +192,7 @@ public class TestDAO {
 		PlanDTO planDTO = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==onePlanDAO진입==");
 			planDTO = session.selectOne("test.selectOnePlan", brdno);
-			System.out.println("==onePlanDAO종료==");
-			/* System.out.println(boardVo.getTitle()); */
 
 		} finally {
 			DBUtil.closeSession(session);
@@ -243,9 +205,7 @@ public class TestDAO {
 		BoardDTO boardDTO = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==oneDiaryDAO진입==");
 			boardDTO = session.selectOne("test.selectOneDiary", brdno);
-			System.out.println("==oneDiaryDAO종료==");
 
 		} finally {
 			DBUtil.closeSession(session);
@@ -261,12 +221,9 @@ public class TestDAO {
 		try {
 			session = DBUtil.getSqlSession();
 			map = new HashMap<String,Integer>();
-			System.out.println("==getOneDiary진입==");
 			map.put("dbrdno", dbrdno);
 			map.put("userno",userno);
 			diaryDTO = session.selectOne("test.selectOneDiaryByMap", map);
-			System.out.println("==getOneDiary종료==");
-			
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -281,14 +238,10 @@ public class TestDAO {
 		HashMap<String,Integer> map = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==getOnePlan진입==");
 			map = new HashMap<String,Integer>();
 			map.put("pbrdno", pbrdno);
 			map.put("userno", userno);
-			System.out.println("pbrdno="+pbrdno+"  userno="+userno);
-			/*planDTO = session.selectOne("test.selectOnePlanBypbrdno", pbrdno);*/
 			planDTO = session.selectOne("test.selectOnePlanByMap", map);
-			System.out.println("==getOnePlan종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -303,13 +256,10 @@ public class TestDAO {
 		HashMap<String,Integer> map = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==getOneVisit진입==");
 			map = new HashMap<String,Integer>();
 			map.put("vbrdno", vbrdno);
 			map.put("userno", userno);
-			System.out.println("vbrdno="+vbrdno+"  userno="+userno);
 			visitDTO = session.selectOne("test.selectOneVisitByMap", map);
-			System.out.println("==getOneVisit종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -323,10 +273,7 @@ public class TestDAO {
 		DiaryDTO diaryDTO = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==getJustDiary진입==");
 			diaryDTO = session.selectOne("test.selectOneDiaryBybrdno", brdno);
-			System.out.println("==getJustDiary종료==");
-
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -339,10 +286,7 @@ public class TestDAO {
 		PlanDTO planDTO = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==getJustDiary진입==");
 			planDTO = session.selectOne("test.selectOnePlanBybrdno", brdno);
-			System.out.println("==getJustDiary종료==");
-
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -355,9 +299,7 @@ public class TestDAO {
 		VisitDTO visitDTO = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==getJustVisit진입==");
 			visitDTO = session.selectOne("test.selectOneVisitBybrdno", brdno);
-			System.out.println("==getJustVisit종료==");
 
 		} finally {
 			DBUtil.closeSession(session);
@@ -370,11 +312,7 @@ public class TestDAO {
 		BoardDTO boardDTO = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==selectOneVisit진입==");
 			boardDTO = session.selectOne("test.selectOneVisit", brdno);
-			System.out.println("==selectOneVisit종료==");
-			/* System.out.println(boardVo.getTitle()); */
-
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -390,21 +328,13 @@ public class TestDAO {
 		List<List<BoardDTO>> papaList = new ArrayList<List<BoardDTO>>();
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("★==selectPlanbyDate진입==");
-
 			for (String str : dateList) { // 날짜정보가 저장되어 있는 만큼 for문 돈다.
-				System.out.println("받은 날짜값:" + str);
 				map = new HashMap<String, String>();
 				map.put("wrdate", str);
 				map.put("userid", userid);
-				list = session.selectList("test.selectPlanbyDate", map);// 그 달의
-																		// 일정
-																		// 목록받기
-				System.out.println("가져온 날의 정보:" + list);
+				list = session.selectList("test.selectPlanbyDate", map);// 그 달의 일정 목록받기
 				papaList.add(list);
 			}
-			System.out.println("==selectPlanbyDate종료==");
-
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -418,9 +348,7 @@ public class TestDAO {
 		int pageCount = 0;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==getDiaryCount진입==");
 			diaryCount = session.selectOne("test.selectCountDiary",userno);
-			System.out.println("==getDiaryCount종료==");
 			pageCount = diaryCount/10;
 			if(diaryCount%10 > 0)	pageCount++;
 		} finally {
@@ -439,9 +367,7 @@ public class TestDAO {
 			map = new HashMap<String,Integer>();
 			map.put("value", pageCount);
 			map.put("userno", userno);
-			System.out.println("==getTenDiaries진입==");
 			list = session.selectList("test.selectTenDiaries",map);
-			System.out.println("==getTenDiaries종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -455,9 +381,7 @@ public class TestDAO {
 		int pageCount = 0;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==getPlanCount진입==");
 			planCount = session.selectOne("test.selectCountPlan",userno);
-			System.out.println("==getPlanCount종료==");
 			pageCount = planCount/10;
 			if(planCount%10 > 0)	pageCount++;
 		} finally {
@@ -476,9 +400,7 @@ public class TestDAO {
 			map = new HashMap<String,Integer>();
 			map.put("value", pageCount);
 			map.put("userno", userno);
-			System.out.println("==getTenPlans진입==");
 			list = session.selectList("test.selectTenPlans",map);
-			System.out.println("==getTenPlans종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -493,12 +415,9 @@ public class TestDAO {
 		try {
 			session = DBUtil.getSqlSession();
 			map = new HashMap<String,String>();
-			System.out.println(wrdate+" "+userid);
 			map.put("wrdate", wrdate);
 			map.put("userid", userid);
-			System.out.println("==getDiaryBydate진입==");
 			list = session.selectList("test.selectDiaryBydate",map);
-			System.out.println("==getDiaryBydate종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -515,9 +434,7 @@ public class TestDAO {
 			map = new HashMap<String,String>();
 			map.put("wrdate", wrdate);
 			map.put("userid", userid);
-			System.out.println("==getPlanBydate진입==");
 			list = session.selectList("test.selectPlanBydate",map);
-			System.out.println("==getPlanBydate종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -529,9 +446,7 @@ public class TestDAO {
 		List<DogDTO> list = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==getMyDogInfo진입==");
 			list = session.selectList("dog.getInfo",userno);
-			System.out.println("==getMyDogInfo종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -543,7 +458,6 @@ public class TestDAO {
 		Map<String,Integer> map = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==checkFrndReq진입==");
 			map = new HashMap<String,Integer>();
 			map.put("sender", sender);
 			map.put("receiver", receiver);
@@ -557,7 +471,6 @@ public class TestDAO {
 					return 2;	//sender가 요청을 받은 것이다.
 				}
 			}
-			System.out.println("==checkFrndReq종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -569,7 +482,6 @@ public class TestDAO {
 		Map<String,Integer> map = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==areWeFriends진입==");
 			map = new HashMap<String,Integer>();
 			map.put("subuser", sender);
 			map.put("prmuser", receiver);	//누가 친구신청했는지 누가 승인했는지 구분없이 쿼리문 돌리려면?
@@ -581,7 +493,6 @@ public class TestDAO {
 					return false;
 				}
 			}
-			System.out.println("==areWeFriends종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -594,9 +505,7 @@ public class TestDAO {
 		List<Integer> list = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==checkMyReqinfo진입==");
 			list = session.selectList("test.checkMyReqinfo",receiver);
-			System.out.println("==checkMyReqinfo종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -609,12 +518,10 @@ public class TestDAO {
 		Map<String,Integer> map = null;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==getMyFriends진입==");
 			map = new HashMap<String,Integer>();
 			map.put("subuser", userno);
 			map.put("prmuser", userno);
 			list = session.selectList("test.getMyFriends",userno);
-			System.out.println("==getMyFriends종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}

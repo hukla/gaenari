@@ -62,11 +62,8 @@ public class OneDiaryAction implements Action {
 		int indexInt=0;
 		
 		//14-05-14 성훈 추가 일기접근 번호(게시판번호, 전체일기 인덱스번호)
-		System.out.println("받은 brdno="+request.getParameter("brdno")+"번");
-		System.out.println("받은 index="+request.getParameter("index"));
 		if(request.getParameter("index")!=null)	index = request.getParameter("index");
 		try {
-			
 			user = (UserDTO) session.getAttribute("user");
 			userid = user.getUserid();
 			//다른 아이디를 클릭할 때
@@ -91,7 +88,7 @@ public class OneDiaryAction implements Action {
 					throw new IndexOutOfBoundsException("페이지의 끝입니다.");
 				//이전글, 다음글 클릭하여 얻은 index가 정해진 범위를 초과하면 Exception발생!
 				diaryDTO =  TestDAO.getOneDiary(dlist.get(Integer.parseInt(index)).getDbrdno(),user.getUserno());
-				//이전글, 다음글 클릭하여 얻능 index와 현재 user정보에 해당하는 diaryDTO가져오기
+				//이전글, 다음글 클릭하여 얻은 index와 현재 user정보에 해당하는 diaryDTO가져오기
 			}
 			else if(request.getParameter("brdno")!=null)//미리보기 버튼 클릭하여 들어올 경우
 				diaryDTO = TestDAO.getJustDiary(Integer.parseInt(request.getParameter("brdno")));
@@ -105,17 +102,14 @@ public class OneDiaryAction implements Action {
 			
 			// 14-05-13 성훈 수정: 이미지 경로가 null인지 확인하는 조건 수정
 			if(oneDiaryContents[0].equals(null) || oneDiaryContents[0].trim().length() == 0){
-				System.out.println("경로 null임!"+oneDiaryContents[0]);
 				request.setAttribute("oneDiaryImg", null);
 			}else{
 				oneDiaryImg = oneDiaryContents[0];
 				request.setAttribute("oneDiaryImg", oneDiaryImg);
-				System.out.println("경로 null아님!"+oneDiaryContents[0]);
 			}
 			
 			//14-05-14 성훈 수정: diarydto를 받는 tmpDiary를 만들어서 content에 이미지 경로 제외시키도록 설정
 			tmpDiary = oneDiary;
-			System.out.println(tmpDiary);
 			tmpDiary.setBrdcontent(oneDiaryContents[1]);
 			
 			request.setAttribute("user", user);
