@@ -36,8 +36,10 @@ public class QuestionFormAction implements Action {
 			qdto = sqlSession.selectOne("u.checkQuest",userno);
 			url="/quest/questionForm.jsp";
 			
-			if(qdto.getQno()>0) url="/quest/questionUpdateCheck.jsp"; //테스트결과가있으면 업데이트 여부 확인
-			else url="/quest/questionForm.jsp"; //테스트결과가 없으면 테스트 화면
+			if(qdto!=null){
+				if(qdto.getQno()>0) url="/quest/questionUpdateCheck.jsp"; //테스트결과가있으면 업데이트 여부 확인
+				else url="/quest/questionForm.jsp"; //테스트결과가 없으면 테스트 화면
+			}
 			
 		}catch(Exception e){
 			e.printStackTrace();

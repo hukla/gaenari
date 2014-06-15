@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.UpdateDAO;
+import model.dao.PlanDAO;
+import model.dao.UserDAO;
 import model.dto.UserDTO;
 
 public class CheckPlanAction implements Action {
@@ -23,8 +24,8 @@ public class CheckPlanAction implements Action {
 		int result = 0;
 		try{
 			brdno = Integer.parseInt(request.getParameter("brdno"));
-			UpdateDAO.plusMilenari(((UserDTO) session.getAttribute("user")).getUserno(), 3);
-			result = UpdateDAO.planCheck(brdno);
+			UserDAO.plusMilenari(((UserDTO) session.getAttribute("user")).getUserno(), 3);
+			result = PlanDAO.planCheck(brdno);
 			request.setAttribute("brdno", brdno);
 			request.setAttribute("userid", session.getAttribute("userid"));
 			out.print(result);

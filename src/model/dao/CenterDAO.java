@@ -5,6 +5,7 @@
  */
 package model.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,4 +44,20 @@ public class CenterDAO {
 		
 		return center;
 	}
+	public static int insertCntrUser(CenterDTO cntr) throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		int cntrno = 0;
+		try {
+			session = DBUtil.getSqlSession();
+			result = session.insert("insert.insertCntrUser", cntr) > 0 ? true : false;
+			if(!result)	throw new SQLException("센터정보 입력에 실패했습니다.");
+			cntrno = session.selectOne("test.getCntrNo",cntr);
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		return cntrno;
+	}
+	
 }

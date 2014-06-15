@@ -23,7 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.TestDAO;
+import model.dao.DiaryDAO;
+import model.dao.PlanDAO;
 import model.dao.UserDAO;
 import model.dto.DiaryDTO;
 import model.dto.PlanDTO;
@@ -59,8 +60,8 @@ public class CalendarAction implements Action {
 			year = (int) session.getAttribute("toYear");
 			today = (String) session.getAttribute("today");	
 			
-			dlist = TestDAO.getDiaryBydate(today, userid);		//오늘날짜와 아이디 넘겨서 일기리스트받기
-			plist = TestDAO.getPlanBydate(today, userid);		//오늘날짜와 아이디 넘겨서 일정리스트받기
+			dlist = DiaryDAO.getDiaryBydate(today, userid);		//오늘날짜와 아이디 넘겨서 일기리스트받기
+			plist = PlanDAO.getPlanBydate(today, userid);		//오늘날짜와 아이디 넘겨서 일정리스트받기
 			
 			
 			//14-05-26 성훈추가: 날짜 파라미터를 받았을 때
@@ -71,8 +72,8 @@ public class CalendarAction implements Action {
 				year=Integer.parseInt(request.getParameter("year"));		//대체한다.
 				
 				wrdate = year+"-"+month+"-"+date;
-				dlist = TestDAO.getDiaryBydate(wrdate, userid);			//달력에서 받은 날짜 파라미터로 일기리스트받기
-				plist = TestDAO.getPlanBydate(wrdate, userid);			//달력에서 받은 날짜 파라미터로 일정리스트받기
+				dlist = DiaryDAO.getDiaryBydate(wrdate, userid);			//달력에서 받은 날짜 파라미터로 일기리스트받기
+				plist = PlanDAO.getPlanBydate(wrdate, userid);			//달력에서 받은 날짜 파라미터로 일정리스트받기
 			}
 			
 			request.setAttribute("dlist", dlist);		//현재날짜 or 달력에서 클릭한 날짜의 일기리스트 setAttribute

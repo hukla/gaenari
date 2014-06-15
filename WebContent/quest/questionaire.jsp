@@ -32,7 +32,6 @@ function checkQuest(){
 		alert('입양 조건에 부합하지 않습니다.');
 		history.back();
 	}
-	/* history.back(); */
 }
 checkQuest();
 </script>

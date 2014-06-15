@@ -44,3 +44,16 @@ function checkValid() {
 $(function() {
     $( "#datepicker" ).datepicker();
   });
+
+function apply(brdno,vbrdno){
+	location.href="/gaenari/brdreqCheck.do?type=v&brdno="+brdno+"&vbrdno="+vbrdno;
+}
+function checkBrdStatus(brdno){
+	var newwindow;
+	var url = "/gaenari/brdreqList.do?brdno="+brdno+"&type=v";
+	
+	newwindow = window.open(url, '봉사신청 확인 페이지','height=600,width=660,scrollbars=yes');
+	if(window.focus){
+		newwindow.focus;
+	}
+}

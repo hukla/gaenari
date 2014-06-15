@@ -47,24 +47,6 @@
 		select * from board b join diaryinfo d on b.brdno = d.brdno and b.userno = #{userno} order by b.brdno
 	</select>
 	
-	<!-- 14-05-13 성훈추가 -->
-	<select id="selectLastThree" parameterType="int" resultMap="brdMap">
-		select * from board b join diaryinfo d on b.brdno = d.brdno and b.userno = #{userno}
-		order by b.brdno desc limit 3
-	</select>
-	
-	<!-- 14-05-13 성훈추가 -->
-	<select id="selectLastThreePlan" parameterType="int" resultMap="brdMap">
-		select * from board b join planboardinfo p on b.brdno = p.brdno and b.userno = #{userno}
-		order by b.brdno desc limit 3
-	</select>
-	
-	<!-- 14-05-13 성훈추가 -->
-	<select id="selectLastThreeVisit" parameterType="int" resultMap="brdMap">
-		select * from board b join visitinfo v on b.brdno = v.brdno and b.userno = #{userno}
-		order by b.brdno desc limit 3
-	</select>
-	
 	<!-- 14-05-13 성훈수정 -->
 	<select id="selectReverseVisit" parameterType="int" resultMap="brdMap">
 		select * from board b join visitinfo v on b.brdno = v.brdno and b.userno = #{userno}
@@ -88,23 +70,23 @@
 	<select id="selectOnePlanBypbrdno" parameterType="int" resultType="PlanDTO">
 		select * from planboardinfo where pbrdno = #{pbrdno} 
 	</select>
+<!-- 	
 	
-	
-	<!-- 14-05-20 성훈추가: 이전일정 다음일정 오류해결 -->
+	14-05-20 성훈추가: 이전일정 다음일정 오류해결
 	<select id="selectOnePlanByMap" parameterType="map" resultType="PlanDTO">
 		SELECT * FROM board b JOIN planboardinfo p ON b.brdno = p.brdno AND b.userno=#{userno} AND p.pbrdno=#{pbrdno};
 	</select>
 	
-	<!-- 14-05-20 성훈추가: 이전일정 다음일정 오류해결 -->
+	14-05-20 성훈추가: 이전일정 다음일정 오류해결
 	<select id="selectOneDiaryByMap" parameterType="map" resultType="DiaryDTO">
 		SELECT * FROM board b JOIN diaryinfo d ON b.brdno = d.brdno AND b.userno=#{userno} AND d.dbrdno=#{dbrdno};
 	</select>
 	
-	<!-- 14-05-20 성훈추가: 이전일정 다음일정 오류해결 -->
+	14-05-20 성훈추가: 이전일정 다음일정 오류해결
 	<select id="selectOneVisitByMap" parameterType="map" resultType="VisitDTO">
 		SELECT * FROM board b JOIN visitinfo v ON b.brdno = v.brdno AND b.userno=#{userno} AND v.vbrdno=#{vbrdno};
 	</select>
-	
+	 -->
 	<!-- 14-05-14 성훈추가: 일기를 brdno로 검색 -->
 	<select id="selectOneDiaryBybrdno" parameterType="int" resultType="DiaryDTO">
 		select * from diaryinfo where brdno = #{brdno} 
@@ -114,15 +96,6 @@
 	<select id="selectOnePlanBybrdno" parameterType="int" resultType="PlanDTO">
 		select * from planboardinfo where brdno = #{brdno} 
 	</select>
-	
-	<!-- 14-05-21 성훈추가: 방명록을 brdno로 검색 -->
-	<select id="selectOneVisitBybrdno" parameterType="int" resultType="VisitDTO">
-		select * from visitinfo where brdno = #{brdno} 
-	</select>		
-	
-	<select id="selectOneVisit" parameterType="int" resultMap="brdMap">
-		select * from board b join visitinfo v on b.brdno = v.brdno and b.brdno = #{brdno} 
-	</select>	
 	
 	<!-- 14-05-13 성훈추가 -->
 	<select id="selectBoard" parameterType="BoardDTO" resultType="int">

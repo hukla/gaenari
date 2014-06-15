@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.UpdateDAO;
 import model.dao.UserDAO;
 import model.dto.UserDTO;
 /**
@@ -45,7 +44,7 @@ public class FBLogCheckAction implements Action {
 					if(image == null){				// 파라미터로 들어온 이미지가 없으면
 						image="/gaenari/image/usericon.jpg";
 					}
-					UpdateDAO.updateImg(user.getUserid(),image);
+					UserDAO.updateImg(user.getUserid(),image);
 				}
 				// 로그인
 				session.setAttribute("userid", user.getUserid());

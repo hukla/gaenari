@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.DogDAO;
-import model.dao.TestDAO;
+import model.dao.PlanDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.DogDTO;
@@ -58,17 +58,17 @@ public class PlanListAction implements Action {
 					user = UserDAO.logCheck(userid);
 				}
 			}
-			dog = TestDAO.getMyDogInfo(user.getUserno());
-			planList = TestDAO.selectPlan(user);
+			dog = DogDAO.getMyDogInfo(user.getUserno());
+			planList = PlanDAO.selectPlan(user);
 			pageNumber = request.getParameter("pageNumber");
 			planNumber = request.getParameter("planNumber");
 			if(pageNumber==null)	pageNumber="1";
 			if(planNumber==null)	planNumber=Integer.toString(planList.size()-1);
 				
-			pageCount = TestDAO.getPlanCount(user.getUserno());
+			pageCount = PlanDAO.getPlanCount(user.getUserno());
 			//전체 일정을 10개단위로 나눴을 때의 페이지 수 
 			
-			tenPlans = TestDAO.getTenPlans((Integer.parseInt(pageNumber)-1)*10,user.getUserno());
+			tenPlans = PlanDAO.getTenPlans((Integer.parseInt(pageNumber)-1)*10,user.getUserno());
 			for(PlanDTO dto:tenPlans){
 				dto.setTitle(dto.getTitle()+" - "+dto.getBrdcontent().split("!split!")[0]);
 			}

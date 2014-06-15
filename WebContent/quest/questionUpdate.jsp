@@ -7,18 +7,6 @@
 <html>
     <head>
         <%@ include file="/static/pages/head.jsp"%>
-<SCRIPT language=javascript>
-	function checkValid() {
-		var func = window.document.questionaire; // 제목과 글 내용이 비면 넘어가지 않도록 하는 함수
-		if (func.no1.value == "" || func.no2.value == "" || func.no3.value == ""
-			 || func.no4.value == "" || func.no5.value == "") {
-			alert("문항에 빠짐없이 응답해 주세요.");
-			return false;
-		}else{
-			return true;
-		}
-	}
-</SCRIPT>
 </head>
 <body>
 	<div id="wrapper">
@@ -37,6 +25,7 @@
   						<div class="ptboard-list">
   						<form name="questionaire" method="post" class="table ptboard-list" action="/gaenari/control?command=questionUpdate" onSubmit='return checkValid()'>                
 		<p>다음의 질문에 간단하게 대답해 주세요.<br><br><br>
+		1. 애완동물을 키운 경험이 있습니까?<br>
 		<%
 	QuestionaireDTO qdto = null;
 	qdto=(QuestionaireDTO)request.getAttribute("resultContent");

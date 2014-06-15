@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.TestDAO;
+import model.dao.DiaryDAO;
 import model.dao.UserDAO;
 import model.dto.BoardDTO;
 import model.dto.UserDTO;
@@ -39,7 +39,7 @@ public class MyImageAction implements Action {
 					user = UserDAO.logCheck(userid);
 				}
 			}
-			diaryList = TestDAO.selectDiary(user);
+			diaryList = DiaryDAO.selectDiary(user);
 			imageList = new ArrayList<String>();
 			for(BoardDTO dto: diaryList){
 				image = dto.getBrdcontent().split("!split!")[0];

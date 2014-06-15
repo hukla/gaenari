@@ -231,4 +231,67 @@ public class UserDAO {
 		}
 		if (!result)	throw new SQLException("메시지수정에 실패했습니다.");
 	}
+	
+	// 14-05-29 성훈추가: userid에 해당하는user정보에 메인사진 경로추가
+	public static void updateImg(String userid, String image)
+			throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		HashMap<String, String> map = null;
+		try {
+			session = DBUtil.getSqlSession();
+			map = new HashMap<String, String>();
+			map.put("userid", userid);
+			map.put("img", image);
+			result = session.update("update.updateImg", map) > 0 ? true : false;
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if (!result)
+			throw new SQLException("메인사진 설정에 실패했습니다.");
+	}
+	
+	// 14-05-31 성훈추가: userno에 해당하는 user정보 수정
+	public static void updateInfo(UserDTO user) throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		try {
+			session = DBUtil.getSqlSession();
+			result = session.update("update.updateInfo", user) > 0 ? true : false;
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if (!result)	throw new SQLException("정보수정에 실패했습니다.");
+	}
+	
+	public static void plusMilenari(int userno,int point) throws SQLException {
+		SqlSession session = null;
+		boolean result = false;
+		Map<String,Integer> map = null;
+		try {
+			session = DBUtil.getSqlSession();
+			map = new HashMap<String,Integer>();
+			map.put("userno", userno);
+			map.put("point", point);
+			result = session.update("update.plusMilenari", map) > 0 ? true : false;
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if (!result)	throw new SQLException("마일나리 적립에 실패했습니다.");
+	}
+	// 14-05-23 성훈추가: 회원 가입하기
+	public static void insertUser(UserDTO user) throws SQLException {
+
+		SqlSession session = null;
+		boolean result = false;
+		try {
+			session = DBUtil.getSqlSession();
+			result = session.insert("insert.insertUser", user) > 0 ? true : false;
+		} finally {
+			DBUtil.closeSession(session, result);
+		}
+		if(!result)	throw new SQLException("회원가입에 실패했습니다.");
+	}
 }

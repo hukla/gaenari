@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.TestDAO;
 import model.dao.UserDAO;
-import model.dto.BoardDTO;
+import model.dao.VisitDAO;
 import model.dto.CommentDTO;
 import model.dto.UserDTO;
+import model.dto.VisitDTO;
 /**
  * 작성: 프로젝트시작당시
  * 작성자: 최성훈
@@ -35,11 +35,11 @@ public class VisitBookAction implements Action {
 		String url = "/error.jsp";
 		UserDTO user = null;
 		String userid = null;
-		List<BoardDTO> visitList = null;
-		List<BoardDTO> myList = null;
+		List<VisitDTO> visitList = null;
+		List<VisitDTO> myList = null;
 		List<CommentDTO> myOneCmtList = null;
 		List<List<CommentDTO>> myWholeCmtList = null;
-		List<BoardDTO> yourList = null;
+		List<VisitDTO> yourList = null;
 		List<CommentDTO> yourOneCmtList = null;
 		List<List<CommentDTO>> yourWholeCmtList = null;
 		try {
@@ -53,24 +53,24 @@ public class VisitBookAction implements Action {
 				}
 			}
 			
-			visitList = TestDAO.selectVisit(user);				//페이지 주인인 user의 방명록을 가져옴 거기엔 작성자인 userid도 있음.
+			visitList = VisitDAO.selectVisit(user);				//페이지 주인인 user의 방명록을 가져옴 거기엔 작성자인 userid도 있음.
 			
-			myList = new ArrayList<BoardDTO>();
+			myList = new ArrayList<VisitDTO>();
 			myOneCmtList = new ArrayList<CommentDTO>();
 			myWholeCmtList = new ArrayList<List<CommentDTO>>();	//내가 올린 게시글별 댓글리스트를 담은 리스트
 			
-			yourList = new ArrayList<BoardDTO>();
+			yourList = new ArrayList<VisitDTO>();
 			yourOneCmtList = new ArrayList<CommentDTO>();
 			yourWholeCmtList = new ArrayList<List<CommentDTO>>();	//방문객이 쓴 게시글별 댓글리스트를 담은 리스트
 			
-			for(BoardDTO dto:visitList){
+			for(VisitDTO dto:visitList){
 				if((dto.getUserid()).trim().equals(((UserDAO.selectOne(dto.getUserno())).getUserid()).trim())){	//내가쓴글이면
 					myList.add(dto);
-					myOneCmtList = TestDAO.getCommentList(dto.getBrdno());	//방명록하나에 해당하는 댓글리스트
+					myOneCmtList = VisitDAO.getCommentList(dto.getBrdno());	//방명록하나에 해당하는 댓글리스트
 					if(!myOneCmtList.isEmpty())	myWholeCmtList.add(myOneCmtList);
 				}else{
 					yourList.add(dto);
-					yourOneCmtList = TestDAO.getCommentList(dto.getBrdno());
+					yourOneCmtList = VisitDAO.getCommentList(dto.getBrdno());
 					if(!yourOneCmtList.isEmpty())	yourWholeCmtList.add(yourOneCmtList);
 				}
 			}
@@ -79,7 +79,6 @@ public class VisitBookAction implements Action {
 			request.setAttribute("yourList", yourList);
 			request.setAttribute("myComments", myWholeCmtList);
 			request.setAttribute("yourComments", yourWholeCmtList);
-			request.setAttribute("visitAllList",visitList);
 			request.setAttribute("user", user);
 			url = "miniHome/visitbook.jsp";
 		} catch (SQLException e) {

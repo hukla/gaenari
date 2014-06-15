@@ -9,14 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
-import model.dao.InsertDAO;
-import model.dao.TestDAO;
-import model.dto.BoardDTO;
+import model.dao.DogDAO;
 import model.dto.DogDTO;
 import model.dto.UserDTO;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 /**
  * 작성자: 최성훈
  * 작성: 2014-05
@@ -79,8 +77,8 @@ public class DogInsertAction implements Action {
 			if(nowMonth-prmMonth<0){
 				dogage = (dogage*12 - Math.abs(nowMonth-prmMonth))/12;//강아지 나이 계산
 			}
-			InsertDAO.insertDoginfo(new DogDTO(dogName,dogage,dogType,user.getUserno(),dogImg,dogInfo));
-			dog = TestDAO.getMyDogInfo(user.getUserno());
+			DogDAO.insertDoginfo(new DogDTO(dogName,dogage,dogType,user.getUserno(),dogImg,dogInfo));
+			dog = DogDAO.getMyDogInfo(user.getUserno());
 			request.setAttribute("user", user);
 			request.setAttribute("dog", dog);
 			url="dogComplete.jsp";

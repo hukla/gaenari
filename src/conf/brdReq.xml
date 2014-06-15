@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="brdreq">
 
+<!-- 입양/봉사 요청 테이블에 관한 board request xml문서 -->
 	<!-- 글번호로 검색 -->
 	<select id="selectBrdReqByBrdno" parameterType="int" resultType="BrdReqDTO">
 		SELECT * FROM brdreq WHERE brdno=#{int} order by reqno desc
@@ -21,28 +22,5 @@
 	<delete id="deleteBrdReq" parameterType="BrdReqDTO">
 		DELETE FROM brdreq WHERE brdno=#{brdno} and userno=#{userno}
 	</delete>
-	
-	<!-- <insert id="insertAbrdReq" parameterType="BrdReqDTO">
-		INSERT INTO adpreq VALUES (null, #{brdno}, #{userno}, 'p')
-	</insert>
-	
-	<insert id="insertVbrdReq" parameterType="BrdReqDTO">
-		INSERT INTO volureq VALUES (null, #{brdno}, #{userno}, 'p')
-	</insert>
-	
-	<insert id="insertPtbrdReq" parameterType="BrdReqDTO">
-		INSERT INTO ptreq VALUES (null, #{brdno}, #{userno}, 'p')
-	</insert>
-	 -->
-	<!-- <update id="sendOne" parameterType="int">
-		UPDATE donreq
-		SET sent='Y'
-		WHERE drno=#{drno}	
-	</update>
-	
-	<delete id="delByItemno" parameterType="int">
-		DELETE FROM donreq WHERE itemno=${value}
-	</delete>
-	 -->
 
 </mapper>

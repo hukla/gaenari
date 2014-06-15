@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.InsertDAO;
 import model.dao.UserDAO;
+import model.dao.VisitDAO;
 import model.dto.BoardDTO;
 import model.dto.CommentDTO;
 /**
@@ -39,8 +39,8 @@ public class ReplyAction implements Action {
 			if(brdcontent == null || prmno == null || userid == null || userno == null || wrdate == null){
 				throw new Exception("댓글을 다시 입력해주세요.");
 			}
-			brdno = InsertDAO.insertCmtBoard(new BoardDTO(brdcontent,wrdate,userid,title,"re",Integer.parseInt(userno)));
-			InsertDAO.insertComment(new CommentDTO(brdno,Integer.parseInt(prmno)));
+			brdno = VisitDAO.insertCmtBoard(new BoardDTO(brdcontent,wrdate,userid,title,"re",Integer.parseInt(userno)));
+			VisitDAO.insertComment(new CommentDTO(brdno,Integer.parseInt(prmno)));
 			url = "/visitList.do?userid="+UserDAO.selectOne(Integer.parseInt(userno)).getUserid();
 			
 		}catch(Exception e){
