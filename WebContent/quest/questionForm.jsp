@@ -7,18 +7,7 @@
 <html>
     <head>
         <%@ include file="/static/pages/head.jsp"%>
-<SCRIPT language=javascript>
-	function checkValid() {
-		var func = window.document.questionaire; // 제목과 글 내용이 비면 넘어가지 않도록 하는 함수
-		if (func.no1.value == "" || func.no2.value == "" || func.no3.value == ""
-			 || func.no4.value == "" || func.no5.value == "") {
-			alert("문항에 빠짐없이 응답해 주세요.");
-			return false;
-		}else{
-			return true;
-		}
-	}
-</SCRIPT>
+        <script src="/gaenari/quest/questionaire.js"></script>
 </head>
 <body>
 	<div id="wrapper">

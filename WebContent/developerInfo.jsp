@@ -11,18 +11,9 @@
         <div id="wrapper">
             <div id="content">
                 <div class="container">
-                    <!--TODO-->
-                    <!-- <div class="explore-search-top">
-                        <div class="explore-info">
-                            <div class="explore-info-title">개발자 정보확인</div>
-                            <div class="explore-info-description">개나리 프로젝트를 개발한 개발자 정보입니다.</div>
-                        </div>
-                    </div> -->
                     <div align="center">
                     <img src="/gaenari/static/images/logoWhite.png" onclick="popUp()" align="center"><br>
                     </div>
-                    <!-- <h2>Project Gae:nari</h2> -->
-                    
                     <div class="explore-search-top" align="center" style="float: top;">
                         <div class="explore-info" style="float: inherit;">
                             <div class="explore-info-title"><h2 align="center">Project Gaena:ri</h2></div>

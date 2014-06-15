@@ -43,7 +43,11 @@ public class BrdReqSelectAction implements Action {
 			sqlSession = DBUtil.getSqlSession();
 			userno = UserDAO.logCheck(userid).getUserno();
 			String brdnoString = request.getParameter("brdno");
-			brdno = Integer.parseInt(brdnoString);
+			System.out.println("brdno="+brdno);
+			if(brdnoString!=null){
+				System.out.println("brdnoString="+brdnoString);
+				brdno = Integer.parseInt(brdnoString);
+			}
 			
 			brdtoList = new ArrayList<BrdReqDTO>();
 			
