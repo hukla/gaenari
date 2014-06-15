@@ -16,12 +16,11 @@ public class QuestionWriteAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		QuestionaireDTO qdto = null;
 		String url="/error.jsp";
 		String userid = session.getAttribute("userid").toString();
-		System.out.println("userid="+userid);
+
 		String q1 = request.getParameter("no1");
 		String q2 = request.getParameter("no2");
 		String q3 = request.getParameter("no3");
@@ -30,7 +29,6 @@ public class QuestionWriteAction implements Action {
 		try{
 			int userno = UserDAO.logCheck(userid).getUserno();
 			qdto = new QuestionaireDTO(userno,q1,q2,q3,q4,q5);
-			System.out.println(qdto.toString());
 			boolean result = UserDAO.QueWrite(qdto);
 			if(result){
 				url = "/quest/questionFinish.jsp";

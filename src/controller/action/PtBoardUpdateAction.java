@@ -17,7 +17,6 @@ public class PtBoardUpdateAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String title = request.getParameter("title");
 		String brdcontent = request.getParameter("brdcontent");
 		String worktype = request.getParameter("worktype");

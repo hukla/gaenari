@@ -41,9 +41,7 @@ public class VoluReqSelectAction implements Action {
 				try{
 					sqlSession = DBUtil.getSqlSession();
 					userno = UserDAO.logCheck(userid).getUserno();
-					log.info("userno="+userno);
 					String brdnoString = request.getParameter("brdno");
-					log.info("brdno="+brdnoString);
 					brdno = Integer.parseInt(brdnoString);
 					
 					brdtoList = new ArrayList<BrdReqDTO>();
@@ -62,14 +60,9 @@ public class VoluReqSelectAction implements Action {
 					if(brdtoList.size() != 0) {
 						JSONObject obj = new JSONObject();
 						
-						//obj.put("listlength", donreqList.size());
-						//json += obj;
 						json += "[";
 						for(BrdReqDTO d : brdtoList) {
-							//log.info(d);
-							//out.print("\n,{\"donreq\":"+new JSONObject(d).toString()+"}");
 							obj = new JSONObject(d);
-							/*obj.put("name",UserDAO.selectOne(d.getUserno()).getUsername());*/
 							obj.put("point", UserDAO.selectOne(d.getUserno()).getPoint());
 							obj.put("address", UserDAO.selectOne(d.getUserno()).getAddress());
 							json += obj.toString()+",";
@@ -79,10 +72,7 @@ public class VoluReqSelectAction implements Action {
 					} else {
 						json += "\"empty\"}";
 					}
-					
 					response.getWriter().print(json);
-					log.info(json);
-					
 				} catch(Exception e){
 					e.printStackTrace();
 				} finally{

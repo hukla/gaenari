@@ -23,7 +23,6 @@ public class FindingBoardListAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String pageNumber = null;
-		/*List<FindingBoardDTO> fList = null;*/
 		List<FindingBoardDTO> tenF = null; // 페이지 당 10개
 		
 		String tenAry[] = null;
@@ -44,18 +43,8 @@ public class FindingBoardListAction implements Action {
 			pageCount = MFABoardDAO.getFCount();// 게시판에 'fb'가 총 몇 개 있는지
 			tenF = MFABoardDAO.getTenF((Integer.parseInt(pageNumber)-1)*10);// findingBoard 10개 받아옴
 			
-			System.out.println("pageCount="+pageCount);
-			System.out.println("tenF="+tenF.toString());
-			
 			request.setAttribute("pageCount", pageCount);
 			request.setAttribute("tenF", tenF);
-			
-			System.out.println(request.getAttribute(pageNumber));
-			/*fList = MFBoardDAO.FselectAll();*/
-			
-			/*if(fList == null) {
-				throw new Exception("fList가 null입니다.");
-			}*/
 			
 			xmlData += "<fList>";
 			for(FindingBoardDTO f : tenF) {
@@ -73,7 +62,6 @@ public class FindingBoardListAction implements Action {
 				xmlData += "</item>"; 
 			}
 			xmlData += "</fList>";			
-			/*log.info(xmlData);*/
 			response.getWriter().print(xmlData);
 		} catch (Exception e) {
 			e.printStackTrace();

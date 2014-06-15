@@ -17,7 +17,6 @@ public class PtBoardViewAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String url = "/error.jsp";
 		String ptbrdno = request.getParameter("ptbrdno");
 		String workhour [] = null;

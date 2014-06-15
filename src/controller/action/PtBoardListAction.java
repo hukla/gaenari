@@ -21,8 +21,6 @@ public class PtBoardListAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
 		HttpSession session = request.getSession();
 
 		String pageNumber = null;

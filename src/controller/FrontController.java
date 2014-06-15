@@ -37,8 +37,6 @@ public class FrontController extends HttpServlet {
 	}
 	
 	public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		log.info("진입");
-		
 		String key = request.getServletPath(); // *.do
 		if(key.contains(".do")) {
 			key = key.substring(key.lastIndexOf("/")+1, key.lastIndexOf(".")); // *

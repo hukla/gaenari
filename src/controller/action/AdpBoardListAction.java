@@ -24,7 +24,6 @@ public class AdpBoardListAction implements Action  {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		List<AdpBoardDTO> aList = null;
 		String xmlData = "";
 		String picPath = null;
@@ -51,7 +50,6 @@ public class AdpBoardListAction implements Action  {
 				}else{
 					picPath = "/gaenari/image/board/"+a.getBrdno()+".jpg";
 				}
-				log.info("picPath="+picPath);
 				xmlData += "<picPath>"+picPath+"</picPath>";
 				xmlData += "</item>"; 
 			}

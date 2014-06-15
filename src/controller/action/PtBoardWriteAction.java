@@ -15,7 +15,6 @@ public class PtBoardWriteAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		String title = request.getParameter("title");
 		String brdcontent = request.getParameter("brdcontent").replaceAll("\r\n", "<br/>");
@@ -26,9 +25,7 @@ public class PtBoardWriteAction implements Action {
 		String workhour  = request.getParameter("workhour")+"!split!"+request.getParameter("workhour2")
 				+"!split!"+request.getParameter("workhour3");
 		String url = "/error.jsp";
-		System.out.println("PtBoardWriteAction입니다!");
 		PtBoardDTO pbdto = new PtBoardDTO(title, brdcontent, userid, brdtype, worktype, workloc, workhour);
-		System.out.println(pbdto.toString());
 		try{
 			boolean result = PtBoardDAO.writeContent(pbdto);
 			if(result){

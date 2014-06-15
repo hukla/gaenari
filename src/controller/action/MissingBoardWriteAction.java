@@ -54,7 +54,6 @@ public class MissingBoardWriteAction implements Action {
 			maxSize = 5 * 1024 * 1024;
 
 			realPath = savePath+"/board";
-			log.info(realPath);
 			File targetDir = new File(realPath); 	//경로를 가진 파일객체 생성하기
 			if (!targetDir.exists()) {				//파일이 존재하지 않는다면
 				targetDir.mkdirs();					//새로운 디렉토리를 만들어준다.
@@ -75,20 +74,14 @@ public class MissingBoardWriteAction implements Action {
 			mage = multi.getParameter("mage");
 			mname = multi.getParameter("mname");
 			fileName = multi.getFilesystemName("uploadFile");
-			/*
-			boardDTO = new BoardDTO(brdcontent, (String)session.getAttribute("today"),
-					(String)session.getAttribute("userid"),title,"mb",
-					(int)((UserDTO)session.getAttribute("user")).getUserno());
-			*/
-			if(fileName==null){
-				System.out.println("파일 업로드 되지 않았음");
+
+			if(fileName==null){//파일이 업로드되지 않았을 경우
 				boardDTO = new BoardDTO("/gaenari/image/board/defaultDog.jpg!split!"+brdcontent,
 						(String)session.getAttribute("today"),
 						(String)session.getAttribute("userid"),title,"mb",
 						(int) ((UserDTO) session.getAttribute("user")).getUserno());
 				brdno = MFABoardDAO.insertMissingBoard(boardDTO);
 			} else {
-				System.out.println("File Name : "+fileName);			
 				boardDTO = new BoardDTO(brdcontent, (String) session.getAttribute("today"),
 							(String) session.getAttribute("userid"), title,"mb",
 							(int) ((UserDTO) session.getAttribute("user")).getUserno());
@@ -98,7 +91,6 @@ public class MissingBoardWriteAction implements Action {
 				brdno = MFABoardDAO.insertMissingBoard(boardDTO);
 				
 				String realFileName = boardDTO.toStringBrdno(brdno)+fileName.substring(index, fileName.length());
-				log.info("realFileName : "+realFileName);
 				File oldFile = new File(realPath + "/" + fileName);
 				File newFile = new File(realPath + "/" + realFileName);
 				oldFile.renameTo(newFile);

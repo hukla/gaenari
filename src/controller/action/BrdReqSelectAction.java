@@ -42,9 +42,7 @@ public class BrdReqSelectAction implements Action {
 		try{
 			sqlSession = DBUtil.getSqlSession();
 			userno = UserDAO.logCheck(userid).getUserno();
-			log.info("userno="+userno);
 			String brdnoString = request.getParameter("brdno");
-			log.info("brdno="+brdnoString);
 			brdno = Integer.parseInt(brdnoString);
 			
 			brdtoList = new ArrayList<BrdReqDTO>();
@@ -82,7 +80,6 @@ public class BrdReqSelectAction implements Action {
 			}
 			
 			response.getWriter().print(json);
-			log.info(json);
 			
 		} catch(Exception e){
 			e.printStackTrace();

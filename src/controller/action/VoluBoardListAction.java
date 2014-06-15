@@ -31,7 +31,6 @@ public class VoluBoardListAction implements Action {
 			cntrName = new ArrayList<String>();
 			cntrLoc = new ArrayList<String>();
 			pageNumber = request.getParameter("pageNumber");
-			System.out.println("pageNumber="+pageNumber);
 				
 			if(pageNumber==null){
 				pageNumber="1";
@@ -39,12 +38,7 @@ public class VoluBoardListAction implements Action {
 			
 			pageCount = VoluBoardDAO.getVoluCount();// 게시판에 'vo'가 총 몇 개 있는지
 			tenVolu = VoluBoardDAO.getTenVolu((Integer.parseInt(pageNumber)-1)*10);	//voluBoard 10개 받아옴
-			/*for(int i=0;i<tenVolu.size();i++){
-				String cntr = VoluBoardDAO.getCntrName(tenVolu.get(i).getUserno());	//user번호로 센터이름얻어내기
-				cntrName.add(cntr);
-				String loc = VoluBoardDAO.getCntrLoc(tenVolu.get(i).getUserno());	//user번호로 센터이름얻어내기
-				cntrLoc.add(loc);
-			}*/
+
 			for(VoluBoardDTO dto: tenVolu){
 				cntrName.add(VoluBoardDAO.getCntrName(dto.getUserno()));
 				cntrLoc.add(VoluBoardDAO.getCntrLoc(dto.getUserno()));
@@ -56,7 +50,6 @@ public class VoluBoardListAction implements Action {
 			request.setAttribute("tenVolu", tenVolu);
 			request.setAttribute("center",cntrName);
 			request.setAttribute("centerLoc",cntrLoc);
-			System.out.println(cntrName.toString());
 			
 		}catch(SQLException e){
 			e.printStackTrace();

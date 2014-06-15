@@ -225,7 +225,6 @@ public class MFABoardDAO {
 			boolean result = false;
 			try{
 				session = DBUtil.getSqlSession();
-				System.out.println("MFABoardDAO의 brdno="+adto.getBrdno());
 				result = session.insert("mfboard.insertAdp",adto)>0 ? true:false;
 			}finally{
 				DBUtil.closeSession(session, result);

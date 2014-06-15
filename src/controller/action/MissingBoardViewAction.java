@@ -25,7 +25,6 @@ public class MissingBoardViewAction implements Action {
 		String url = "/error.jsp";
 		String no = request.getParameter("mbrdno");
 		int mbrdno = Integer.parseInt(no);
-		System.out.println("mbrdno="+mbrdno);
 		MissingBoardDTO mdto = MFABoardDAO.MselectOne(mbrdno);
 		if(mdto.getBrdcontent().contains("split")){
 			String picPath = mdto.getBrdcontent().split("!split!")[0];

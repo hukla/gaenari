@@ -23,23 +23,18 @@ public class QuestionFormAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("==QuestionFormAction 진입==");
 		HttpSession session = request.getSession();
 		SqlSession sqlSession = null;
 		String url="/error.jsp";
 		QuestionaireDTO qdto = null;
 		int qno=0;
 		String userid = (String) session.getAttribute("userid");
-		System.out.println("userid="+userid);
 		
 		try{
 			sqlSession = DBUtil.getSqlSession();
 			int userno = UserDAO.logCheck(userid).getUserno();
-			System.out.println("userno="+userno);
 			qdto = sqlSession.selectOne("u.checkQuest",userno);
 			url="/quest/questionForm.jsp";
-			System.out.println(qdto.toString());
 			
 			if(qdto.getQno()>0) url="/quest/questionUpdateCheck.jsp"; //테스트결과가있으면 업데이트 여부 확인
 			else url="/quest/questionForm.jsp"; //테스트결과가 없으면 테스트 화면

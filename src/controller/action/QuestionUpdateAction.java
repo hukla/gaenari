@@ -30,7 +30,6 @@ public class QuestionUpdateAction implements Action {
 		try{
 			int userno = UserDAO.logCheck(userid).getUserno();
 			qdto = new QuestionaireDTO(userno,q1,q2,q3,q4,q5);
-			System.out.println(qdto.toString());
 			boolean result = UserDAO.QueUpdate(qdto);
 			if(result){
 				url = "/quest/questionFinish.jsp";

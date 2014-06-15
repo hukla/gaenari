@@ -63,9 +63,7 @@ public class VoluBoardDAO {
 		int pageCount = 0;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==getVoluCount진입==");
 			voluCount = session.selectOne("voluboard.selectCountVolu");
-			System.out.println("==getVoluCount종료==");
 			pageCount = voluCount/10;
 			if(voluCount%10 > 0) pageCount++;
 		} finally {
@@ -80,9 +78,7 @@ public class VoluBoardDAO {
 
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==getTenVolu진입==");
 			list = session.selectList("voluboard.selectTenVolu",pageCount);
-			System.out.println("==getTenVolu종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -120,24 +116,12 @@ public class VoluBoardDAO {
 		}	
 		return result;
 	}
-	
-/*	public static List<VoluBoardDTO> selectAll() throws SQLException {
-		SqlSession session =null;
-		List<VoluBoardDTO> list =null;
-		try{
-			session =  DBUtil.getSqlSession();
-			list = session.selectList("voluboard.selectAll");
-		}finally{
-			DBUtil.closeSession(session);
-		}
-		return list;
-	}
-*/	public static VoluBoardDTO getContent(int  num, boolean check) throws SQLException{		
+
+	public static VoluBoardDTO getContent(int  num, boolean check) throws SQLException{		
 		SqlSession session = DBUtil.getSqlSession();
 		session.commit();
 		VoluBoardDTO vbdto = null;
 		boolean result = false;
-		System.out.println("num="+num+"  check="+check);
 		try {
 			vbdto = session.selectOne("voluboard.selectByNum", num);
 			vbdto.setUserid(vbdto.getUserid().trim());

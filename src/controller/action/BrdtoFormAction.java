@@ -15,7 +15,6 @@ public class BrdtoFormAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//System.out.println("BRDNO=======================>"+request.getParameter("brdno"));
 		String url="/quest/brdtoList.jsp";
 		request.setAttribute("brdno", request.getParameter("brdno"));
 		if(request.getParameter("type").equals("v")){

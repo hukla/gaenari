@@ -20,7 +20,6 @@ public class VoluBoardUpdateAction implements Action {
 		String vhour = request.getParameter("vhour")+"!split!"+request.getParameter("vhour2")
 				+"!split!"+request.getParameter("vhour3")+"!split!";				
 		String vbrdno = request.getParameter("vbrdno");
-		System.out.println( title + brdcontent+ vhour + vbrdno + "힘내.......");
 
 		try{
 			int num = Integer.parseInt(vbrdno);

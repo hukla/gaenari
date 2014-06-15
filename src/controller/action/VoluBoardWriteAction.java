@@ -15,23 +15,17 @@ public class VoluBoardWriteAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 		HttpSession session = request.getSession();
 		String url = "/error.jsp";
 		String title = request.getParameter("title");
 		String brdcontent = request.getParameter("brdcontent").replaceAll("\r\n", "<br/>");
 		String userid = session.getAttribute("userid").toString();
-		System.out.println("WriteAction["+userid+"]");
 		String brdtype = "vo";
-		System.out.println("vhour2, vhour3 : "+request.getParameter("vhour2")+request.getParameter("vhour3"));
 		String vhour = request.getParameter("vhour")+"!split!"+request.getParameter("vhour2")
 				+"!split!"+request.getParameter("vhour3")+"!split!";
 		VoluBoardDTO vbdto = new VoluBoardDTO(title, brdcontent, userid, brdtype, vhour);
-		System.out.println(vbdto.toString());
 		try{
 			if(vhour == null || vhour.trim().length() == 0) {
-				System.out.println("vhour==null");
 				throw new Exception("입력값이 충분하지 않습니다.");
 			}
 			boolean result = VoluBoardDAO.writeContent(vbdto);

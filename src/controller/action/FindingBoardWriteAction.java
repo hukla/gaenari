@@ -59,11 +59,7 @@ public class FindingBoardWriteAction implements Action {
 			brdtype = "fb";
 			floc = multi.getParameter("floc");
 			fileName = multi.getFilesystemName("uploadFile");
-			/*
-			boardDTO = new BoardDTO(brdcontent, (String)session.getAttribute("today"),
-					(String)session.getAttribute("userid"),title,brdtype,
-					(int)((UserDTO)session.getAttribute("user")).getUserno());
-			*/
+
 			if(fileName==null){ //파일이 업로드되지 않을 경우
 				boardDTO = new BoardDTO("/gaenari/image/board/defaultDog.jpg!split!"+brdcontent,
 						(String)session.getAttribute("today"),
@@ -80,7 +76,6 @@ public class FindingBoardWriteAction implements Action {
 				int index = -1;
 				index = fileName.lastIndexOf(".");
 				String realFileName = boardDTO.toStringBrdno(brdno)+fileName.substring(index, fileName.length());
-				log.info("realFileName : "+realFileName);
 				File oldFile = new File(savePath + "/" + fileName);
 				File newFile = new File(savePath + "/" + realFileName);
 				oldFile.renameTo(newFile);			

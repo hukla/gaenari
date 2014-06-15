@@ -68,7 +68,6 @@ public class VoluBoardViewAction implements Action {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		System.out.println("brdno="+vbdto.getBrdno());
 		request.getRequestDispatcher(url).forward(request,response);
 	}
 

@@ -15,14 +15,11 @@ public class VoluBoardDeleteAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		System.out.println("voluBoardDelete입니다");
 		HttpSession session = request.getSession();
 		
 		String sessionUser = request.getParameter("user").toString();
 		String boardWriter = request.getParameter("writer").toString().trim();
 		
-		System.out.println(sessionUser+boardWriter);
 		int flag=0;
 		String url = "/error.jsp";
 		String vbrdno = request.getParameter("vbrdno");

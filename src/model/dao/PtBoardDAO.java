@@ -34,9 +34,7 @@ public class PtBoardDAO {
 		int pageCount = 0;
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==getPtCount진입==");
 			ptCount = session.selectOne("ptboard.selectCountPt");
-			System.out.println("==getPtCount종료==");
 			pageCount = ptCount/10;
 			if(ptCount%10 > 0) pageCount++;
 		} finally {
@@ -51,9 +49,7 @@ public class PtBoardDAO {
 
 		try {
 			session = DBUtil.getSqlSession();
-			System.out.println("==getTenPt진입==");
 			list = session.selectList("ptboard.selectTenPt",pageCount);
-			System.out.println("==getTenPt종료==");
 		} finally {
 			DBUtil.closeSession(session);
 		}
@@ -67,9 +63,7 @@ public class PtBoardDAO {
 		boolean result = false;
 		try{
 			int brdno = session.selectOne("ptboard.selectBrdno",ptbdto.getPtbrdno());
-			System.out.println("brdno="+brdno);
 			ptbdto2 = new PtBoardDTO(ptbdto.getTitle(),ptbdto.getBrdcontent(),ptbdto.getWorktype(),ptbdto.getWorkloc(), ptbdto.getWorkhour(),ptbdto.getPtbrdno(),brdno);
-			System.out.println(ptbdto2.toString());
 			int count = session.update("ptboard.update",ptbdto2);
 			if(count != 0){
 				result = true;
@@ -85,7 +79,6 @@ public class PtBoardDAO {
 		session.commit();
 		boolean result = false;
 		try {
-			System.out.println("dao 진입");
 			int count =  session.insert("ptboard.insert", pbdto);
 			
 			if(count != 0) {

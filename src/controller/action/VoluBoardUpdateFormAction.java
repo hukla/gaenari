@@ -19,7 +19,6 @@ public class VoluBoardUpdateFormAction implements Action {
 		
 		String sessionUser = request.getParameter("user").toString();
 		String boardWriter = request.getParameter("writer").toString().trim();
-		System.out.println("[user="+sessionUser+"]==[writer="+boardWriter+"]");
 		
 		int flag=0;//user와 글쓴이가 같으면 0, 다르면 1
 		String url = "/error.jsp";

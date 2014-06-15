@@ -15,11 +15,9 @@ public class PtBoardUpdateFormAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("ptboardupdateform");
 		String sessionUser = request.getParameter("user").toString();
 		String boardWriter = request.getParameter("writer").toString().trim();
 		
-		System.out.println(sessionUser+boardWriter);
 		int flag=0;
 		String url = "/error.jsp";
 		if(!sessionUser.equals(boardWriter)){

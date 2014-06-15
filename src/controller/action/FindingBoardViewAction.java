@@ -17,7 +17,6 @@ public class FindingBoardViewAction implements Action {
 		String url = "/error.jsp";
 		String no = request.getParameter("fbrdno");
 		int fbrdno = Integer.parseInt(no);
-		System.out.println("fbrdno="+fbrdno);
 		FindingBoardDTO fdto = MFABoardDAO.FselectOne(fbrdno);
 		if(fdto.getBrdcontent().contains("split")){
 			String picPath = fdto.getBrdcontent().split("!split!")[0];
