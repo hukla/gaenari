@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.6" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="model.dto.PtBoardDTO" project="gaenari" 
+    file="/gaenari/src/model/dto/PtBoardDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="351" width="307" x="1795" y="698"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="model.dto.PlanDTO" project="gaenari" file="/gaenari/src/model/dto/PlanDTO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="405" width="162" x="713" y="698"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="model.dto.BoardDTO" project="gaenari" file="/gaenari/src/model/dto/BoardDTO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="621" width="264" x="1233" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="model.dto.ItemDTO" project="gaenari" file="/gaenari/src/model/dto/ItemDTO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="441" width="175" x="831" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="model.dto.FriendDTO" project="gaenari" 
+    file="/gaenari/src/model/dto/FriendDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="156" x="2306" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="model.dto.AdpBoardDTO" project="gaenari" 
+    file="/gaenari/src/model/dto/AdpBoardDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="119" x="1436" y="698"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="model.dto.FindingBoardDTO" project="gaenari" 
+    file="/gaenari/src/model/dto/FindingBoardDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="160" x="1595" y="698"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="model.dto.BrdReqDTO" project="gaenari" 
+    file="/gaenari/src/model/dto/BrdReqDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="387" width="147" x="1046" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="model.dto.DogDTO" project="gaenari" file="/gaenari/src/model/dto/DogDTO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="657" width="226" x="2306" y="1485"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="model.dto.CenterDTO" project="gaenari" 
+    file="/gaenari/src/model/dto/CenterDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="202" x="267" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="model.dto.QuestionaireDTO" project="gaenari" 
+    file="/gaenari/src/model/dto/QuestionaireDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="495" width="282" x="509" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="model.dto.UserDTO" project="gaenari" file="/gaenari/src/model/dto/UserDTO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="747" width="258" x="2306" y="698"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="model.dto.CommentDTO" project="gaenari" 
+    file="/gaenari/src/model/dto/CommentDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="124" x="2142" y="698"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="model.dto.MissingBoardDTO" project="gaenari" 
+    file="/gaenari/src/model/dto/MissingBoardDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="567" width="472" x="42" y="698"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="model.dto.VisitDTO" project="gaenari" file="/gaenari/src/model/dto/VisitDTO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="119" x="554" y="698"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="model.dto.VoluBoardDTO" project="gaenari" 
+    file="/gaenari/src/model/dto/VoluBoardDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="271" x="1125" y="698"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="model.dto.DonReqDTO" project="gaenari" 
+    file="/gaenari/src/model/dto/DonReqDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="495" width="185" x="42" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="model.dto.DiaryDTO" project="gaenari" file="/gaenari/src/model/dto/DiaryDTO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="170" x="915" y="698"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="19">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="20">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="21">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="22">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="23" name="prmuser"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="26" name="userdto"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="30">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="31">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="32">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
