@@ -1,3 +1,7 @@
+/**
+ * 작성자 : 장재희
+ * 내용 : 기부몰에 아이템 등록 시
+ */
 package controller.action;
 
 import java.io.File;

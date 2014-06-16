@@ -35,7 +35,7 @@ public class MallDonateAction implements Action {
 		int itemno = Integer.parseInt(request.getParameter("selectedItemNo"));
 		int userno = user.getUserno();
 		int qty = (request.getParameter("qty") == null) ? 1:Integer.parseInt(request.getParameter("qty"));
-		log.info("itemno : "+itemno);
+		log.debug("itemno : "+itemno);
 		int targetcntrno = Integer.parseInt(request.getParameter("don_target"));
 		int price = Integer.parseInt(request.getParameter("price"));
 		double point = Double.parseDouble(request.getParameter("gnr_point"));
@@ -64,9 +64,8 @@ public class MallDonateAction implements Action {
 		request.setAttribute("itemname", request.getParameter("item_name"));
 		request.setAttribute("cntrname", targetcntrname);
 		
+		// json으로 성공여부 전달
 		response.getWriter().print("{\"isSuccess\":true}");
-		// forward
-		//request.getRequestDispatcher(url).forward(request, response);
 	}
 
 }

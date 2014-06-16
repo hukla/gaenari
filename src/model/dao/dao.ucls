@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.6" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="model.dao.VoluBoardDAO" project="gaenari" 
-    file="/gaenari/src/model/dao/VoluBoardDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="225" width="216" x="1372" y="37"/>    
+<class-diagram version="1.1.6" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="model.dao.VisitDAO" project="gaenari" file="/gaenari/src/model/dao/VisitDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="218" x="2332" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="model.dao.DeleteDAO" project="gaenari" 
-    file="/gaenari/src/model/dao/DeleteDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="152" x="41" y="37"/>    
+  <class id="2" language="java" name="model.dao.VoluBoardDAO" project="gaenari" 
+    file="/gaenari/src/model/dao/VoluBoardDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="216" x="3040" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,16 +21,16 @@
   </class>  
   <class id="3" language="java" name="model.dao.ItemDAO" project="gaenari" file="/gaenari/src/model/dao/ItemDAO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="225" width="168" x="2113" y="37"/>    
+    <position height="225" width="168" x="3296" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="model.dao.TestDAO" project="gaenari" file="/gaenari/src/model/dao/TestDAO.java" 
+  <class id="4" language="java" name="model.dao.PlanDAO" project="gaenari" file="/gaenari/src/model/dao/PlanDAO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="747" width="344" x="988" y="37"/>    
+    <position height="369" width="235" x="292" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,70 +39,70 @@
   </class>  
   <class id="5" language="java" name="model.dao.CenterDAO" project="gaenari" 
     file="/gaenari/src/model/dao/CenterDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="160" x="2321" y="37"/>    
+    <position height="135" width="171" x="1569" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="model.dao.InsertDAO" project="gaenari" 
-    file="/gaenari/src/model/dao/InsertDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="315" width="193" x="2521" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="model.dao.DonReqDAO" project="gaenari" 
+  <class id="6" language="java" name="model.dao.DonReqDAO" project="gaenari" 
     file="/gaenari/src/model/dao/DonReqDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="225" width="227" x="3217" y="37"/>    
+    <position height="225" width="227" x="2065" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="model.dao.UpdateDAO" project="gaenari" 
-    file="/gaenari/src/model/dao/UpdateDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="225" width="194" x="1628" y="37"/>    
+  <class id="7" language="java" name="model.dao.DiaryDAO" project="gaenari" file="/gaenari/src/model/dao/DiaryDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="245" x="1780" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="model.dao.MFABoardDAO" project="gaenari" 
+  <class id="8" language="java" name="model.dao.MFABoardDAO" project="gaenari" 
     file="/gaenari/src/model/dao/MFABoardDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="369" width="224" x="233" y="37"/>    
+    <position height="369" width="224" x="1305" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="model.dao.UserDAO" project="gaenari" file="/gaenari/src/model/dao/UserDAO.java" 
+  <class id="9" language="java" name="model.dao.UserDAO" project="gaenari" file="/gaenari/src/model/dao/UserDAO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="369" width="211" x="1862" y="37"/>    
+    <position height="441" width="211" x="41" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="model.dao.PtBoardDAO" project="gaenari" 
+  <class id="10" language="java" name="model.dao.PtBoardDAO" project="gaenari" 
     file="/gaenari/src/model/dao/PtBoardDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="204" x="2754" y="37"/>    
+    <position height="189" width="204" x="831" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="model.dao.BoardDAO" project="gaenari" file="/gaenari/src/model/dao/BoardDAO.java" 
+  <class id="11" language="java" name="model.dao.BoardDAO" project="gaenari" file="/gaenari/src/model/dao/BoardDAO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="187" x="497" y="37"/>    
+    <position height="117" width="187" x="2590" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="model.dao.FriendDAO" project="gaenari" 
+    file="/gaenari/src/model/dao/FriendDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="190" x="1075" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="model.dao.BrdReqDAO" project="gaenari" 
     file="/gaenari/src/model/dao/BrdReqDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="224" x="724" y="37"/>    
+    <position height="135" width="224" x="567" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="model.dao.DogDAO" project="gaenari" file="/gaenari/src/model/dao/DogDAO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="179" x="2998" y="37"/>    
+    <position height="171" width="183" x="2817" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

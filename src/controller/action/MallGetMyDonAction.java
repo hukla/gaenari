@@ -1,3 +1,7 @@
+/**
+ * 작성자 : 장재희
+ * 내용 : '나의 기부 내역'페이지에서 불러오는 데이터 파싱 및 전송
+ */
 package controller.action;
 
 import java.io.IOException;

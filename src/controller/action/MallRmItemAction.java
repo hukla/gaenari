@@ -1,3 +1,7 @@
+/**
+ * 작성자 : 장재희
+ * 내용 : 아이템 삭제
+ */
 package controller.action;
 
 import java.io.IOException;

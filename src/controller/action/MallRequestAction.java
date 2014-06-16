@@ -55,10 +55,10 @@ public class MallRequestAction implements Action {
 		request.setAttribute("donrequest", donrequest);
 		request.setAttribute("itemname", request.getParameter("item_name"));
 		
+		// json으로 성공 여부 전달
 		response.getWriter().print("{\"isSuccess\":true}");
 		
 		// forward
-		//request.getRequestDispatcher(url).forward(request, response);
 	}
 
 }

@@ -1,3 +1,7 @@
+/**
+ * 작성자 : 장재희
+ * 내용 : 배송하기
+ */
 package controller.action;
 
 import java.io.IOException;
@@ -23,7 +27,6 @@ public class MallSendDonAction implements Action {
 		
 		try {
 			
-			log.info(DonReqDAO.send(DonReqDAO.selectOne(drno)));
 			
 			out.print(DonReqDAO.send(DonReqDAO.selectOne(drno)));
 			

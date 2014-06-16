@@ -27,14 +27,17 @@ public class MallDetailPageAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int itemno = Integer.parseInt(request.getParameter("itemno"));
-		ItemDTO item = ItemDAO.selectOne(itemno);
-		String url = "/mall/detail.jsp";
+		
+		ItemDTO item = ItemDAO.selectOne(itemno); // itemno로 item을 가져옴
+		
+		String url = "/mall/detail.jsp"; // 최종으로 이동할 페이지
 		
 		try {
-			if (item == null) {
+			if (item == null) { // 아이템이 존재하지 않을 시
 				throw new Exception("아이템이 존재하지 않습니다.");
 			}
 			
+			// db에서 아이템의 상세정보를 가져올 때 개행문자가 있으면 '<br>' 태그로 바꿔줌 
 			item.setItemdetail(item.getItemdetail().replaceAll("\n", "<br>"));
 			log.debug("item detail : "+item.getItemdetail()); 
 			

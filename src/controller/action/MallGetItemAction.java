@@ -47,7 +47,7 @@ public class MallGetItemAction implements Action {
 			url = "/error.jsp";
 		}
 		request.setAttribute("selectedItem", item);
-		request.getSession().setAttribute("centerList", centerList); // TODO 여기에??????
+		request.getSession().setAttribute("centerList", centerList);
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 

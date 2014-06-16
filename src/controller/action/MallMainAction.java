@@ -1,3 +1,7 @@
+/**
+ * 작성자 : 장재희
+ * 내용 : 기부몰의 메인으로 이동시
+ */
 package controller.action;
 
 import java.io.IOException;

@@ -1,3 +1,7 @@
+/**
+ * 작성자 : 장재희
+ * 내용 : 기부몰 마이 페이지 이동
+ */
 package controller.action;
 
 import java.io.IOException;
